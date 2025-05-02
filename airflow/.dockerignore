@@ -1,0 +1,33 @@
+# Docs
+*.md
+
+# Python & virtual environment
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+.venv/
+env/
+venv/
+.venv/
+.python-version
+
+# Airflow
+webserver_config.py
+airflow.db
+logs/
+*.pid
+
+# OS & editor files
+.DS_Store
+*.swp
+*.swo
+*.bak
+.idea/
+.vscode/
+
+# Git & .env
+.git/
+.gitignore

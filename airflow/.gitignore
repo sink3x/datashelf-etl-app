@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+.venv/
+
+# Airflow
+webserver_config.py
+airflow.db
+airflow-webserver.pid
+logs/
+*.log
+
+# OS & editor files
+.DS_Store
+*.swp
+*.swo
+*.bak
+.idea/
+.vscode/
+Thumbs.db
+ehthumbs.db
