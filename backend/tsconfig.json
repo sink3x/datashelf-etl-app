@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "skipDefaultLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "useUnknownInCatchVariables": false,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": "./src",
+    "outDir": "./build",
+    "paths": {
+      "@controllers/*": ["controllers/*"],
+      "@routers/*": ["routers/*"],
+      "@interfaces/*": ["interfaces/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@models/*": ["models/*"],
+      "@shared/*": ["shared/*"],
+      "@utils/*": ["utils/*"],
+      "@helpers/*": ["helpers/*"],
+      "@validations/*": ["validations/*"],
+      "@documentation/*": ["documentation/*"]
+    }
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules", "build"]
+}

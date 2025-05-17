@@ -1,0 +1,36 @@
+# Logs
+logs
+*.log
+pnpm-debug.log*
+
+# Build
+dist
+build
+*.local
+
+# Dependencies
+node_modules
+
+# Secret
+.env*
+
+# Editor
+.vscode/*
+.idea
+.DS_Store
+debug
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Configuration Files
+.bashrc
+*.bat
+Dockerfile*
+
+# Ignore Git and Docker
+.gitignore
+.dockerignore
+.eslintrcignore

@@ -1,0 +1,48 @@
+# Logs
+logs
+*.log
+pnpm-debug.log*
+
+# Build
+dist
+build
+*.local
+
+# Secret
+.env.*.local
+app.development.json
+app.stage.json
+app.production.json
+
+# Dependencies
+node_modules
+
+# Editor
+.vscode/*
+.vscode           
+.idea
+.DS_Store
+debug
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# System & OS files
+Thumbs.db
+Desktop.ini
+
+# Test Reports
+coverage/
+*.lcov
+
+# Temporary files
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# Miscellaneous
+.idea/*
+*.log.*

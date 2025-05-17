@@ -1,0 +1,36 @@
+# Logs 
+logs
+*.log
+pnpm-debug.log*
+
+# Build
+dist
+build
+*.local
+*.bak
+*.tmp
+
+# Dependencies
+node_modules
+
+# Editor
+.vscode/*
+.idea
+.DS_Store
+debug
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Git & configs
+.husky
+.git
+.github
+.gitignore
+commitlint.config.ts
+.env*
+
+# Miscellaneous
+*.md
