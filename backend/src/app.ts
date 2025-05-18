@@ -1,14 +1,12 @@
 import type { IAppConfig } from '@interfaces/config'
 import type { TMaybe } from '@interfaces/maybe'
 import { RouterStore } from '@routers/router-store'
-import { isDevelopment } from '@shared/constants'
+import { APP_MODE } from '@shared/constants'
 import { loadConfig } from '@utils/load-config'
 import compression from 'compression'
 import cors from 'cors'
 import express from 'express'
 import helmet from 'helmet'
-
-import appConfig from '../configs/app.local.json'
 
 export class App {
   private readonly app = express()
@@ -17,6 +15,11 @@ export class App {
 
   constructor() {
     this.setupConfig()
+
+    if (!this.config) {
+      return
+    }
+
     this.setupMiddleWareList()
     this.setupRouteList()
   }
@@ -38,13 +41,13 @@ export class App {
   }
 
   private setupConfig() {
-    if (isDevelopment) {
-      this.config = appConfig as IAppConfig
+    const loadedConfig = loadConfig(APP_MODE)
 
+    if (!loadedConfig) {
       return
     }
 
-    this.config = loadConfig()
+    this.config = loadedConfig
   }
 
   public start() {
@@ -59,10 +62,10 @@ export class App {
       return
     }
 
-    const { host, port } = this.config.server
+    const { protocol, host, port } = this.config.server
 
     this.app.listen(port, () => {
-      console.log(`[status] start app successful: http://${host}:${port}`)
+      console.log(`[status] start app successful: ${protocol}://${host}:${port}`)
     })
   }
 }

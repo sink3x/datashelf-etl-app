@@ -5,11 +5,11 @@ RUN corepack enable
 COPY package* pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 COPY . .
-RUN pnpm run build
+RUN pnpm run build:production
 
 FROM alpine:3.18 AS run
 RUN apk add --no-cache nodejs-current
 WORKDIR /app
 COPY --from=builder /app/build .
 EXPOSE 5000
-CMD ["node", "index.mjs"]
+CMD ["node", "index.cjs"]

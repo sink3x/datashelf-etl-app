@@ -1,0 +1,18 @@
+paths:
+  /api/healthcheck:
+    get:
+      tags:
+        - utils
+      summary: Service health check
+      description: Returns the service status as "alive" if it is running
+      responses:
+        '200':
+          description: Successful response with service status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: alive

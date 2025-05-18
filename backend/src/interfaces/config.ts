@@ -1,5 +1,6 @@
 export interface IAppConfig {
   server: {
+    protocol: string
     host: string
     port: number
   }
