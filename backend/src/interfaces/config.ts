@@ -3,6 +3,12 @@ export interface IAppConfig {
     host: string
     port: number
   }
-  services: {}
+  services: {
+    airflow: {
+      username: string
+      password: string
+      url: string
+    }
+  }
   vars: {}
 }

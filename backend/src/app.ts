@@ -1,16 +1,14 @@
+import type { IAppConfig } from '@interfaces/config'
+import type { TMaybe } from '@interfaces/maybe'
+import { RouterStore } from '@routers/router-store'
+import { isDevelopment } from '@shared/constants'
+import { loadConfig } from '@utils/load-config'
 import compression from 'compression'
 import cors from 'cors'
 import express from 'express'
 import helmet from 'helmet'
 
-import { isDevelopment } from '@shared/constants'
-import { loadConfig } from '@utils/load-config'
-import { RouterMain } from 'routes/routes'
-
 import appConfig from '../configs/app.local.json'
-
-import type { IAppConfig } from '@interfaces/config'
-import type { TMaybe } from '@interfaces/maybe'
 
 export class App {
   private readonly app = express()
@@ -36,7 +34,7 @@ export class App {
   }
 
   private setupRouteList() {
-    new RouterMain(this.app)
+    new RouterStore(this.app, this.config!)
   }
 
   private setupConfig() {

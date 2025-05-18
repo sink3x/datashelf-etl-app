@@ -1,9 +1,10 @@
-import tsParser from '@typescript-eslint/parser'
 import tsPlugin from '@typescript-eslint/eslint-plugin'
+import tsParser from '@typescript-eslint/parser'
+import importPlugin from 'eslint-plugin-import'
 import importXPlugin from 'eslint-plugin-import-x'
 import prettierPlugin from 'eslint-plugin-prettier'
-import { fileURLToPath } from 'url'
 import path from 'path'
+import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -26,10 +27,10 @@ export default [
     plugins: {
       '@typescript-eslint': tsPlugin,
       'import-x': importXPlugin,
+      import: importPlugin,
       prettier: prettierPlugin,
     },
     rules: {
-  
       'no-console': 'off',
       'no-empty': 'off',
       'no-fallthrough': 'warn',
@@ -37,7 +38,6 @@ export default [
       semi: 'off',
       indent: 'off',
 
-  
       '@typescript-eslint/ban-ts-comment': 'off',
       '@typescript-eslint/ban-types': 'off',
       '@typescript-eslint/consistent-type-imports': 'error',
@@ -50,31 +50,34 @@ export default [
         },
       ],
 
-  
-      'import-x/no-unresolved': 'error',
+      'import/no-unresolved': 'error', // заменяет import-x/no-unresolved
       'import-x/named': 'error',
       'import-x/default': 'error',
       'import-x/order': [
         'error',
         {
-          groups: ['builtin', 'external', 'internal', ['parent', 'sibling', 'index'], 'type', 'object'],
+          groups: ['builtin', 'external', 'internal', ['parent', 'sibling', 'index']],
+          pathGroups: [
+            { pattern: '@routers/**', group: 'internal', position: 'before' },
+            { pattern: '@middlewares/**', group: 'internal', position: 'before' },
+            { pattern: '@validations/**', group: 'internal', position: 'before' },
+            { pattern: '@models/**', group: 'internal', position: 'before' },
+            { pattern: '@controllers/**', group: 'internal', position: 'before' },
+            { pattern: '@shared/**', group: 'internal', position: 'before' },
+            { pattern: '@helpers/**', group: 'internal', position: 'before' },
+            { pattern: '@utils/**', group: 'internal', position: 'before' },
+            { pattern: '@interfaces/**', group: 'internal', position: 'before' },
+          ],
+          pathGroupsExcludedImportTypes: ['builtin', 'external'],
           'newlines-between': 'always',
-          alphabetize: {
-            order: 'asc',
-            caseInsensitive: true,
-          },
+          alphabetize: { order: 'asc', caseInsensitive: true },
         },
       ],
 
-  
       'prettier/prettier': 'off',
     },
     settings: {
-      'import-x/resolver': {
-        typescript: {
-          alwaysTryTypes: true,
-          project: './tsconfig.json',
-        },
+      'import/resolver': {
         alias: {
           map: [
             ['@controllers', './src/controllers'],
