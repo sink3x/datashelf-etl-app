@@ -57,12 +57,28 @@ export class AirflowController {
 
   public async processData(request: TProcessDataRequest, response: TProcessDataResponse) {
     try {
-      const { file, body } = request
+      const { files: fileList, body } = request
       const { dagId } = body
 
-      if (!file) {
+      if (!fileList) {
         return response.status(400).json({
-          message: 'File not uploaded or uploaded not correct',
+          message: 'File not uploaded or not correct',
+        })
+      }
+
+      if (fileList.length !== 1) {
+        return response.status(400).json({
+          message: 'Allowed only 1 file upload',
+        })
+      }
+
+      const file = fileList[0]
+      const { s3MaxFileSizeUploadMb } = this.config.vars
+      const maxFileSize = s3MaxFileSizeUploadMb * 1024 * 1024
+
+      if (file.size > maxFileSize) {
+        return response.status(400).json({
+          message: `File size limit exceeded, allowed only ${s3MaxFileSizeUploadMb}mb`,
         })
       }
 

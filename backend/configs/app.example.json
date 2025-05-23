@@ -6,7 +6,7 @@
   },
   "services": {
     "airflow": {
-      "username": "admin",
+      "username": "",
       "password": "",
       "url": "http://localhost:8080"
     },
@@ -19,6 +19,8 @@
     }
   },
   "vars": {
-    "intervalToUpdateAirflowAccessToken": 900000
+    "intervalToUpdateAirflowAccessToken": 900000,
+    "s3RawDataDirectory": "raw-data",
+    "s3MaxFileSizeUploadMb": 10
   }
 }

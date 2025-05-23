@@ -24,6 +24,7 @@ export interface IAppConfig {
   vars: {
     intervalToUpdateAirflowAccessToken: number
     s3RawDataDirectory: string
+    s3MaxFileSizeUploadMb: number
   }
 }
 

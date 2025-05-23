@@ -1,1 +1,1 @@
-export const ALLOWLABLE_FILE_TYPE_LIST = ['application/json', 'application/csv']
+export const ALLOWLABLE_FILE_TYPE_LIST = ['application/json', 'text/csv']

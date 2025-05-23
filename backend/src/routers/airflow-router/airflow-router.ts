@@ -18,7 +18,7 @@ export class AirflowRouter {
     )
     this.router.post(
       '/process-data',
-      upload.single('file'),
+      upload.array('file'),
       // @ts-ignore
       processDataController.processData.bind(processDataController),
     )

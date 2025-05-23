@@ -53,7 +53,7 @@ export type TGetDagListResponse = Response<{
 export type TProcessDataRequest = TRequestBody<{
   dagId?: string
 }> & {
-  file?: IMulterFile
+  files?: IMulterFile[]
 }
 
 export type TProcessDataResponse = Response<{
