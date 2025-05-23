@@ -10,6 +10,7 @@ build
 
 # Secret
 .env.*.local
+app.local.json
 app.development.json
 app.stage.json
 app.production.json

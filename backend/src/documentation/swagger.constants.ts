@@ -1,7 +1,7 @@
 import path from 'path'
 
 import type { IAppConfig } from '@interfaces/config'
-import { API_PREFIX } from '@routers/router-store.constants'
+import { API_PREFIX } from '@routers/router-store/router-store.constants'
 import { APP_MODE, BACKEND_VERSION } from '@shared/constants'
 import { loadConfig } from '@utils/load-config'
 
@@ -30,7 +30,7 @@ export const swaggerSpecificationDocument = {
       name: 'utils',
       description: 'Utility endpoints for service introspection with operational checks',
     },
-    { name: 'process-data', description: 'Integration with Airflow processes' },
+    { name: 'airflow', description: 'Integration with Airflow processes' },
   ],
 }
 

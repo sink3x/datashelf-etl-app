@@ -1,0 +1,280 @@
+paths:
+  /api/airflow/dags:
+    get:
+      tags:
+        - airflow
+      summary: Get list of DAGs
+      description: Returns a list of Airflow DAGs integrated with the backend system.
+      responses:
+        '200':
+          description: Successful response with list of DAGs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dags:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        dag_id:
+                          type: string
+                        default_view:
+                          type: string
+                        description:
+                          type: string
+                          nullable: true
+                        file_token:
+                          type: string
+                        fileloc:
+                          type: string
+                        has_import_errors:
+                          type: boolean
+                        has_task_concurrency_limits:
+                          type: boolean
+                        is_active:
+                          type: boolean
+                        is_paused:
+                          type: boolean
+                        is_subdag:
+                          type: boolean
+                        last_expired:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        last_parsed_time:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        last_pickled:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        max_active_runs:
+                          type: integer
+                        max_active_tasks:
+                          type: integer
+                        next_dagrun:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        next_dagrun_create_after:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        next_dagrun_data_interval_end:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        next_dagrun_data_interval_start:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        owners:
+                          type: array
+                          items:
+                            type: string
+                        pickle_id:
+                          type: string
+                          nullable: true
+                        root_dag_id:
+                          type: string
+                          nullable: true
+                        schedule_interval:
+                          type: object
+                          properties:
+                            __type:
+                              type: string
+                            value:
+                              type: string
+                        scheduler_lock:
+                          type: string
+                          nullable: true
+                        tags:
+                          type: array
+                          items:
+                            type: string
+                        timetable_description:
+                          type: string
+                  total_entries:
+                    type: integer
+                  message:
+                    type: string
+                    example: Ok
+        '500':
+          description: Failed to get DAGs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Failed to get dags
+  /api/airflow/process-data:
+    post:
+      tags:
+        - airflow
+      summary: Upload file and trigger DAG
+      description: >
+        Uploads a file to S3 and triggers the specified Airflow DAG with the uploaded file's object key in
+        config.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - file
+                - dagId
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description:
+                  File to upload (allowed types: application/json, etc.)
+                dagId:
+                  type: string
+                  description: ID of the DAG to trigger
+      responses:
+        '200':
+          description: DAG triggered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Dag etl_pipeline triggered
+                  triggeredDagInfo:
+                    type: object
+                    properties:
+                      dag_run_id:
+                        type: string
+                      dag_id:
+                        type: string
+                      logical_date:
+                        type: string
+                        format: date-time
+                      queued_at:
+                        type: string
+                        format: date-time
+                      start_date:
+                        type: string
+                        format: date-time
+                        nullable: true
+                      end_date:
+                        type: string
+                        format: date-time
+                        nullable: true
+                      data_interval_start:
+                        type: string
+                        format: date-time
+                      data_interval_end:
+                        type: string
+                        format: date-time
+                      run_after:
+                        type: string
+                        format: date-time
+                      last_scheduling_decision:
+                        type: string
+                        format: date-time
+                        nullable: true
+                      run_type:
+                        type: string
+                      state:
+                        type: string
+                      triggered_by:
+                        type: string
+                      conf:
+                        type: object
+                        properties:
+                          object_key:
+                            type: string
+                      note:
+                        type: string
+                        nullable: true
+                      dag_versions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            version_number:
+                              type: integer
+                            dag_id:
+                              type: string
+                            bundle_name:
+                              type: string
+                            bundle_version:
+                              type: string
+                              nullable: true
+                            created_at:
+                              type: string
+                              format: date-time
+                            bundle_url:
+                              type: string
+                              nullable: true
+                      bundle_version:
+                        type: string
+                        nullable: true
+        '400':
+          description: Invalid request (e.g. file not uploaded or dagId missing)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: File not uploaded or uploaded not correct
+        '500':
+          description: Internal server error (e.g. failed to trigger DAG)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Failed to process data
+                  info:
+                    type: object
+  /api/airflow/allowed-file-type-list:
+    get:
+      tags:
+        - airflow
+      summary: Get allowed file MIME types
+      description: Returns a list of allowed file MIME types for uploading and DAG triggering.
+      responses:
+        '200':
+          description: Successful response with allowed file types
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Ok
+                  allowedFileTypeList:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - application/json
+                      - application/csv
+        '500':
+          description: Failed to retrieve allowed file types
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Failed to get allowed file types

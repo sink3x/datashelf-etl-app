@@ -50,14 +50,16 @@ export default [
         },
       ],
 
-      'import/no-unresolved': 'error', // заменяет import-x/no-unresolved
+      'import/no-unresolved': 'error',
       'import-x/named': 'error',
       'import-x/default': 'error',
       'import-x/order': [
         'error',
         {
           groups: ['builtin', 'external', 'internal', ['parent', 'sibling', 'index']],
+          'newlines-between': 'always',
           pathGroups: [
+            { pattern: '@services/**', group: 'internal', position: 'before' },
             { pattern: '@routers/**', group: 'internal', position: 'before' },
             { pattern: '@middlewares/**', group: 'internal', position: 'before' },
             { pattern: '@validations/**', group: 'internal', position: 'before' },
@@ -67,9 +69,9 @@ export default [
             { pattern: '@helpers/**', group: 'internal', position: 'before' },
             { pattern: '@utils/**', group: 'internal', position: 'before' },
             { pattern: '@interfaces/**', group: 'internal', position: 'before' },
+            { pattern: './', group: 'internal', position: 'before' },
           ],
           pathGroupsExcludedImportTypes: ['builtin', 'external'],
-          'newlines-between': 'always',
           alphabetize: { order: 'asc', caseInsensitive: true },
         },
       ],
@@ -80,6 +82,7 @@ export default [
       'import/resolver': {
         alias: {
           map: [
+            ['@services', './src/services'],
             ['@controllers', './src/controllers'],
             ['@routers', './src/routers'],
             ['@interfaces', './src/interfaces'],

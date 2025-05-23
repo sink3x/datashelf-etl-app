@@ -1,13 +1,16 @@
-```sh
-docker build -t airflow .
+```bash
+docker compose build
 ```
 
-```sh
-docker run -d -p 8080:8080 --name airflow airflow
+```bash
+docker compose up
 ```
 
----
-
-- [ ] Migrate to PSQL
-- [ ] Change SequentialExecutor
-
+## TODO 
+- [ ] simple transfer
+- [ ] load | mongodb or clickhouse
+- [ ] makefile
+- [ ] CI/CD
+- [ ] YC IAM + Vault integration
+- [ ] pandas transfer 
+- [ ] pyspark transfer 

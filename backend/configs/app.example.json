@@ -1,0 +1,24 @@
+{
+  "server": {
+    "protocol": "http",
+    "host": "127.0.0.1",
+    "port": 5000
+  },
+  "services": {
+    "airflow": {
+      "username": "admin",
+      "password": "",
+      "url": "http://localhost:8080"
+    },
+    "s3": {
+      "url": "https://storage.yandexcloud.net",
+      "keyId": "",
+      "keyValue": "",
+      "bucketName": "",
+      "regionName": "ru-central1"
+    }
+  },
+  "vars": {
+    "intervalToUpdateAirflowAccessToken": 900000
+  }
+}

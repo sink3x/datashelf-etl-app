@@ -1,6 +1,8 @@
-import type { IAppConfig } from '@interfaces/config'
+import type { IAppConfig, TAppServices } from '@interfaces/config'
 import type { TMaybe } from '@interfaces/maybe'
-import { RouterStore } from '@routers/router-store'
+import { RouterStore } from '@routers/router-store/router-store'
+import { AirflowService } from '@services/airflow/airflow-service'
+import { S3Service } from '@services/s3/s3-service'
 import { APP_MODE } from '@shared/constants'
 import { loadConfig } from '@utils/load-config'
 import compression from 'compression'
@@ -10,8 +12,8 @@ import helmet from 'helmet'
 
 export class App {
   private readonly app = express()
-
-  public config: TMaybe<IAppConfig> = null
+  private config: TMaybe<IAppConfig> = null
+  private services: TMaybe<TAppServices> = null
 
   constructor() {
     this.setupConfig()
@@ -20,8 +22,18 @@ export class App {
       return
     }
 
+    this.setupServiceList()
     this.setupMiddleWareList()
-    this.setupRouteList()
+    this.setupRouterList()
+  }
+
+  private setupServiceList() {
+    this.services = {
+      // @ts-ignore
+      s3: new S3Service({ config: this.config! }),
+      // @ts-ignore
+      airflow: new AirflowService({ config: this.config! }),
+    }
   }
 
   private setupMiddleWareList() {
@@ -36,30 +48,19 @@ export class App {
     this.app.use(compression())
   }
 
-  private setupRouteList() {
-    new RouterStore(this.app, this.config!)
+  private setupRouterList() {
+    new RouterStore({ app: this.app, config: this.config!, services: this.services! })
   }
 
   private setupConfig() {
     const loadedConfig = loadConfig(APP_MODE)
 
-    if (!loadedConfig) {
-      return
-    }
-
-    this.config = loadedConfig
+    this.config = loadedConfig!
   }
 
   public start() {
     if (!this.config) {
-      console.log(`[status] start app failed: no config `)
-
-      require('readline').createInterface({
-        input: process.stdin,
-        output: process.stdout,
-      })
-
-      return
+      throw new Error('setup config failed: no app connfig')
     }
 
     const { protocol, host, port } = this.config.server

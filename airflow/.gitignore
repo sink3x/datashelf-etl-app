@@ -16,6 +16,10 @@ airflow-webserver.pid
 logs/
 *.log
 
+# Secrets & configs
+configs/
+!configs/app.example.json
+
 # OS & editor files
 .DS_Store
 *.swp

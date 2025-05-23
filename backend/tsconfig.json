@@ -17,6 +17,7 @@
     "baseUrl": "./src",
     "outDir": "./build",
     "paths": {
+      "@services/*": ["services/*"],
       "@controllers/*": ["controllers/*"],
       "@routers/*": ["routers/*"],
       "@interfaces/*": ["interfaces/*"],

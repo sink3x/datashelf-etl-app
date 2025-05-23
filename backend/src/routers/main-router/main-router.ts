@@ -1,15 +1,15 @@
-import type { IAppConfig } from '@interfaces/config'
-import { ProcessDataRouter } from '@routers/process-data-router/process-data-router'
-import { healthcheckController } from '@routers/router-store.controller'
+import type { IDIContainer } from '@interfaces/DI-container'
+import { AirflowRouter } from '@routers/airflow-router/airflow-router'
+import { healthcheckController } from '@routers/router-store/router-store.controller'
 import { Router } from 'express'
 
 export class MainRouter {
   public readonly router = Router()
 
-  constructor(config: IAppConfig) {
-    const processDataRouter = new ProcessDataRouter(config).router
+  constructor(container: IDIContainer) {
+    const airflowRouter = new AirflowRouter(container).router
 
     this.router.get('/healthcheck', healthcheckController)
-    this.router.use('/process-data', processDataRouter)
+    this.router.use('/airflow', airflowRouter)
   }
 }
