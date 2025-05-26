@@ -1,11 +1,3 @@
-```bash
-docker compose build
-```
-
-```bash
-docker compose up
-```
-
 ## TODO 
 - [ ] simple transfer
 - [ ] load | mongodb or clickhouse

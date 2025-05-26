@@ -3,9 +3,9 @@ import type { IDIContainer } from '@interfaces/DI-container'
 
 export class S3Service {
   private appConfig
-  private config
-
+  
   public client
+  public config
 
   constructor(container: IDIContainer) {
     const { config: appConfig } = container

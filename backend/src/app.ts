@@ -1,7 +1,9 @@
 import type { IAppConfig, TAppServices } from '@interfaces/config'
+import type { IDIContainer } from '@interfaces/DI-container'
 import type { TMaybe } from '@interfaces/maybe'
 import { RouterStore } from '@routers/router-store/router-store'
 import { AirflowService } from '@services/airflow/airflow-service'
+import { MongodbService } from '@services/mongodb/mongodb-service'
 import { S3Service } from '@services/s3/s3-service'
 import { APP_MODE } from '@shared/constants'
 import { loadConfig } from '@utils/load-config'
@@ -28,11 +30,12 @@ export class App {
   }
 
   private setupServiceList() {
+    const container = { config: this.config! } as IDIContainer
+
     this.services = {
-      // @ts-ignore
-      s3: new S3Service({ config: this.config! }),
-      // @ts-ignore
-      airflow: new AirflowService({ config: this.config! }),
+      s3: new S3Service(container),
+      airflow: new AirflowService(container),
+      mongodb: new MongodbService(container),
     }
   }
 

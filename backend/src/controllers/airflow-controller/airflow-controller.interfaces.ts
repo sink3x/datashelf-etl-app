@@ -1,8 +1,8 @@
-import type { IDagInfo } from '@interfaces/dag'
+import type { IDagInfo, IDagStatus } from '@interfaces/dag'
 import type { TMaybe } from '@interfaces/maybe'
 import type { IMulterFile } from '@interfaces/multer-file'
 import type { IObjectAny } from '@interfaces/object-any'
-import type { TRequestBody } from '@interfaces/request'
+import type { TRequestBody, TRequestParams } from '@interfaces/request'
 import type { AxiosRequestConfig, AxiosResponse } from 'axios'
 import type { Response } from 'express'
 
@@ -65,4 +65,15 @@ export type TProcessDataResponse = Response<{
 export type TGetAllowFileTypeListResponse = Response<{
   message: string
   allowedFileTypeList: typeof ALLOWLABLE_FILE_TYPE_LIST
+}>
+
+export type TGetDagStatusByDagRunIdRequest = TRequestParams<{
+  dagId: string
+  dagRunId: string
+}>
+
+export type TGetDagStatusByDagRunIdResponse = Response<{
+  message: string
+  dagStatus?: IDagStatus
+  info?: IObjectAny
 }>

@@ -31,6 +31,11 @@ export const swaggerSpecificationDocument = {
       description: 'Utility endpoints for service introspection with operational checks',
     },
     { name: 'airflow', description: 'Integration with Airflow processes' },
+    {
+      name: 'dataset',
+      description:
+        'Provides access to operations related to raw and processed datasets, including retrieval, extraction, and augmentation',
+    },
   ],
 }
 

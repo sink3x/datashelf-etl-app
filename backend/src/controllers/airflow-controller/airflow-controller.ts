@@ -11,6 +11,8 @@ import type {
   TGetDagListAirflowRequest,
   TGetDagListAirflowResponse,
   TGetDagListResponse,
+  TGetDagStatusByDagRunIdRequest,
+  TGetDagStatusByDagRunIdResponse,
   TProcessDataRequest,
   TProcessDataResponse,
 } from './airflow-controller.interfaces'
@@ -139,5 +141,38 @@ export class AirflowController {
       message: 'Ok',
       allowedFileTypeList: ALLOWLABLE_FILE_TYPE_LIST,
     })
+  }
+
+  public async getDagStatusByDagRunId(
+    request: TGetDagStatusByDagRunIdRequest,
+    response: TGetDagStatusByDagRunIdResponse,
+  ) {
+    try {
+      const { params } = request
+      const { dagId, dagRunId } = params
+
+      const { data: dagStatus } = await axios(
+        `${this.config.services.airflow.url}/api/v2/dags/${dagId}/dagRuns/${dagRunId}`,
+
+        {
+          headers: {
+            ...this.airflow.apiHeaders,
+          },
+        },
+      )
+
+      response.status(200).json({
+        message: 'Ok',
+        dagStatus,
+      })
+    } catch (error) {
+      const axiosErrorData = error?.response?.data
+      const { detail = 'Failed to process data' } = axiosErrorData || {}
+
+      response.status(500).json({
+        message: detail,
+        info: axiosErrorData,
+      })
+    }
   }
 }

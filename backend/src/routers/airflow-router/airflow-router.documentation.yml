@@ -278,3 +278,130 @@ paths:
                   message:
                     type: string
                     example: Failed to get allowed file types
+  /api/airflow/dag/status/:dag_id/:dag_run_id:
+    get:
+      summary: Get DAG run status by dagId and dagRunId
+      description: |
+        Fetches the status of a specific DAG run from Airflow using the provided `dagId` and `dagRunId`.
+        Useful for monitoring and diagnostics of pipeline executions.
+      tags:
+        - airflow
+      parameters:
+        - name: dagId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: etl_pipeline
+        - name: dagRunId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: manual__2025-05-26T21:47:12.346117+00:00
+      responses:
+        '200':
+          description: DAG run status returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Ok
+                  dagStatus:
+                    type: object
+                    properties:
+                      dag_run_id:
+                        type: string
+                        example: manual__2025-05-26T21:47:12.346117+00:00
+                      dag_id:
+                        type: string
+                        example: etl_pipeline
+                      logical_date:
+                        type: string
+                        format: date-time
+                        example: 2025-05-26T21:47:12.237000Z
+                      queued_at:
+                        type: string
+                        format: date-time
+                      start_date:
+                        type: string
+                        format: date-time
+                      end_date:
+                        type: string
+                        format: date-time
+                      data_interval_start:
+                        type: string
+                        format: date-time
+                      data_interval_end:
+                        type: string
+                        format: date-time
+                      run_after:
+                        type: string
+                        format: date-time
+                      last_scheduling_decision:
+                        type: string
+                        format: date-time
+                      run_type:
+                        type: string
+                        example: manual
+                      state:
+                        type: string
+                        example: success
+                      triggered_by:
+                        type: string
+                        example: rest_api
+                      conf:
+                        type: object
+                        properties:
+                          object_key:
+                            type: string
+                            example: raw-data/formData-1748296032.json
+                      note:
+                        type: string
+                        nullable: true
+                      dag_versions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              format: uuid
+                              example: 01970d6f-6b07-769b-a67c-58a4ed88563e
+                            version_number:
+                              type: integer
+                              example: 1
+                            dag_id:
+                              type: string
+                              example: etl_pipeline
+                            bundle_name:
+                              type: string
+                              example: dags-folder
+                            bundle_version:
+                              type: string
+                              nullable: true
+                            created_at:
+                              type: string
+                              format: date-time
+                            bundle_url:
+                              type: string
+                              nullable: true
+                      bundle_version:
+                        type: string
+                        nullable: true
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Failed to process data
+                  info:
+                    type: object
+                    nullable: true

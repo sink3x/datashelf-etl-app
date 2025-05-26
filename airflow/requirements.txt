@@ -3,3 +3,5 @@ psycopg2-binary
 apache-airflow
 boto3
 botocore
+pandas
+pymongo

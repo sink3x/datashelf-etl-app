@@ -1,0 +1,92 @@
+paths:
+  /api/dataset/processed:
+    get:
+      tags:
+        - dataset
+      summary: Get list of processed datasets
+      description: Returns a list of processed datasets from the database.
+      responses:
+        '200':
+          description: Successful response with processed datasets
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Ok
+                  datasetList:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                          example: 683498286a37bb973c8e5097
+                        key:
+                          type: string
+                          example: '1'
+        '500':
+          description: Failed to retrieve processed datasets
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Failed to get processed data
+                  info:
+                    type: object
+                    additionalProperties: true
+  /api/dataset/raw:
+    get:
+      summary: Get list of raw dataset files
+      description: |
+        Returns a list of dataset files stored in the S3 bucket under the `raw-data` prefix.
+        This endpoint is intended for retrieving metadata about raw dataset files such as name, key, size, and last modified date.
+      tags:
+        - dataset
+      responses:
+        '200':
+          description: Successful response with list of raw dataset files
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Ok
+                  datasetList:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        fileName:
+                          type: string
+                          example: formData-1748225513.json
+                        key:
+                          type: string
+                          example: raw-data/formData-1748225513.json
+                        lastModified:
+                          type: string
+                          format: date-time
+                          example: 2025-05-26T02:11:54.003Z
+                        size:
+                          type: integer
+                          example: 56
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Failed to get processed data
+                  info:
+                    type: object
+                    nullable: true

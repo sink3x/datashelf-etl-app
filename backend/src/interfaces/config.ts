@@ -1,5 +1,8 @@
+import type { MongodbService } from '@services/mongodb/mongodb-service'
 import type { AirflowService } from 'services/airflow/airflow-service'
 import type { S3Service } from 'services/s3/s3-service'
+
+import type { IObjectAny } from './object-any'
 
 export interface IAppConfig {
   server: {
@@ -20,6 +23,10 @@ export interface IAppConfig {
       bucketName: string
       regionName: string
     }
+    mongodb: {
+      uri: ''
+      parameters: IObjectAny
+    }
   }
   vars: {
     intervalToUpdateAirflowAccessToken: number
@@ -31,4 +38,5 @@ export interface IAppConfig {
 export type TAppServices = {
   airflow: AirflowService
   s3: S3Service
+  mongodb: MongodbService
 }

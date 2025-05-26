@@ -1,0 +1,80 @@
+name: datashelf
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:13
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U airflow"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+    networks:
+      - datashelf-net
+
+  mongodb:
+    container_name: mongodb
+    build:
+      context: ./mongodb
+      dockerfile: Dockerfile
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    volumes:
+      - mongo-data:/data/db
+    restart: always
+    networks:
+      - datashelf-net
+
+  airflow:
+    container_name: airflow
+    build:
+      context: ./airflow
+      dockerfile: Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongodb:
+        condition: service_started
+    environment:
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__WEBSERVER__WORKERS: 2
+      AIRFLOW__WEBSERVER__PORT: 8080
+      AIRFLOW__API__AUTH_BACKEND: airflow.api.auth.backend.basic_auth
+    volumes:
+      - ./airflow/configs:/opt/airflow/configs
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
+    ports:
+      - 8080:8080
+    command: >
+      bash -c "
+      airflow db migrate &&
+      airflow scheduler &
+      airflow dag-processor &
+      airflow triggerer & 
+      airflow api-server 
+      "
+    restart: always
+    user: airflow
+    networks:
+      - datashelf-net
+
+volumes:
+  pgdata:
+  mongo-data:
+
+networks:
+  datashelf-net:
+    driver: bridge

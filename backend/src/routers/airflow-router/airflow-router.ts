@@ -9,18 +9,19 @@ export class AirflowRouter {
   public readonly router = Router()
 
   constructor(container: IDIContainer) {
-    const processDataController = new AirflowController(container)
+    const airflowController = new AirflowController(container)
 
-    this.router.get('/dags', processDataController.getDagList.bind(processDataController))
-    this.router.get(
-      '/allowed-file-type-list',
-      processDataController.getAllowFileTypeList.bind(processDataController),
-    )
+    this.router.get('/dags', airflowController.getDagList.bind(airflowController))
+    this.router.get('/allowed-file-type-list', airflowController.getAllowFileTypeList.bind(airflowController))
     this.router.post(
       '/process-data',
       upload.array('file'),
       // @ts-ignore
-      processDataController.processData.bind(processDataController),
+      airflowController.processData.bind(airflowController),
+    )
+    this.router.get(
+      '/dag/status/:dagId/:dagRunId',
+      airflowController.getDagStatusByDagRunId.bind(airflowController),
     )
   }
 }
