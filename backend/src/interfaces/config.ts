@@ -1,4 +1,5 @@
 import type { MongodbService } from '@services/mongodb/mongodb-service'
+import type { RabbitmqService } from '@services/rabbitmq/rabbitmq-service'
 import type { AirflowService } from 'services/airflow/airflow-service'
 import type { S3Service } from 'services/s3/s3-service'
 
@@ -24,12 +25,17 @@ export interface IAppConfig {
       regionName: string
     }
     mongodb: {
-      uri: ''
+      uri: string
       parameters: IObjectAny
+    }
+    rabbitmq: {
+      url: string
+      queue: string
     }
   }
   vars: {
     intervalToUpdateAirflowAccessToken: number
+    intervalToCheckRabbitAndMongoStatus: number
     s3RawDataDirectory: string
     s3MaxFileSizeUploadMb: number
   }
@@ -39,4 +45,5 @@ export type TAppServices = {
   airflow: AirflowService
   s3: S3Service
   mongodb: MongodbService
+  rabbitmq: RabbitmqService
 }

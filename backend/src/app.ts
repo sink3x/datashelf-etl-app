@@ -4,8 +4,10 @@ import type { TMaybe } from '@interfaces/maybe'
 import { RouterStore } from '@routers/router-store/router-store'
 import { AirflowService } from '@services/airflow/airflow-service'
 import { MongodbService } from '@services/mongodb/mongodb-service'
+import { RabbitmqService } from '@services/rabbitmq/rabbitmq-service'
 import { S3Service } from '@services/s3/s3-service'
 import { APP_MODE } from '@shared/constants'
+import { addProcessedDataset } from '@utils/add-processed-dataset/add-processed-dataset'
 import { loadConfig } from '@utils/load-config'
 import compression from 'compression'
 import cors from 'cors'
@@ -24,9 +26,15 @@ export class App {
       return
     }
 
+    const { intervalToCheckRabbitAndMongoStatus } = this.config.vars
+
     this.setupServiceList()
     this.setupMiddleWareList()
     this.setupRouterList()
+
+    const intervalIdCheckListenQueue = setInterval(() => {
+      this.setupListenQueue(() => clearInterval(intervalIdCheckListenQueue))
+    }, intervalToCheckRabbitAndMongoStatus)
   }
 
   private setupServiceList() {
@@ -36,6 +44,7 @@ export class App {
       s3: new S3Service(container),
       airflow: new AirflowService(container),
       mongodb: new MongodbService(container),
+      rabbitmq: new RabbitmqService(container),
     }
   }
 
@@ -59,6 +68,18 @@ export class App {
     const loadedConfig = loadConfig(APP_MODE)
 
     this.config = loadedConfig!
+  }
+
+  private setupListenQueue(callback: () => void) {
+    if (!this.services?.rabbitmq || !this.services?.mongodb) {
+      return
+    }
+
+    callback()
+
+    const addProcessedDatasetToMongodb = addProcessedDataset(this.services.mongodb)
+
+    this.services.rabbitmq.listenQueue(this.config!.services.rabbitmq.queue, addProcessedDatasetToMongodb)
   }
 
   public start() {

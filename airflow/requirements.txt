@@ -4,4 +4,4 @@ apache-airflow
 boto3
 botocore
 pandas
-pymongo
+pika

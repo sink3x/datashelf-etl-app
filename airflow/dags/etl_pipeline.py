@@ -12,7 +12,7 @@ from airflow.operators.python import PythonOperator
 import boto3
 from botocore.client import Config
 
-from pymongo import MongoClient
+import pika
 
 APP_MODE = os.getenv('MODE', 'development')
 CONFIG_LOCAL_URL = os.path.join(os.path.dirname(__file__), '../configs', 'app.local.json')
@@ -29,7 +29,6 @@ def load_config(mode: str):
   
 config_global = load_config(APP_MODE)
 config_s3 = config_global['services']['s3']
-config_mongodb = config_global['services']['mongodb']
 
 bucket_name = config_s3['bucket_name']
 access_key = config_s3['key_id']
@@ -37,6 +36,7 @@ secret_key = config_s3['key_value']
 endpoint_url = config_s3['endpoint_url']
 region_name = config_s3['region_name']
 
+config_rabbitmq = config_global['services']['rabbitmq']
 
 def download_file_from_s3(**kwargs):
     dag_run = kwargs.get('dag_run')
@@ -128,33 +128,36 @@ def load_to_dataframe(**kwargs):
     df_json = df.to_json(orient='records')
     ti.xcom_push(key='dataframe_json', value=df_json)
 
-
-def load_to_mongodb(**kwargs):
+def send_to_rabbitmq(**kwargs):
     ti = kwargs['ti']
     df_json = ti.xcom_pull(task_ids='load_to_pandas_dataframe', key='dataframe_json')
-    
     if not df_json:
-        raise ValueError("dataframe_json not found in XCom")
+        raise ValueError("No dataframe_json found in XCom")
 
-    data = json.loads(df_json)
-    
-    client = MongoClient(config_mongodb['url'])
-    db = client[config_mongodb['database']]
-    collection = db[config_mongodb['collection']]
+    rabbitmq_url = config_rabbitmq['url']
+    queue_name = config_rabbitmq['queue']
 
-    if data:
-        result = collection.insert_many(data)
-        logging.info(f"Inserted {len(result.inserted_ids)} documents into MongoDB")
-    else:
-        logging.warning("No data to insert into MongoDB")
+    connection_params = pika.URLParameters(rabbitmq_url)
+    connection = pika.BlockingConnection(connection_params)
+    channel = connection.channel()
 
+    channel.queue_declare(queue=queue_name, durable=True)
+    channel.basic_publish(
+        exchange='',
+        routing_key=queue_name,
+        body=df_json.encode('utf-8'),
+        properties=pika.BasicProperties(delivery_mode=2)  # make message persistent
+    )
+
+    logging.info(f"Data sent to RabbitMQ queue '{queue_name}'")
+    connection.close()
 
 with DAG(
     dag_id='etl_pipeline',
     start_date=datetime(2025, 5, 21),
     schedule='@once',
     catchup=False,
-    tags=['etl', 'remote', 's3'],
+    tags=['etl', 'remote', 's3', 'rabbitmq'],
 ) as dag:
 
     download_task = PythonOperator(
@@ -172,9 +175,10 @@ with DAG(
         python_callable=load_to_dataframe,
     )
 
-    mongodb_load_task = PythonOperator(
-        task_id='load_to_mongodb',
-        python_callable=load_to_mongodb,
+    rabbitmq_send_task = PythonOperator(
+        task_id='send_to_rabbitmq',
+        python_callable=send_to_rabbitmq,
     )
 
-    download_task >> detect_type_task >> pandas_load_task >> mongodb_load_task
+
+    download_task >> detect_type_task >> pandas_load_task >> rabbitmq_send_task

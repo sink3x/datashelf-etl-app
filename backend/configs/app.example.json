@@ -16,10 +16,27 @@
       "keyValue": "",
       "bucketName": "",
       "regionName": "ru-central1"
+    },
+    "mongodb": {
+      "uri": "mongodb://admin:admin@localhost:27017",
+      "parameters": {
+        "dbName": "dashboard",
+        "maxPoolSize": 10,
+        "minPoolSize": 5,
+        "connectTimeoutMS": 10000,
+        "socketTimeoutMS": 45000,
+        "serverSelectionTimeoutMS": 10000,
+        "autoIndex": false
+      }
+    },
+    "rabbitmq": {
+      "url": "amqp://admin:admin@rabbitmq:5672",
+      "queue": "datasets"
     }
   },
   "vars": {
     "intervalToUpdateAirflowAccessToken": 900000,
+    "intervalToCheckRabbitAndMongoStatus": 1000,
     "s3RawDataDirectory": "raw-data",
     "s3MaxFileSizeUploadMb": 10
   }
