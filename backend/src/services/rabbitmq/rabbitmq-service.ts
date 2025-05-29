@@ -39,26 +39,31 @@ export class RabbitmqService {
       return
     }
 
-    this.channel.consume(
-      queue,
-      (rabbitMessage) => {
-        if (rabbitMessage) {
-          const content = rabbitMessage.content.toString()
+    try {
+      await this.channel.assertQueue(queue, { durable: true })
 
-          try {
-            const payload: IObjectAny = JSON.parse(content)
+      this.channel.consume(
+        queue,
+        (rabbitMessage) => {
+          if (rabbitMessage) {
+            const content = rabbitMessage.content.toString()
 
-            callback(payload)
+            try {
+              const payload: IObjectAny = JSON.parse(content)
 
-            this.channel!.ack(rabbitMessage)
-          } catch {
-            onError?.()
+              callback(payload)
 
-            this.channel!.nack(rabbitMessage, false, false)
+              this.channel!.ack(rabbitMessage)
+            } catch {
+              onError?.()
+              this.channel!.nack(rabbitMessage, false, false)
+            }
           }
-        }
-      },
-      { noAck: false },
-    )
+        },
+        { noAck: false },
+      )
+    } catch (error) {
+      console.log(`[RabbitMQ] Failed to listen queue '${queue}':`, error)
+    }
   }
 }

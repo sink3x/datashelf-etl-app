@@ -1,0 +1,1001 @@
+Transaction_ID,Date,Customer_Name,Product,Total_Items,Total_Cost,Payment_Method,City,Store_Type,Discount_Applied,Customer_Category,Season,Promotion
+1000000000,2022-01-21 06:27:29,Stacey Price,"['Ketchup', 'Shaving Cream', 'Light Bulbs']",3,71.65,Mobile Payment,Los Angeles,Warehouse Club,True,Homemaker,Winter,
+1000000001,2023-03-01 13:01:21,Michelle Carlson,"['Ice Cream', 'Milk', 'Olive Oil', 'Bread', 'Potatoes']",2,25.93,Cash,San Francisco,Specialty Store,True,Professional,Fall,BOGO (Buy One Get One)
+1000000002,2024-03-21 15:37:04,Lisa Graves,['Spinach'],6,41.49,Credit Card,Houston,Department Store,True,Professional,Winter,
+1000000003,2020-10-31 09:59:47,Mrs. Patricia May,"['Tissues', 'Mustard']",1,39.34,Mobile Payment,Chicago,Pharmacy,True,Homemaker,Spring,
+1000000004,2020-12-10 00:59:59,Susan Mitchell,['Dish Soap'],10,16.42,Debit Card,Houston,Specialty Store,False,Young Adult,Winter,Discount on Selected Items
+1000000005,2021-10-07 12:37:26,Joshua Frazier,"['Toothpaste', 'Chicken']",3,72.24,Cash,Houston,Supermarket,True,Retiree,Spring,Discount on Selected Items
+1000000006,2023-01-08 10:40:03,Victoria Garrett,"['Honey', 'BBQ Sauce', 'Soda', 'Olive Oil', 'Garden Hose']",4,5.28,Cash,Boston,Specialty Store,False,Student,Summer,Discount on Selected Items
+1000000007,2020-09-03 12:39:59,Sydney Waller,"['Syrup', 'Trash Cans', 'Pancake Mix', 'Water', 'Mayonnaise']",5,21.77,Debit Card,Chicago,Specialty Store,False,Young Adult,Winter,Discount on Selected Items
+1000000008,2021-04-05 06:32:18,Kimberly Morgan,['Insect Repellent'],4,55.25,Mobile Payment,Los Angeles,Warehouse Club,False,Homemaker,Fall,
+1000000009,2021-07-08 10:08:59,Lori Conway,"['Soap', 'Baby Wipes', 'Soda']",7,31.21,Mobile Payment,Boston,Convenience Store,True,Young Adult,Winter,
+1000000010,2020-03-18 18:58:18,Randall Roberts,"['Extension Cords', 'Soda', 'Water', 'Garden Hose', 'Cleaning Spray']",8,91.59,Debit Card,Boston,Department Store,True,Middle-Aged,Fall,BOGO (Buy One Get One)
+1000000011,2023-03-30 19:26:41,Jeremiah White,"['Tea', 'Paper Towels', 'Spinach']",7,31.88,Mobile Payment,New York,Specialty Store,False,Young Adult,Fall,Discount on Selected Items
+1000000012,2023-05-27 15:52:59,Sheila Mcgee,"['Salmon', 'Shaving Cream']",9,39.75,Debit Card,New York,Pharmacy,False,Student,Summer,Discount on Selected Items
+1000000013,2023-04-02 09:24:11,Allen Miles,"['Trash Bags', 'Apple', 'Mop', 'Hair Gel']",7,17.51,Mobile Payment,Seattle,Warehouse Club,False,Retiree,Winter,BOGO (Buy One Get One)
+1000000014,2020-04-09 04:31:05,Mark Howard,"['Razors', 'Laundry Detergent', 'Beef']",1,33.64,Credit Card,San Francisco,Warehouse Club,True,Retiree,Spring,
+1000000015,2021-01-01 04:29:07,Jesse Henderson,"['Cereal', 'Vinegar', 'Bath Towels']",7,29.57,Mobile Payment,San Francisco,Convenience Store,False,Retiree,Winter,BOGO (Buy One Get One)
+1000000016,2021-10-15 13:24:31,Eric Wall,"['Air Freshener', 'Feminine Hygiene Products']",5,99.7,Mobile Payment,Miami,Specialty Store,True,Homemaker,Spring,
+1000000017,2021-09-16 09:28:28,Vanessa Peck,"['Power Strips', 'Honey', 'Ketchup', 'Tea', 'Shampoo']",8,15.62,Credit Card,San Francisco,Department Store,False,Senior Citizen,Fall,
+1000000018,2022-07-18 11:33:28,Dominique Stout,"['Mustard', 'Dustpan']",3,98.28,Mobile Payment,New York,Warehouse Club,False,Professional,Fall,BOGO (Buy One Get One)
+1000000019,2021-01-31 07:52:18,Charles Brooks,['Coffee'],7,96.77,Debit Card,Chicago,Department Store,True,Homemaker,Winter,Discount on Selected Items
+1000000020,2021-10-31 07:46:22,Angela Jones,"['Pancake Mix', 'Vacuum Cleaner']",7,83.86,Cash,Houston,Pharmacy,False,Teenager,Winter,Discount on Selected Items
+1000000021,2022-12-30 20:03:19,John Roberts,"['Coffee', 'Shaving Cream']",1,39.93,Credit Card,Miami,Department Store,False,Retiree,Summer,BOGO (Buy One Get One)
+1000000022,2021-06-08 10:28:59,Nicole White,"['Shrimp', 'Iron', 'Cleaning Spray', 'Toilet Paper', 'Peanut Butter']",4,35.62,Mobile Payment,New York,Warehouse Club,True,Retiree,Spring,BOGO (Buy One Get One)
+1000000023,2020-01-03 23:24:18,Don Harris,"['Dishware', 'Pickles']",7,19.56,Cash,San Francisco,Department Store,False,Retiree,Spring,BOGO (Buy One Get One)
+1000000024,2023-02-27 16:46:56,Hannah Rowland,"['Sponges', 'Vacuum Cleaner', 'Iron']",4,24.03,Debit Card,Dallas,Pharmacy,False,Student,Winter,
+1000000025,2020-02-14 13:19:10,Jessica Gonzalez,"['Broom', 'Cereal']",10,7.82,Credit Card,New York,Convenience Store,False,Professional,Fall,BOGO (Buy One Get One)
+1000000026,2020-09-21 10:34:40,Christina Smith,"['Garden Hose', 'Trash Cans']",6,49.45,Debit Card,Dallas,Warehouse Club,False,Senior Citizen,Winter,Discount on Selected Items
+1000000027,2020-03-26 22:08:34,Latoya Allen,"['Ketchup', 'Trash Cans', 'Toothbrush']",10,29.36,Mobile Payment,Boston,Specialty Store,False,Professional,Spring,
+1000000028,2022-08-13 01:26:19,Clayton Roth,"['Tomatoes', 'Salmon']",7,21.08,Credit Card,San Francisco,Specialty Store,True,Teenager,Fall,
+1000000029,2020-02-27 10:23:56,Dennis Alvarez,"['Tea', 'Salmon', 'Bath Towels', 'Toothpaste']",7,75.38,Mobile Payment,Houston,Convenience Store,True,Teenager,Summer,Discount on Selected Items
+1000000030,2023-01-08 22:59:24,Jose Hill,['Olive Oil'],1,73.17,Debit Card,Boston,Specialty Store,True,Senior Citizen,Spring,
+1000000031,2024-05-04 13:22:31,Kristin Webb,"['Extension Cords', 'Razors', 'Chips', 'Shampoo']",4,13.34,Debit Card,Houston,Department Store,False,Teenager,Summer,
+1000000032,2023-04-04 10:57:09,Robert Gilbert DDS,"['Apple', 'Butter']",7,41.4,Debit Card,Chicago,Supermarket,False,Middle-Aged,Spring,
+1000000033,2022-03-26 19:18:49,Thomas Oliver,"['Broom', 'Chicken', 'Spinach', 'Broom']",8,26.67,Credit Card,Chicago,Specialty Store,True,Homemaker,Spring,Discount on Selected Items
+1000000034,2023-02-07 14:09:36,Stacy Owen,"['Yogurt', 'Ice Cream', 'Insect Repellent']",5,34.27,Credit Card,San Francisco,Supermarket,True,Teenager,Summer,BOGO (Buy One Get One)
+1000000035,2022-10-12 11:57:51,Ann Kane,"['Onions', 'Dish Soap']",10,62.33,Credit Card,Miami,Warehouse Club,False,Young Adult,Spring,
+1000000036,2020-10-16 09:05:18,Mr. John Long,"['Tomatoes', 'Mustard', 'Apple', 'Hair Gel']",4,19.11,Debit Card,Chicago,Convenience Store,True,Middle-Aged,Winter,Discount on Selected Items
+1000000037,2020-05-31 05:35:31,Annette Robinson,['Garden Hose'],4,25.76,Mobile Payment,Los Angeles,Warehouse Club,True,Homemaker,Fall,BOGO (Buy One Get One)
+1000000038,2020-07-11 22:15:24,Kimberly Baldwin,"['Shower Gel', 'Dish Soap', 'Plant Fertilizer', 'Garden Hose', 'Tuna']",7,61.55,Credit Card,New York,Convenience Store,False,Student,Fall,
+1000000039,2023-07-11 11:36:26,Donald Bradford,"['Potatoes', 'Air Freshener', 'Sponges', 'Onions', 'Laundry Detergent']",5,39.08,Cash,Dallas,Supermarket,False,Young Adult,Spring,
+1000000040,2022-05-31 17:09:14,Mike Gilbert,['Feminine Hygiene Products'],4,12.97,Credit Card,Atlanta,Department Store,False,Professional,Winter,
+1000000041,2023-07-01 20:11:15,Rebecca Morton,"['Shaving Cream', 'Butter']",8,56.99,Debit Card,Miami,Specialty Store,True,Retiree,Summer,Discount on Selected Items
+1000000042,2023-11-13 12:48:32,Nicole Hernandez,"['Lawn Mower', 'Eggs', 'Dustpan', 'Peanut Butter', 'Beef']",9,99.77,Cash,Boston,Specialty Store,True,Professional,Spring,Discount on Selected Items
+1000000043,2020-10-12 12:39:54,Paige White,"['Dustpan', 'BBQ Sauce', 'Toothbrush', 'Deodorant', 'Dish Soap']",8,29.82,Cash,Atlanta,Specialty Store,False,Student,Winter,Discount on Selected Items
+1000000044,2022-09-21 05:09:33,Mr. Lance Perkins,"['Bread', 'Dustpan', 'Ketchup', 'Ironing Board']",7,89.97,Cash,Atlanta,Department Store,False,Middle-Aged,Winter,
+1000000045,2022-10-28 18:17:19,Kelly Foley,['Soap'],2,83.55,Credit Card,Chicago,Convenience Store,False,Professional,Spring,Discount on Selected Items
+1000000046,2024-05-10 23:21:05,Paula Maldonado,['Razors'],10,44.98,Cash,Dallas,Convenience Store,False,Student,Fall,
+1000000047,2023-02-06 01:31:51,Roberto Franklin,"['Pasta', 'Olive Oil']",7,76.09,Mobile Payment,Los Angeles,Convenience Store,True,Retiree,Summer,
+1000000048,2024-04-17 00:49:23,Steven Clements,"['Beef', 'Milk', 'Salmon', 'Shampoo']",10,55.69,Credit Card,Seattle,Department Store,True,Teenager,Summer,Discount on Selected Items
+1000000049,2021-06-24 14:01:31,Katherine Luna,['Tea'],3,61.53,Cash,Houston,Warehouse Club,False,Retiree,Winter,Discount on Selected Items
+1000000050,2021-04-10 19:14:33,Ryan Hammond,"['Hand Sanitizer', 'Plant Fertilizer', 'Baby Wipes', 'Hand Sanitizer', 'Power Strips']",1,78.46,Mobile Payment,San Francisco,Supermarket,False,Teenager,Summer,Discount on Selected Items
+1000000051,2023-09-18 09:06:04,Valerie Johnson,['Bread'],9,49.7,Mobile Payment,Miami,Pharmacy,True,Retiree,Fall,
+1000000052,2020-05-10 17:02:07,Jennifer Mitchell,"['Vacuum Cleaner', 'Apple', 'Shrimp', 'Trash Bags', 'Carrots']",10,87.04,Mobile Payment,Boston,Convenience Store,False,Senior Citizen,Summer,BOGO (Buy One Get One)
+1000000053,2020-12-30 14:17:51,Nathan Schwartz,"['Shrimp', 'Cleaning Rags', 'Olive Oil', 'Soda']",2,9.55,Cash,Houston,Warehouse Club,False,Senior Citizen,Fall,BOGO (Buy One Get One)
+1000000054,2023-03-02 19:56:06,Rebecca Gilmore,"['Olive Oil', 'Feminine Hygiene Products', 'Toothpaste', 'Soap', 'Bath Towels']",8,46.79,Debit Card,Los Angeles,Specialty Store,False,Retiree,Winter,
+1000000055,2022-06-23 18:30:47,Todd Parrish,['Peanut Butter'],7,25.89,Mobile Payment,Seattle,Specialty Store,True,Student,Fall,Discount on Selected Items
+1000000056,2022-05-09 08:42:36,Christopher Blake,['Orange'],6,5.21,Cash,Dallas,Warehouse Club,False,Young Adult,Winter,BOGO (Buy One Get One)
+1000000057,2021-11-23 07:49:29,Marie Young,"['Syrup', 'Tuna', 'Paper Towels', 'Toothpaste', 'Mustard']",3,12.72,Cash,Los Angeles,Pharmacy,True,Homemaker,Summer,BOGO (Buy One Get One)
+1000000058,2024-01-11 05:41:42,James Mccarthy,"['Laundry Detergent', 'BBQ Sauce']",5,15.14,Mobile Payment,Miami,Pharmacy,False,Middle-Aged,Winter,Discount on Selected Items
+1000000059,2020-06-30 00:58:57,Sharon Espinoza,"['Dish Soap', 'Shower Gel', 'Lawn Mower', 'Dustpan', 'Toothpaste']",4,15.68,Debit Card,Atlanta,Specialty Store,True,Professional,Winter,
+1000000060,2021-11-11 03:45:51,Rachel Rasmussen,"['Dustpan', 'Bath Towels', 'Pickles', 'Sponges']",2,92.78,Credit Card,Seattle,Supermarket,True,Young Adult,Fall,
+1000000061,2021-10-28 20:51:11,Thomas Lowery,"['Milk', 'Tuna', 'Ketchup', 'Broom']",10,35.95,Credit Card,Boston,Department Store,True,Senior Citizen,Winter,BOGO (Buy One Get One)
+1000000062,2021-06-23 06:46:40,Richard Johnston,"['Beef', 'Bread', 'Dustpan']",5,88.59,Cash,Chicago,Specialty Store,False,Professional,Winter,BOGO (Buy One Get One)
+1000000063,2023-08-24 05:20:40,Rebecca Vasquez,"['Pancake Mix', 'Dustpan', 'Laundry Detergent', 'Garden Hose']",6,66.87,Mobile Payment,Houston,Department Store,True,Professional,Summer,BOGO (Buy One Get One)
+1000000064,2021-06-28 06:41:33,Samuel Mays,"['Cereal Bars', 'Air Freshener', 'Honey', 'Laundry Detergent']",3,37.35,Cash,San Francisco,Department Store,True,Young Adult,Winter,Discount on Selected Items
+1000000065,2023-08-14 13:19:28,Karen Williams,"['Banana', 'Garden Hose', 'Extension Cords', 'Toothpaste', 'Syrup']",6,60.37,Debit Card,New York,Department Store,False,Young Adult,Spring,BOGO (Buy One Get One)
+1000000066,2022-04-08 08:49:31,Ian Murphy,['Shrimp'],8,51.42,Credit Card,Miami,Department Store,True,Homemaker,Winter,
+1000000067,2020-04-04 01:57:16,Elizabeth Li,"['Broom', 'Pickles', 'Cleaning Rags']",1,54.04,Mobile Payment,Miami,Specialty Store,True,Retiree,Spring,
+1000000068,2021-10-30 21:16:48,Brenda Chase,"['Peanut Butter', 'Lawn Mower', 'Syrup', 'Chicken', 'Toothpaste']",3,67.43,Cash,Dallas,Department Store,True,Teenager,Fall,
+1000000069,2022-08-19 07:26:19,Anthony Miranda,"['Peanut Butter', 'Razors']",8,48.83,Cash,Seattle,Warehouse Club,False,Retiree,Summer,BOGO (Buy One Get One)
+1000000070,2020-09-21 09:18:47,Patricia Adams,"['Mop', 'Laundry Detergent', 'Vacuum Cleaner']",8,19.4,Credit Card,Atlanta,Pharmacy,False,Senior Citizen,Fall,Discount on Selected Items
+1000000071,2020-05-11 12:03:19,Jacob Douglas,"['Eggs', 'Shower Gel', 'Olive Oil']",1,12.73,Mobile Payment,Houston,Pharmacy,False,Retiree,Spring,Discount on Selected Items
+1000000072,2022-10-27 03:15:06,Martin Gonzalez,['Vinegar'],5,77.41,Mobile Payment,Los Angeles,Specialty Store,False,Student,Spring,
+1000000073,2021-06-13 14:25:07,Sherry Nunez,"['Shaving Cream', 'Apple', 'Pickles']",4,78.52,Credit Card,Miami,Supermarket,True,Homemaker,Summer,
+1000000074,2020-03-16 13:50:41,Joshua Livingston,"['Canned Soup', 'Tea']",2,16.9,Mobile Payment,Dallas,Supermarket,True,Middle-Aged,Spring,Discount on Selected Items
+1000000075,2023-05-28 19:43:50,Kimberly Morton,"['Syrup', 'Salmon']",1,40.11,Debit Card,Seattle,Convenience Store,False,Teenager,Summer,Discount on Selected Items
+1000000076,2024-04-11 22:31:18,Robin Graham,['Peanut Butter'],6,57.04,Cash,Atlanta,Warehouse Club,False,Homemaker,Winter,BOGO (Buy One Get One)
+1000000077,2024-03-18 02:50:31,Donna Randall,"['Hair Gel', 'Tomatoes', 'Cheese', 'Power Strips', 'Beef']",6,68.29,Mobile Payment,Los Angeles,Specialty Store,False,Young Adult,Fall,BOGO (Buy One Get One)
+1000000078,2021-01-06 11:48:28,Alfred Schneider,"['Light Bulbs', 'Tissues']",4,41.24,Debit Card,Dallas,Supermarket,False,Homemaker,Fall,
+1000000079,2024-01-24 16:50:14,Taylor Wilson,"['Olive Oil', 'Banana']",4,72.11,Cash,Los Angeles,Department Store,True,Professional,Winter,BOGO (Buy One Get One)
+1000000080,2020-05-16 23:24:23,Matthew Henderson,"['Mop', 'Jam', 'Cheese', 'Hand Sanitizer']",1,65.96,Mobile Payment,Miami,Convenience Store,True,Teenager,Summer,Discount on Selected Items
+1000000081,2022-05-10 23:55:25,Christina Hoover,"['Diapers', 'Light Bulbs', 'Soda', 'Toothpaste']",4,80.75,Credit Card,New York,Warehouse Club,True,Homemaker,Winter,Discount on Selected Items
+1000000082,2021-09-12 13:17:37,Paul Tate,"['Light Bulbs', 'Hair Gel', 'Mustard', 'Iron']",9,68.09,Debit Card,New York,Specialty Store,True,Retiree,Winter,BOGO (Buy One Get One)
+1000000083,2020-09-10 19:56:18,Melissa Rose,"['Hand Sanitizer', 'Dish Soap', 'Deodorant', 'Cereal']",8,16.17,Debit Card,Seattle,Pharmacy,False,Teenager,Spring,Discount on Selected Items
+1000000084,2022-05-30 10:26:47,Brittany Simmons,"['Ketchup', 'Toothpaste']",5,89.56,Mobile Payment,Chicago,Supermarket,False,Student,Winter,Discount on Selected Items
+1000000085,2020-10-28 23:16:56,Henry Kirk,"['Toothpaste', 'Dishware', 'Bread', 'Eggs']",5,54.94,Credit Card,Dallas,Supermarket,False,Student,Winter,
+1000000086,2020-09-22 03:20:37,James Richardson,"['Iron', 'Plant Fertilizer', 'Eggs', 'Pickles']",1,93.74,Cash,Seattle,Specialty Store,False,Retiree,Fall,
+1000000087,2021-09-03 01:57:08,Keith Rodriguez,"['Air Freshener', 'Chicken', 'Shaving Cream']",10,67.87,Cash,Chicago,Specialty Store,True,Retiree,Spring,
+1000000088,2020-04-23 04:16:43,Marie Owen,"['Plant Fertilizer', 'Tuna', 'Orange']",5,8.46,Cash,Seattle,Department Store,True,Middle-Aged,Winter,Discount on Selected Items
+1000000089,2021-03-23 19:58:18,James Adams,['Mop'],8,45.75,Credit Card,New York,Pharmacy,True,Senior Citizen,Summer,BOGO (Buy One Get One)
+1000000090,2023-11-18 20:40:55,Troy Durham,['Baby Wipes'],7,34.09,Debit Card,Los Angeles,Convenience Store,False,Middle-Aged,Fall,
+1000000091,2023-04-03 21:35:35,Dr. Adam Chan,"['Beef', 'Cleaning Spray', 'Sponges']",1,41.48,Credit Card,Miami,Convenience Store,False,Professional,Winter,Discount on Selected Items
+1000000092,2023-02-08 15:22:36,Mark Blankenship,"['Tissues', 'Cheese', 'Toilet Paper', 'Cereal Bars', 'Cereal Bars']",4,37.38,Mobile Payment,Miami,Pharmacy,True,Retiree,Spring,BOGO (Buy One Get One)
+1000000093,2023-12-30 04:04:38,Brooke Bennett,"['Water', 'Olive Oil']",4,55.81,Cash,Boston,Convenience Store,False,Young Adult,Summer,BOGO (Buy One Get One)
+1000000094,2021-04-10 16:00:58,Dale Castaneda,"['Banana', 'Toothpaste', 'Iron']",1,90.7,Credit Card,Chicago,Pharmacy,False,Middle-Aged,Summer,BOGO (Buy One Get One)
+1000000095,2022-02-08 17:55:17,Jim Wells,"['Potatoes', 'Cleaning Spray']",3,32.25,Mobile Payment,Chicago,Convenience Store,False,Teenager,Summer,BOGO (Buy One Get One)
+1000000096,2021-05-11 19:50:51,Michael Johnson,"['Cleaning Rags', 'Syrup', 'BBQ Sauce']",8,94.76,Cash,Seattle,Pharmacy,False,Middle-Aged,Summer,Discount on Selected Items
+1000000097,2022-07-29 17:21:58,Lisa Delgado,"['Dish Soap', 'Apple']",5,50.2,Mobile Payment,Miami,Warehouse Club,True,Professional,Winter,
+1000000098,2022-10-05 18:14:22,Matthew Jackson,"['Salmon', 'Dustpan', 'Yogurt']",8,29.4,Mobile Payment,Miami,Specialty Store,False,Professional,Winter,
+1000000099,2020-08-01 23:03:47,Nicholas Stephens,['Eggs'],7,27.53,Credit Card,Chicago,Convenience Store,False,Middle-Aged,Fall,
+1000000100,2020-01-15 21:16:12,Jean Moore,['Deodorant'],10,71.36,Mobile Payment,Houston,Warehouse Club,False,Teenager,Spring,Discount on Selected Items
+1000000101,2021-03-15 01:30:26,Daniel Johnson,['Canned Soup'],8,8.22,Mobile Payment,New York,Convenience Store,False,Student,Fall,
+1000000102,2022-10-22 16:34:21,Maria Murray MD,"['Soda', 'Laundry Detergent', 'Vinegar', 'Toothbrush']",1,92.73,Credit Card,Los Angeles,Department Store,False,Senior Citizen,Winter,
+1000000103,2020-02-10 01:48:04,Scott Hunter,"['Bath Towels', 'Canned Soup']",10,93.1,Cash,San Francisco,Convenience Store,False,Professional,Summer,Discount on Selected Items
+1000000104,2022-12-27 06:34:48,Sean Moore,"['Air Freshener', 'Tuna', 'Onions', 'Baby Wipes']",2,12.24,Cash,New York,Department Store,True,Retiree,Fall,
+1000000105,2021-04-21 03:43:05,Alexander Harmon,"['Trash Bags', 'Feminine Hygiene Products', 'Lawn Mower', 'Ice Cream']",10,20.13,Cash,Seattle,Supermarket,True,Young Adult,Summer,Discount on Selected Items
+1000000106,2022-05-14 12:06:21,David Rodriguez,"['Tuna', 'Coffee', 'Trash Cans']",8,48.09,Mobile Payment,Dallas,Pharmacy,True,Retiree,Spring,BOGO (Buy One Get One)
+1000000107,2023-01-30 16:47:57,Linda Davis,"['Sponges', 'Cleaning Rags', 'Razors', 'Tuna']",2,37.71,Cash,Seattle,Pharmacy,False,Retiree,Winter,Discount on Selected Items
+1000000108,2023-10-11 18:27:18,Linda Hayden,"['Razors', 'Light Bulbs', 'Trash Cans', 'Honey']",9,30.3,Credit Card,Seattle,Supermarket,False,Teenager,Spring,BOGO (Buy One Get One)
+1000000109,2022-09-24 01:38:43,Connie Baker,"['Mustard', 'Soap', 'Bread', 'Pasta', 'Shaving Cream']",7,57.89,Mobile Payment,Seattle,Department Store,True,Middle-Aged,Winter,Discount on Selected Items
+1000000110,2021-04-23 13:09:53,Mr. Kenneth Watson,"['Chips', 'Canned Soup', 'Cleaning Spray', 'Olive Oil']",8,15.34,Cash,Miami,Department Store,True,Teenager,Winter,BOGO (Buy One Get One)
+1000000111,2022-09-21 12:12:44,Maurice Brown,"['Air Freshener', 'Laundry Detergent', 'Cleaning Spray', 'Shaving Cream', 'Ketchup']",10,90.93,Cash,Miami,Specialty Store,True,Teenager,Fall,
+1000000112,2022-01-11 11:36:50,William Wood,"['Tissues', 'Insect Repellent', 'Bread', 'Pancake Mix']",2,63.34,Cash,Atlanta,Pharmacy,True,Student,Fall,
+1000000113,2023-04-24 01:06:26,Javier Ryan,"['Feminine Hygiene Products', 'Pickles']",2,48.86,Credit Card,Miami,Supermarket,False,Teenager,Spring,Discount on Selected Items
+1000000114,2021-07-31 22:35:35,Mr. David Casey,"['Pasta', 'Orange']",1,44.08,Debit Card,Los Angeles,Supermarket,True,Teenager,Winter,
+1000000115,2021-12-12 02:59:50,Ms. Megan Hicks,"['Shower Gel', 'Pickles', 'Bread', 'Sponges']",1,79.64,Cash,San Francisco,Pharmacy,True,Teenager,Fall,
+1000000116,2024-03-05 06:13:20,Debbie Tucker,['Apple'],5,43.61,Mobile Payment,San Francisco,Pharmacy,True,Teenager,Fall,BOGO (Buy One Get One)
+1000000117,2021-01-05 21:56:18,Joseph Guzman,"['Spinach', 'Chips', 'Diapers', 'Tissues']",6,25.23,Credit Card,San Francisco,Convenience Store,False,Middle-Aged,Fall,BOGO (Buy One Get One)
+1000000118,2023-04-06 20:51:07,Xavier Tran,"['Yogurt', 'Power Strips']",7,13.28,Credit Card,Seattle,Specialty Store,True,Teenager,Fall,
+1000000119,2021-06-21 07:37:06,Janet Sullivan,"['Extension Cords', 'Insect Repellent']",1,60.7,Debit Card,Atlanta,Department Store,False,Retiree,Winter,
+1000000120,2023-02-26 11:40:59,James Ray,"['Cleaning Spray', 'Trash Cans']",8,53.89,Mobile Payment,New York,Department Store,False,Senior Citizen,Summer,Discount on Selected Items
+1000000121,2022-03-21 14:49:58,Jason Marshall,"['Vacuum Cleaner', 'Spinach']",8,14.37,Debit Card,Los Angeles,Convenience Store,False,Homemaker,Winter,BOGO (Buy One Get One)
+1000000122,2020-08-29 13:41:33,Alexander Wright,['Shampoo'],9,56.04,Mobile Payment,Chicago,Department Store,True,Student,Spring,
+1000000123,2023-09-17 23:36:37,Cathy Jackson,"['Bath Towels', 'Feminine Hygiene Products']",4,44.49,Credit Card,Miami,Department Store,False,Homemaker,Spring,BOGO (Buy One Get One)
+1000000124,2023-08-21 07:05:31,Mercedes Anderson,"['Ketchup', 'Eggs', 'Mop', 'Mop']",7,66.28,Debit Card,Miami,Supermarket,False,Homemaker,Fall,
+1000000125,2021-05-02 14:10:54,Anthony Christensen,"['Pasta', 'Coffee', 'Canned Soup']",8,23.96,Cash,Chicago,Convenience Store,True,Young Adult,Spring,
+1000000126,2022-08-10 00:26:19,Cameron Walker,"['Canned Soup', 'Toothpaste', 'Olive Oil']",10,68.06,Debit Card,San Francisco,Department Store,True,Professional,Winter,
+1000000127,2021-06-02 05:16:55,Paul Brown,"['Soap', 'Trash Cans', 'Shampoo', 'Hair Gel', 'Eggs']",7,33.04,Cash,Boston,Pharmacy,True,Professional,Spring,BOGO (Buy One Get One)
+1000000128,2024-04-30 02:08:34,Kimberly Stevens,['Paper Towels'],6,34.28,Cash,Los Angeles,Warehouse Club,False,Professional,Fall,
+1000000129,2020-10-28 23:23:04,Jordan Garcia,"['Rice', 'Broom', 'Insect Repellent', 'Shower Gel']",4,24.12,Mobile Payment,Houston,Supermarket,True,Retiree,Summer,Discount on Selected Items
+1000000130,2022-09-08 07:32:40,Ryan Joseph II,"['Tea', 'Ironing Board']",8,9.31,Credit Card,Miami,Supermarket,False,Middle-Aged,Winter,BOGO (Buy One Get One)
+1000000131,2022-09-02 23:11:17,Debbie Brown,"['Hand Sanitizer', 'Tomatoes', 'Yogurt', 'Hair Gel']",10,86.98,Mobile Payment,Boston,Department Store,False,Senior Citizen,Summer,BOGO (Buy One Get One)
+1000000132,2021-04-18 21:43:40,Dawn Pratt,"['Carrots', 'Extension Cords']",5,83.34,Mobile Payment,Atlanta,Convenience Store,False,Senior Citizen,Spring,Discount on Selected Items
+1000000133,2022-07-08 20:10:34,Madison Hill,"['Carrots', 'Ice Cream', 'Orange', 'Hair Gel']",6,40.37,Debit Card,Boston,Department Store,False,Teenager,Winter,Discount on Selected Items
+1000000134,2020-10-28 03:12:39,Kelly Atkinson,"['Hair Gel', 'Toothpaste', 'Dish Soap', 'Sponges', 'Spinach']",1,7.14,Mobile Payment,Atlanta,Department Store,False,Teenager,Spring,Discount on Selected Items
+1000000135,2020-05-04 09:30:35,Patricia Fuller,"['Insect Repellent', 'Peanut Butter', 'Potatoes', 'Tissues', 'Trash Cans']",1,56.7,Mobile Payment,Seattle,Specialty Store,False,Professional,Fall,BOGO (Buy One Get One)
+1000000136,2021-02-26 11:14:04,Debra Brown,"['Feminine Hygiene Products', 'Ironing Board', 'Power Strips', 'Tomatoes']",9,90.9,Credit Card,Chicago,Department Store,False,Teenager,Fall,Discount on Selected Items
+1000000137,2023-11-02 09:25:00,Brett Hernandez,"['Ketchup', 'Power Strips', 'Dustpan']",9,59.02,Mobile Payment,Chicago,Specialty Store,False,Professional,Winter,BOGO (Buy One Get One)
+1000000138,2021-04-07 10:10:36,Diane Hughes,"['BBQ Sauce', 'Tuna', 'Honey']",3,36.46,Mobile Payment,Dallas,Warehouse Club,True,Middle-Aged,Spring,
+1000000139,2022-11-03 02:17:41,Jeffrey Jones,"['Tuna', 'Toilet Paper']",2,73.35,Credit Card,Dallas,Specialty Store,False,Senior Citizen,Winter,
+1000000140,2020-12-08 16:09:29,Frank Torres,"['Cheese', 'Shaving Cream']",5,52.95,Mobile Payment,San Francisco,Pharmacy,True,Teenager,Summer,
+1000000141,2023-03-05 04:11:13,Daniel Mcguire,"['Coffee', 'Laundry Detergent', 'Jam']",1,77.42,Credit Card,Miami,Warehouse Club,True,Professional,Fall,
+1000000142,2023-03-18 16:05:02,Russell Harmon,"['Deodorant', 'Ironing Board', 'Spinach']",7,53.23,Cash,Miami,Specialty Store,False,Student,Summer,BOGO (Buy One Get One)
+1000000143,2024-04-04 05:28:15,John Benitez,"['Ketchup', 'Razors', 'Shaving Cream']",4,71.54,Credit Card,Miami,Department Store,True,Teenager,Fall,Discount on Selected Items
+1000000144,2022-11-19 23:47:44,Wesley Delacruz,"['Dish Soap', 'Ironing Board', 'Carrots', 'Light Bulbs']",6,78.93,Cash,San Francisco,Pharmacy,True,Teenager,Fall,
+1000000145,2023-02-07 02:49:22,Shannon Reid,['Hand Sanitizer'],4,76.86,Mobile Payment,Seattle,Convenience Store,True,Student,Summer,Discount on Selected Items
+1000000146,2022-12-31 19:41:36,Steven Brown,"['Laundry Detergent', 'BBQ Sauce', 'Butter', 'Garden Hose', 'Paper Towels']",2,25.04,Debit Card,Miami,Pharmacy,True,Senior Citizen,Winter,Discount on Selected Items
+1000000147,2021-03-18 13:20:00,Harold Miller,"['Peanut Butter', 'Coffee']",1,62.25,Cash,Los Angeles,Warehouse Club,True,Middle-Aged,Spring,Discount on Selected Items
+1000000148,2023-07-28 08:34:42,Jessica Middleton,"['Chips', 'Broom', 'Paper Towels']",6,45.81,Debit Card,Chicago,Department Store,False,Middle-Aged,Winter,
+1000000149,2021-04-11 04:00:58,Luke Bell,"['Orange', 'Orange']",4,47.73,Debit Card,Houston,Warehouse Club,True,Retiree,Summer,Discount on Selected Items
+1000000150,2020-09-22 10:18:39,James Morales,"['Potatoes', 'Light Bulbs', 'Toothbrush']",2,58.89,Debit Card,Seattle,Specialty Store,False,Professional,Winter,
+1000000151,2021-04-17 12:55:07,Ian Wilkinson,"['Pancake Mix', 'Cheese', 'Insect Repellent', 'Beef', 'Bread']",9,65.15,Debit Card,San Francisco,Department Store,True,Middle-Aged,Summer,BOGO (Buy One Get One)
+1000000152,2020-07-28 04:10:22,Jason Andrade,['Onions'],8,73.23,Credit Card,Los Angeles,Supermarket,True,Professional,Fall,
+1000000153,2023-12-11 12:45:12,Zachary Anderson,"['Air Freshener', 'Sponges']",10,54.02,Cash,New York,Pharmacy,True,Teenager,Spring,BOGO (Buy One Get One)
+1000000154,2023-09-20 21:00:52,Michael Perkins,['Air Freshener'],9,87.79,Credit Card,Seattle,Warehouse Club,False,Young Adult,Summer,Discount on Selected Items
+1000000155,2020-04-18 01:29:28,Andre Davis,['Spinach'],6,36.1,Mobile Payment,Los Angeles,Supermarket,False,Senior Citizen,Fall,Discount on Selected Items
+1000000156,2023-10-09 12:34:08,Heather Le,"['Tea', 'Soda']",7,98.26,Cash,Dallas,Convenience Store,False,Middle-Aged,Fall,Discount on Selected Items
+1000000157,2021-10-11 03:22:18,Morgan Black,"['Cereal Bars', 'Paper Towels', 'Orange']",6,44.73,Mobile Payment,San Francisco,Warehouse Club,True,Teenager,Winter,
+1000000158,2023-03-19 13:07:44,Chelsea Harding,"['Hair Gel', 'Trash Bags', 'Power Strips', 'Feminine Hygiene Products']",5,35.83,Debit Card,Seattle,Warehouse Club,True,Senior Citizen,Summer,BOGO (Buy One Get One)
+1000000159,2021-11-20 09:58:17,Tracy Bruce,['Paper Towels'],9,64.32,Mobile Payment,Miami,Warehouse Club,True,Middle-Aged,Spring,Discount on Selected Items
+1000000160,2024-02-28 14:41:48,Michael Perez,"['Water', 'Mop']",9,71.79,Mobile Payment,New York,Supermarket,False,Senior Citizen,Summer,BOGO (Buy One Get One)
+1000000161,2022-03-10 22:42:00,Ryan Atkinson,"['Tissues', 'Jam']",9,86.43,Mobile Payment,Miami,Specialty Store,True,Retiree,Summer,
+1000000162,2022-10-26 23:16:09,Trevor Miller,['Olive Oil'],5,57.3,Mobile Payment,Chicago,Pharmacy,True,Senior Citizen,Winter,BOGO (Buy One Get One)
+1000000163,2020-08-20 15:17:10,Lisa Taylor,"['Plant Fertilizer', 'Shower Gel', 'Tuna']",6,21.9,Cash,Chicago,Specialty Store,False,Young Adult,Winter,Discount on Selected Items
+1000000164,2023-12-03 03:08:14,Erik Russell,"['Pickles', 'Cleaning Spray']",7,53.99,Cash,Los Angeles,Department Store,True,Middle-Aged,Winter,
+1000000165,2021-04-25 05:04:49,Ms. Bianca Larson DDS,"['BBQ Sauce', 'Eggs', 'Shrimp']",10,38.13,Mobile Payment,New York,Department Store,False,Young Adult,Summer,Discount on Selected Items
+1000000166,2024-04-24 21:49:53,Gary Jones,"['Trash Cans', 'Toothpaste', 'Broom', 'Baby Wipes', 'Tea']",5,53.09,Cash,Dallas,Department Store,False,Professional,Fall,BOGO (Buy One Get One)
+1000000167,2020-10-24 14:25:04,Douglas Gray,['Power Strips'],8,82.66,Cash,Los Angeles,Specialty Store,True,Homemaker,Summer,
+1000000168,2020-06-28 18:14:35,Lori Davis,"['Toothbrush', 'Toothbrush', 'BBQ Sauce', 'Dustpan', 'Banana']",4,63.4,Credit Card,Seattle,Convenience Store,True,Middle-Aged,Spring,
+1000000169,2023-06-24 14:37:26,Kelly Hall MD,"['Bread', 'Toothpaste', 'Syrup', 'Ironing Board', 'Cleaning Spray']",9,20.51,Debit Card,New York,Pharmacy,False,Teenager,Spring,BOGO (Buy One Get One)
+1000000170,2023-09-03 18:28:01,Scott Johnson,"['Onions', 'Peanut Butter', 'Tomatoes', 'Mayonnaise']",7,35.13,Mobile Payment,Dallas,Department Store,False,Homemaker,Spring,
+1000000171,2023-02-14 22:57:04,Regina Andersen,"['Syrup', 'Tuna']",7,55.45,Mobile Payment,Los Angeles,Warehouse Club,True,Senior Citizen,Winter,Discount on Selected Items
+1000000172,2021-08-27 21:54:19,Jennifer Schmidt,"['Power Strips', 'Eggs', 'Butter', 'Onions']",9,43.37,Credit Card,Seattle,Pharmacy,True,Homemaker,Summer,Discount on Selected Items
+1000000173,2020-11-11 23:34:19,Manuel Drake,"['Tissues', 'Spinach', 'Light Bulbs']",7,51.27,Mobile Payment,Dallas,Convenience Store,False,Middle-Aged,Summer,
+1000000174,2021-04-16 22:38:36,James Ho DDS,"['Mustard', 'Trash Cans']",3,34.82,Cash,Seattle,Convenience Store,True,Student,Summer,
+1000000175,2024-04-07 21:08:08,Ryan Snow,"['Honey', 'Cereal Bars', 'Sponges', 'Olive Oil']",2,90.68,Cash,Seattle,Convenience Store,True,Teenager,Winter,BOGO (Buy One Get One)
+1000000176,2023-01-23 07:31:14,Jessica Nolan,"['BBQ Sauce', 'Cleaning Spray', 'Broom']",8,85.09,Debit Card,Seattle,Warehouse Club,True,Homemaker,Fall,Discount on Selected Items
+1000000177,2022-11-13 20:33:27,Joann Davies,"['Trash Bags', 'Extension Cords', 'Beef']",1,31.59,Credit Card,Chicago,Pharmacy,False,Senior Citizen,Winter,
+1000000178,2024-03-17 00:34:38,Lori Hill,['Onions'],8,75.06,Debit Card,Chicago,Specialty Store,False,Professional,Winter,Discount on Selected Items
+1000000179,2021-12-16 19:32:28,Trevor Jenkins,"['Honey', 'Salmon', 'Diapers', 'Hair Gel']",5,45.77,Debit Card,San Francisco,Pharmacy,True,Middle-Aged,Fall,BOGO (Buy One Get One)
+1000000180,2021-06-21 05:47:31,Jose Baker,"['Canned Soup', 'Deodorant', 'Banana', 'Chips', 'Shampoo']",3,33.17,Mobile Payment,Los Angeles,Supermarket,False,Retiree,Spring,BOGO (Buy One Get One)
+1000000181,2020-12-05 01:54:53,Courtney Meyer,"['BBQ Sauce', 'Garden Hose', 'Hair Gel']",10,12.81,Debit Card,Chicago,Convenience Store,True,Young Adult,Winter,BOGO (Buy One Get One)
+1000000182,2020-11-18 08:26:46,John Burton,"['Vinegar', 'Soap']",2,74.81,Credit Card,New York,Supermarket,True,Young Adult,Fall,Discount on Selected Items
+1000000183,2021-12-31 01:19:06,Janet Robinson,"['Toothpaste', 'Jam', 'Tissues']",1,74.53,Debit Card,San Francisco,Department Store,False,Middle-Aged,Fall,BOGO (Buy One Get One)
+1000000184,2022-03-09 04:31:31,Mitchell Jackson,['Mustard'],6,6.4,Mobile Payment,Atlanta,Warehouse Club,True,Professional,Winter,Discount on Selected Items
+1000000185,2020-03-31 05:22:40,Paula Gutierrez,"['Ice Cream', 'Ice Cream', 'Laundry Detergent']",9,80.32,Mobile Payment,Los Angeles,Warehouse Club,True,Homemaker,Spring,
+1000000186,2022-01-06 08:14:52,Rebecca Rice,"['Toothpaste', 'Paper Towels']",3,83.91,Cash,San Francisco,Pharmacy,True,Homemaker,Spring,BOGO (Buy One Get One)
+1000000187,2022-09-15 21:05:42,Samantha Wallace,"['Carrots', 'Air Freshener', 'Butter', 'Cleaning Spray']",5,58.92,Mobile Payment,Dallas,Supermarket,False,Retiree,Fall,
+1000000188,2022-09-13 05:58:50,Luke Hall,"['Bath Towels', 'Vinegar']",5,97.89,Mobile Payment,Los Angeles,Department Store,True,Middle-Aged,Winter,Discount on Selected Items
+1000000189,2021-03-28 23:25:21,Michael Gonzalez,['Dish Soap'],6,54.23,Credit Card,Seattle,Convenience Store,False,Retiree,Winter,BOGO (Buy One Get One)
+1000000190,2024-01-14 10:01:30,Tyler Smith,"['Shrimp', 'Chips']",5,5.78,Mobile Payment,Chicago,Specialty Store,False,Student,Summer,BOGO (Buy One Get One)
+1000000191,2020-02-11 11:41:25,Terry Norman,"['Paper Towels', 'Cleaning Rags']",9,62.26,Debit Card,San Francisco,Specialty Store,True,Retiree,Fall,
+1000000192,2024-04-26 00:16:33,Cody Cobb,"['Yogurt', 'Iron', 'Shaving Cream', 'Hand Sanitizer']",1,99.16,Debit Card,Houston,Warehouse Club,False,Retiree,Winter,
+1000000193,2020-10-13 15:30:29,Sierra Scott,"['Chicken', 'Paper Towels', 'Cleaning Rags', 'Razors', 'Power Strips']",6,32.23,Debit Card,Boston,Department Store,True,Retiree,Fall,Discount on Selected Items
+1000000194,2020-07-24 06:17:02,Emily Underwood,"['Air Freshener', 'Iron', 'Ice Cream', 'Ketchup']",10,39.68,Cash,Houston,Pharmacy,False,Senior Citizen,Winter,
+1000000195,2023-04-01 14:19:17,Arthur Myers,"['Shampoo', 'Beef']",8,41.12,Mobile Payment,Miami,Supermarket,False,Student,Fall,Discount on Selected Items
+1000000196,2022-04-24 04:38:44,Nicole Cantrell,"['Paper Towels', 'Trash Cans', 'Dustpan', 'Syrup', 'Iron']",8,36.12,Cash,Dallas,Department Store,False,Middle-Aged,Winter,Discount on Selected Items
+1000000197,2022-06-04 19:22:15,John Martin,"['Shrimp', 'Feminine Hygiene Products', 'Toilet Paper', 'Water']",10,84.07,Cash,Miami,Pharmacy,False,Homemaker,Spring,
+1000000198,2021-01-26 05:46:56,Jerry Williams,"['Pasta', 'Shampoo']",4,39.56,Debit Card,Chicago,Supermarket,True,Retiree,Winter,
+1000000199,2022-02-06 01:27:37,Jeffrey Brown,"['Garden Hose', 'Cheese', 'Bath Towels']",3,77.39,Cash,Miami,Pharmacy,True,Young Adult,Winter,BOGO (Buy One Get One)
+1000000200,2023-06-11 10:26:52,Andrea Snyder,"['Honey', 'Yogurt', 'Potatoes', 'Apple', 'Onions']",5,83.36,Debit Card,Boston,Department Store,True,Professional,Fall,BOGO (Buy One Get One)
+1000000201,2024-02-16 00:17:11,Nancy Jackson,"['Shower Gel', 'Onions']",2,26.81,Debit Card,Houston,Pharmacy,False,Teenager,Winter,
+1000000202,2020-03-01 20:12:51,Olivia Jimenez,"['Peanut Butter', 'Diapers']",7,28.7,Mobile Payment,Atlanta,Specialty Store,False,Retiree,Winter,BOGO (Buy One Get One)
+1000000203,2021-09-11 18:36:17,Angel Garcia,"['Cereal Bars', 'Tomatoes']",5,8.06,Credit Card,Seattle,Warehouse Club,True,Senior Citizen,Fall,
+1000000204,2023-11-29 19:00:15,Amy Rodriguez,['Sponges'],3,89.38,Cash,Miami,Warehouse Club,True,Homemaker,Spring,BOGO (Buy One Get One)
+1000000205,2023-12-27 05:05:28,Angela Clark,"['Chips', 'Shampoo', 'Trash Bags', 'Soap', 'Dishware']",8,18.75,Mobile Payment,San Francisco,Specialty Store,False,Teenager,Summer,Discount on Selected Items
+1000000206,2023-05-01 05:29:56,Kelly Thompson,['Garden Hose'],6,9.02,Mobile Payment,San Francisco,Warehouse Club,True,Homemaker,Winter,Discount on Selected Items
+1000000207,2021-04-10 08:08:00,Ryan Melendez,"['Spinach', 'Feminine Hygiene Products', 'Onions', 'BBQ Sauce']",9,17.34,Mobile Payment,Chicago,Supermarket,False,Homemaker,Fall,BOGO (Buy One Get One)
+1000000208,2022-06-01 00:16:42,Kimberly Cisneros,"['Paper Towels', 'Toothpaste']",10,8.22,Cash,Chicago,Warehouse Club,False,Young Adult,Winter,Discount on Selected Items
+1000000209,2021-08-20 06:00:45,Cole Smith,"['Mustard', 'Chicken', 'Bread']",5,33.07,Cash,Boston,Supermarket,True,Middle-Aged,Spring,BOGO (Buy One Get One)
+1000000210,2023-09-17 01:37:28,Craig Smith,"['Pasta', 'Carrots', 'Power Strips', 'Shrimp']",6,48.16,Credit Card,Miami,Convenience Store,False,Young Adult,Fall,Discount on Selected Items
+1000000211,2021-05-04 16:16:06,Rodney Randolph,"['Onions', 'Plant Fertilizer', 'Ice Cream', 'Tuna']",5,74.82,Debit Card,Houston,Warehouse Club,False,Teenager,Summer,Discount on Selected Items
+1000000212,2020-09-30 11:28:51,Patrick Campbell,"['Paper Towels', 'Rice', 'Mayonnaise', 'Pickles', 'Mayonnaise']",8,75.3,Cash,Boston,Department Store,True,Young Adult,Winter,Discount on Selected Items
+1000000213,2021-09-30 05:17:21,Emily Whitehead,"['Carrots', 'Orange', 'Paper Towels', 'Soap']",3,83.89,Credit Card,Miami,Convenience Store,True,Retiree,Winter,
+1000000214,2023-05-12 08:08:44,Shawn Joyce,"['Shaving Cream', 'Dustpan', 'Rice', 'Orange', 'Honey']",6,30.28,Mobile Payment,Seattle,Warehouse Club,False,Senior Citizen,Spring,
+1000000215,2020-01-03 23:36:11,Ashley White,"['Coffee', 'Hair Gel', 'Vacuum Cleaner']",4,95.87,Credit Card,Los Angeles,Supermarket,False,Professional,Fall,BOGO (Buy One Get One)
+1000000216,2022-05-03 19:43:09,Richard Harris,"['Pancake Mix', 'Water', 'Air Freshener', 'Tea']",6,55.43,Mobile Payment,Dallas,Pharmacy,False,Middle-Aged,Spring,BOGO (Buy One Get One)
+1000000217,2021-09-18 05:56:15,Matthew Bowen,"['Butter', 'Onions', 'Diapers']",7,21.95,Cash,Boston,Department Store,True,Teenager,Winter,Discount on Selected Items
+1000000218,2021-09-04 06:01:56,James Smith,"['Milk', 'Insect Repellent', 'BBQ Sauce', 'BBQ Sauce', 'Hair Gel']",9,52.4,Credit Card,Los Angeles,Department Store,False,Senior Citizen,Summer,BOGO (Buy One Get One)
+1000000219,2020-11-06 04:18:59,Julia Baldwin,"['Trash Bags', 'Cleaning Rags']",7,14.82,Mobile Payment,New York,Department Store,False,Retiree,Fall,BOGO (Buy One Get One)
+1000000220,2024-02-02 13:06:48,Kathleen Cline,"['Butter', 'Ketchup']",8,16.19,Debit Card,Miami,Warehouse Club,False,Student,Fall,BOGO (Buy One Get One)
+1000000221,2023-04-20 04:26:59,Ashley Jones,['Ketchup'],1,24.33,Credit Card,Houston,Department Store,True,Professional,Spring,
+1000000222,2021-02-05 07:29:54,Matthew Hogan,['Baby Wipes'],4,55.11,Cash,San Francisco,Specialty Store,True,Retiree,Summer,Discount on Selected Items
+1000000223,2023-03-01 23:31:35,Kristin Hudson,['Toothpaste'],4,77.38,Debit Card,San Francisco,Convenience Store,True,Professional,Spring,
+1000000224,2020-10-09 05:10:56,Terri Dunn,"['Banana', 'Feminine Hygiene Products']",2,34.8,Credit Card,Atlanta,Supermarket,True,Homemaker,Summer,Discount on Selected Items
+1000000225,2021-08-13 13:03:49,Jorge Keller,"['Vacuum Cleaner', 'Ironing Board', 'Olive Oil', 'Tea', 'Shrimp']",7,72.49,Credit Card,San Francisco,Convenience Store,False,Senior Citizen,Summer,BOGO (Buy One Get One)
+1000000226,2022-11-17 05:57:26,Leslie Bell,['Mayonnaise'],7,20.05,Debit Card,Seattle,Warehouse Club,True,Middle-Aged,Winter,Discount on Selected Items
+1000000227,2020-02-15 09:07:09,Bradley Flynn,"['Shaving Cream', 'Power Strips', 'Laundry Detergent', 'Orange', 'Hand Sanitizer']",2,11.27,Cash,San Francisco,Department Store,True,Senior Citizen,Winter,BOGO (Buy One Get One)
+1000000228,2021-02-21 21:33:57,Morgan Phillips,"['Rice', 'Ketchup']",9,37.45,Cash,Atlanta,Convenience Store,False,Homemaker,Winter,Discount on Selected Items
+1000000229,2021-07-10 18:05:53,Victoria Duran,['Broom'],10,64.57,Credit Card,San Francisco,Department Store,True,Teenager,Fall,
+1000000230,2022-05-15 13:30:45,Bruce Smith,"['Onions', 'Salmon']",2,68.41,Debit Card,Dallas,Specialty Store,False,Young Adult,Fall,BOGO (Buy One Get One)
+1000000231,2022-09-15 19:30:06,Miss Jaime Roy MD,"['Potatoes', 'Pancake Mix', 'Peanut Butter', 'Jam']",7,83.52,Cash,San Francisco,Warehouse Club,True,Young Adult,Spring,
+1000000232,2021-07-12 19:21:05,Paul Kline,"['Shower Gel', 'Peanut Butter', 'Baby Wipes', 'Hair Gel']",6,89.63,Debit Card,San Francisco,Convenience Store,False,Student,Spring,
+1000000233,2023-04-24 04:09:08,Mary Ryan,"['Laundry Detergent', 'Hand Sanitizer']",4,98.79,Cash,Seattle,Convenience Store,False,Young Adult,Summer,BOGO (Buy One Get One)
+1000000234,2023-05-09 07:42:11,Charles Parrish,"['Light Bulbs', 'Plant Fertilizer', 'Bath Towels', 'Cleaning Rags']",6,96.7,Credit Card,Houston,Convenience Store,True,Young Adult,Summer,
+1000000235,2023-12-06 22:36:13,Victor Baker,"['Soap', 'Banana', 'Tea', 'Feminine Hygiene Products', 'Mustard']",10,69.01,Mobile Payment,Chicago,Specialty Store,True,Homemaker,Fall,
+1000000236,2023-07-24 04:23:08,Mary Graham,"['Water', 'Toothbrush']",2,48.93,Mobile Payment,Miami,Pharmacy,True,Middle-Aged,Winter,
+1000000237,2023-12-04 13:25:59,Matthew Peterson,"['Cleaning Spray', 'Eggs', 'Olive Oil', 'Baby Wipes', 'Shrimp']",4,30.54,Mobile Payment,Seattle,Supermarket,True,Senior Citizen,Winter,Discount on Selected Items
+1000000238,2023-04-25 09:57:58,Leslie Walsh,"['Deodorant', 'BBQ Sauce', 'Trash Cans']",5,96.3,Cash,Miami,Supermarket,False,Senior Citizen,Spring,
+1000000239,2022-08-31 22:42:52,Gabriel Lucero,['Bread'],10,46.3,Mobile Payment,Chicago,Warehouse Club,False,Student,Summer,Discount on Selected Items
+1000000240,2022-11-21 07:58:19,Connor Moore,"['Syrup', 'Tomatoes']",9,57.15,Cash,Dallas,Department Store,False,Retiree,Summer,Discount on Selected Items
+1000000241,2022-12-03 02:43:00,Amy Campbell,"['Shaving Cream', 'Laundry Detergent', 'BBQ Sauce', 'Air Freshener']",2,26.07,Debit Card,San Francisco,Supermarket,True,Middle-Aged,Winter,
+1000000242,2020-04-20 02:30:22,Lee Ramirez,"['Shrimp', 'Orange', 'Tomatoes', 'Soda', 'Deodorant']",2,63.6,Mobile Payment,Chicago,Warehouse Club,True,Teenager,Winter,
+1000000243,2020-03-11 18:33:23,Jaime Parker,"['Sponges', 'Chicken', 'Syrup', 'Cleaning Spray', 'Honey']",8,40.37,Mobile Payment,Dallas,Department Store,True,Young Adult,Fall,
+1000000244,2022-04-01 11:38:31,James Bailey,"['Tomatoes', 'Laundry Detergent']",3,73.4,Debit Card,Los Angeles,Supermarket,True,Professional,Winter,BOGO (Buy One Get One)
+1000000245,2022-12-16 10:50:39,Sara Lee,"['Shaving Cream', 'Mustard']",10,17.67,Credit Card,Los Angeles,Specialty Store,True,Young Adult,Fall,
+1000000246,2021-10-27 14:16:11,Joanne Flores,"['Insect Repellent', 'Shaving Cream', 'Shampoo', 'Sponges']",3,78.54,Mobile Payment,Miami,Department Store,True,Young Adult,Spring,BOGO (Buy One Get One)
+1000000247,2023-04-18 14:44:26,Kevin Cruz,"['Olive Oil', 'Dish Soap', 'Dish Soap']",6,51.17,Debit Card,Houston,Specialty Store,True,Retiree,Spring,Discount on Selected Items
+1000000248,2020-11-24 20:47:02,Dawn Benson,"['Milk', 'Tuna', 'Honey', 'Shower Gel']",1,70.51,Cash,Miami,Pharmacy,False,Homemaker,Summer,BOGO (Buy One Get One)
+1000000249,2021-04-16 11:55:29,Ronald Pacheco,['Extension Cords'],10,59.67,Cash,Atlanta,Specialty Store,True,Homemaker,Fall,
+1000000250,2024-01-24 03:46:07,Tracey Allen,"['Bread', 'Deodorant', 'Banana']",8,37.95,Credit Card,Seattle,Supermarket,False,Senior Citizen,Winter,
+1000000251,2021-01-03 09:31:32,Tamara Burke,"['Razors', 'Coffee', 'Vinegar', 'Chips', 'Chips']",3,32.37,Mobile Payment,Los Angeles,Pharmacy,False,Student,Winter,BOGO (Buy One Get One)
+1000000252,2022-04-13 04:44:33,Cheryl Benson,"['Cleaning Rags', 'Pickles', 'Shaving Cream', 'Mustard']",9,13.02,Debit Card,San Francisco,Warehouse Club,False,Senior Citizen,Fall,
+1000000253,2020-12-19 02:54:03,Taylor Jimenez,['Cereal Bars'],7,7.48,Mobile Payment,Seattle,Specialty Store,False,Professional,Spring,
+1000000254,2023-03-01 20:48:47,Brenda Greene,"['Trash Bags', 'Trash Bags', 'Pickles']",5,52.41,Cash,Los Angeles,Department Store,True,Teenager,Winter,
+1000000255,2021-08-25 11:41:56,Mark Johnson,['Shrimp'],6,89.55,Mobile Payment,Seattle,Convenience Store,True,Student,Fall,
+1000000256,2022-02-20 22:41:41,Kenneth Williams,"['Milk', 'Hair Gel']",3,31.45,Debit Card,Boston,Convenience Store,True,Retiree,Fall,BOGO (Buy One Get One)
+1000000257,2024-04-17 12:35:54,Nicholas Ellison,"['Toothpaste', 'Soda', 'Toothbrush']",8,83.46,Mobile Payment,Dallas,Warehouse Club,True,Student,Fall,BOGO (Buy One Get One)
+1000000258,2023-03-03 15:39:07,Felicia Johnson,"['Trash Cans', 'Razors']",5,78.95,Credit Card,Atlanta,Department Store,True,Middle-Aged,Fall,Discount on Selected Items
+1000000259,2021-12-11 10:43:54,Kelly Adams,['Insect Repellent'],7,46.35,Credit Card,Seattle,Warehouse Club,True,Retiree,Fall,Discount on Selected Items
+1000000260,2022-05-09 08:59:01,Richard Hopkins,['Lawn Mower'],8,68.97,Debit Card,Dallas,Convenience Store,False,Middle-Aged,Winter,
+1000000261,2022-11-21 12:53:46,Brenda Brown,['Spinach'],1,92.52,Debit Card,Chicago,Warehouse Club,True,Retiree,Winter,Discount on Selected Items
+1000000262,2021-12-14 17:24:13,David Henry,"['Insect Repellent', 'Dishware', 'Apple']",7,12.66,Credit Card,Los Angeles,Supermarket,True,Teenager,Summer,
+1000000263,2020-05-31 15:32:44,Catherine Rodriguez,"['Soap', 'Dish Soap', 'Chips', 'Tea']",4,35.47,Credit Card,New York,Department Store,True,Student,Summer,
+1000000264,2021-09-08 12:36:46,Sean Obrien,"['Garden Hose', 'Milk', 'Lawn Mower']",7,19.95,Mobile Payment,New York,Supermarket,False,Teenager,Summer,
+1000000265,2023-11-15 17:33:06,Scott Byrd,"['Light Bulbs', 'Honey', 'Bath Towels', 'Cereal Bars', 'Rice']",10,9.62,Credit Card,Seattle,Department Store,False,Homemaker,Spring,
+1000000266,2022-09-27 03:45:21,Sheila Carroll,"['Plant Fertilizer', 'Vacuum Cleaner']",9,32.72,Mobile Payment,Houston,Department Store,True,Teenager,Fall,BOGO (Buy One Get One)
+1000000267,2020-01-02 00:27:51,Jason Rodriguez,"['Insect Repellent', 'Hand Sanitizer', 'Honey', 'Dish Soap', 'Pickles']",8,15.37,Debit Card,New York,Department Store,True,Professional,Fall,
+1000000268,2023-01-16 11:25:56,Edward Anderson,"['Cleaning Spray', 'Cereal Bars']",3,32.89,Mobile Payment,Atlanta,Supermarket,False,Student,Spring,Discount on Selected Items
+1000000269,2020-11-22 01:11:55,Benjamin Barber,"['Mayonnaise', 'Tissues', 'Potatoes', 'Salmon']",10,41.46,Debit Card,Dallas,Pharmacy,False,Retiree,Fall,Discount on Selected Items
+1000000270,2023-11-19 08:21:58,Lisa Evans,"['Milk', 'Banana']",1,35.02,Debit Card,Dallas,Supermarket,False,Homemaker,Winter,BOGO (Buy One Get One)
+1000000271,2022-12-17 17:26:40,Tracey Jackson,"['Syrup', 'Spinach', 'Ironing Board']",7,49.32,Credit Card,Los Angeles,Convenience Store,True,Senior Citizen,Summer,BOGO (Buy One Get One)
+1000000272,2023-12-08 17:42:48,Taylor Daniels,"['Sponges', 'Shrimp', 'Soda']",3,5.84,Credit Card,Houston,Convenience Store,False,Retiree,Winter,
+1000000273,2023-11-09 07:56:37,Dwayne Herrera,"['Eggs', 'Paper Towels']",6,35.12,Mobile Payment,Los Angeles,Department Store,True,Teenager,Spring,Discount on Selected Items
+1000000274,2023-10-19 06:38:17,Stephanie Robinson,"['Toothpaste', 'Bath Towels', 'Carrots']",8,49.02,Credit Card,Seattle,Supermarket,False,Student,Summer,Discount on Selected Items
+1000000275,2022-07-23 06:10:41,Caleb Bailey,"['Insect Repellent', 'Power Strips', 'Toothbrush', 'Yogurt']",1,96.66,Cash,Dallas,Pharmacy,True,Student,Winter,
+1000000276,2023-10-27 17:47:23,Eric Moore DDS,"['Pancake Mix', 'Mop']",2,63.83,Cash,Chicago,Convenience Store,True,Young Adult,Spring,BOGO (Buy One Get One)
+1000000277,2021-09-26 04:44:59,Barbara Griffin,"['Hand Sanitizer', 'Mustard', 'Toilet Paper', 'Water']",10,51.19,Debit Card,Miami,Supermarket,False,Professional,Fall,Discount on Selected Items
+1000000278,2021-03-18 10:25:46,Jennifer Harrington DDS,['Syrup'],5,71.7,Debit Card,San Francisco,Pharmacy,False,Professional,Spring,BOGO (Buy One Get One)
+1000000279,2021-03-25 23:26:49,Bryce Smith,"['Shaving Cream', 'Jam']",9,9.39,Credit Card,Los Angeles,Convenience Store,True,Homemaker,Fall,
+1000000280,2020-03-01 18:27:24,Suzanne Silva,"['Ketchup', 'Hand Sanitizer', 'Orange', 'Vacuum Cleaner']",2,49.74,Cash,Atlanta,Convenience Store,True,Homemaker,Fall,Discount on Selected Items
+1000000281,2020-09-17 21:44:18,David Prince,"['Dishware', 'Soap']",10,74.53,Mobile Payment,Dallas,Department Store,False,Student,Summer,
+1000000282,2021-01-10 16:28:23,Dawn Alvarado,"['Ice Cream', 'Cereal', 'Feminine Hygiene Products', 'Ice Cream', 'Coffee']",1,60.52,Mobile Payment,Seattle,Specialty Store,True,Middle-Aged,Fall,
+1000000283,2020-05-27 05:12:58,Susan Lee,"['Pasta', 'Toilet Paper', 'Chips', 'Light Bulbs', 'Toilet Paper']",4,42.33,Credit Card,Seattle,Pharmacy,False,Teenager,Winter,BOGO (Buy One Get One)
+1000000284,2022-10-21 13:17:16,Pamela Adams,"['Pancake Mix', 'Cereal']",9,88.86,Mobile Payment,Los Angeles,Pharmacy,False,Senior Citizen,Winter,
+1000000285,2022-05-08 12:22:09,Jessica Shaffer,"['Cereal Bars', 'Cleaning Rags', 'Chips', 'Hand Sanitizer', 'Deodorant']",9,51.18,Debit Card,Miami,Supermarket,True,Professional,Fall,Discount on Selected Items
+1000000286,2023-05-30 06:57:24,Mitchell Johnson,"['Peanut Butter', 'Vacuum Cleaner', 'Milk']",2,38.71,Mobile Payment,New York,Specialty Store,True,Student,Winter,BOGO (Buy One Get One)
+1000000287,2023-01-02 21:20:47,Robert Ibarra,"['Shampoo', 'Tuna', 'Shaving Cream', 'Dustpan']",1,19.4,Mobile Payment,Boston,Department Store,True,Homemaker,Fall,Discount on Selected Items
+1000000288,2021-07-15 13:56:50,Mr. Matthew Wang,"['Trash Bags', 'Vinegar', 'Banana', 'Pickles', 'Ketchup']",6,10.92,Credit Card,New York,Convenience Store,False,Professional,Spring,BOGO (Buy One Get One)
+1000000289,2021-04-12 13:52:33,Michele Davis,"['Mop', 'Soap']",4,79.33,Debit Card,Miami,Specialty Store,False,Homemaker,Fall,
+1000000290,2020-05-31 23:16:25,Karen Jones,['Hand Sanitizer'],1,62.37,Mobile Payment,Atlanta,Pharmacy,False,Teenager,Spring,
+1000000291,2023-05-29 05:46:55,Kristi Sanchez,['Lawn Mower'],10,49.86,Mobile Payment,San Francisco,Supermarket,False,Professional,Winter,Discount on Selected Items
+1000000292,2020-11-12 03:27:23,James Aguilar,"['Cereal', 'Honey', 'Carrots', 'Cheese', 'Broom']",5,74.16,Cash,Houston,Specialty Store,True,Retiree,Winter,BOGO (Buy One Get One)
+1000000293,2020-09-10 04:28:35,Lawrence Allison,"['Chips', 'Cleaning Spray', 'Iron', 'Carrots', 'Shaving Cream']",4,20.89,Credit Card,Chicago,Department Store,False,Senior Citizen,Fall,
+1000000294,2021-05-08 11:46:35,Benjamin Nguyen,"['Iron', 'Butter', 'Shower Gel', 'Broom']",2,8.7,Mobile Payment,Miami,Convenience Store,True,Retiree,Winter,
+1000000295,2020-03-15 10:32:29,Gina Gomez,"['Milk', 'Extension Cords', 'Mayonnaise', 'Hand Sanitizer']",4,85.09,Credit Card,Dallas,Pharmacy,False,Young Adult,Fall,BOGO (Buy One Get One)
+1000000296,2022-03-12 19:42:41,Gerald Massey,"['Mop', 'Ketchup', 'Tomatoes', 'Spinach']",6,29.08,Debit Card,Los Angeles,Convenience Store,False,Senior Citizen,Fall,Discount on Selected Items
+1000000297,2020-08-04 11:17:31,William Willis,['Eggs'],9,32.57,Mobile Payment,San Francisco,Specialty Store,False,Teenager,Winter,BOGO (Buy One Get One)
+1000000298,2022-02-10 10:43:44,Tracy Wu,"['Tea', 'Cereal', 'Honey', 'Cleaning Spray', 'Ketchup']",8,10.35,Cash,Boston,Supermarket,True,Senior Citizen,Winter,BOGO (Buy One Get One)
+1000000299,2024-03-23 04:55:50,Michael Wallace,"['Bath Towels', 'Beef', 'Tomatoes']",7,38.49,Credit Card,Atlanta,Pharmacy,False,Senior Citizen,Spring,BOGO (Buy One Get One)
+1000000300,2021-06-05 08:46:40,Carolyn Harris,"['Shampoo', 'Tuna', 'Olive Oil', 'Peanut Butter', 'Carrots']",6,39.63,Mobile Payment,San Francisco,Convenience Store,False,Middle-Aged,Fall,BOGO (Buy One Get One)
+1000000301,2023-07-15 23:55:15,Michele Davis,"['BBQ Sauce', 'Power Strips']",10,23.55,Credit Card,Chicago,Department Store,True,Senior Citizen,Spring,BOGO (Buy One Get One)
+1000000302,2020-06-04 15:28:57,Molly Hernandez,"['Paper Towels', 'Shrimp', 'Feminine Hygiene Products', 'Dishware']",8,32.72,Cash,Chicago,Pharmacy,False,Student,Summer,BOGO (Buy One Get One)
+1000000303,2021-02-24 18:47:01,Ashley Knight,"['Beef', 'Hand Sanitizer', 'Mayonnaise', 'Rice']",3,67.55,Debit Card,San Francisco,Department Store,False,Student,Winter,
+1000000304,2022-12-17 17:38:42,Jessica Crawford,"['Toothbrush', 'Hand Sanitizer']",6,64.24,Mobile Payment,Seattle,Supermarket,False,Student,Winter,Discount on Selected Items
+1000000305,2022-02-13 04:42:09,Yvette Bailey,['Coffee'],4,55.28,Mobile Payment,Seattle,Supermarket,True,Young Adult,Fall,BOGO (Buy One Get One)
+1000000306,2023-04-14 07:18:49,Mary Miller,['Toothpaste'],9,79.37,Debit Card,Los Angeles,Pharmacy,True,Teenager,Summer,BOGO (Buy One Get One)
+1000000307,2021-02-10 04:20:09,Ashley Turner,"['Banana', 'Canned Soup']",1,87.95,Debit Card,Miami,Pharmacy,True,Middle-Aged,Spring,Discount on Selected Items
+1000000308,2023-06-22 21:28:54,Dustin Walker,"['Olive Oil', 'Diapers']",4,40.3,Cash,Los Angeles,Supermarket,False,Professional,Summer,Discount on Selected Items
+1000000309,2023-01-28 20:59:23,Lynn Hopkins,"['Shrimp', 'Pancake Mix']",1,30.56,Mobile Payment,Chicago,Warehouse Club,True,Professional,Summer,BOGO (Buy One Get One)
+1000000310,2022-08-18 08:02:30,Taylor Cole,"['Salmon', 'Plant Fertilizer', 'Cleaning Spray', 'Apple']",2,50.36,Credit Card,Dallas,Department Store,True,Student,Winter,BOGO (Buy One Get One)
+1000000311,2020-01-07 01:35:58,Jeffrey Wilson,['Shaving Cream'],4,90.15,Debit Card,New York,Department Store,True,Homemaker,Fall,Discount on Selected Items
+1000000312,2020-12-02 18:12:16,Christopher Nichols,['Deodorant'],1,42.33,Debit Card,Atlanta,Warehouse Club,True,Student,Spring,BOGO (Buy One Get One)
+1000000313,2022-12-27 09:21:27,Jacob Washington,['Laundry Detergent'],7,85.12,Mobile Payment,San Francisco,Supermarket,True,Young Adult,Spring,BOGO (Buy One Get One)
+1000000314,2023-07-06 12:06:12,Ann Gamble,"['Tuna', 'Chips', 'Chicken', 'Potatoes', 'Dustpan']",7,72.38,Debit Card,Boston,Pharmacy,False,Professional,Spring,
+1000000315,2024-03-01 18:10:22,Michael Ray,['Soap'],4,57.72,Credit Card,Miami,Pharmacy,True,Teenager,Spring,BOGO (Buy One Get One)
+1000000316,2020-06-24 05:01:02,Karen Meyer,"['Soap', 'Cheese', 'Eggs', 'Cleaning Spray', 'Ketchup']",8,13.0,Credit Card,Seattle,Supermarket,False,Middle-Aged,Fall,Discount on Selected Items
+1000000317,2020-10-03 13:50:43,Candice Shelton,['Garden Hose'],5,10.01,Credit Card,Chicago,Specialty Store,False,Homemaker,Fall,
+1000000318,2023-02-02 02:05:40,Cindy Russell,"['Shampoo', 'Salmon', 'Soda']",1,31.74,Mobile Payment,Houston,Supermarket,False,Professional,Spring,BOGO (Buy One Get One)
+1000000319,2022-07-23 05:13:11,Taylor Brady,"['Vacuum Cleaner', 'Garden Hose', 'Tea']",8,49.45,Debit Card,Boston,Convenience Store,True,Senior Citizen,Fall,Discount on Selected Items
+1000000320,2021-01-27 05:09:58,Paula Turner,"['Soap', 'Iron']",7,49.92,Mobile Payment,San Francisco,Warehouse Club,False,Senior Citizen,Summer,Discount on Selected Items
+1000000321,2024-01-09 11:41:57,Jasmine Vasquez,['Feminine Hygiene Products'],9,23.17,Cash,Houston,Convenience Store,False,Student,Spring,Discount on Selected Items
+1000000322,2023-01-08 11:51:39,Christopher Johnson,"['Dish Soap', 'Lawn Mower']",7,57.85,Credit Card,San Francisco,Pharmacy,True,Young Adult,Winter,
+1000000323,2021-04-17 20:11:03,Christopher Chandler,"['Bread', 'Mop', 'Ketchup', 'Chicken', 'Tuna']",7,47.75,Debit Card,Seattle,Convenience Store,False,Retiree,Winter,Discount on Selected Items
+1000000324,2021-11-17 00:42:04,Susan Ball,"['Ketchup', 'Garden Hose']",3,79.65,Cash,Chicago,Warehouse Club,True,Senior Citizen,Winter,
+1000000325,2021-11-11 02:24:37,Bobby Warner,['Light Bulbs'],3,61.53,Debit Card,Miami,Warehouse Club,True,Teenager,Winter,BOGO (Buy One Get One)
+1000000326,2020-07-01 00:49:29,Victoria Jenkins,"['Beef', 'Yogurt', 'Garden Hose']",10,97.35,Mobile Payment,Chicago,Pharmacy,False,Middle-Aged,Fall,BOGO (Buy One Get One)
+1000000327,2021-04-19 22:13:14,Tyler Lara,['Dustpan'],1,86.32,Mobile Payment,Atlanta,Pharmacy,True,Senior Citizen,Fall,Discount on Selected Items
+1000000328,2022-05-20 17:13:05,Ronald Chandler,"['Trash Cans', 'Shampoo', 'Diapers', 'Diapers']",5,64.68,Debit Card,Chicago,Department Store,True,Homemaker,Winter,
+1000000329,2022-10-10 04:25:10,Xavier Palmer,"['Onions', 'Vinegar', 'Cleaning Rags', 'Ketchup']",7,93.03,Debit Card,Atlanta,Pharmacy,False,Professional,Summer,Discount on Selected Items
+1000000330,2020-02-05 13:58:28,Lance Sims,"['Mustard', 'Shrimp', 'Shampoo', 'Feminine Hygiene Products']",4,64.91,Cash,New York,Convenience Store,False,Middle-Aged,Fall,Discount on Selected Items
+1000000331,2021-06-25 13:48:49,Richard Dean,"['Deodorant', 'Paper Towels']",4,70.94,Mobile Payment,New York,Department Store,True,Young Adult,Fall,Discount on Selected Items
+1000000332,2024-01-01 08:46:11,Corey Scott,['Soap'],4,70.4,Mobile Payment,Dallas,Pharmacy,False,Middle-Aged,Summer,BOGO (Buy One Get One)
+1000000333,2021-03-02 10:44:56,Timothy Calderon,"['Shower Gel', 'Pickles', 'Salmon', 'Extension Cords', 'Lawn Mower']",6,91.65,Debit Card,Houston,Specialty Store,False,Teenager,Fall,Discount on Selected Items
+1000000334,2022-02-02 11:39:38,Richard Clark,"['Insect Repellent', 'Canned Soup', 'Ironing Board', 'Vinegar', 'Peanut Butter']",2,19.73,Mobile Payment,Seattle,Specialty Store,False,Retiree,Summer,Discount on Selected Items
+1000000335,2024-04-16 11:13:42,Adrienne Long,['Canned Soup'],2,21.44,Debit Card,Boston,Pharmacy,False,Middle-Aged,Summer,BOGO (Buy One Get One)
+1000000336,2021-09-14 00:26:13,Tanya Murphy,"['Hand Sanitizer', 'Ice Cream', 'Tea']",7,50.77,Mobile Payment,Seattle,Supermarket,False,Student,Winter,BOGO (Buy One Get One)
+1000000337,2023-03-19 09:39:59,Traci Stevens,"['Mop', 'Shrimp', 'Shrimp', 'Cleaning Rags']",4,42.82,Debit Card,Houston,Supermarket,True,Retiree,Winter,BOGO (Buy One Get One)
+1000000338,2022-02-24 22:44:21,Melissa Freeman,"['Olive Oil', 'Chips', 'Apple', 'Iron']",9,28.77,Debit Card,Chicago,Warehouse Club,True,Homemaker,Spring,
+1000000339,2020-10-01 10:24:46,Colleen Mata,['Bath Towels'],2,17.73,Credit Card,Chicago,Convenience Store,False,Professional,Fall,BOGO (Buy One Get One)
+1000000340,2022-02-05 19:17:25,Justin Rodriguez,"['Ironing Board', 'Pasta']",1,28.8,Mobile Payment,Dallas,Supermarket,True,Student,Winter,
+1000000341,2024-03-07 20:33:45,Daniel Thomas,['Tuna'],2,87.03,Credit Card,Miami,Department Store,True,Student,Summer,Discount on Selected Items
+1000000342,2020-04-30 08:47:19,Susan Martin,['Dish Soap'],7,70.54,Mobile Payment,Houston,Convenience Store,False,Teenager,Spring,
+1000000343,2020-12-14 16:57:18,Monica Howard,"['Salmon', 'Tea', 'Yogurt']",9,96.33,Cash,San Francisco,Department Store,False,Senior Citizen,Summer,BOGO (Buy One Get One)
+1000000344,2020-10-01 12:19:56,Lauren Perry,"['Mustard', 'Vinegar', 'Light Bulbs', 'Cleaning Spray']",2,44.84,Credit Card,San Francisco,Pharmacy,True,Senior Citizen,Fall,
+1000000345,2021-07-31 00:30:24,Cynthia Peters,"['Bread', 'Syrup', 'Laundry Detergent']",6,64.31,Mobile Payment,Houston,Department Store,False,Homemaker,Winter,
+1000000346,2020-03-23 08:45:02,Andrew Shelton,['Mustard'],2,84.74,Debit Card,Miami,Convenience Store,True,Teenager,Fall,Discount on Selected Items
+1000000347,2020-06-11 22:09:27,Richard Page,['Apple'],3,49.65,Mobile Payment,Atlanta,Department Store,False,Student,Winter,BOGO (Buy One Get One)
+1000000348,2020-11-12 09:56:14,Gregory George,"['Hand Sanitizer', 'Honey', 'Hair Gel', 'Feminine Hygiene Products', 'Honey']",5,77.91,Debit Card,Miami,Department Store,False,Professional,Spring,Discount on Selected Items
+1000000349,2022-05-18 20:42:23,Joe Price,"['Extension Cords', 'Milk', 'Razors', 'Lawn Mower', 'Milk']",5,43.82,Cash,Boston,Specialty Store,True,Homemaker,Summer,BOGO (Buy One Get One)
+1000000350,2024-03-05 14:03:54,Marissa Cisneros,"['Cereal Bars', 'Vacuum Cleaner', 'Coffee', 'Onions', 'Cleaning Spray']",7,85.19,Credit Card,Miami,Department Store,True,Student,Summer,
+1000000351,2021-12-13 16:53:19,Debbie Burns,"['Lawn Mower', 'Soda', 'Beef', 'Shampoo']",1,37.88,Mobile Payment,Boston,Pharmacy,True,Teenager,Fall,
+1000000352,2021-09-29 10:27:15,William Cole,"['Toothpaste', 'Air Freshener', 'Toothpaste']",5,92.53,Debit Card,Miami,Convenience Store,True,Young Adult,Winter,
+1000000353,2024-03-18 04:37:42,David Gallagher,"['Plant Fertilizer', 'Hand Sanitizer', 'Potatoes', 'Shower Gel']",4,34.83,Cash,Boston,Specialty Store,True,Student,Summer,
+1000000354,2022-03-19 18:56:51,Melissa Mullins,['Hand Sanitizer'],4,44.79,Credit Card,Boston,Department Store,False,Middle-Aged,Fall,BOGO (Buy One Get One)
+1000000355,2020-12-07 08:07:10,James Smith,"['Mop', 'Shower Gel', 'Cheese']",9,87.09,Cash,San Francisco,Department Store,True,Homemaker,Summer,Discount on Selected Items
+1000000356,2021-10-02 00:39:23,James Harris,"['Shampoo', 'Shampoo']",5,27.92,Mobile Payment,Dallas,Specialty Store,False,Professional,Winter,BOGO (Buy One Get One)
+1000000357,2022-02-02 02:18:49,Melinda Daniels,"['Pancake Mix', 'Toilet Paper', 'Paper Towels']",3,23.43,Credit Card,Chicago,Specialty Store,True,Teenager,Spring,
+1000000358,2022-03-08 03:02:47,Barbara Shepard,"['Olive Oil', 'Tea']",7,56.8,Mobile Payment,Atlanta,Specialty Store,True,Professional,Fall,BOGO (Buy One Get One)
+1000000359,2023-12-07 14:00:01,Tyler Lambert,"['Beef', 'Onions']",8,84.44,Mobile Payment,Boston,Department Store,False,Homemaker,Fall,Discount on Selected Items
+1000000360,2023-12-03 00:49:53,Amanda Sanchez,"['Beef', 'Olive Oil']",9,13.58,Cash,Chicago,Department Store,False,Homemaker,Winter,
+1000000361,2023-10-04 18:32:21,Kelly Tucker,['Baby Wipes'],6,19.22,Mobile Payment,San Francisco,Specialty Store,True,Young Adult,Summer,BOGO (Buy One Get One)
+1000000362,2020-08-22 18:00:36,Tiffany Wilson,"['Toothpaste', 'Vacuum Cleaner', 'Mayonnaise', 'Ketchup']",7,85.72,Cash,Chicago,Specialty Store,False,Teenager,Summer,Discount on Selected Items
+1000000363,2023-03-26 06:38:53,Seth Johnson,"['Dustpan', 'Peanut Butter']",3,97.56,Credit Card,Seattle,Convenience Store,True,Young Adult,Winter,
+1000000364,2020-03-21 19:13:42,Julie Perez,"['Mop', 'Toothpaste']",9,47.37,Debit Card,Seattle,Supermarket,True,Senior Citizen,Spring,Discount on Selected Items
+1000000365,2021-12-07 23:42:25,Dustin Taylor,"['Honey', 'Chips', 'Pickles', 'Shampoo', 'Milk']",9,53.5,Mobile Payment,Boston,Supermarket,False,Senior Citizen,Fall,BOGO (Buy One Get One)
+1000000366,2021-04-23 07:59:12,Julia Ramirez,['Extension Cords'],3,57.72,Mobile Payment,Houston,Pharmacy,False,Retiree,Summer,BOGO (Buy One Get One)
+1000000367,2023-04-03 05:06:08,Richard Benjamin,"['Honey', 'Mop', 'Spinach', 'Feminine Hygiene Products']",3,46.88,Cash,San Francisco,Supermarket,True,Senior Citizen,Winter,
+1000000368,2021-05-21 13:54:21,Richard Hamilton,"['Ironing Board', 'Toothbrush', 'Toothpaste']",4,97.58,Credit Card,New York,Department Store,True,Young Adult,Fall,
+1000000369,2022-08-31 08:17:51,Deborah Reid,"['Insect Repellent', 'Lawn Mower']",8,7.26,Debit Card,Miami,Warehouse Club,True,Senior Citizen,Winter,
+1000000370,2023-11-19 20:51:49,Rachel Brown,['Apple'],2,8.4,Cash,Chicago,Convenience Store,False,Teenager,Summer,
+1000000371,2020-08-18 04:17:55,Brett Smith,['Toilet Paper'],7,62.14,Debit Card,Chicago,Department Store,True,Homemaker,Winter,Discount on Selected Items
+1000000372,2021-06-28 15:03:56,Austin Hughes,['Laundry Detergent'],9,68.55,Cash,Boston,Pharmacy,False,Teenager,Spring,
+1000000373,2020-12-23 04:04:35,Mark Smith,"['Paper Towels', 'Onions', 'Water']",3,70.09,Debit Card,Houston,Convenience Store,False,Professional,Winter,BOGO (Buy One Get One)
+1000000374,2022-11-02 00:41:54,Diana Giles,"['Potatoes', 'Yogurt', 'Toothpaste', 'Carrots']",8,23.85,Credit Card,Miami,Pharmacy,False,Teenager,Summer,BOGO (Buy One Get One)
+1000000375,2023-01-22 00:34:33,Cassandra Lloyd,"['Cheese', 'Cleaning Spray', 'Insect Repellent', 'Beef']",8,52.07,Cash,San Francisco,Department Store,False,Student,Summer,Discount on Selected Items
+1000000376,2021-08-01 20:48:53,Laura Phillips,"['Chicken', 'Toothpaste', 'Pickles', 'Laundry Detergent']",4,73.02,Mobile Payment,San Francisco,Specialty Store,False,Student,Summer,BOGO (Buy One Get One)
+1000000377,2023-07-02 04:52:44,Derrick Chen,"['Apple', 'Dustpan', 'Plant Fertilizer', 'Trash Bags', 'Trash Cans']",10,75.92,Credit Card,Los Angeles,Warehouse Club,True,Student,Summer,BOGO (Buy One Get One)
+1000000378,2020-06-26 18:40:25,Patricia Bernard,"['Tomatoes', 'Yogurt', 'Vinegar', 'Cheese']",3,39.81,Credit Card,Atlanta,Convenience Store,False,Young Adult,Fall,
+1000000379,2023-01-12 02:37:30,Rebecca Martinez,"['Shrimp', 'Peanut Butter', 'Vinegar', 'Beef', 'Hand Sanitizer']",5,76.15,Mobile Payment,Seattle,Specialty Store,False,Middle-Aged,Spring,BOGO (Buy One Get One)
+1000000380,2021-04-20 20:48:40,Victor Stein,"['Hair Gel', 'Dish Soap', 'Rice', 'Salmon']",10,64.22,Mobile Payment,Los Angeles,Specialty Store,False,Senior Citizen,Fall,
+1000000381,2020-03-17 06:46:19,Thomas Mason,"['Shaving Cream', 'Spinach', 'Deodorant']",2,45.26,Credit Card,Boston,Supermarket,True,Student,Summer,BOGO (Buy One Get One)
+1000000382,2020-10-10 15:23:44,Carla Thomas,"['Toothbrush', 'Plant Fertilizer']",7,33.01,Debit Card,Boston,Supermarket,False,Homemaker,Fall,BOGO (Buy One Get One)
+1000000383,2021-12-18 21:20:24,Bradley Smith,['Orange'],8,42.14,Credit Card,Seattle,Convenience Store,False,Homemaker,Fall,
+1000000384,2020-06-30 18:24:38,Joshua Chase,"['Sponges', 'Air Freshener', 'Banana', 'Feminine Hygiene Products', 'Shaving Cream']",5,50.18,Credit Card,Houston,Convenience Store,True,Young Adult,Winter,BOGO (Buy One Get One)
+1000000385,2023-07-08 14:17:20,Cheryl Olsen,"['Cleaning Rags', 'Jam', 'Cheese', 'Carrots']",3,64.83,Cash,Boston,Warehouse Club,False,Senior Citizen,Fall,Discount on Selected Items
+1000000386,2021-04-03 23:52:29,Benjamin Cabrera,"['Tuna', 'Baby Wipes', 'Carrots']",3,26.2,Debit Card,Dallas,Convenience Store,False,Homemaker,Fall,
+1000000387,2021-05-18 22:19:37,Joseph Nichols,"['Plant Fertilizer', 'Pickles', 'Olive Oil', 'Pancake Mix', 'Deodorant']",7,65.94,Debit Card,Chicago,Pharmacy,True,Student,Summer,BOGO (Buy One Get One)
+1000000388,2023-07-09 10:26:12,Meghan Johnson,"['Razors', 'Extension Cords', 'Orange', 'Ice Cream', 'Pasta']",4,63.15,Cash,Houston,Convenience Store,True,Senior Citizen,Winter,Discount on Selected Items
+1000000389,2020-09-14 01:48:20,Holly Mora,"['Bath Towels', 'Rice', 'Cleaning Rags']",5,87.35,Debit Card,Miami,Specialty Store,False,Homemaker,Spring,BOGO (Buy One Get One)
+1000000390,2024-03-14 19:01:00,Michael Smith,['Salmon'],8,65.9,Debit Card,New York,Convenience Store,False,Professional,Spring,
+1000000391,2024-01-13 17:11:02,Paul York,"['Canned Soup', 'Cheese', 'Beef']",6,93.82,Debit Card,San Francisco,Department Store,False,Teenager,Winter,Discount on Selected Items
+1000000392,2022-08-11 05:30:54,Justin Garza,['Toothpaste'],1,80.96,Mobile Payment,San Francisco,Department Store,True,Young Adult,Spring,
+1000000393,2023-05-27 18:18:07,James Jones,"['Potatoes', 'Toothbrush']",2,67.96,Mobile Payment,Chicago,Department Store,True,Senior Citizen,Winter,Discount on Selected Items
+1000000394,2022-03-06 15:18:07,Randall Davis,"['Shower Gel', 'Shampoo', 'Dishware']",8,37.94,Cash,Boston,Supermarket,False,Teenager,Spring,Discount on Selected Items
+1000000395,2022-08-28 04:37:03,Julie Hopkins,"['Tea', 'Beef', 'Coffee']",9,83.46,Mobile Payment,San Francisco,Pharmacy,False,Professional,Spring,BOGO (Buy One Get One)
+1000000396,2020-10-30 09:20:29,Zachary Compton,"['Olive Oil', 'Banana', 'Orange', 'Coffee']",6,70.61,Debit Card,Seattle,Supermarket,False,Student,Spring,Discount on Selected Items
+1000000397,2021-02-19 11:51:33,Michelle White,"['Bread', 'Bread', 'Trash Cans', 'Beef']",9,42.74,Mobile Payment,Atlanta,Pharmacy,True,Middle-Aged,Fall,BOGO (Buy One Get One)
+1000000398,2023-02-05 15:44:41,Jennifer Owens,['Eggs'],7,93.47,Debit Card,Dallas,Department Store,True,Professional,Summer,BOGO (Buy One Get One)
+1000000399,2022-08-25 15:48:44,James Howe MD,['Rice'],2,12.11,Cash,Dallas,Pharmacy,False,Homemaker,Fall,BOGO (Buy One Get One)
+1000000400,2021-03-20 15:08:02,Kimberly Gomez,"['Toothpaste', 'Extension Cords', 'Lawn Mower', 'Yogurt']",10,96.09,Credit Card,Houston,Supermarket,True,Senior Citizen,Spring,
+1000000401,2020-09-06 06:05:54,Kathy Ross,['Trash Bags'],9,27.43,Credit Card,San Francisco,Supermarket,False,Teenager,Winter,BOGO (Buy One Get One)
+1000000402,2020-08-15 21:47:37,Ariel Howell,['Broom'],3,48.89,Credit Card,Chicago,Department Store,False,Middle-Aged,Spring,
+1000000403,2020-04-05 04:08:42,Lisa Smith,"['Tea', 'Garden Hose', 'Lawn Mower', 'Butter', 'Broom']",3,58.34,Credit Card,Houston,Warehouse Club,True,Young Adult,Spring,BOGO (Buy One Get One)
+1000000404,2021-04-28 13:09:15,Randy Nelson,['Orange'],2,13.42,Mobile Payment,Los Angeles,Supermarket,True,Retiree,Fall,
+1000000405,2022-09-14 07:20:35,Joseph Miller,['Canned Soup'],7,10.64,Cash,Houston,Specialty Store,True,Middle-Aged,Summer,Discount on Selected Items
+1000000406,2022-09-17 14:28:48,Paul Hart,"['Pasta', 'Tissues', 'Canned Soup', 'Ice Cream']",9,84.6,Debit Card,Miami,Convenience Store,False,Teenager,Winter,Discount on Selected Items
+1000000407,2020-09-22 11:18:25,Megan Hardin,"['Ice Cream', 'Shower Gel', 'Toothpaste', 'Laundry Detergent', 'Vacuum Cleaner']",7,30.16,Debit Card,Houston,Warehouse Club,False,Young Adult,Spring,BOGO (Buy One Get One)
+1000000408,2020-11-20 17:02:25,Jennifer Lee,"['Shaving Cream', 'Mustard', 'Peanut Butter', 'Toothpaste', 'Toothbrush']",1,92.09,Debit Card,Chicago,Warehouse Club,True,Teenager,Spring,Discount on Selected Items
+1000000409,2021-07-14 06:54:21,Matthew Hall,['BBQ Sauce'],7,83.24,Debit Card,Dallas,Convenience Store,True,Senior Citizen,Fall,Discount on Selected Items
+1000000410,2020-04-24 17:56:35,Thomas Green,"['Mustard', 'Bread', 'Chicken', 'Pickles', 'Bread']",9,24.26,Debit Card,New York,Convenience Store,True,Homemaker,Fall,
+1000000411,2020-07-18 18:11:51,George Ruiz,"['BBQ Sauce', 'Syrup']",2,52.49,Mobile Payment,New York,Specialty Store,True,Student,Summer,
+1000000412,2021-05-12 01:27:21,Cameron Garner,"['Power Strips', 'Plant Fertilizer']",7,9.6,Credit Card,Los Angeles,Specialty Store,True,Retiree,Fall,Discount on Selected Items
+1000000413,2023-02-10 21:43:42,Paul Clarke,"['Mustard', 'Bath Towels']",3,86.06,Debit Card,Boston,Warehouse Club,False,Professional,Spring,BOGO (Buy One Get One)
+1000000414,2024-04-02 07:14:07,William Randolph,['Ironing Board'],3,19.45,Credit Card,Seattle,Department Store,False,Teenager,Winter,Discount on Selected Items
+1000000415,2021-11-16 05:52:54,Kevin Morris,"['Dustpan', 'Soap', 'Banana', 'Shower Gel']",7,50.27,Debit Card,Chicago,Supermarket,True,Homemaker,Summer,BOGO (Buy One Get One)
+1000000416,2023-07-14 11:48:26,Andrew Smith,"['Soda', 'Carrots', 'Water', 'Razors', 'Cleaning Rags']",5,86.89,Cash,Houston,Department Store,False,Middle-Aged,Fall,
+1000000417,2020-12-26 11:06:40,Whitney Mercado,"['Onions', 'Dishware', 'Hair Gel']",9,90.44,Credit Card,San Francisco,Supermarket,False,Middle-Aged,Spring,Discount on Selected Items
+1000000418,2021-10-29 22:49:22,Dennis Cruz,"['Hand Sanitizer', 'Razors']",5,50.88,Cash,Seattle,Department Store,False,Middle-Aged,Fall,
+1000000419,2023-08-19 08:20:43,Kristina Mcguire,"['Apple', 'Water']",2,82.17,Credit Card,Houston,Specialty Store,False,Middle-Aged,Summer,
+1000000420,2023-06-24 15:43:11,Maria Ochoa,['Baby Wipes'],3,70.21,Mobile Payment,Houston,Convenience Store,False,Senior Citizen,Spring,BOGO (Buy One Get One)
+1000000421,2023-09-29 15:34:31,Jeffrey Thomas,"['Baby Wipes', 'Razors', 'Feminine Hygiene Products']",4,88.19,Debit Card,Boston,Specialty Store,True,Senior Citizen,Summer,BOGO (Buy One Get One)
+1000000422,2021-06-08 00:59:55,Melissa Wallace,"['Hand Sanitizer', 'Onions', 'Tissues', 'Yogurt']",3,13.44,Cash,Dallas,Department Store,True,Young Adult,Fall,
+1000000423,2023-03-18 05:21:31,Dawn Barnes,"['Feminine Hygiene Products', 'Olive Oil']",5,68.37,Debit Card,Dallas,Convenience Store,False,Professional,Spring,
+1000000424,2020-06-01 21:09:44,Mr. Jimmy Martin MD,"['Vacuum Cleaner', 'Trash Bags', 'Sponges']",8,24.17,Mobile Payment,Dallas,Warehouse Club,True,Senior Citizen,Winter,Discount on Selected Items
+1000000425,2023-12-11 23:42:04,Brian Turner,"['Banana', 'Air Freshener']",3,19.69,Mobile Payment,Dallas,Pharmacy,False,Student,Winter,
+1000000426,2020-08-30 01:19:38,Hannah Moss,"['Soap', 'Shampoo', 'Pancake Mix']",9,27.71,Debit Card,Atlanta,Specialty Store,True,Student,Fall,
+1000000427,2022-12-05 07:09:06,Jessica Crawford,"['Canned Soup', 'Chips', 'Dishware', 'Air Freshener']",7,39.32,Debit Card,Boston,Specialty Store,True,Retiree,Spring,BOGO (Buy One Get One)
+1000000428,2022-04-17 04:15:55,Joseph Barrett,['Broom'],8,90.66,Cash,Los Angeles,Specialty Store,True,Student,Fall,
+1000000429,2022-10-30 13:28:39,Robert Williams,"['Bread', 'Mayonnaise']",4,58.1,Debit Card,Boston,Warehouse Club,False,Young Adult,Winter,Discount on Selected Items
+1000000430,2020-01-20 23:29:05,Robin King,"['Eggs', 'Cheese']",8,10.01,Debit Card,Chicago,Department Store,True,Professional,Fall,Discount on Selected Items
+1000000431,2023-05-24 06:51:01,Michael Morris,"['Apple', 'Power Strips', 'Pickles']",3,54.84,Cash,New York,Convenience Store,False,Senior Citizen,Winter,BOGO (Buy One Get One)
+1000000432,2023-04-25 00:06:30,Mrs. Jessica Pennington,"['Cereal Bars', 'Rice']",8,80.58,Mobile Payment,Los Angeles,Department Store,False,Young Adult,Spring,BOGO (Buy One Get One)
+1000000433,2023-09-24 01:27:39,Brian Williams,"['Extension Cords', 'Soap', 'Toothpaste', 'Ice Cream']",2,93.23,Cash,Atlanta,Supermarket,False,Young Adult,Fall,BOGO (Buy One Get One)
+1000000434,2023-03-08 10:19:15,Tanya Jones,"['Deodorant', 'Bath Towels', 'Shaving Cream', 'Feminine Hygiene Products', 'Water']",7,17.5,Cash,Boston,Pharmacy,True,Student,Summer,
+1000000435,2020-12-06 06:15:46,Greg Chandler,"['Tuna', 'Banana', 'Cleaning Rags', 'Hand Sanitizer']",1,13.97,Mobile Payment,Miami,Department Store,False,Homemaker,Spring,
+1000000436,2021-09-21 12:32:03,Yvonne Garcia,['Insect Repellent'],4,89.88,Debit Card,Miami,Department Store,True,Senior Citizen,Fall,
+1000000437,2020-01-06 10:44:49,Tyler Clark,"['Eggs', 'Dustpan', 'Soda']",9,50.01,Cash,Chicago,Pharmacy,False,Student,Winter,
+1000000438,2020-06-15 08:10:10,Carla Arias,"['Trash Cans', 'Chips']",1,59.04,Mobile Payment,Chicago,Warehouse Club,False,Student,Fall,Discount on Selected Items
+1000000439,2023-12-10 03:49:23,Matthew Taylor,"['Insect Repellent', 'Vacuum Cleaner', 'Extension Cords', 'Canned Soup', 'Air Freshener']",6,5.78,Mobile Payment,Atlanta,Convenience Store,False,Retiree,Summer,Discount on Selected Items
+1000000440,2022-05-01 11:06:05,Angela Higgins,"['Vacuum Cleaner', 'Iron', 'Shampoo']",6,89.88,Debit Card,San Francisco,Convenience Store,False,Retiree,Fall,Discount on Selected Items
+1000000441,2022-06-28 16:01:37,Erin Giles,"['Salmon', 'Ironing Board', 'Hand Sanitizer', 'Milk']",1,12.66,Mobile Payment,Atlanta,Convenience Store,True,Retiree,Winter,BOGO (Buy One Get One)
+1000000442,2021-12-05 20:27:17,Michael Huffman,['Mop'],8,78.09,Credit Card,Houston,Warehouse Club,False,Student,Fall,Discount on Selected Items
+1000000443,2024-04-08 09:42:37,Paul Walls,"['Hair Gel', 'Tuna', 'Banana']",1,68.21,Cash,Chicago,Supermarket,True,Student,Summer,BOGO (Buy One Get One)
+1000000444,2020-02-11 17:40:30,James Henderson,"['Bread', 'Spinach', 'Trash Bags']",6,71.26,Credit Card,Boston,Supermarket,False,Middle-Aged,Winter,BOGO (Buy One Get One)
+1000000445,2022-06-01 01:52:34,Melanie Page,"['Baby Wipes', 'Cleaning Rags', 'Toothbrush']",9,97.06,Cash,Atlanta,Specialty Store,False,Senior Citizen,Winter,BOGO (Buy One Get One)
+1000000446,2023-08-30 21:47:40,Kenneth Cowan,['Peanut Butter'],6,58.42,Cash,Atlanta,Pharmacy,True,Retiree,Summer,BOGO (Buy One Get One)
+1000000447,2021-12-02 11:59:36,Crystal Lewis,"['Soap', 'Tuna', 'Broom', 'Mop']",9,96.59,Debit Card,Houston,Warehouse Club,False,Professional,Spring,
+1000000448,2023-04-16 22:11:30,Peter Berg,"['Laundry Detergent', 'Pasta']",7,71.94,Debit Card,Dallas,Warehouse Club,True,Homemaker,Winter,Discount on Selected Items
+1000000449,2023-05-15 16:05:34,Deborah Richardson,"['Tuna', 'Hand Sanitizer']",3,45.73,Mobile Payment,Houston,Convenience Store,False,Professional,Spring,
+1000000450,2023-03-13 18:47:40,Diane Ford,"['Pasta', 'Cleaning Rags']",5,33.03,Cash,Dallas,Supermarket,True,Homemaker,Winter,
+1000000451,2023-03-25 14:23:50,Stephanie Brown,"['Soda', 'Orange']",4,62.22,Credit Card,Los Angeles,Specialty Store,True,Middle-Aged,Fall,Discount on Selected Items
+1000000452,2023-01-27 19:18:52,Wesley Santos,"['Diapers', 'Laundry Detergent']",8,7.86,Credit Card,Atlanta,Pharmacy,False,Student,Spring,
+1000000453,2020-03-10 12:27:36,Erik Butler,"['Feminine Hygiene Products', 'Toothpaste', 'Dustpan', 'Razors']",1,61.3,Cash,Los Angeles,Supermarket,True,Professional,Spring,Discount on Selected Items
+1000000454,2020-10-27 22:31:34,Andrea Weeks,"['Carrots', 'Baby Wipes', 'Dustpan', 'Canned Soup']",10,45.61,Mobile Payment,New York,Pharmacy,True,Young Adult,Fall,
+1000000455,2023-02-21 10:17:19,Christopher Small,"['Light Bulbs', 'Coffee']",10,71.17,Debit Card,Boston,Warehouse Club,True,Professional,Summer,BOGO (Buy One Get One)
+1000000456,2022-12-19 19:52:37,Hannah Baird,"['Tissues', 'Dish Soap', 'Water', 'Tissues', 'Chips']",5,51.07,Credit Card,Atlanta,Convenience Store,False,Retiree,Winter,
+1000000457,2024-04-22 02:54:46,Rebecca Velazquez,['Vinegar'],2,75.97,Credit Card,Los Angeles,Department Store,False,Senior Citizen,Spring,
+1000000458,2023-01-20 20:08:30,Crystal Jones,['Insect Repellent'],7,78.88,Mobile Payment,San Francisco,Supermarket,True,Young Adult,Fall,
+1000000459,2020-05-21 08:59:58,Bradley Lawrence,['Chicken'],5,52.55,Credit Card,New York,Pharmacy,True,Senior Citizen,Fall,
+1000000460,2022-02-21 00:37:33,Heather Hogan,"['Rice', 'Extension Cords', 'Bread']",3,71.47,Mobile Payment,Boston,Supermarket,True,Student,Winter,
+1000000461,2022-12-30 07:39:24,Joseph Marquez,"['Cleaning Spray', 'Water', 'Butter', 'Baby Wipes', 'Soap']",6,96.99,Credit Card,Los Angeles,Convenience Store,False,Professional,Winter,Discount on Selected Items
+1000000462,2020-01-18 00:32:27,Tyler Nelson,"['Peanut Butter', 'Trash Cans', 'Banana']",7,71.68,Debit Card,Dallas,Supermarket,True,Middle-Aged,Winter,BOGO (Buy One Get One)
+1000000463,2021-03-21 15:51:20,Todd Vaughn,"['Hand Sanitizer', 'Deodorant', 'Coffee']",5,20.13,Debit Card,Los Angeles,Convenience Store,False,Young Adult,Spring,
+1000000464,2020-02-27 21:17:26,Jose Hale,"['Canned Soup', 'Water', 'Chips', 'Toothpaste', 'Banana']",10,69.64,Debit Card,Chicago,Convenience Store,False,Retiree,Winter,BOGO (Buy One Get One)
+1000000465,2022-01-15 16:04:44,Collin Nash,"['BBQ Sauce', 'Chicken', 'Tuna']",10,46.18,Debit Card,Seattle,Warehouse Club,False,Senior Citizen,Winter,
+1000000466,2020-01-15 12:18:05,Jeff Fowler,"['Sponges', 'Yogurt']",7,22.29,Credit Card,Chicago,Convenience Store,False,Student,Winter,
+1000000467,2022-03-01 05:12:02,Benjamin Lee,['Milk'],2,17.37,Cash,Los Angeles,Pharmacy,True,Homemaker,Spring,
+1000000468,2024-05-07 02:26:25,Michael Padilla,"['Beef', 'Shower Gel']",7,6.66,Credit Card,Los Angeles,Specialty Store,True,Retiree,Spring,
+1000000469,2024-04-26 06:29:07,Stephanie Jackson,['Soap'],6,44.44,Credit Card,New York,Department Store,True,Retiree,Winter,BOGO (Buy One Get One)
+1000000470,2021-01-05 16:52:02,Thomas Mcintyre,"['Toothbrush', 'Banana', 'Pancake Mix', 'Carrots', 'Pasta']",5,33.55,Debit Card,Chicago,Warehouse Club,True,Retiree,Winter,Discount on Selected Items
+1000000471,2023-04-28 21:21:08,Robert Davis,"['Power Strips', 'Shower Gel']",1,35.45,Debit Card,Dallas,Specialty Store,False,Student,Spring,
+1000000472,2023-12-04 13:11:29,Marc Decker,"['Mop', 'Shaving Cream']",10,60.54,Credit Card,Dallas,Pharmacy,True,Senior Citizen,Fall,BOGO (Buy One Get One)
+1000000473,2024-03-10 05:53:59,Shawn Morris,['Olive Oil'],2,73.89,Credit Card,Boston,Convenience Store,False,Retiree,Fall,
+1000000474,2020-03-07 21:42:33,Denise Vaughan,"['Honey', 'Chips']",9,89.62,Debit Card,Miami,Convenience Store,False,Young Adult,Spring,
+1000000475,2021-09-06 13:41:16,Sarah Harris,"['Cereal', 'Trash Bags', 'Iron', 'Shampoo']",1,98.52,Mobile Payment,Atlanta,Convenience Store,True,Retiree,Winter,
+1000000476,2022-03-24 23:31:08,Brian Cole,"['Soap', 'Toothpaste']",8,56.83,Mobile Payment,Dallas,Convenience Store,False,Retiree,Spring,Discount on Selected Items
+1000000477,2021-04-04 16:24:28,Scott Jenkins,"['Iron', 'Light Bulbs', 'Pancake Mix', 'Yogurt', 'Tissues']",2,71.66,Cash,Seattle,Specialty Store,True,Retiree,Spring,BOGO (Buy One Get One)
+1000000478,2023-01-23 04:27:34,John Goodwin,['Mayonnaise'],9,42.88,Debit Card,Chicago,Department Store,False,Middle-Aged,Spring,Discount on Selected Items
+1000000479,2021-11-12 10:44:53,Ashley Ortiz,"['Cereal Bars', 'Mayonnaise', 'Mayonnaise', 'Banana']",9,65.71,Cash,Chicago,Warehouse Club,True,Young Adult,Spring,BOGO (Buy One Get One)
+1000000480,2023-11-27 11:11:50,Cynthia Harper,"['Trash Cans', 'Toothpaste']",6,61.61,Credit Card,Seattle,Convenience Store,True,Senior Citizen,Fall,
+1000000481,2020-10-26 15:48:14,John Taylor DDS,"['Light Bulbs', 'Jam']",8,76.45,Credit Card,San Francisco,Pharmacy,False,Middle-Aged,Winter,
+1000000482,2020-07-01 07:14:23,Jennifer West,"['Ketchup', 'Olive Oil', 'Lawn Mower']",9,91.0,Credit Card,Los Angeles,Warehouse Club,False,Teenager,Summer,Discount on Selected Items
+1000000483,2022-05-16 02:20:41,Toni Sanchez,"['Feminine Hygiene Products', 'Deodorant']",6,20.17,Debit Card,Dallas,Pharmacy,True,Retiree,Spring,Discount on Selected Items
+1000000484,2023-04-05 04:25:16,Ronald Mills,"['Feminine Hygiene Products', 'Plant Fertilizer', 'Spinach', 'Cleaning Spray']",1,62.0,Mobile Payment,Atlanta,Department Store,False,Senior Citizen,Summer,
+1000000485,2023-10-10 08:13:50,Kevin Underwood,"['Dustpan', 'Razors', 'Mop']",1,6.93,Cash,Dallas,Supermarket,False,Senior Citizen,Winter,Discount on Selected Items
+1000000486,2023-01-18 09:53:23,Jason Acosta,"['Olive Oil', 'Lawn Mower', 'Toothpaste']",10,71.38,Mobile Payment,Chicago,Convenience Store,False,Professional,Winter,BOGO (Buy One Get One)
+1000000487,2020-06-19 01:27:07,Tracy Downs,"['Mustard', 'Cleaning Rags', 'Iron', 'Toothbrush', 'Hand Sanitizer']",4,49.72,Debit Card,San Francisco,Specialty Store,False,Middle-Aged,Fall,
+1000000488,2021-03-13 05:36:50,Tracy Kerr,"['Baby Wipes', 'Insect Repellent']",7,26.82,Cash,Houston,Convenience Store,True,Middle-Aged,Fall,
+1000000489,2023-12-11 23:23:12,Michelle Moreno,"['Shaving Cream', 'Air Freshener', 'Mop', 'Butter', 'Chips']",3,7.78,Mobile Payment,New York,Supermarket,False,Homemaker,Summer,BOGO (Buy One Get One)
+1000000490,2024-01-05 12:29:41,Douglas Schultz Jr.,"['Pasta', 'Orange', 'Extension Cords']",7,29.65,Credit Card,Seattle,Convenience Store,False,Teenager,Winter,BOGO (Buy One Get One)
+1000000491,2022-02-25 02:46:19,Travis Brooks,['Pickles'],2,16.76,Credit Card,Atlanta,Warehouse Club,False,Retiree,Fall,Discount on Selected Items
+1000000492,2021-12-10 22:09:16,Ashley Schultz,['Dish Soap'],1,69.84,Cash,Miami,Department Store,False,Young Adult,Winter,
+1000000493,2021-10-07 13:59:07,James Hubbard,"['Pasta', 'Ketchup', 'Bread', 'Butter', 'Soda']",10,44.87,Credit Card,Los Angeles,Supermarket,False,Teenager,Spring,BOGO (Buy One Get One)
+1000000494,2024-04-05 08:44:29,Barbara Mendez MD,"['Pasta', 'Carrots', 'Butter']",3,41.59,Credit Card,Los Angeles,Department Store,False,Teenager,Spring,BOGO (Buy One Get One)
+1000000495,2024-01-07 02:37:45,Jonathan Spears,"['Toothpaste', 'Mustard', 'Dishware', 'Cereal Bars']",8,6.12,Cash,San Francisco,Specialty Store,True,Student,Spring,
+1000000496,2023-05-27 14:08:49,Tiffany Clark,"['Mop', 'Honey', 'Iron', 'Diapers']",2,54.15,Debit Card,San Francisco,Convenience Store,True,Student,Spring,
+1000000497,2020-11-24 01:16:19,Michelle Acosta,['Carrots'],7,58.57,Credit Card,Miami,Supermarket,False,Student,Winter,
+1000000498,2023-07-10 05:18:14,Erica Morales,"['Ironing Board', 'Feminine Hygiene Products', 'Bath Towels', 'Jam']",2,97.37,Cash,Dallas,Specialty Store,True,Student,Spring,BOGO (Buy One Get One)
+1000000499,2023-11-18 04:49:34,Heather Peterson,"['Cereal Bars', 'Tomatoes', 'Toothpaste', 'Honey', 'Shampoo']",10,18.18,Cash,Seattle,Warehouse Club,False,Senior Citizen,Spring,BOGO (Buy One Get One)
+1000000500,2022-03-28 05:06:03,Terri May,"['Ketchup', 'Tea']",2,21.45,Mobile Payment,Atlanta,Warehouse Club,True,Young Adult,Spring,
+1000000501,2020-12-22 14:40:42,Lisa Cooper,"['Mayonnaise', 'Toothpaste', 'Vinegar']",8,41.27,Debit Card,New York,Department Store,False,Retiree,Fall,
+1000000502,2020-03-20 11:40:43,Amanda Nelson,"['Onions', 'Shaving Cream', 'Potatoes', 'Shower Gel']",10,96.91,Mobile Payment,San Francisco,Department Store,True,Senior Citizen,Spring,BOGO (Buy One Get One)
+1000000503,2023-09-07 06:59:24,Matthew Ruiz,"['Cereal', 'Plant Fertilizer', 'Vinegar']",7,76.44,Debit Card,Dallas,Convenience Store,True,Professional,Winter,BOGO (Buy One Get One)
+1000000504,2021-09-08 06:39:03,Kimberly Gallegos,"['Canned Soup', 'Diapers']",6,74.57,Mobile Payment,Miami,Supermarket,True,Senior Citizen,Fall,BOGO (Buy One Get One)
+1000000505,2020-08-27 18:56:46,Brittany Griffin,"['Garden Hose', 'Diapers', 'Banana', 'Shaving Cream', 'Cereal Bars']",10,49.75,Cash,Boston,Supermarket,False,Homemaker,Spring,BOGO (Buy One Get One)
+1000000506,2024-05-17 15:59:27,Bryan Sanford,"['Hand Sanitizer', 'Eggs', 'Beef', 'Shower Gel', 'Cereal']",1,56.03,Mobile Payment,New York,Supermarket,True,Middle-Aged,Spring,BOGO (Buy One Get One)
+1000000507,2020-05-12 11:11:33,Robert Robertson,"['Shrimp', 'Cereal']",5,38.07,Cash,Los Angeles,Specialty Store,False,Senior Citizen,Winter,BOGO (Buy One Get One)
+1000000508,2020-01-12 14:07:10,Kristin Murray,"['Plant Fertilizer', 'Dish Soap']",3,91.97,Cash,Houston,Pharmacy,False,Student,Fall,
+1000000509,2020-07-26 18:02:09,Kimberly Torres,"['Coffee', 'Cleaning Spray', 'Cereal']",10,89.52,Debit Card,Houston,Convenience Store,True,Teenager,Spring,
+1000000510,2020-08-28 05:32:23,Dr. Shawn Gonzalez,"['Soda', 'Trash Bags', 'Orange']",5,57.26,Cash,Chicago,Supermarket,False,Professional,Fall,Discount on Selected Items
+1000000511,2023-07-10 11:37:01,Jonathan Waller,"['Water', 'Ironing Board']",2,6.94,Cash,Houston,Warehouse Club,True,Young Adult,Fall,Discount on Selected Items
+1000000512,2020-11-12 07:12:41,Valerie Wilson,"['Butter', 'Butter']",8,75.51,Mobile Payment,Atlanta,Convenience Store,True,Teenager,Spring,
+1000000513,2022-03-19 02:49:55,David Shelton,"['Paper Towels', 'Jam']",9,81.78,Credit Card,Chicago,Warehouse Club,False,Homemaker,Summer,Discount on Selected Items
+1000000514,2022-04-12 16:40:02,Jody Martin,['Ice Cream'],1,84.65,Debit Card,Atlanta,Convenience Store,False,Middle-Aged,Spring,
+1000000515,2021-02-11 18:52:01,Brooke Larson,"['Power Strips', 'Trash Bags', 'Cereal Bars']",5,8.63,Mobile Payment,Seattle,Specialty Store,True,Teenager,Spring,Discount on Selected Items
+1000000516,2020-08-03 17:15:24,Kristin Saunders,"['Shower Gel', 'Baby Wipes']",5,37.33,Mobile Payment,San Francisco,Pharmacy,False,Young Adult,Fall,BOGO (Buy One Get One)
+1000000517,2023-06-15 03:55:01,Jacob Kennedy,"['Bath Towels', 'Iron', 'Pickles']",10,22.79,Cash,Dallas,Specialty Store,True,Student,Winter,Discount on Selected Items
+1000000518,2023-09-17 07:32:21,Tracy Pham,"['Pasta', 'Light Bulbs']",3,92.43,Debit Card,New York,Pharmacy,True,Retiree,Summer,Discount on Selected Items
+1000000519,2022-01-12 07:32:16,Vickie Callahan,"['Bath Towels', 'Diapers', 'Laundry Detergent']",4,50.08,Credit Card,Dallas,Warehouse Club,False,Student,Spring,BOGO (Buy One Get One)
+1000000520,2024-01-19 17:56:55,Natalie Armstrong,['Vacuum Cleaner'],4,69.82,Debit Card,San Francisco,Department Store,False,Teenager,Spring,BOGO (Buy One Get One)
+1000000521,2024-04-07 15:50:47,Angelica Davis,"['Hand Sanitizer', 'Bath Towels', 'Carrots', 'Toothpaste', 'Potatoes']",8,89.55,Debit Card,San Francisco,Specialty Store,True,Young Adult,Spring,BOGO (Buy One Get One)
+1000000522,2021-07-28 05:31:33,Christian Davidson,"['Spinach', 'Coffee', 'Toothpaste']",2,95.05,Credit Card,Seattle,Supermarket,False,Senior Citizen,Fall,Discount on Selected Items
+1000000523,2024-03-08 13:36:46,Seth Woodward,"['Vinegar', 'Salmon', 'Tuna', 'Tomatoes']",8,52.78,Credit Card,Boston,Warehouse Club,True,Senior Citizen,Fall,
+1000000524,2022-10-24 11:04:23,Jordan Kennedy,"['Soda', 'Shaving Cream', 'Diapers', 'Mop', 'Syrup']",2,16.56,Mobile Payment,Los Angeles,Supermarket,True,Senior Citizen,Fall,Discount on Selected Items
+1000000525,2023-01-03 02:42:08,Jennifer Williams,"['Cereal Bars', 'Sponges', 'Peanut Butter', 'Carrots', 'Dish Soap']",3,92.8,Cash,Boston,Specialty Store,False,Teenager,Summer,BOGO (Buy One Get One)
+1000000526,2020-12-29 22:10:54,Brenda Martinez,"['Insect Repellent', 'Syrup']",4,74.44,Mobile Payment,Los Angeles,Pharmacy,False,Homemaker,Spring,
+1000000527,2022-08-26 14:12:49,Lori Kane,"['BBQ Sauce', 'Tissues']",6,65.45,Credit Card,San Francisco,Warehouse Club,False,Retiree,Winter,Discount on Selected Items
+1000000528,2021-03-07 03:14:14,Joseph Chavez,['Pickles'],10,34.72,Mobile Payment,Houston,Convenience Store,False,Middle-Aged,Winter,Discount on Selected Items
+1000000529,2021-11-17 21:00:11,Tonya Villarreal,"['Pancake Mix', 'Soap', 'Salmon', 'Cereal Bars', 'Bread']",1,46.02,Debit Card,Dallas,Pharmacy,False,Homemaker,Spring,BOGO (Buy One Get One)
+1000000530,2021-07-17 00:00:31,Anthony Hawkins,"['Toothbrush', 'Carrots', 'Chicken', 'Razors']",6,44.03,Debit Card,Dallas,Convenience Store,True,Retiree,Fall,Discount on Selected Items
+1000000531,2020-08-14 11:18:29,Alyssa Ramos,"['Shampoo', 'Insect Repellent', 'Lawn Mower', 'Vinegar', 'Hand Sanitizer']",6,13.36,Mobile Payment,Los Angeles,Convenience Store,False,Middle-Aged,Spring,Discount on Selected Items
+1000000532,2021-01-16 10:35:56,Jason Lee,['Peanut Butter'],2,6.94,Credit Card,San Francisco,Pharmacy,True,Retiree,Spring,BOGO (Buy One Get One)
+1000000533,2023-01-27 06:11:28,Alicia Mercer,"['Jam', 'Tea']",8,45.15,Credit Card,Miami,Specialty Store,True,Professional,Summer,
+1000000534,2020-10-17 16:48:47,Aaron Reed,"['Chips', 'Pickles', 'Peanut Butter', 'Mayonnaise']",2,48.54,Mobile Payment,Boston,Pharmacy,True,Student,Fall,Discount on Selected Items
+1000000535,2023-02-03 17:14:13,Garrett Miles,"['Air Freshener', 'Onions', 'Carrots', 'Yogurt', 'Hand Sanitizer']",10,49.05,Mobile Payment,Los Angeles,Department Store,True,Homemaker,Winter,
+1000000536,2024-02-16 06:01:26,Christopher Clark,"['Toilet Paper', 'Hair Gel', 'Cereal', 'Power Strips', 'Peanut Butter']",8,68.28,Mobile Payment,Los Angeles,Supermarket,True,Senior Citizen,Fall,
+1000000537,2021-08-31 08:21:59,Andrew Newman,"['Plant Fertilizer', 'Iron', 'Orange', 'Tuna', 'Salmon']",5,23.75,Mobile Payment,New York,Warehouse Club,False,Retiree,Winter,Discount on Selected Items
+1000000538,2022-09-11 20:25:12,Dana Miller,"['Shower Gel', 'Canned Soup', 'Deodorant']",6,17.45,Debit Card,New York,Warehouse Club,False,Student,Spring,BOGO (Buy One Get One)
+1000000539,2022-01-17 06:26:06,Adam Rubio,"['Vinegar', 'Shrimp']",1,94.08,Cash,Miami,Convenience Store,False,Senior Citizen,Summer,BOGO (Buy One Get One)
+1000000540,2021-03-02 08:42:39,Samantha Poole,"['Eggs', 'Vacuum Cleaner', 'Chips']",3,37.77,Debit Card,New York,Department Store,True,Homemaker,Spring,BOGO (Buy One Get One)
+1000000541,2024-04-12 14:28:37,Margaret Velez,"['Hand Sanitizer', 'Toothpaste']",7,17.38,Mobile Payment,Miami,Convenience Store,True,Teenager,Fall,BOGO (Buy One Get One)
+1000000542,2020-07-18 21:04:54,Christian Tate,"['Chicken', 'Milk', 'Plant Fertilizer', 'Soap', 'Beef']",8,96.56,Debit Card,Miami,Department Store,False,Senior Citizen,Winter,
+1000000543,2020-04-06 20:38:16,Matthew Wood,"['Olive Oil', 'Vinegar', 'Cereal', 'Coffee', 'Hair Gel']",6,75.14,Mobile Payment,Atlanta,Convenience Store,False,Young Adult,Summer,
+1000000544,2020-01-10 14:21:12,Andrea Cruz,"['Tea', 'Mop']",3,85.57,Credit Card,Atlanta,Specialty Store,True,Teenager,Spring,BOGO (Buy One Get One)
+1000000545,2024-02-10 23:49:39,Dawn Dawson,"['Paper Towels', 'Soda']",8,84.98,Credit Card,Atlanta,Supermarket,False,Student,Fall,BOGO (Buy One Get One)
+1000000546,2021-09-24 11:04:22,John Dickerson MD,"['Lawn Mower', 'Paper Towels', 'Diapers']",2,50.51,Credit Card,Chicago,Pharmacy,True,Senior Citizen,Summer,Discount on Selected Items
+1000000547,2023-05-30 21:14:05,Ryan Stewart,"['Tomatoes', 'Shrimp', 'Toilet Paper', 'Dustpan']",1,49.83,Credit Card,Seattle,Pharmacy,False,Young Adult,Fall,
+1000000548,2023-03-29 18:28:56,Benjamin Benson,"['Honey', 'Salmon', 'Power Strips']",7,20.26,Cash,Atlanta,Supermarket,False,Middle-Aged,Winter,BOGO (Buy One Get One)
+1000000549,2023-05-23 20:43:05,Karen Bond,"['Vinegar', 'Power Strips', 'Feminine Hygiene Products', 'Honey']",4,73.59,Debit Card,San Francisco,Pharmacy,False,Middle-Aged,Spring,BOGO (Buy One Get One)
+1000000550,2023-12-08 03:37:46,Karen Hernandez,"['Garden Hose', 'Peanut Butter', 'Eggs', 'Shaving Cream', 'Ice Cream']",9,96.26,Credit Card,Seattle,Supermarket,True,Professional,Fall,
+1000000551,2021-07-23 22:56:39,Carolyn Owens,"['Broom', 'Rice', 'Carrots']",7,95.11,Credit Card,Miami,Pharmacy,False,Professional,Summer,BOGO (Buy One Get One)
+1000000552,2024-02-04 11:40:43,Gregory Baker,"['Syrup', 'Baby Wipes', 'Paper Towels']",6,16.98,Debit Card,Atlanta,Department Store,True,Student,Fall,Discount on Selected Items
+1000000553,2020-02-02 17:30:51,Elizabeth Wagner,"['Mayonnaise', 'Olive Oil', 'Cleaning Rags', 'Lawn Mower', 'Trash Bags']",10,85.57,Credit Card,Seattle,Convenience Store,False,Senior Citizen,Spring,
+1000000554,2020-02-12 23:46:39,Eric Smith,"['Salmon', 'Trash Cans']",6,83.33,Credit Card,Chicago,Department Store,True,Professional,Summer,
+1000000555,2023-10-02 23:12:45,Rodney Mcgee,"['Tissues', 'Potatoes', 'Yogurt', 'Beef', 'Hand Sanitizer']",1,25.57,Credit Card,Atlanta,Convenience Store,True,Student,Spring,
+1000000556,2024-02-09 18:25:41,Nicole Gaines,"['Spinach', 'Cheese', 'Tissues', 'Cheese']",5,50.64,Credit Card,Houston,Pharmacy,True,Student,Summer,Discount on Selected Items
+1000000557,2022-06-13 22:34:25,Sandra Marshall,"['Broom', 'Mustard', 'Garden Hose', 'Honey']",3,71.26,Cash,San Francisco,Pharmacy,False,Young Adult,Winter,Discount on Selected Items
+1000000558,2021-11-12 14:50:09,Kimberly Anderson,['Light Bulbs'],8,44.29,Credit Card,Miami,Department Store,False,Professional,Spring,BOGO (Buy One Get One)
+1000000559,2021-12-16 16:50:26,Jennifer Garcia,['Carrots'],8,73.02,Cash,San Francisco,Convenience Store,True,Retiree,Summer,
+1000000560,2021-03-16 23:53:19,Rachel Garcia,['Apple'],5,76.31,Cash,Dallas,Convenience Store,True,Senior Citizen,Winter,Discount on Selected Items
+1000000561,2020-05-05 15:41:02,Kathryn White,"['Mop', 'Tuna', 'Honey', 'Water', 'Vacuum Cleaner']",1,22.44,Mobile Payment,New York,Pharmacy,True,Teenager,Winter,Discount on Selected Items
+1000000562,2024-05-10 14:54:10,Christina Perez,"['Pancake Mix', 'Soda', 'Deodorant', 'Air Freshener', 'Tomatoes']",8,64.44,Mobile Payment,Atlanta,Supermarket,False,Professional,Winter,
+1000000563,2020-09-02 12:06:53,Mark Morales,"['Feminine Hygiene Products', 'Cleaning Spray']",1,45.68,Credit Card,Boston,Convenience Store,True,Middle-Aged,Winter,
+1000000564,2021-12-29 17:42:32,Vickie Brooks,"['Water', 'Ice Cream']",8,87.9,Mobile Payment,Dallas,Convenience Store,True,Student,Spring,BOGO (Buy One Get One)
+1000000565,2020-12-21 06:59:38,David Montoya,"['Chips', 'Ketchup', 'Carrots']",1,6.34,Cash,Houston,Convenience Store,True,Senior Citizen,Fall,Discount on Selected Items
+1000000566,2020-04-13 05:33:37,Logan Adams,"['Baby Wipes', 'Canned Soup']",7,21.05,Mobile Payment,Miami,Specialty Store,True,Student,Summer,Discount on Selected Items
+1000000567,2024-04-21 03:45:04,Nicole Jones,"['Toothbrush', 'Toilet Paper', 'Cheese']",8,83.12,Cash,Atlanta,Supermarket,True,Homemaker,Winter,
+1000000568,2021-03-04 05:17:34,Steven Robinson,"['Plant Fertilizer', 'Pickles', 'Honey', 'Bread', 'Spinach']",5,40.92,Cash,Dallas,Warehouse Club,True,Teenager,Fall,Discount on Selected Items
+1000000569,2023-04-26 00:12:49,Maureen Pace,"['Toilet Paper', 'Vacuum Cleaner', 'Coffee']",1,41.66,Mobile Payment,Dallas,Department Store,False,Student,Winter,BOGO (Buy One Get One)
+1000000570,2024-02-24 01:17:32,Kristopher Cook,['Deodorant'],2,31.57,Mobile Payment,Seattle,Department Store,False,Retiree,Fall,BOGO (Buy One Get One)
+1000000571,2023-07-12 14:15:56,Donald Harris,"['Vacuum Cleaner', 'Beef', 'Garden Hose']",8,91.52,Credit Card,Dallas,Supermarket,False,Student,Spring,BOGO (Buy One Get One)
+1000000572,2021-09-10 07:35:27,Rachael Sanford,"['Ironing Board', 'Rice', 'Chicken', 'Chicken']",10,33.71,Credit Card,Chicago,Warehouse Club,False,Teenager,Summer,BOGO (Buy One Get One)
+1000000573,2020-05-15 21:25:31,Jordan Spencer,"['Chicken', 'Power Strips', 'Vinegar']",6,95.54,Debit Card,Seattle,Specialty Store,False,Middle-Aged,Summer,
+1000000574,2022-08-27 21:05:57,Joseph Payne,['Salmon'],3,91.01,Cash,New York,Specialty Store,False,Middle-Aged,Spring,Discount on Selected Items
+1000000575,2021-04-07 03:33:44,Jeffrey May,"['Mustard', 'Plant Fertilizer']",9,48.51,Mobile Payment,Los Angeles,Supermarket,True,Retiree,Summer,Discount on Selected Items
+1000000576,2020-05-19 08:57:53,Catherine Dalton,"['Lawn Mower', 'Water', 'Trash Bags', 'Plant Fertilizer', 'Trash Cans']",10,22.51,Credit Card,Boston,Convenience Store,True,Middle-Aged,Fall,Discount on Selected Items
+1000000577,2022-10-21 18:55:44,Christopher Smith,"['Cereal Bars', 'Cleaning Spray', 'Toothpaste']",8,35.74,Debit Card,Los Angeles,Convenience Store,True,Homemaker,Summer,Discount on Selected Items
+1000000578,2023-09-13 10:56:37,Cheryl Griffin,"['Insect Repellent', 'Cereal']",3,98.71,Mobile Payment,Chicago,Supermarket,False,Student,Fall,BOGO (Buy One Get One)
+1000000579,2022-11-21 11:00:57,Jerry Berg,"['Hair Gel', 'Spinach', 'Garden Hose', 'Ketchup', 'Canned Soup']",6,90.07,Credit Card,San Francisco,Supermarket,False,Homemaker,Fall,Discount on Selected Items
+1000000580,2020-04-06 00:31:48,Anthony Cervantes,"['Ketchup', 'Coffee', 'Milk', 'Coffee', 'Soda']",4,27.8,Credit Card,Boston,Department Store,False,Young Adult,Summer,BOGO (Buy One Get One)
+1000000581,2024-03-22 13:08:09,Julia Ray,"['Vinegar', 'Vinegar', 'Ironing Board']",3,7.9,Debit Card,Seattle,Pharmacy,True,Teenager,Summer,Discount on Selected Items
+1000000582,2023-05-13 17:19:30,Ashley Benton,"['Pancake Mix', 'Extension Cords']",8,63.0,Debit Card,Los Angeles,Department Store,True,Middle-Aged,Summer,Discount on Selected Items
+1000000583,2022-06-01 15:58:38,Jessica Lopez,"['Garden Hose', 'Toothpaste', 'Vacuum Cleaner', 'Baby Wipes']",6,32.9,Cash,Seattle,Supermarket,False,Student,Fall,BOGO (Buy One Get One)
+1000000584,2023-05-06 02:53:25,Ruth Garcia,"['Ironing Board', 'Mayonnaise', 'Garden Hose', 'BBQ Sauce']",10,20.77,Cash,Houston,Pharmacy,True,Professional,Winter,
+1000000585,2021-05-21 17:51:45,Jesse Floyd,"['Hand Sanitizer', 'Shower Gel']",6,48.04,Mobile Payment,Boston,Supermarket,False,Homemaker,Fall,BOGO (Buy One Get One)
+1000000586,2023-05-19 10:12:42,Mary Perez,"['Butter', 'Spinach']",10,5.14,Credit Card,Atlanta,Pharmacy,False,Student,Winter,
+1000000587,2020-02-29 07:40:11,Douglas Gonzalez,"['Vacuum Cleaner', 'Pickles', 'Chicken']",6,14.29,Credit Card,Chicago,Warehouse Club,True,Homemaker,Winter,Discount on Selected Items
+1000000588,2021-09-03 14:16:50,Sherri Graves,"['Tuna', 'Spinach', 'Cheese']",1,43.78,Debit Card,Seattle,Supermarket,True,Retiree,Summer,Discount on Selected Items
+1000000589,2022-03-03 15:21:12,David Marks,"['Rice', 'Tomatoes', 'Shower Gel', 'Toothpaste']",9,5.09,Credit Card,Houston,Convenience Store,True,Young Adult,Spring,Discount on Selected Items
+1000000590,2021-04-24 09:24:26,Kevin Boone,"['Peanut Butter', 'Olive Oil', 'Paper Towels', 'Carrots', 'Vinegar']",6,13.4,Debit Card,Seattle,Department Store,True,Retiree,Spring,
+1000000591,2021-02-04 01:10:08,Melissa Freeman,"['Hair Gel', 'Chicken', 'Cleaning Spray', 'Cleaning Spray', 'Light Bulbs']",6,79.04,Debit Card,Dallas,Department Store,False,Homemaker,Fall,
+1000000592,2021-03-02 02:32:03,Jerry Garrett,"['Spinach', 'Cereal']",4,46.58,Debit Card,Dallas,Pharmacy,True,Young Adult,Winter,
+1000000593,2022-06-28 22:20:22,Kimberly Young,"['Eggs', 'Iron', 'Peanut Butter']",9,72.15,Cash,San Francisco,Specialty Store,False,Young Adult,Fall,Discount on Selected Items
+1000000594,2020-02-03 06:21:16,Jenna Robinson,['Power Strips'],5,87.86,Cash,San Francisco,Department Store,True,Middle-Aged,Winter,Discount on Selected Items
+1000000595,2021-10-18 14:43:27,Craig Hall,['Extension Cords'],5,15.09,Credit Card,New York,Warehouse Club,False,Retiree,Summer,Discount on Selected Items
+1000000596,2022-08-21 10:33:54,Amanda Blevins,"['Laundry Detergent', 'Shampoo', 'Peanut Butter', 'Broom', 'Chips']",2,54.27,Mobile Payment,Chicago,Specialty Store,True,Senior Citizen,Fall,BOGO (Buy One Get One)
+1000000597,2020-02-01 11:54:51,Sarah Aguirre,['Cereal Bars'],1,63.55,Cash,Dallas,Department Store,False,Homemaker,Summer,
+1000000598,2023-06-29 11:14:45,Richard Randolph,"['Cleaning Spray', 'BBQ Sauce', 'Toothbrush', 'Pickles', 'Milk']",8,50.89,Cash,Miami,Department Store,True,Young Adult,Fall,BOGO (Buy One Get One)
+1000000599,2022-08-13 03:33:44,Luis Richmond,"['Vinegar', 'Water']",3,60.65,Credit Card,Boston,Department Store,False,Homemaker,Fall,BOGO (Buy One Get One)
+1000000600,2021-02-20 11:34:51,Kim Campbell,"['Hand Sanitizer', 'Paper Towels', 'Toilet Paper', 'Shaving Cream']",10,49.19,Cash,Dallas,Specialty Store,False,Retiree,Summer,BOGO (Buy One Get One)
+1000000601,2021-01-30 23:01:09,Jack Mitchell,"['Coffee', 'Potatoes', 'Air Freshener']",1,66.45,Debit Card,Dallas,Pharmacy,True,Middle-Aged,Summer,Discount on Selected Items
+1000000602,2021-09-19 20:49:15,Jose Knight,['Tuna'],2,89.05,Mobile Payment,Los Angeles,Specialty Store,True,Young Adult,Fall,
+1000000603,2020-03-30 12:07:14,Aaron Rasmussen,"['Shampoo', 'Razors', 'Orange', 'Pancake Mix']",9,38.14,Cash,Atlanta,Convenience Store,False,Retiree,Summer,
+1000000604,2020-11-06 18:09:17,Tracy Morris,"['Pasta', 'Baby Wipes', 'Power Strips']",2,82.05,Cash,Boston,Supermarket,False,Student,Spring,
+1000000605,2022-10-27 10:21:38,Richard Conley,['Trash Bags'],4,62.64,Debit Card,Dallas,Supermarket,True,Middle-Aged,Summer,
+1000000606,2022-09-05 15:08:47,Michael Johnson,"['Chips', 'Feminine Hygiene Products', 'Pancake Mix']",6,46.61,Mobile Payment,Houston,Department Store,True,Homemaker,Summer,BOGO (Buy One Get One)
+1000000607,2023-08-20 19:41:39,Juan Graham,"['Honey', 'Insect Repellent', 'Laundry Detergent']",10,75.84,Mobile Payment,New York,Supermarket,False,Senior Citizen,Winter,Discount on Selected Items
+1000000608,2021-11-08 16:50:51,Timothy White,['Toothpaste'],3,49.5,Mobile Payment,Los Angeles,Pharmacy,True,Senior Citizen,Spring,BOGO (Buy One Get One)
+1000000609,2023-03-26 05:50:18,Martin Foster,['Cereal Bars'],8,84.41,Credit Card,Miami,Convenience Store,True,Professional,Spring,Discount on Selected Items
+1000000610,2021-02-03 14:02:51,Benjamin Weaver,"['Baby Wipes', 'Spinach', 'Plant Fertilizer', 'Ketchup', 'Soap']",1,22.7,Debit Card,New York,Supermarket,True,Teenager,Spring,BOGO (Buy One Get One)
+1000000611,2023-10-18 10:48:09,Christopher Cooper,['Toilet Paper'],7,21.3,Debit Card,San Francisco,Warehouse Club,True,Professional,Summer,
+1000000612,2022-03-08 12:48:14,Christopher Baker,"['Shower Gel', 'Ice Cream', 'Pickles']",4,51.77,Debit Card,Chicago,Pharmacy,True,Homemaker,Spring,BOGO (Buy One Get One)
+1000000613,2022-03-31 23:02:46,Kevin Reid,"['Onions', 'Eggs']",8,59.88,Debit Card,Miami,Pharmacy,False,Senior Citizen,Winter,
+1000000614,2024-04-07 16:30:41,Fred Velez,"['Ironing Board', 'Chicken', 'Water']",1,57.26,Debit Card,Houston,Convenience Store,False,Young Adult,Fall,
+1000000615,2022-12-05 00:51:39,Matthew Moran,['BBQ Sauce'],7,83.15,Credit Card,San Francisco,Warehouse Club,False,Young Adult,Winter,
+1000000616,2021-04-14 22:36:44,Adam Rodriguez,"['Milk', 'Shrimp']",10,7.05,Credit Card,Atlanta,Pharmacy,False,Homemaker,Summer,Discount on Selected Items
+1000000617,2023-05-30 06:36:02,Christian Hale,"['Pancake Mix', 'Laundry Detergent', 'Tomatoes']",1,43.33,Debit Card,San Francisco,Supermarket,True,Homemaker,Spring,BOGO (Buy One Get One)
+1000000618,2024-04-25 00:38:08,Jessica Carr,"['Dustpan', 'Butter']",6,40.94,Mobile Payment,New York,Pharmacy,False,Student,Spring,BOGO (Buy One Get One)
+1000000619,2020-09-20 22:23:30,Angela Navarro,"['Carrots', 'Toothbrush', 'Toothpaste']",5,78.06,Debit Card,Dallas,Warehouse Club,False,Student,Winter,Discount on Selected Items
+1000000620,2022-03-27 11:22:33,Kiara Guerrero,"['Chips', 'Yogurt']",10,68.71,Cash,Boston,Pharmacy,False,Middle-Aged,Winter,
+1000000621,2021-07-12 06:14:17,Lori Ramirez,['Soap'],3,92.17,Cash,Los Angeles,Warehouse Club,False,Retiree,Summer,Discount on Selected Items
+1000000622,2020-12-18 19:54:01,Valerie Perry,"['Vinegar', 'Mop', 'Shrimp']",6,54.26,Cash,Seattle,Pharmacy,True,Student,Spring,BOGO (Buy One Get One)
+1000000623,2022-04-01 22:07:53,Kelsey Moore,"['Milk', 'Lawn Mower', 'Water', 'Mustard']",6,54.7,Mobile Payment,Seattle,Specialty Store,False,Middle-Aged,Winter,
+1000000624,2023-10-08 20:44:10,Travis Parker,"['Mop', 'Cleaning Spray', 'Onions', 'Dishware', 'Diapers']",8,93.17,Debit Card,San Francisco,Warehouse Club,False,Middle-Aged,Summer,
+1000000625,2020-08-31 09:08:54,Christopher Horton,"['Honey', 'Toothbrush', 'Dish Soap', 'Jam', 'Shower Gel']",5,96.43,Mobile Payment,Chicago,Specialty Store,False,Teenager,Summer,Discount on Selected Items
+1000000626,2022-07-21 05:59:29,Jason Brown,"['Canned Soup', 'Vinegar', 'Dustpan', 'Bath Towels']",7,61.26,Cash,Los Angeles,Pharmacy,True,Senior Citizen,Summer,BOGO (Buy One Get One)
+1000000627,2020-03-17 20:07:06,Courtney Sexton,"['BBQ Sauce', 'Light Bulbs', 'Toothpaste', 'Syrup', 'Laundry Detergent']",8,31.48,Credit Card,Atlanta,Department Store,False,Middle-Aged,Spring,BOGO (Buy One Get One)
+1000000628,2021-05-12 13:38:46,Randy Valencia,"['Feminine Hygiene Products', 'Toothbrush', 'Apple', 'Canned Soup', 'Cereal Bars']",1,33.78,Credit Card,Seattle,Convenience Store,False,Senior Citizen,Spring,Discount on Selected Items
+1000000629,2023-10-21 13:16:35,Beverly Robinson,"['Hair Gel', 'Shower Gel', 'Hair Gel']",2,49.98,Cash,San Francisco,Supermarket,True,Retiree,Fall,Discount on Selected Items
+1000000630,2024-02-04 11:32:14,Linda Thornton,"['Tissues', 'Cheese', 'Hand Sanitizer', 'BBQ Sauce']",4,56.23,Cash,San Francisco,Convenience Store,False,Homemaker,Spring,Discount on Selected Items
+1000000631,2020-04-21 10:47:59,Scott Beck,"['Tea', 'Beef', 'Spinach', 'Vacuum Cleaner']",5,15.4,Mobile Payment,Dallas,Pharmacy,False,Young Adult,Fall,Discount on Selected Items
+1000000632,2021-12-19 21:34:23,David Schmidt,"['Iron', 'Cleaning Rags', 'Chicken', 'Air Freshener', 'Vinegar']",2,22.6,Cash,San Francisco,Specialty Store,True,Homemaker,Fall,Discount on Selected Items
+1000000633,2021-06-02 13:37:25,James Mcdaniel,['Eggs'],8,94.4,Cash,Houston,Convenience Store,False,Middle-Aged,Fall,Discount on Selected Items
+1000000634,2022-10-25 17:29:21,Travis Bates,"['Plant Fertilizer', 'Baby Wipes']",5,11.45,Mobile Payment,Seattle,Convenience Store,False,Retiree,Spring,Discount on Selected Items
+1000000635,2023-01-13 13:51:40,Patrick Lewis,"['Shower Gel', 'Rice']",5,45.66,Mobile Payment,Dallas,Specialty Store,True,Professional,Summer,
+1000000636,2022-02-08 00:06:12,Michael Schaefer,"['Apple', 'Potatoes', 'Baby Wipes']",6,82.41,Credit Card,Houston,Specialty Store,True,Teenager,Spring,
+1000000637,2022-03-03 20:49:20,Christopher Taylor,"['Dishware', 'Bread', 'Toothbrush']",4,53.33,Credit Card,San Francisco,Supermarket,True,Young Adult,Spring,Discount on Selected Items
+1000000638,2022-09-02 01:24:11,Guy Chan,"['Toothbrush', 'Water']",4,82.22,Mobile Payment,San Francisco,Department Store,False,Teenager,Fall,BOGO (Buy One Get One)
+1000000639,2020-01-25 22:28:25,Ryan Bishop,"['Sponges', 'Rice']",2,48.63,Credit Card,Seattle,Specialty Store,True,Teenager,Summer,
+1000000640,2020-08-30 08:11:59,Andrew Baker,"['Dish Soap', 'Salmon']",5,48.12,Debit Card,San Francisco,Supermarket,False,Middle-Aged,Winter,
+1000000641,2020-02-15 03:19:17,Jared Norton,['Ketchup'],6,82.12,Debit Card,Miami,Supermarket,True,Middle-Aged,Winter,
+1000000642,2020-06-17 12:55:24,Molly Wilson,['Toothpaste'],7,94.76,Credit Card,Houston,Warehouse Club,False,Professional,Fall,BOGO (Buy One Get One)
+1000000643,2022-01-18 19:00:14,Lindsay Rogers,"['Cereal', 'Water', 'Chicken', 'Dustpan']",6,39.86,Debit Card,New York,Pharmacy,False,Professional,Spring,BOGO (Buy One Get One)
+1000000644,2021-01-29 16:52:40,Rita Williams,"['Pickles', 'Syrup', 'Hand Sanitizer', 'Hair Gel', 'Broom']",9,30.02,Cash,Dallas,Convenience Store,True,Middle-Aged,Summer,Discount on Selected Items
+1000000645,2020-08-09 14:38:25,Bobby French,"['Coffee', 'Shampoo', 'Pickles', 'Salmon']",10,75.7,Mobile Payment,Atlanta,Pharmacy,False,Young Adult,Spring,
+1000000646,2021-06-20 04:48:48,Elizabeth Ortega,"['Sponges', 'Cereal Bars', 'Olive Oil', 'Orange']",2,56.86,Debit Card,Chicago,Pharmacy,True,Senior Citizen,Winter,Discount on Selected Items
+1000000647,2020-11-19 07:41:41,Dr. Christina Kelly,"['Plant Fertilizer', 'Vacuum Cleaner', 'Chips', 'Hand Sanitizer', 'Soap']",7,23.36,Debit Card,Boston,Specialty Store,False,Homemaker,Spring,
+1000000648,2021-04-22 09:25:21,Cynthia Fuentes,['Toothbrush'],6,40.49,Mobile Payment,Dallas,Convenience Store,True,Young Adult,Fall,Discount on Selected Items
+1000000649,2023-09-08 19:12:45,Christopher Fowler,"['Cheese', 'Spinach', 'Pancake Mix', 'Olive Oil', 'Peanut Butter']",1,67.08,Credit Card,Chicago,Pharmacy,False,Teenager,Winter,BOGO (Buy One Get One)
+1000000650,2021-11-11 02:53:17,Toni Goodwin,"['Spinach', 'Light Bulbs', 'Plant Fertilizer', 'Vacuum Cleaner', 'Laundry Detergent']",4,56.5,Cash,Boston,Supermarket,False,Professional,Fall,
+1000000651,2020-01-21 19:03:57,Katelyn Watts,"['Bread', 'Water']",6,93.85,Cash,Chicago,Convenience Store,True,Teenager,Summer,BOGO (Buy One Get One)
+1000000652,2023-03-09 23:55:49,Daniel Stevens,"['Trash Cans', 'Trash Bags', 'Coffee']",6,58.27,Debit Card,Seattle,Supermarket,False,Homemaker,Spring,Discount on Selected Items
+1000000653,2024-01-06 18:34:23,Steven Calhoun,"['Mayonnaise', 'Coffee']",4,5.74,Mobile Payment,Los Angeles,Department Store,True,Young Adult,Spring,
+1000000654,2022-12-01 21:08:30,Jeffrey Alexander,"['Ketchup', 'Pickles', 'Broom', 'Syrup', 'Toothpaste']",3,50.34,Credit Card,Boston,Convenience Store,False,Homemaker,Summer,
+1000000655,2022-02-23 11:35:55,Paul Gonzalez,"['Vacuum Cleaner', 'Baby Wipes', 'Banana', 'Iron']",10,9.31,Mobile Payment,Chicago,Supermarket,True,Senior Citizen,Summer,
+1000000656,2022-04-08 13:36:28,James Lloyd,['Laundry Detergent'],8,48.52,Credit Card,Atlanta,Department Store,False,Retiree,Winter,Discount on Selected Items
+1000000657,2023-03-16 10:55:21,Melanie Smith,"['BBQ Sauce', 'Feminine Hygiene Products', 'Paper Towels', 'Dish Soap', 'Sponges']",5,96.69,Mobile Payment,Dallas,Warehouse Club,True,Teenager,Spring,
+1000000658,2021-09-12 19:45:39,Charlotte Johnson,['Bath Towels'],10,53.44,Cash,New York,Supermarket,True,Student,Spring,BOGO (Buy One Get One)
+1000000659,2021-02-13 23:38:09,Heather Shannon,"['Olive Oil', 'Cereal', 'Bath Towels', 'Jam', 'Pasta']",3,53.19,Debit Card,Atlanta,Convenience Store,False,Student,Fall,
+1000000660,2021-07-05 06:12:51,Angela Anderson,['Chips'],7,21.0,Mobile Payment,Houston,Department Store,False,Retiree,Winter,
+1000000661,2022-06-29 14:28:51,Frank Jackson,"['Vinegar', 'Broom', 'Hand Sanitizer']",7,59.88,Credit Card,Miami,Supermarket,True,Retiree,Winter,Discount on Selected Items
+1000000662,2023-07-05 20:32:08,Lindsay Wells,['Paper Towels'],4,29.49,Mobile Payment,Miami,Pharmacy,True,Young Adult,Summer,Discount on Selected Items
+1000000663,2021-11-20 09:24:48,Andrew Key,['Toothpaste'],6,13.04,Mobile Payment,Dallas,Convenience Store,True,Middle-Aged,Spring,
+1000000664,2020-04-05 00:50:47,Joseph Newton,"['Sponges', 'Chips']",4,27.72,Mobile Payment,Los Angeles,Convenience Store,False,Professional,Winter,BOGO (Buy One Get One)
+1000000665,2024-04-14 15:16:33,Megan Bowers,['Sponges'],2,23.39,Mobile Payment,Miami,Specialty Store,False,Senior Citizen,Winter,
+1000000666,2020-04-23 13:48:05,Ricky Powers,['Dishware'],6,92.66,Debit Card,Atlanta,Pharmacy,True,Professional,Summer,
+1000000667,2023-03-14 19:13:10,Michael Murphy,['Deodorant'],8,70.76,Debit Card,Atlanta,Warehouse Club,False,Homemaker,Summer,BOGO (Buy One Get One)
+1000000668,2023-01-11 09:20:21,Meghan Nelson,"['Baby Wipes', 'Cleaning Rags', 'Carrots', 'Salmon', 'Power Strips']",7,99.93,Credit Card,Houston,Supermarket,False,Professional,Winter,Discount on Selected Items
+1000000669,2024-01-07 07:18:30,William Turner,"['Toothbrush', 'Sponges']",2,93.68,Debit Card,Los Angeles,Department Store,True,Homemaker,Summer,Discount on Selected Items
+1000000670,2023-08-08 21:39:31,Christopher Sutton,"['Power Strips', 'Cereal', 'Pickles', 'Potatoes']",7,19.13,Credit Card,San Francisco,Specialty Store,False,Middle-Aged,Spring,Discount on Selected Items
+1000000671,2023-09-26 19:39:27,Steve Collins,"['Toothpaste', 'Light Bulbs']",3,92.95,Mobile Payment,Los Angeles,Department Store,False,Middle-Aged,Winter,BOGO (Buy One Get One)
+1000000672,2022-10-28 13:58:09,George Butler,"['Onions', 'Deodorant']",8,45.71,Mobile Payment,San Francisco,Warehouse Club,True,Professional,Fall,
+1000000673,2023-04-14 22:03:05,Brittney Quinn,"['Honey', 'Razors']",3,61.15,Cash,San Francisco,Pharmacy,True,Young Adult,Summer,Discount on Selected Items
+1000000674,2021-01-27 07:10:59,Margaret Swanson,"['BBQ Sauce', 'Toothpaste', 'Extension Cords']",3,28.4,Credit Card,Chicago,Supermarket,True,Young Adult,Spring,BOGO (Buy One Get One)
+1000000675,2023-12-01 11:17:17,Mrs. Vanessa Williams MD,"['Cleaning Rags', 'Rice', 'Chicken']",7,51.42,Debit Card,Seattle,Supermarket,False,Retiree,Spring,
+1000000676,2021-08-05 17:51:45,Michelle Cole,"['Air Freshener', 'Cleaning Rags', 'Olive Oil', 'Apple', 'Paper Towels']",7,36.79,Credit Card,Atlanta,Specialty Store,False,Professional,Fall,Discount on Selected Items
+1000000677,2022-01-10 10:40:47,Nicholas Hunter,"['Paper Towels', 'Cereal', 'Yogurt']",3,69.1,Mobile Payment,Boston,Supermarket,True,Teenager,Fall,Discount on Selected Items
+1000000678,2023-04-14 18:20:46,Rebecca Humphrey,"['Potatoes', 'Mop', 'Hair Gel', 'Trash Bags', 'Toothpaste']",1,50.42,Cash,Boston,Convenience Store,False,Middle-Aged,Winter,
+1000000679,2021-02-14 10:43:06,Tammy Fleming,"['Honey', 'Cereal Bars']",5,24.64,Credit Card,New York,Department Store,True,Teenager,Spring,BOGO (Buy One Get One)
+1000000680,2023-06-25 10:46:51,Matthew Baker,"['Orange', 'Peanut Butter']",3,99.4,Debit Card,New York,Supermarket,True,Student,Fall,Discount on Selected Items
+1000000681,2020-04-22 08:49:41,Diana Kelly,"['Insect Repellent', 'Potatoes']",7,18.37,Debit Card,Chicago,Pharmacy,True,Teenager,Summer,BOGO (Buy One Get One)
+1000000682,2022-05-12 23:27:24,Eric Jones,"['Water', 'Carrots', 'Sponges']",7,53.34,Mobile Payment,Atlanta,Specialty Store,True,Senior Citizen,Winter,BOGO (Buy One Get One)
+1000000683,2021-01-17 20:31:18,Martin Dixon,['Deodorant'],5,71.13,Mobile Payment,San Francisco,Convenience Store,True,Middle-Aged,Fall,
+1000000684,2023-07-07 20:07:58,Thomas Livingston,"['Plant Fertilizer', 'Light Bulbs']",3,42.28,Cash,Dallas,Convenience Store,True,Student,Spring,BOGO (Buy One Get One)
+1000000685,2020-05-18 22:05:39,Harold Thomas,"['Syrup', 'Ketchup', 'Carrots']",10,75.35,Credit Card,Houston,Warehouse Club,False,Retiree,Summer,BOGO (Buy One Get One)
+1000000686,2021-08-28 03:42:36,Dr. Amy Wagner,"['Paper Towels', 'Water', 'Deodorant', 'Toothbrush', 'Eggs']",1,43.31,Cash,Miami,Pharmacy,False,Retiree,Spring,BOGO (Buy One Get One)
+1000000687,2022-03-06 22:17:08,Wendy Carr,"['Ironing Board', 'Banana']",5,92.32,Cash,San Francisco,Pharmacy,True,Young Adult,Winter,BOGO (Buy One Get One)
+1000000688,2023-12-08 18:57:20,Lisa Washington,"['Mop', 'Shampoo', 'Plant Fertilizer', 'Cleaning Spray']",7,62.03,Cash,Boston,Warehouse Club,True,Student,Winter,BOGO (Buy One Get One)
+1000000689,2022-09-24 06:28:41,Melissa Crawford,"['Dishware', 'Olive Oil', 'Baby Wipes', 'Ice Cream']",4,69.75,Mobile Payment,Dallas,Specialty Store,True,Senior Citizen,Winter,Discount on Selected Items
+1000000690,2020-02-20 08:36:05,Victoria Brown,"['Soap', 'Toilet Paper', 'Peanut Butter', 'Vinegar', 'Trash Cans']",2,56.31,Mobile Payment,Chicago,Convenience Store,False,Senior Citizen,Winter,Discount on Selected Items
+1000000691,2022-01-29 14:08:22,Mr. Charles Ward,['Carrots'],5,74.33,Credit Card,Chicago,Warehouse Club,True,Middle-Aged,Spring,
+1000000692,2020-03-22 09:35:04,Terry Villegas,"['Dishware', 'Vinegar', 'Insect Repellent', 'Pancake Mix', 'Razors']",7,14.67,Debit Card,Los Angeles,Department Store,True,Senior Citizen,Spring,Discount on Selected Items
+1000000693,2021-03-07 06:14:28,Dr. Sherry Mcgrath MD,['Hand Sanitizer'],10,33.32,Debit Card,Dallas,Supermarket,True,Young Adult,Spring,Discount on Selected Items
+1000000694,2020-07-04 23:44:41,Mr. Nathan Jones MD,"['Toothpaste', 'Honey']",5,19.36,Credit Card,Miami,Convenience Store,True,Young Adult,Spring,BOGO (Buy One Get One)
+1000000695,2024-03-13 21:22:55,Marcus Beck,"['Rice', 'Pancake Mix', 'Apple']",1,61.12,Cash,Dallas,Department Store,True,Retiree,Spring,Discount on Selected Items
+1000000696,2022-08-21 13:08:36,Holly White,['Pancake Mix'],9,39.88,Credit Card,Miami,Department Store,False,Student,Summer,Discount on Selected Items
+1000000697,2021-05-26 23:56:11,Amy Thomas,"['Potatoes', 'Dish Soap', 'Cereal']",1,16.17,Credit Card,Dallas,Warehouse Club,False,Teenager,Summer,BOGO (Buy One Get One)
+1000000698,2021-01-10 16:25:02,Michele Cook,['Cleaning Rags'],4,82.8,Cash,Seattle,Convenience Store,False,Retiree,Winter,Discount on Selected Items
+1000000699,2021-06-25 10:42:06,Megan Duran,"['BBQ Sauce', 'Jam']",4,94.09,Cash,Houston,Specialty Store,True,Middle-Aged,Fall,Discount on Selected Items
+1000000700,2024-01-29 11:50:06,Rachel Pearson,['Toilet Paper'],9,95.99,Cash,Chicago,Supermarket,True,Student,Winter,Discount on Selected Items
+1000000701,2023-06-15 02:58:22,David Stone,['BBQ Sauce'],9,38.47,Cash,San Francisco,Department Store,True,Retiree,Fall,Discount on Selected Items
+1000000702,2022-07-18 12:38:06,Mark Martinez,['Toothpaste'],6,31.93,Mobile Payment,New York,Warehouse Club,False,Young Adult,Summer,
+1000000703,2021-05-09 00:46:38,Chase Richard,"['Cereal Bars', 'Mop', 'Broom', 'Soap', 'Trash Bags']",6,69.88,Credit Card,Houston,Convenience Store,True,Homemaker,Spring,BOGO (Buy One Get One)
+1000000704,2023-01-17 16:52:58,Barry Patterson,"['Tomatoes', 'Shaving Cream', 'Butter', 'Vinegar']",10,57.78,Cash,Atlanta,Warehouse Club,True,Senior Citizen,Winter,BOGO (Buy One Get One)
+1000000705,2022-07-10 04:49:40,Felicia Cook,['Dustpan'],10,35.92,Credit Card,Dallas,Convenience Store,False,Young Adult,Winter,
+1000000706,2020-01-11 23:57:27,Jillian Walsh,"['Canned Soup', 'Mustard', 'Tuna']",5,48.55,Mobile Payment,Miami,Convenience Store,False,Retiree,Winter,BOGO (Buy One Get One)
+1000000707,2023-02-05 11:11:23,Adam Garrett,"['Razors', 'Baby Wipes', 'Chips', 'Razors']",3,32.46,Credit Card,Miami,Specialty Store,False,Senior Citizen,Winter,Discount on Selected Items
+1000000708,2021-07-02 17:54:31,Richard Santiago,"['Insect Repellent', 'Rice']",3,11.33,Cash,Boston,Warehouse Club,True,Retiree,Winter,Discount on Selected Items
+1000000709,2021-12-05 14:42:23,Diana White,"['Shampoo', 'Honey', 'Diapers', 'Potatoes']",10,57.84,Mobile Payment,Houston,Specialty Store,True,Young Adult,Spring,BOGO (Buy One Get One)
+1000000710,2023-02-02 20:10:12,Cody Bates,"['Carrots', 'Spinach']",4,35.26,Debit Card,Houston,Department Store,False,Professional,Fall,
+1000000711,2022-08-02 11:49:36,Mary Maddox,"['Plant Fertilizer', 'Orange', 'Vacuum Cleaner', 'Lawn Mower', 'Canned Soup']",10,56.9,Debit Card,Dallas,Department Store,True,Student,Spring,
+1000000712,2020-07-06 19:56:41,Christopher Davis,"['Iron', 'Ice Cream', 'Light Bulbs', 'Onions']",5,27.08,Cash,Houston,Specialty Store,True,Teenager,Summer,
+1000000713,2022-01-06 05:32:39,Thomas Fitzgerald,['Jam'],9,34.66,Cash,Chicago,Convenience Store,False,Retiree,Winter,Discount on Selected Items
+1000000714,2022-02-01 06:31:47,Paul Silva,"['Peanut Butter', 'Trash Cans']",1,17.9,Debit Card,San Francisco,Warehouse Club,True,Professional,Summer,Discount on Selected Items
+1000000715,2022-08-19 20:10:34,Sabrina Kim DDS,"['Toothbrush', 'Dish Soap', 'Insect Repellent', 'Mustard', 'Trash Cans']",8,93.12,Cash,San Francisco,Warehouse Club,True,Young Adult,Fall,Discount on Selected Items
+1000000716,2020-11-14 12:35:46,Leslie Bowman,['Onions'],2,80.75,Debit Card,Boston,Specialty Store,True,Homemaker,Summer,
+1000000717,2023-11-15 10:36:21,Amanda Wilson DDS,['Banana'],7,56.36,Cash,Dallas,Convenience Store,False,Professional,Summer,BOGO (Buy One Get One)
+1000000718,2020-05-02 20:54:45,Kristin Rodriguez,"['Paper Towels', 'Tea', 'Beef']",8,33.75,Debit Card,Miami,Supermarket,False,Middle-Aged,Summer,Discount on Selected Items
+1000000719,2021-02-23 14:49:36,Kristen Ramsey,"['Paper Towels', 'Chips']",9,90.48,Cash,Chicago,Convenience Store,False,Teenager,Spring,BOGO (Buy One Get One)
+1000000720,2022-07-09 00:41:32,James Fox,['Ketchup'],10,56.69,Mobile Payment,Miami,Pharmacy,True,Homemaker,Fall,BOGO (Buy One Get One)
+1000000721,2020-07-27 01:43:37,Mary Hendricks,"['Trash Cans', 'Cereal', 'Broom']",3,57.58,Mobile Payment,Houston,Convenience Store,True,Middle-Aged,Fall,
+1000000722,2021-08-23 13:04:01,Jamie Williams,['Bath Towels'],2,34.46,Cash,Los Angeles,Warehouse Club,True,Young Adult,Winter,
+1000000723,2020-08-07 16:54:04,Thomas Hughes,"['Banana', 'Deodorant', 'Coffee', 'Laundry Detergent']",6,47.35,Debit Card,Chicago,Warehouse Club,True,Middle-Aged,Fall,Discount on Selected Items
+1000000724,2021-04-13 18:18:28,Natasha Cooper,['Syrup'],2,99.6,Credit Card,Boston,Convenience Store,False,Teenager,Winter,BOGO (Buy One Get One)
+1000000725,2023-09-16 06:44:07,Kathleen Allen,"['Power Strips', 'Lawn Mower', 'Toothpaste']",5,43.28,Cash,San Francisco,Specialty Store,False,Teenager,Winter,
+1000000726,2020-01-04 02:36:25,Julie Johnson,"['Butter', 'Bread', 'Feminine Hygiene Products', 'Paper Towels', 'Canned Soup']",4,8.45,Mobile Payment,Dallas,Specialty Store,False,Middle-Aged,Spring,BOGO (Buy One Get One)
+1000000727,2024-01-10 01:26:06,Gabriel Clark,"['Cereal Bars', 'Salmon', 'Banana']",1,17.5,Debit Card,New York,Convenience Store,True,Retiree,Fall,
+1000000728,2021-02-15 07:47:15,Barry Warner,"['Trash Bags', 'Cleaning Spray', 'Salmon']",5,77.33,Credit Card,San Francisco,Department Store,False,Young Adult,Winter,Discount on Selected Items
+1000000729,2020-10-09 20:25:44,Karen Carter,['Baby Wipes'],10,7.34,Cash,Atlanta,Warehouse Club,True,Homemaker,Spring,
+1000000730,2020-07-07 16:48:41,Austin Moore,"['Laundry Detergent', 'Cleaning Rags', 'Vinegar', 'Laundry Detergent']",4,32.77,Debit Card,Atlanta,Specialty Store,False,Homemaker,Summer,Discount on Selected Items
+1000000731,2020-08-10 07:48:15,Nicholas Henderson,"['Ice Cream', 'Cereal', 'Tomatoes', 'Orange', 'Onions']",6,72.92,Debit Card,San Francisco,Department Store,False,Teenager,Fall,
+1000000732,2023-04-13 01:22:37,Shelia Edwards,['Pickles'],10,21.76,Cash,Los Angeles,Pharmacy,False,Retiree,Spring,BOGO (Buy One Get One)
+1000000733,2022-06-13 20:17:35,Laura Edwards,"['Rice', 'Baby Wipes', 'Bread', 'Milk', 'Shrimp']",7,89.3,Debit Card,Atlanta,Warehouse Club,False,Homemaker,Winter,BOGO (Buy One Get One)
+1000000734,2022-08-02 19:28:47,Dylan Leonard,['Soap'],1,91.71,Mobile Payment,Seattle,Supermarket,False,Young Adult,Summer,
+1000000735,2024-03-10 10:30:32,Jeremiah Fernandez,"['Honey', 'Trash Bags', 'Tuna', 'Canned Soup', 'Vinegar']",4,71.75,Debit Card,Houston,Convenience Store,False,Student,Winter,BOGO (Buy One Get One)
+1000000736,2024-01-02 13:48:25,Kyle Mitchell,"['Vinegar', 'Insect Repellent']",9,49.02,Credit Card,Seattle,Specialty Store,False,Young Adult,Spring,
+1000000737,2021-02-18 02:33:22,Bill Mejia,"['Canned Soup', 'Peanut Butter', 'Orange']",3,16.58,Credit Card,Seattle,Department Store,False,Student,Fall,BOGO (Buy One Get One)
+1000000738,2020-05-18 11:28:34,Edward Ramsey,"['BBQ Sauce', 'Butter', 'Banana', 'Plant Fertilizer', 'Coffee']",4,85.25,Mobile Payment,Los Angeles,Convenience Store,True,Young Adult,Summer,
+1000000739,2020-11-16 12:05:30,Elizabeth Brown,"['Banana', 'Pasta']",2,69.42,Debit Card,Miami,Department Store,True,Professional,Spring,
+1000000740,2021-06-10 06:33:24,Terri Reeves,"['Deodorant', 'Water', 'Olive Oil', 'Bath Towels']",7,54.37,Mobile Payment,Miami,Convenience Store,False,Senior Citizen,Summer,
+1000000741,2021-09-29 09:03:02,Sandra Griffith,"['Ice Cream', 'Canned Soup']",3,45.26,Credit Card,San Francisco,Pharmacy,True,Middle-Aged,Spring,BOGO (Buy One Get One)
+1000000742,2023-09-07 07:21:18,Andrea Allen,"['Orange', 'Tuna', 'Olive Oil']",2,66.24,Debit Card,Dallas,Supermarket,False,Retiree,Spring,
+1000000743,2020-05-25 12:03:23,Kevin Townsend,"['Dishware', 'Vacuum Cleaner', 'Carrots']",9,9.22,Debit Card,Houston,Supermarket,True,Middle-Aged,Winter,BOGO (Buy One Get One)
+1000000744,2020-06-05 08:34:57,Amanda Cummings,"['Light Bulbs', 'Diapers', 'Peanut Butter', 'Cereal']",4,72.25,Cash,Miami,Pharmacy,False,Student,Spring,Discount on Selected Items
+1000000745,2020-03-18 12:57:37,Dr. Kiara Valentine DDS,"['Shampoo', 'Trash Cans']",7,34.23,Mobile Payment,Houston,Convenience Store,True,Teenager,Fall,Discount on Selected Items
+1000000746,2022-06-19 07:49:13,Patricia Ward,"['Bread', 'Ice Cream', 'Onions', 'Air Freshener', 'Spinach']",10,44.61,Mobile Payment,San Francisco,Specialty Store,False,Student,Winter,Discount on Selected Items
+1000000747,2022-09-27 12:39:32,Toni Harris,"['Mop', 'Vacuum Cleaner', 'Shower Gel', 'Light Bulbs']",5,76.88,Debit Card,Boston,Department Store,True,Young Adult,Spring,Discount on Selected Items
+1000000748,2022-03-14 02:19:52,Scott Nichols,"['Milk', 'Broom']",3,19.45,Cash,Atlanta,Convenience Store,True,Student,Fall,Discount on Selected Items
+1000000749,2021-05-30 11:37:27,Rebekah Rivera,"['Toothbrush', 'Soda', 'Syrup', 'Tissues']",9,36.05,Debit Card,Seattle,Department Store,True,Retiree,Winter,BOGO (Buy One Get One)
+1000000750,2022-07-02 00:06:16,Tricia Dillon,"['Extension Cords', 'Eggs', 'Feminine Hygiene Products', 'Lawn Mower', 'Spinach']",2,92.26,Debit Card,San Francisco,Pharmacy,True,Young Adult,Summer,Discount on Selected Items
+1000000751,2024-04-27 07:12:47,Nicholas Silva,"['Honey', 'Olive Oil']",3,36.72,Cash,Chicago,Supermarket,False,Senior Citizen,Summer,BOGO (Buy One Get One)
+1000000752,2023-07-05 23:14:09,Kelsey Schroeder,"['Dishware', 'Garden Hose', 'Syrup', 'Coffee']",8,54.67,Debit Card,Boston,Specialty Store,False,Student,Spring,
+1000000753,2020-12-16 01:36:18,Daniel Foster,['Vinegar'],9,28.6,Debit Card,Los Angeles,Department Store,False,Retiree,Spring,BOGO (Buy One Get One)
+1000000754,2020-01-09 23:18:47,Rachel Carpenter,"['Pancake Mix', 'Pancake Mix', 'Jam', 'Sponges', 'Air Freshener']",2,93.45,Cash,San Francisco,Specialty Store,True,Professional,Winter,BOGO (Buy One Get One)
+1000000755,2020-10-26 11:37:13,Lauren Carson,"['Shaving Cream', 'Pickles', 'Cleaning Rags', 'Tomatoes', 'Extension Cords']",6,48.91,Credit Card,Boston,Pharmacy,False,Young Adult,Fall,BOGO (Buy One Get One)
+1000000756,2023-07-30 14:33:50,Aaron Henderson,"['Garden Hose', 'Vacuum Cleaner']",9,89.75,Cash,Seattle,Specialty Store,False,Young Adult,Spring,Discount on Selected Items
+1000000757,2020-08-29 16:41:22,Chloe Parks,"['Iron', 'Dish Soap', 'Trash Bags']",3,73.13,Credit Card,Atlanta,Department Store,False,Middle-Aged,Spring,BOGO (Buy One Get One)
+1000000758,2024-03-10 19:46:45,Cynthia Lopez,['Lawn Mower'],3,92.94,Debit Card,Chicago,Convenience Store,False,Student,Fall,Discount on Selected Items
+1000000759,2021-05-31 05:53:36,Miranda Jimenez,"['Eggs', 'Hair Gel']",9,98.61,Credit Card,Seattle,Warehouse Club,False,Professional,Fall,
+1000000760,2023-01-22 01:18:33,Paula Barton,"['Chips', 'Trash Bags', 'Ketchup', 'Soap', 'Shrimp']",6,13.1,Mobile Payment,Atlanta,Warehouse Club,False,Homemaker,Spring,
+1000000761,2020-04-29 14:07:39,James Smith,"['Shaving Cream', 'Cleaning Spray', 'Butter', 'Mayonnaise', 'Vinegar']",8,9.8,Debit Card,Los Angeles,Supermarket,False,Middle-Aged,Winter,BOGO (Buy One Get One)
+1000000762,2022-08-30 01:55:51,Rebecca Glenn,"['Trash Bags', 'Shower Gel', 'Dish Soap', 'Yogurt']",8,77.31,Mobile Payment,New York,Specialty Store,False,Senior Citizen,Spring,Discount on Selected Items
+1000000763,2022-11-20 06:28:56,Ian Martin,['Lawn Mower'],3,36.73,Mobile Payment,Seattle,Supermarket,False,Retiree,Winter,BOGO (Buy One Get One)
+1000000764,2020-08-23 16:48:24,Miguel Kelly,"['Ironing Board', 'Paper Towels', 'Tomatoes', 'Tea']",10,50.57,Debit Card,Seattle,Pharmacy,True,Teenager,Spring,BOGO (Buy One Get One)
+1000000765,2023-04-11 06:52:59,Mark Casey,"['Spinach', 'Shrimp']",10,55.67,Cash,Dallas,Department Store,True,Homemaker,Spring,
+1000000766,2021-10-21 17:41:51,Austin Reyes,"['Canned Soup', 'Insect Repellent', 'Hand Sanitizer', 'Potatoes']",7,50.98,Mobile Payment,Los Angeles,Supermarket,True,Professional,Spring,Discount on Selected Items
+1000000767,2022-09-04 00:26:23,Heidi Perkins,"['Ice Cream', 'Paper Towels', 'Ironing Board']",8,99.47,Credit Card,San Francisco,Specialty Store,False,Senior Citizen,Winter,
+1000000768,2020-12-15 10:19:36,Brittany Peters,"['Soda', 'Olive Oil', 'Rice', 'Diapers']",1,69.26,Cash,San Francisco,Pharmacy,False,Professional,Summer,BOGO (Buy One Get One)
+1000000769,2020-01-25 21:28:18,Steven Andrade,"['Deodorant', 'Mustard', 'Paper Towels', 'Baby Wipes']",4,72.33,Debit Card,Los Angeles,Supermarket,True,Professional,Winter,
+1000000770,2020-03-15 11:55:39,Samuel Mcconnell,"['Toilet Paper', 'Shower Gel', 'Banana', 'Tomatoes', 'Carrots']",5,46.76,Cash,New York,Pharmacy,False,Middle-Aged,Fall,Discount on Selected Items
+1000000771,2021-08-21 22:23:33,Sarah Jones,['Soda'],6,65.67,Mobile Payment,New York,Warehouse Club,True,Homemaker,Winter,
+1000000772,2020-11-25 09:37:56,Alexandra Kennedy,"['Iron', 'Feminine Hygiene Products', 'Tea']",1,86.7,Credit Card,Chicago,Pharmacy,False,Professional,Spring,
+1000000773,2020-08-26 01:46:42,David Espinoza,"['Cleaning Spray', 'Paper Towels', 'Tissues']",2,69.71,Mobile Payment,Miami,Convenience Store,False,Middle-Aged,Fall,
+1000000774,2024-04-27 15:24:36,Patricia Wilkinson,"['Deodorant', 'Toilet Paper', 'Potatoes']",8,55.47,Credit Card,Houston,Convenience Store,False,Senior Citizen,Spring,BOGO (Buy One Get One)
+1000000775,2023-02-13 16:58:21,Robert Foster,"['Dish Soap', 'Ice Cream', 'Onions']",9,99.02,Cash,Boston,Supermarket,True,Retiree,Winter,Discount on Selected Items
+1000000776,2021-04-16 14:30:19,Catherine Baker,"['Garden Hose', 'Cereal']",5,64.57,Debit Card,New York,Department Store,True,Senior Citizen,Fall,Discount on Selected Items
+1000000777,2023-09-20 01:10:47,Javier Snow PhD,['Tissues'],1,18.81,Mobile Payment,Houston,Specialty Store,False,Student,Spring,
+1000000778,2021-12-22 23:24:02,Robert Mcdaniel,"['Mayonnaise', 'Jam']",6,64.35,Debit Card,Miami,Warehouse Club,True,Homemaker,Winter,
+1000000779,2022-03-27 14:06:10,Nicholas Washington,['Milk'],9,69.64,Debit Card,Los Angeles,Specialty Store,False,Middle-Aged,Winter,BOGO (Buy One Get One)
+1000000780,2021-09-10 05:46:30,Richard Huynh,"['Tuna', 'Razors', 'Deodorant', 'Bath Towels', 'Hair Gel']",9,87.15,Debit Card,Atlanta,Convenience Store,True,Young Adult,Winter,Discount on Selected Items
+1000000781,2021-12-07 06:16:55,Kathryn Brooks,"['Soda', 'Chicken', 'Insect Repellent']",7,61.99,Mobile Payment,Chicago,Pharmacy,True,Teenager,Spring,BOGO (Buy One Get One)
+1000000782,2021-12-03 12:40:26,Christopher Wright,"['Cleaning Rags', 'Honey', 'Bread', 'Mop']",5,96.88,Debit Card,Seattle,Warehouse Club,False,Teenager,Spring,Discount on Selected Items
+1000000783,2020-03-02 06:11:07,Robert Scott,"['Toothbrush', 'Mustard', 'Spinach', 'Cleaning Rags']",1,74.85,Debit Card,Chicago,Supermarket,False,Teenager,Winter,Discount on Selected Items
+1000000784,2023-02-07 15:36:27,Laura Schmidt,"['Paper Towels', 'Ironing Board', 'Dish Soap', 'Yogurt', 'Air Freshener']",7,18.92,Credit Card,Atlanta,Pharmacy,False,Retiree,Summer,
+1000000785,2021-06-15 20:28:40,Edward Fernandez,['Cleaning Rags'],4,40.61,Credit Card,Boston,Supermarket,True,Senior Citizen,Fall,Discount on Selected Items
+1000000786,2023-03-24 15:04:12,Daisy Cain,"['Potatoes', 'Soda', 'Hand Sanitizer', 'Sponges', 'Tuna']",5,21.72,Cash,Chicago,Supermarket,True,Professional,Spring,
+1000000787,2023-02-02 05:43:38,Krystal Young,"['Water', 'Pancake Mix']",3,90.39,Cash,Boston,Convenience Store,True,Homemaker,Fall,Discount on Selected Items
+1000000788,2021-05-15 08:32:16,Anna Richard,"['Chicken', 'Baby Wipes', 'Ice Cream', 'Chips', 'Yogurt']",9,60.52,Cash,Seattle,Warehouse Club,True,Homemaker,Fall,BOGO (Buy One Get One)
+1000000789,2021-10-12 16:34:17,Cheryl Solis,"['BBQ Sauce', 'Tea', 'Garden Hose', 'Cheese']",1,34.93,Cash,Boston,Warehouse Club,False,Professional,Fall,
+1000000790,2020-09-26 18:33:53,Timothy Lane,['Cleaning Spray'],5,66.45,Credit Card,Atlanta,Pharmacy,True,Homemaker,Summer,BOGO (Buy One Get One)
+1000000791,2022-02-19 07:49:53,Peter Cruz,"['Pasta', 'Tissues', 'Onions', 'Pasta']",8,32.03,Debit Card,Chicago,Convenience Store,True,Middle-Aged,Fall,BOGO (Buy One Get One)
+1000000792,2020-08-21 22:51:00,Taylor Everett,"['Razors', 'Syrup']",8,49.43,Credit Card,Boston,Warehouse Club,True,Retiree,Summer,
+1000000793,2021-11-08 07:29:34,Carla Smith,"['Mop', 'Light Bulbs', 'Trash Cans', 'Eggs', 'Laundry Detergent']",8,73.02,Mobile Payment,Miami,Specialty Store,True,Homemaker,Fall,
+1000000794,2024-03-11 13:24:27,Vanessa Myers,"['Iron', 'Trash Bags', 'Feminine Hygiene Products']",7,52.15,Debit Card,Boston,Department Store,True,Student,Winter,
+1000000795,2022-10-03 17:54:31,Joseph Roberts,"['Extension Cords', 'Honey', 'Carrots', 'Cereal', 'Diapers']",8,89.26,Credit Card,Los Angeles,Specialty Store,False,Retiree,Fall,BOGO (Buy One Get One)
+1000000796,2020-09-05 08:41:43,Donna Fitzgerald,"['Toilet Paper', 'Soda', 'Cereal Bars', 'Apple']",4,63.23,Credit Card,Los Angeles,Warehouse Club,False,Teenager,Summer,Discount on Selected Items
+1000000797,2021-10-07 15:31:43,Brittany Ward,"['Cleaning Rags', 'Cleaning Spray', 'Tissues']",6,12.68,Debit Card,San Francisco,Pharmacy,False,Homemaker,Spring,
+1000000798,2020-04-17 21:29:00,Dennis Richardson,"['Trash Cans', 'Sponges', 'Canned Soup']",4,53.3,Cash,San Francisco,Specialty Store,True,Student,Spring,
+1000000799,2022-12-21 11:07:59,Misty Pena,"['Mayonnaise', 'Toothbrush', 'Water', 'Mop']",6,15.53,Mobile Payment,Los Angeles,Convenience Store,True,Retiree,Fall,Discount on Selected Items
+1000000800,2021-04-07 10:09:50,Brenda Garcia,"['Feminine Hygiene Products', 'Banana', 'Tissues', 'Olive Oil']",9,21.97,Credit Card,Boston,Supermarket,False,Student,Spring,BOGO (Buy One Get One)
+1000000801,2020-06-01 11:07:35,Ryan Newman,"['Cheese', 'Honey', 'Milk']",5,98.11,Credit Card,Houston,Department Store,False,Middle-Aged,Fall,BOGO (Buy One Get One)
+1000000802,2022-02-22 08:25:05,Tiffany Kelley,"['Ironing Board', 'Tea', 'Jam', 'Beef', 'Vacuum Cleaner']",6,10.58,Debit Card,San Francisco,Supermarket,True,Senior Citizen,Winter,Discount on Selected Items
+1000000803,2023-04-07 11:23:31,Seth Walker,['Eggs'],6,45.59,Mobile Payment,Dallas,Specialty Store,False,Professional,Winter,
+1000000804,2023-03-22 08:45:00,Monica Terrell,"['Potatoes', 'Cereal', 'Extension Cords', 'Plant Fertilizer', 'Bath Towels']",10,23.19,Debit Card,Seattle,Specialty Store,False,Senior Citizen,Fall,BOGO (Buy One Get One)
+1000000805,2021-04-27 20:07:08,Victoria Scott,"['Shaving Cream', 'Hair Gel', 'Cleaning Spray', 'Mop', 'Tissues']",5,90.79,Debit Card,Atlanta,Supermarket,True,Senior Citizen,Spring,BOGO (Buy One Get One)
+1000000806,2021-07-07 06:17:10,Steven Jackson MD,"['Power Strips', 'Plant Fertilizer', 'Razors', 'Lawn Mower']",5,19.31,Mobile Payment,Dallas,Specialty Store,False,Professional,Winter,
+1000000807,2020-11-03 06:52:53,Martin Love,"['Extension Cords', 'Cereal Bars', 'Toothbrush', 'Mayonnaise']",7,28.26,Cash,Seattle,Pharmacy,False,Middle-Aged,Summer,Discount on Selected Items
+1000000808,2023-09-22 15:18:06,David Mcclure,['Olive Oil'],10,8.48,Cash,Houston,Convenience Store,False,Retiree,Winter,Discount on Selected Items
+1000000809,2022-06-02 15:59:40,Austin Deleon,"['Jam', 'Trash Cans']",5,81.41,Cash,New York,Pharmacy,True,Young Adult,Summer,BOGO (Buy One Get One)
+1000000810,2020-05-10 11:24:00,Tina Mooney,['Vacuum Cleaner'],6,84.84,Debit Card,Los Angeles,Convenience Store,True,Retiree,Fall,
+1000000811,2020-04-14 09:20:42,Melinda Crawford,"['Water', 'Syrup', 'Spinach', 'Canned Soup']",7,71.64,Debit Card,San Francisco,Department Store,False,Student,Spring,
+1000000812,2021-11-14 08:57:53,Caleb Booth,"['Pasta', 'Syrup', 'Hair Gel', 'Diapers']",8,20.05,Debit Card,Boston,Warehouse Club,True,Senior Citizen,Fall,BOGO (Buy One Get One)
+1000000813,2021-03-13 06:34:47,Louis Donovan,"['Paper Towels', 'Hand Sanitizer', 'Chips', 'Lawn Mower']",6,49.74,Mobile Payment,San Francisco,Pharmacy,True,Student,Spring,BOGO (Buy One Get One)
+1000000814,2020-04-23 03:44:20,Kelli Fitzpatrick,"['Iron', 'Apple', 'Chicken']",9,62.19,Debit Card,Dallas,Pharmacy,False,Middle-Aged,Winter,Discount on Selected Items
+1000000815,2021-03-27 22:01:44,John Henderson DDS,['Water'],9,40.36,Cash,Boston,Specialty Store,True,Middle-Aged,Summer,Discount on Selected Items
+1000000816,2021-01-22 22:08:18,Kenneth Short,['Rice'],7,29.93,Debit Card,Atlanta,Specialty Store,True,Senior Citizen,Fall,
+1000000817,2020-07-11 20:34:57,Jacqueline Perez,"['Milk', 'Jam', 'Shrimp']",9,28.52,Mobile Payment,Houston,Specialty Store,False,Middle-Aged,Summer,Discount on Selected Items
+1000000818,2023-02-19 07:20:41,Julie Bowen,"['Diapers', 'Toothbrush', 'Ice Cream', 'Cereal']",9,92.79,Debit Card,Atlanta,Warehouse Club,True,Teenager,Winter,BOGO (Buy One Get One)
+1000000819,2022-11-30 13:22:34,Aaron Davis,"['Plant Fertilizer', 'Yogurt']",9,12.06,Mobile Payment,Atlanta,Pharmacy,False,Young Adult,Spring,
+1000000820,2021-06-05 23:29:12,Isabella Cooper,['Pasta'],10,23.58,Cash,Atlanta,Warehouse Club,False,Homemaker,Winter,BOGO (Buy One Get One)
+1000000821,2020-04-18 21:06:58,Christie Ibarra,"['Milk', 'Butter']",4,48.95,Credit Card,Atlanta,Supermarket,True,Homemaker,Summer,Discount on Selected Items
+1000000822,2022-05-25 03:53:51,Douglas Wise,"['Trash Cans', 'Water', 'Shaving Cream', 'Razors']",3,23.93,Debit Card,Los Angeles,Supermarket,False,Retiree,Fall,
+1000000823,2021-03-20 18:25:59,Donald Gilbert,"['Syrup', 'Plant Fertilizer', 'Bath Towels', 'Toothbrush']",10,72.45,Credit Card,Atlanta,Warehouse Club,False,Young Adult,Spring,Discount on Selected Items
+1000000824,2021-12-20 20:25:04,Brandon Chen,"['Dishware', 'Toothpaste', 'Toothbrush', 'Power Strips', 'Olive Oil']",8,77.06,Debit Card,Miami,Pharmacy,True,Professional,Spring,
+1000000825,2021-02-27 07:26:04,Mark Lynch,"['Feminine Hygiene Products', 'Mustard', 'Coffee', 'Cereal Bars']",6,31.76,Cash,Chicago,Department Store,True,Middle-Aged,Winter,Discount on Selected Items
+1000000826,2021-10-31 06:25:40,Mary Tanner,"['Peanut Butter', 'Laundry Detergent', 'Toothpaste', 'Mustard']",6,14.2,Cash,New York,Pharmacy,False,Teenager,Fall,Discount on Selected Items
+1000000827,2024-03-10 03:59:13,Karen Davidson,['Dish Soap'],10,34.49,Credit Card,Chicago,Pharmacy,False,Middle-Aged,Fall,BOGO (Buy One Get One)
+1000000828,2022-10-17 18:21:35,Ian Price,['Peanut Butter'],1,7.26,Cash,Chicago,Warehouse Club,True,Middle-Aged,Summer,Discount on Selected Items
+1000000829,2023-02-22 11:26:02,Jeffrey Brown,"['Butter', 'Dish Soap', 'Broom']",7,6.22,Debit Card,New York,Pharmacy,False,Middle-Aged,Fall,
+1000000830,2024-04-04 02:03:31,Sarah Vasquez,['Toilet Paper'],10,20.68,Mobile Payment,Seattle,Specialty Store,False,Homemaker,Winter,BOGO (Buy One Get One)
+1000000831,2021-07-08 05:44:48,Leslie Graves,"['Rice', 'Jam', 'Salmon', 'Tissues', 'Air Freshener']",6,21.42,Credit Card,Dallas,Specialty Store,True,Teenager,Fall,Discount on Selected Items
+1000000832,2020-04-28 16:14:19,Christopher Garcia,"['Toothpaste', 'Syrup', 'Soda']",3,49.61,Debit Card,Chicago,Pharmacy,True,Retiree,Summer,Discount on Selected Items
+1000000833,2022-08-24 10:39:46,Emily Martin,"['Milk', 'Shower Gel', 'BBQ Sauce', 'Diapers']",2,37.93,Debit Card,Dallas,Department Store,False,Young Adult,Spring,BOGO (Buy One Get One)
+1000000834,2023-03-17 21:22:21,Alicia Lawson,"['Dustpan', 'Mayonnaise']",2,93.29,Cash,Boston,Pharmacy,False,Student,Fall,BOGO (Buy One Get One)
+1000000835,2021-03-15 11:08:24,Beth Martinez,['Feminine Hygiene Products'],10,68.39,Debit Card,Boston,Department Store,True,Teenager,Winter,
+1000000836,2020-10-11 18:29:30,Ann Daugherty,"['Razors', 'Sponges', 'Toothpaste', 'Tea', 'Milk']",10,80.94,Cash,Miami,Pharmacy,True,Student,Fall,BOGO (Buy One Get One)
+1000000837,2024-01-01 19:21:38,Scott Smith,"['BBQ Sauce', 'Pickles', 'Mop', 'Cleaning Spray', 'Mayonnaise']",6,88.68,Debit Card,San Francisco,Warehouse Club,True,Middle-Aged,Winter,
+1000000838,2022-05-15 07:45:57,Sharon Norman,"['Shaving Cream', 'Laundry Detergent', 'Extension Cords', 'Plant Fertilizer']",6,35.89,Cash,Dallas,Warehouse Club,True,Homemaker,Spring,BOGO (Buy One Get One)
+1000000839,2020-01-27 15:35:20,Jamie Bautista,"['Cereal', 'Insect Repellent', 'Orange', 'Carrots']",5,20.11,Debit Card,Seattle,Supermarket,True,Teenager,Summer,Discount on Selected Items
+1000000840,2020-07-15 09:45:00,Elizabeth Smith,"['Mustard', 'Coffee', 'Soap']",10,64.33,Cash,Los Angeles,Pharmacy,False,Teenager,Winter,BOGO (Buy One Get One)
+1000000841,2022-06-12 02:20:38,Brenda Chavez,"['Mop', 'Peanut Butter', 'Apple', 'Mayonnaise']",8,41.11,Credit Card,Houston,Warehouse Club,False,Senior Citizen,Spring,BOGO (Buy One Get One)
+1000000842,2020-09-02 06:27:19,Mary Hall,"['Soap', 'Ketchup', 'Ketchup', 'Rice']",5,19.39,Debit Card,Dallas,Supermarket,False,Professional,Summer,
+1000000843,2020-09-23 15:29:41,Jessica Wade DVM,"['Eggs', 'Shampoo']",2,58.04,Credit Card,Seattle,Supermarket,True,Middle-Aged,Winter,Discount on Selected Items
+1000000844,2020-07-23 20:59:30,Kimberly Williams,"['Bath Towels', 'Cereal Bars']",8,55.42,Mobile Payment,New York,Supermarket,True,Student,Fall,Discount on Selected Items
+1000000845,2021-07-24 13:28:42,Brian Campos,"['Pickles', 'Bath Towels']",1,84.97,Credit Card,New York,Pharmacy,False,Middle-Aged,Summer,BOGO (Buy One Get One)
+1000000846,2024-01-09 02:09:57,Ryan Bailey,"['Canned Soup', 'Broom', 'Power Strips']",7,5.96,Credit Card,Chicago,Department Store,True,Senior Citizen,Fall,
+1000000847,2022-07-22 18:22:21,Jasmine Jones,"['Garden Hose', 'Milk', 'Chicken', 'Tea']",2,54.54,Cash,Houston,Specialty Store,False,Homemaker,Summer,BOGO (Buy One Get One)
+1000000848,2022-01-09 14:57:48,Lynn Smith,"['Hair Gel', 'Toothbrush']",9,52.7,Debit Card,Houston,Department Store,False,Retiree,Winter,
+1000000849,2022-07-08 18:31:37,James Ramirez,"['Butter', 'Dustpan']",4,59.46,Cash,Seattle,Warehouse Club,True,Homemaker,Winter,Discount on Selected Items
+1000000850,2020-04-20 00:58:24,Stacy Ballard,"['Trash Bags', 'Mop', 'Potatoes', 'Tuna']",4,9.6,Cash,Chicago,Warehouse Club,False,Teenager,Winter,BOGO (Buy One Get One)
+1000000851,2021-02-18 09:40:19,Dr. Jerry Massey,"['Shower Gel', 'Baby Wipes']",3,20.81,Debit Card,Miami,Pharmacy,True,Homemaker,Summer,Discount on Selected Items
+1000000852,2022-12-17 18:49:10,Marcus Smith,['Cleaning Rags'],5,71.44,Debit Card,Houston,Warehouse Club,True,Student,Spring,
+1000000853,2022-02-19 07:09:10,Jessica Rodriguez,"['Broom', 'Bath Towels', 'Hair Gel']",5,13.92,Mobile Payment,Atlanta,Supermarket,True,Homemaker,Spring,BOGO (Buy One Get One)
+1000000854,2023-01-25 20:27:50,Heather Hunter,"['Diapers', 'Air Freshener', 'Cheese']",4,68.95,Credit Card,Houston,Warehouse Club,True,Senior Citizen,Spring,BOGO (Buy One Get One)
+1000000855,2020-10-13 06:12:42,Felicia Miller,['Power Strips'],1,78.79,Debit Card,San Francisco,Warehouse Club,True,Young Adult,Fall,BOGO (Buy One Get One)
+1000000856,2021-10-01 06:54:29,Benjamin Dyer,['Cereal Bars'],4,35.19,Debit Card,Miami,Warehouse Club,True,Middle-Aged,Summer,
+1000000857,2021-07-15 03:38:36,Tammy Cabrera,"['Dish Soap', 'Mustard']",10,70.85,Mobile Payment,Dallas,Supermarket,False,Senior Citizen,Fall,
+1000000858,2021-11-10 07:02:45,Teresa Ponce,"['Pasta', 'Trash Cans', 'Diapers']",3,50.04,Credit Card,New York,Specialty Store,False,Senior Citizen,Fall,BOGO (Buy One Get One)
+1000000859,2022-09-21 08:04:24,Karen Thompson,['Jam'],1,55.98,Mobile Payment,Miami,Pharmacy,True,Student,Winter,Discount on Selected Items
+1000000860,2020-11-14 10:34:54,Jenna Barnett,['Garden Hose'],7,34.19,Debit Card,San Francisco,Department Store,False,Retiree,Summer,BOGO (Buy One Get One)
+1000000861,2020-03-03 14:45:35,Sonya Smith,"['Lawn Mower', 'Cheese', 'Toothpaste']",1,52.49,Mobile Payment,San Francisco,Department Store,True,Senior Citizen,Spring,BOGO (Buy One Get One)
+1000000862,2020-08-30 18:16:23,Renee Ramos,['Hand Sanitizer'],8,78.82,Debit Card,Atlanta,Warehouse Club,False,Student,Summer,BOGO (Buy One Get One)
+1000000863,2022-06-24 05:25:31,Nicole Scott,"['Tomatoes', 'Jam', 'Extension Cords']",2,84.19,Debit Card,Houston,Warehouse Club,False,Homemaker,Winter,BOGO (Buy One Get One)
+1000000864,2022-01-18 02:55:51,Anthony Haynes,"['Olive Oil', 'Toothpaste']",10,23.35,Debit Card,Los Angeles,Department Store,False,Young Adult,Winter,BOGO (Buy One Get One)
+1000000865,2023-10-30 00:32:17,Edward Shelton,"['Potatoes', 'Pickles', 'Razors']",4,85.43,Credit Card,New York,Specialty Store,True,Homemaker,Fall,
+1000000866,2021-09-01 01:40:04,Rachel Potts,"['Jam', 'Syrup', 'Spinach']",6,63.73,Credit Card,San Francisco,Pharmacy,True,Senior Citizen,Winter,
+1000000867,2022-07-01 00:52:20,Jackson Simpson,"['Tomatoes', 'Toothbrush', 'Toilet Paper']",6,95.25,Debit Card,San Francisco,Specialty Store,True,Teenager,Winter,Discount on Selected Items
+1000000868,2021-02-25 19:19:09,Larry Hoffman,['Peanut Butter'],8,26.98,Credit Card,Los Angeles,Specialty Store,False,Middle-Aged,Summer,
+1000000869,2022-02-11 21:48:13,John Stout,"['Jam', 'Broom']",7,36.86,Cash,New York,Supermarket,True,Professional,Fall,
+1000000870,2023-05-06 03:22:09,Evan Casey,['Milk'],7,88.33,Credit Card,Chicago,Convenience Store,False,Senior Citizen,Spring,BOGO (Buy One Get One)
+1000000871,2021-06-16 23:36:13,Jeanne Kennedy,"['Shaving Cream', 'Trash Cans', 'Coffee', 'Ironing Board', 'Dishware']",8,72.23,Debit Card,Miami,Warehouse Club,False,Homemaker,Fall,Discount on Selected Items
+1000000872,2021-04-20 02:58:38,James Morse,"['Pickles', 'Pickles', 'Apple', 'Pickles', 'Ironing Board']",10,82.22,Debit Card,San Francisco,Pharmacy,False,Young Adult,Fall,Discount on Selected Items
+1000000873,2021-05-09 02:55:50,Derrick Fernandez,"['Potatoes', 'Extension Cords', 'Cereal', 'Iron']",4,60.16,Mobile Payment,Houston,Specialty Store,False,Young Adult,Summer,Discount on Selected Items
+1000000874,2022-05-06 16:03:13,Veronica Perry,['Butter'],6,53.16,Mobile Payment,Chicago,Department Store,True,Homemaker,Summer,
+1000000875,2023-06-22 06:43:19,Cody Sanchez,['Salmon'],1,43.36,Debit Card,Atlanta,Convenience Store,True,Young Adult,Winter,
+1000000876,2021-03-28 08:40:54,Alexandria Roberts,"['Honey', 'Razors', 'Water', 'Garden Hose', 'Shrimp']",5,84.83,Credit Card,Boston,Supermarket,False,Homemaker,Summer,
+1000000877,2024-03-09 02:46:57,Sarah Wheeler,"['Cheese', 'Onions', 'Ironing Board', 'Lawn Mower']",3,69.89,Credit Card,San Francisco,Department Store,True,Teenager,Fall,BOGO (Buy One Get One)
+1000000878,2023-12-27 22:58:32,Tara Gordon,['Yogurt'],2,70.71,Mobile Payment,Los Angeles,Warehouse Club,False,Young Adult,Winter,
+1000000879,2022-10-17 10:01:29,Ms. Stephanie Thompson,['Vinegar'],3,86.4,Cash,New York,Convenience Store,True,Professional,Spring,BOGO (Buy One Get One)
+1000000880,2021-04-12 04:56:22,Katrina Franklin,['Orange'],7,28.41,Cash,Chicago,Warehouse Club,True,Retiree,Spring,Discount on Selected Items
+1000000881,2021-09-09 06:45:25,Brittney Johnson,"['Toilet Paper', 'Chips']",1,14.73,Credit Card,Seattle,Department Store,True,Professional,Fall,Discount on Selected Items
+1000000882,2022-04-06 07:40:07,Timothy Jones,"['Hand Sanitizer', 'Vacuum Cleaner', 'Trash Bags', 'Plant Fertilizer']",10,68.17,Cash,Los Angeles,Convenience Store,False,Teenager,Fall,BOGO (Buy One Get One)
+1000000883,2020-05-17 03:09:55,Colleen Daniels,"['Toothbrush', 'Diapers', 'Toothbrush']",8,75.87,Mobile Payment,Miami,Pharmacy,False,Teenager,Summer,BOGO (Buy One Get One)
+1000000884,2021-08-04 06:49:01,Rachel Jacobs,"['Baby Wipes', 'Soap', 'Cereal Bars']",1,26.05,Mobile Payment,Los Angeles,Specialty Store,True,Homemaker,Fall,
+1000000885,2023-03-14 10:27:12,Jason Hawkins,"['Ice Cream', 'Diapers', 'Vinegar']",9,63.35,Debit Card,Boston,Department Store,False,Senior Citizen,Fall,
+1000000886,2020-10-07 23:30:33,Zachary Gardner,"['Light Bulbs', 'Lawn Mower', 'Cereal', 'Dustpan', 'Trash Bags']",3,84.95,Cash,Boston,Specialty Store,True,Teenager,Summer,BOGO (Buy One Get One)
+1000000887,2022-06-01 17:46:54,Gregory Torres,"['Spinach', 'Yogurt']",1,61.36,Credit Card,New York,Supermarket,False,Young Adult,Fall,BOGO (Buy One Get One)
+1000000888,2022-09-21 03:27:29,Frederick Hernandez,"['Carrots', 'Salmon', 'Water', 'Spinach']",9,29.65,Debit Card,Houston,Pharmacy,True,Professional,Spring,
+1000000889,2024-02-14 07:49:12,Stephanie Diaz,"['Hair Gel', 'Broom']",6,91.39,Credit Card,Dallas,Specialty Store,False,Student,Winter,BOGO (Buy One Get One)
+1000000890,2021-04-08 06:48:55,Mrs. Brittany Snyder,['Garden Hose'],9,73.05,Credit Card,Los Angeles,Supermarket,False,Retiree,Summer,BOGO (Buy One Get One)
+1000000891,2022-03-14 03:56:34,Mason Rodriguez,"['Chicken', 'Pancake Mix', 'Vinegar', 'Milk', 'Orange']",5,27.22,Credit Card,San Francisco,Convenience Store,True,Teenager,Winter,
+1000000892,2020-06-22 00:44:21,Brian Allen,"['Jam', 'Pasta', 'Coffee']",1,31.46,Debit Card,New York,Supermarket,True,Homemaker,Summer,BOGO (Buy One Get One)
+1000000893,2023-03-16 19:23:22,Sarah Salas,"['Ketchup', 'Syrup']",7,53.72,Mobile Payment,New York,Convenience Store,False,Retiree,Fall,BOGO (Buy One Get One)
+1000000894,2020-04-01 12:05:03,Paul Patterson,"['Carrots', 'Ketchup', 'Syrup']",9,39.37,Mobile Payment,New York,Convenience Store,False,Teenager,Summer,BOGO (Buy One Get One)
+1000000895,2020-03-16 21:57:59,Kristin Simmons,"['Bread', 'Power Strips', 'Tea']",2,47.82,Debit Card,Atlanta,Convenience Store,True,Student,Spring,
+1000000896,2021-04-18 23:25:44,Peter Mathis,"['Feminine Hygiene Products', 'Salmon', 'Beef', 'Honey', 'Tea']",8,85.21,Cash,New York,Department Store,False,Senior Citizen,Winter,Discount on Selected Items
+1000000897,2024-01-02 01:48:05,Traci Smith,"['Chips', 'Apple', 'Shrimp', 'Pickles']",10,55.74,Debit Card,Atlanta,Supermarket,False,Teenager,Spring,BOGO (Buy One Get One)
+1000000898,2021-05-09 05:53:50,Brandi Mcguire,['Orange'],8,6.61,Mobile Payment,San Francisco,Pharmacy,False,Homemaker,Fall,BOGO (Buy One Get One)
+1000000899,2020-01-21 00:48:21,Jesse Davis,"['Power Strips', 'Diapers', 'Paper Towels', 'Ketchup', 'Paper Towels']",5,73.98,Cash,Los Angeles,Supermarket,False,Professional,Summer,BOGO (Buy One Get One)
+1000000900,2021-12-02 05:23:15,Jennifer Gonzalez,"['Extension Cords', 'Broom']",8,23.67,Debit Card,Chicago,Department Store,True,Young Adult,Spring,
+1000000901,2023-08-25 18:43:58,Leah Rice,"['Milk', 'BBQ Sauce', 'Onions', 'Dustpan', 'Tomatoes']",6,33.79,Mobile Payment,Chicago,Warehouse Club,False,Student,Summer,Discount on Selected Items
+1000000902,2024-02-03 17:18:45,Danielle Holt,"['Potatoes', 'Hair Gel']",3,49.81,Debit Card,Dallas,Warehouse Club,True,Senior Citizen,Spring,
+1000000903,2020-08-16 07:44:11,Donna Williams,"['Rice', 'Jam', 'Sponges']",2,89.42,Cash,New York,Department Store,True,Young Adult,Summer,
+1000000904,2023-07-12 23:10:22,Benjamin Wagner,['Canned Soup'],10,52.08,Mobile Payment,Atlanta,Department Store,True,Homemaker,Spring,Discount on Selected Items
+1000000905,2022-09-05 10:02:50,Justin Harris,"['Eggs', 'Pancake Mix']",8,65.39,Credit Card,Dallas,Warehouse Club,True,Retiree,Summer,
+1000000906,2022-01-17 05:31:47,Dawn Yu,"['Chips', 'Cleaning Spray', 'Insect Repellent', 'Mop']",9,55.68,Mobile Payment,Seattle,Specialty Store,True,Teenager,Winter,Discount on Selected Items
+1000000907,2022-09-11 13:58:47,Joseph Young,"['Water', 'Milk', 'Insect Repellent', 'BBQ Sauce', 'Bath Towels']",10,30.89,Mobile Payment,Seattle,Department Store,False,Teenager,Winter,Discount on Selected Items
+1000000908,2023-01-21 23:31:09,Dylan Bradley,"['Eggs', 'Spinach', 'Dish Soap', 'Pickles']",10,89.19,Cash,Chicago,Warehouse Club,False,Middle-Aged,Winter,BOGO (Buy One Get One)
+1000000909,2022-07-06 22:00:22,Shannon Meyer,"['Cleaning Spray', 'Butter']",3,70.49,Cash,Houston,Pharmacy,True,Senior Citizen,Spring,BOGO (Buy One Get One)
+1000000910,2022-02-12 09:41:17,Nathan Morris,"['Apple', 'Bread']",6,45.08,Mobile Payment,Boston,Specialty Store,True,Retiree,Winter,Discount on Selected Items
+1000000911,2021-02-28 02:34:19,Steven Anderson,"['Coffee', 'Cereal', 'Bread', 'Tomatoes']",10,86.51,Debit Card,Houston,Pharmacy,True,Retiree,Summer,Discount on Selected Items
+1000000912,2023-12-06 04:27:38,Mrs. Isabel Montoya DVM,['Carrots'],1,82.0,Credit Card,Atlanta,Convenience Store,True,Retiree,Winter,BOGO (Buy One Get One)
+1000000913,2024-04-04 02:23:15,Virginia Tanner,"['Ice Cream', 'Tissues', 'Spinach', 'Hair Gel', 'Orange']",3,55.43,Cash,Miami,Specialty Store,True,Retiree,Spring,Discount on Selected Items
+1000000914,2020-12-23 07:39:38,Christina Brooks,"['Pasta', 'Canned Soup']",2,67.11,Credit Card,Los Angeles,Department Store,False,Teenager,Winter,
+1000000915,2023-04-04 07:51:41,Ann Richard,"['Garden Hose', 'Soap', 'Ironing Board', 'Soap', 'Shower Gel']",8,99.08,Cash,New York,Supermarket,False,Homemaker,Summer,BOGO (Buy One Get One)
+1000000916,2020-04-15 04:50:56,Kevin Snyder,"['Lawn Mower', 'Soap', 'Shrimp', 'Potatoes']",4,94.68,Debit Card,Houston,Supermarket,True,Senior Citizen,Summer,Discount on Selected Items
+1000000917,2020-09-20 19:25:01,Tracy Shelton,"['Honey', 'Garden Hose', 'Lawn Mower', 'Onions', 'Mop']",4,97.08,Debit Card,Chicago,Specialty Store,True,Young Adult,Fall,
+1000000918,2022-06-11 00:20:30,Ethan Ingram,"['Garden Hose', 'Laundry Detergent']",5,99.18,Cash,New York,Warehouse Club,False,Retiree,Summer,BOGO (Buy One Get One)
+1000000919,2021-03-28 07:17:41,Daniel Holland,"['Milk', 'BBQ Sauce', 'Apple']",3,70.42,Cash,San Francisco,Department Store,True,Professional,Fall,Discount on Selected Items
+1000000920,2023-04-27 00:40:06,Sydney Henry,"['Toothpaste', 'Pasta', 'Hair Gel', 'Onions', 'Cleaning Rags']",1,70.09,Credit Card,Seattle,Pharmacy,False,Teenager,Summer,
+1000000921,2020-05-06 07:14:28,Shawn Smith,"['Spinach', 'Mustard', 'Tuna', 'Bath Towels']",9,75.79,Mobile Payment,Chicago,Supermarket,False,Retiree,Summer,
+1000000922,2020-05-21 03:56:49,Edgar Larsen,"['Eggs', 'Bath Towels']",7,79.57,Mobile Payment,Houston,Pharmacy,False,Homemaker,Winter,Discount on Selected Items
+1000000923,2020-06-09 07:47:15,Jessica Pena,"['Soda', 'Onions']",8,95.89,Credit Card,Seattle,Supermarket,False,Teenager,Fall,
+1000000924,2020-04-10 23:54:42,Lawrence Wilson,['Extension Cords'],7,42.52,Credit Card,Dallas,Pharmacy,False,Senior Citizen,Spring,BOGO (Buy One Get One)
+1000000925,2023-06-21 20:38:44,Teresa Brooks,"['Soap', 'Air Freshener', 'Spinach']",8,11.86,Mobile Payment,Dallas,Convenience Store,False,Retiree,Fall,BOGO (Buy One Get One)
+1000000926,2022-09-25 03:23:24,Pamela Taylor,"['Dustpan', 'Hair Gel']",4,94.91,Debit Card,New York,Pharmacy,True,Student,Summer,BOGO (Buy One Get One)
+1000000927,2023-10-27 13:36:31,Jeremy Chambers,"['Potatoes', 'Canned Soup', 'Banana', 'Pickles']",5,6.99,Debit Card,Houston,Pharmacy,True,Teenager,Summer,Discount on Selected Items
+1000000928,2021-11-21 07:26:59,Emily King,"['Iron', 'Pickles']",6,15.97,Mobile Payment,Miami,Specialty Store,True,Professional,Winter,
+1000000929,2024-01-23 18:20:57,Shane Campbell,['Onions'],9,84.91,Cash,Dallas,Supermarket,True,Professional,Fall,Discount on Selected Items
+1000000930,2022-06-28 05:38:51,Robert Oneill,"['Insect Repellent', 'Lawn Mower', 'Dish Soap', 'Beef', 'Jam']",3,60.99,Credit Card,Chicago,Specialty Store,True,Teenager,Winter,Discount on Selected Items
+1000000931,2022-06-26 12:28:32,Jose Kelly,"['Broom', 'Lawn Mower', 'Pancake Mix']",4,61.11,Mobile Payment,Houston,Supermarket,True,Middle-Aged,Fall,
+1000000932,2021-04-24 19:20:20,Rachel Reyes,"['Pickles', 'Cheese', 'Shaving Cream']",2,33.87,Cash,Los Angeles,Pharmacy,True,Young Adult,Winter,
+1000000933,2024-03-06 21:06:49,Elizabeth Davis,"['Razors', 'Light Bulbs', 'Eggs', 'Carrots', 'Salmon']",2,72.06,Cash,San Francisco,Specialty Store,True,Homemaker,Summer,Discount on Selected Items
+1000000934,2022-03-02 10:46:41,Victor Frank,"['Garden Hose', 'Cereal', 'Jam', 'Baby Wipes']",10,6.24,Mobile Payment,San Francisco,Warehouse Club,True,Middle-Aged,Summer,BOGO (Buy One Get One)
+1000000935,2020-05-31 06:11:10,Andrew Stafford,"['Honey', 'Salmon', 'Carrots']",10,9.03,Credit Card,Chicago,Department Store,False,Homemaker,Fall,Discount on Selected Items
+1000000936,2021-08-24 21:28:58,Cheryl Kelley,['Shrimp'],10,97.84,Cash,Seattle,Specialty Store,True,Middle-Aged,Spring,
+1000000937,2023-06-27 19:45:20,Thomas Bishop,"['Pancake Mix', 'Peanut Butter', 'Tea', 'Insect Repellent']",10,53.36,Debit Card,Miami,Warehouse Club,True,Student,Fall,BOGO (Buy One Get One)
+1000000938,2021-05-17 13:42:47,Amy Lawson MD,"['Power Strips', 'Butter', 'BBQ Sauce', 'Rice']",1,51.07,Cash,Houston,Convenience Store,True,Teenager,Winter,Discount on Selected Items
+1000000939,2023-02-17 12:59:37,Brian Castro,"['Olive Oil', 'Dishware', 'Eggs']",8,36.08,Cash,Los Angeles,Specialty Store,False,Middle-Aged,Fall,
+1000000940,2022-08-30 10:39:41,Jennifer Brock,['Peanut Butter'],5,79.69,Debit Card,Los Angeles,Convenience Store,True,Professional,Winter,Discount on Selected Items
+1000000941,2020-01-09 06:19:00,Kimberly Holden,"['Hand Sanitizer', 'Shampoo']",4,59.33,Mobile Payment,Los Angeles,Warehouse Club,False,Retiree,Fall,BOGO (Buy One Get One)
+1000000942,2024-01-24 21:33:41,Jill Allen,"['Water', 'Chips', 'Trash Cans']",8,39.57,Debit Card,Atlanta,Warehouse Club,False,Student,Spring,Discount on Selected Items
+1000000943,2022-08-16 14:49:13,Patricia Rowe,"['Bread', 'Olive Oil', 'Paper Towels', 'Banana', 'Mop']",4,70.45,Mobile Payment,Boston,Warehouse Club,True,Homemaker,Spring,
+1000000944,2022-01-11 20:44:14,David Johnson,"['Coffee', 'Power Strips']",5,17.2,Debit Card,Los Angeles,Specialty Store,True,Middle-Aged,Fall,Discount on Selected Items
+1000000945,2023-05-08 14:44:42,Steven Guerrero,"['Cereal Bars', 'Dishware', 'Coffee']",3,79.34,Credit Card,Miami,Specialty Store,True,Teenager,Spring,
+1000000946,2020-09-26 15:13:29,Krista Harris,"['Tuna', 'Salmon', 'Salmon']",4,37.42,Credit Card,Miami,Specialty Store,False,Teenager,Spring,BOGO (Buy One Get One)
+1000000947,2023-08-13 02:09:47,Julie Lindsey,"['Razors', 'Chips', 'Plant Fertilizer', 'Extension Cords', 'Honey']",7,54.78,Cash,Los Angeles,Supermarket,True,Senior Citizen,Fall,
+1000000948,2020-06-23 05:47:56,Angel Johnson,"['Baby Wipes', 'Carrots', 'Butter', 'Dishware', 'Toilet Paper']",10,21.99,Credit Card,Los Angeles,Specialty Store,True,Homemaker,Summer,Discount on Selected Items
+1000000949,2024-03-01 04:19:57,Charles Taylor,"['Eggs', 'Tomatoes', 'Rice', 'Shampoo']",3,85.85,Credit Card,Dallas,Supermarket,True,Senior Citizen,Spring,Discount on Selected Items
+1000000950,2022-07-04 16:33:53,Stephanie Smith,"['Rice', 'Feminine Hygiene Products']",7,9.55,Mobile Payment,Houston,Supermarket,True,Professional,Fall,
+1000000951,2023-02-08 03:06:22,Darrell Saunders,['Toothpaste'],10,76.89,Credit Card,San Francisco,Department Store,True,Professional,Winter,
+1000000952,2023-11-13 23:09:51,Brent Brown,"['Chips', 'Garden Hose', 'Dishware']",5,7.19,Cash,Miami,Department Store,False,Middle-Aged,Spring,
+1000000953,2023-02-05 02:00:40,Stephanie Tran,"['Sponges', 'Butter']",6,5.34,Mobile Payment,San Francisco,Convenience Store,False,Teenager,Fall,
+1000000954,2021-05-31 01:18:43,Christopher Harris,"['Dustpan', 'Rice', 'Deodorant', 'Carrots', 'Paper Towels']",6,38.28,Mobile Payment,Seattle,Supermarket,False,Young Adult,Spring,Discount on Selected Items
+1000000955,2024-01-30 19:01:52,Rose Williams,"['Light Bulbs', 'Sponges', 'Salmon']",2,80.83,Cash,Seattle,Warehouse Club,True,Homemaker,Winter,
+1000000956,2023-07-13 09:44:03,Ryan Owens,"['Shaving Cream', 'Shampoo', 'Lawn Mower', 'Light Bulbs', 'Air Freshener']",1,56.75,Debit Card,Los Angeles,Convenience Store,True,Middle-Aged,Summer,
+1000000957,2021-05-31 02:29:55,Joan Watson,"['Onions', 'Spinach', 'Hair Gel', 'BBQ Sauce']",7,7.55,Cash,Seattle,Warehouse Club,True,Teenager,Fall,
+1000000958,2022-02-25 12:45:15,Melissa Hernandez,['Ice Cream'],6,8.02,Debit Card,Chicago,Convenience Store,False,Middle-Aged,Summer,
+1000000959,2024-02-27 19:11:44,Brandy Hutchinson,"['Vinegar', 'Shower Gel', 'Insect Repellent']",7,85.76,Credit Card,Houston,Convenience Store,False,Student,Summer,
+1000000960,2023-09-04 08:48:17,Roger Holloway,"['Ice Cream', 'BBQ Sauce', 'Pickles', 'Dustpan']",5,32.94,Debit Card,Los Angeles,Convenience Store,False,Professional,Winter,BOGO (Buy One Get One)
+1000000961,2022-10-23 19:08:40,Wayne French DVM,"['Power Strips', 'Milk']",3,71.83,Credit Card,Houston,Convenience Store,False,Homemaker,Fall,
+1000000962,2021-06-29 12:15:39,Michael Martinez,"['Lawn Mower', 'Toilet Paper', 'Deodorant', 'Air Freshener', 'Ironing Board']",6,98.51,Mobile Payment,San Francisco,Convenience Store,True,Young Adult,Spring,Discount on Selected Items
+1000000963,2021-05-31 15:54:40,Adam Hall,"['Cereal', 'Milk', 'Yogurt', 'Coffee', 'Light Bulbs']",6,22.06,Credit Card,San Francisco,Department Store,False,Homemaker,Spring,BOGO (Buy One Get One)
+1000000964,2023-01-06 03:29:29,Anthony Valenzuela,"['Dish Soap', 'Salmon', 'Hand Sanitizer', 'Tuna', 'Syrup']",6,47.66,Credit Card,Los Angeles,Specialty Store,True,Retiree,Summer,Discount on Selected Items
+1000000965,2020-03-22 19:33:13,Samantha Nguyen,"['Bath Towels', 'Ice Cream', 'Honey', 'Chips']",2,10.04,Mobile Payment,Dallas,Warehouse Club,False,Teenager,Spring,Discount on Selected Items
+1000000966,2022-04-21 16:27:59,Kara Fuller,"['Mop', 'Iron', 'Ice Cream']",7,65.68,Debit Card,Los Angeles,Convenience Store,True,Senior Citizen,Winter,
+1000000967,2023-04-05 14:54:34,Sara Rivers,"['Toothpaste', 'Cleaning Spray', 'Jam', 'Air Freshener', 'Insect Repellent']",8,82.8,Credit Card,Atlanta,Supermarket,False,Homemaker,Winter,
+1000000968,2023-07-20 11:49:06,Shelby Allen MD,['Syrup'],10,68.51,Credit Card,Seattle,Convenience Store,False,Young Adult,Summer,
+1000000969,2020-06-05 02:14:49,Ronald Chandler,"['Vinegar', 'Vinegar', 'Mop', 'Iron']",4,73.35,Debit Card,Atlanta,Convenience Store,False,Middle-Aged,Winter,Discount on Selected Items
+1000000970,2020-11-26 16:49:06,Brenda Black,['Toothpaste'],2,13.74,Mobile Payment,Los Angeles,Pharmacy,True,Student,Spring,BOGO (Buy One Get One)
+1000000971,2020-07-08 16:51:58,Matthew Davis,"['Tissues', 'Carrots', 'Light Bulbs']",1,39.47,Credit Card,Atlanta,Convenience Store,False,Professional,Spring,BOGO (Buy One Get One)
+1000000972,2022-06-30 19:10:47,Carl Thomas,"['Extension Cords', 'Garden Hose', 'Light Bulbs', 'Ketchup', 'Paper Towels']",8,15.12,Debit Card,Houston,Specialty Store,True,Retiree,Spring,
+1000000973,2020-02-14 14:04:37,Randy Allen,"['Apple', 'Mayonnaise', 'Coffee', 'Tuna', 'Syrup']",8,97.75,Cash,Miami,Pharmacy,False,Young Adult,Fall,Discount on Selected Items
+1000000974,2023-10-16 19:34:38,Alex King,['Bread'],9,42.6,Mobile Payment,Miami,Pharmacy,True,Professional,Summer,BOGO (Buy One Get One)
+1000000975,2022-08-16 07:11:29,Diane Garcia,"['Rice', 'Toothbrush', 'Sponges', 'Cheese']",4,73.27,Debit Card,Seattle,Pharmacy,False,Senior Citizen,Fall,
+1000000976,2020-12-21 21:28:26,Thomas Vance,"['Shampoo', 'Trash Bags', 'Pasta']",5,49.34,Cash,San Francisco,Department Store,True,Young Adult,Spring,Discount on Selected Items
+1000000977,2023-01-18 20:07:03,Shane Davis,"['Shaving Cream', 'Apple', 'Mayonnaise']",4,35.75,Credit Card,Chicago,Specialty Store,False,Professional,Fall,BOGO (Buy One Get One)
+1000000978,2023-05-24 02:16:28,Debra Anderson,"['Pancake Mix', 'Bath Towels', 'Paper Towels']",6,90.14,Mobile Payment,Boston,Convenience Store,True,Retiree,Summer,
+1000000979,2024-04-26 03:21:43,Derrick Beck,"['Shrimp', 'Potatoes', 'Water', 'Coffee']",3,35.24,Debit Card,Dallas,Pharmacy,False,Young Adult,Spring,BOGO (Buy One Get One)
+1000000980,2022-10-04 01:58:52,Daisy Weaver,['Baby Wipes'],8,87.47,Debit Card,Los Angeles,Department Store,False,Student,Winter,
+1000000981,2020-09-08 16:14:09,Rebecca Jones,['Paper Towels'],1,31.39,Mobile Payment,Los Angeles,Specialty Store,False,Senior Citizen,Spring,
+1000000982,2023-05-09 19:05:22,Jordan Mcdaniel,"['Insect Repellent', 'Rice']",9,16.42,Credit Card,San Francisco,Pharmacy,True,Student,Fall,BOGO (Buy One Get One)
+1000000983,2022-06-22 20:59:25,Jennifer Nicholson,"['Toothpaste', 'Tuna', 'Insect Repellent', 'Shrimp']",4,35.7,Debit Card,San Francisco,Specialty Store,True,Teenager,Winter,BOGO (Buy One Get One)
+1000000984,2022-06-10 13:33:37,Taylor Anderson,['BBQ Sauce'],10,22.81,Mobile Payment,San Francisco,Department Store,False,Middle-Aged,Winter,Discount on Selected Items
+1000000985,2020-02-24 20:31:15,James Hartman,"['Cleaning Rags', 'Beef']",1,80.06,Cash,Dallas,Specialty Store,False,Young Adult,Summer,
+1000000986,2024-04-01 13:58:57,Christine Brown,"['Yogurt', 'Baby Wipes']",1,91.37,Credit Card,Boston,Department Store,True,Retiree,Summer,Discount on Selected Items
+1000000987,2020-10-14 19:46:27,Brooke Lawrence,"['Toothpaste', 'Mop']",2,15.24,Credit Card,Miami,Warehouse Club,False,Teenager,Winter,BOGO (Buy One Get One)
+1000000988,2024-05-13 19:04:24,Diane Scott,"['Toothpaste', 'Diapers']",1,87.57,Debit Card,Chicago,Supermarket,False,Homemaker,Fall,Discount on Selected Items
+1000000989,2021-11-25 06:06:41,Barbara Allen,"['Onions', 'Light Bulbs', 'Jam']",9,17.11,Debit Card,Houston,Supermarket,False,Retiree,Fall,BOGO (Buy One Get One)
+1000000990,2023-01-01 06:01:59,Wendy White,"['Vinegar', 'Eggs', 'Diapers']",7,10.43,Debit Card,San Francisco,Department Store,True,Senior Citizen,Summer,
+1000000991,2022-11-29 00:35:28,Mrs. Stephanie Spencer,"['Baby Wipes', 'Butter', 'Lawn Mower', 'Toilet Paper']",10,61.89,Cash,Miami,Warehouse Club,True,Student,Winter,Discount on Selected Items
+1000000992,2023-01-07 18:04:53,Sheri Lyons,['Tuna'],7,98.9,Credit Card,Miami,Specialty Store,False,Homemaker,Summer,
+1000000993,2023-08-19 12:00:57,Jessica James,"['Coffee', 'Coffee']",9,91.61,Cash,Atlanta,Department Store,False,Professional,Summer,BOGO (Buy One Get One)
+1000000994,2020-10-08 14:27:44,Heather Mills,"['Mustard', 'Paper Towels', 'Toilet Paper', 'Insect Repellent', 'Soap']",10,28.09,Mobile Payment,Boston,Department Store,True,Middle-Aged,Spring,Discount on Selected Items
+1000000995,2021-03-23 19:07:44,Kenneth Barnes,"['Butter', 'Mayonnaise', 'Tea']",5,16.32,Cash,Seattle,Supermarket,False,Homemaker,Spring,BOGO (Buy One Get One)
+1000000996,2021-01-26 17:08:07,Michael Stein,['Insect Repellent'],5,11.86,Credit Card,Dallas,Pharmacy,False,Homemaker,Winter,
+1000000997,2022-01-10 15:07:02,Jesse Lewis,"['Hair Gel', 'Yogurt']",4,14.77,Mobile Payment,Los Angeles,Convenience Store,False,Senior Citizen,Summer,BOGO (Buy One Get One)
+1000000998,2024-02-01 15:45:43,Jenny Larson,"['Cleaning Rags', 'Cleaning Rags', 'Razors', 'Plant Fertilizer']",4,77.62,Debit Card,Boston,Warehouse Club,False,Professional,Summer,Discount on Selected Items
+1000000999,2020-05-29 14:07:04,William Anderson,['Plant Fertilizer'],10,80.33,Debit Card,Atlanta,Supermarket,False,Retiree,Spring,BOGO (Buy One Get One)

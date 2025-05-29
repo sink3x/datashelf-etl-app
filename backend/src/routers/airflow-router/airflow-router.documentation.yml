@@ -102,6 +102,9 @@ paths:
                   message:
                     type: string
                     example: Ok
+                  meta:
+                    type: object
+                    additionalProperties: true
         '500':
           description: Failed to get DAGs
           content:
@@ -258,6 +261,9 @@ paths:
               schema:
                 type: object
                 properties:
+                  meta:
+                    type: object
+                    additionalProperties: true
                   message:
                     type: string
                     example: Ok

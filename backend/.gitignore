@@ -14,6 +14,8 @@ app.local.json
 app.development.json
 app.stage.json
 app.production.json
+configs/
+!configs/app.example.json
 
 # Dependencies
 node_modules

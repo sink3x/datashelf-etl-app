@@ -40,6 +40,7 @@ export const swaggerSpecificationDocument = {
 }
 
 export const swaggerSpecificationOptions = {
+  customfavIcon: '/favicon.ico',
   docExpansion: 'none',
   showRequestDuration: true,
   defaultModelsExpandDepth: -1,

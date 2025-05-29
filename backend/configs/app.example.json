@@ -30,7 +30,7 @@
       }
     },
     "rabbitmq": {
-      "url": "amqp://admin:admin@rabbitmq:5672",
+      "url": "amqp://guest:guest@rabbitmq:5672",
       "queue": "datasets"
     }
   },

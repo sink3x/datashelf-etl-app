@@ -26,9 +26,14 @@ export class DatasetController {
     try {
       const datasetList = (await this.mongodb.models.datasetProcessed.find()) as TDatasetProcessedDocument[]
 
+      const meta = {
+        totalCount: datasetList.length,
+      }
+
       response.status(200).json({
         message: 'Ok',
         datasetList,
+        meta,
       })
     } catch (error) {
       const axiosErrorData = error?.response?.data
@@ -67,9 +72,14 @@ export class DatasetController {
         })
         .filter((bucketObject) => bucketObject !== null)
 
+      const meta = {
+        totalCount: fileList.length,
+      }
+
       response.status(200).json({
         message: 'Ok',
         datasetList: fileList,
+        meta,
       })
     } catch (error) {
       const axiosErrorData = error?.response?.data

@@ -1,4 +1,5 @@
 import type { TMaybe } from './maybe'
+import { IObjectAny } from './object-any'
 
 export interface IDagScheduleInterval {
   __type: string
@@ -63,4 +64,32 @@ export interface IDagStatus {
       },
     ]
   }
+}
+
+export interface IDagTriggeredInfo {
+  dag_run_id: string
+  dag_id: string
+  logical_date: string
+  queued_at: string
+  start_date: TMaybe<string>
+  end_date: TMaybe<string>
+  data_interval_start: string
+  data_interval_end: string
+  run_after: string
+  last_scheduling_decision: TMaybe<string>
+  run_type: 'manual' | 'scheduled'
+  state: 'queued' | 'running' | 'success' | 'failed'
+  triggered_by: string
+  conf: IObjectAny
+  note: TMaybe<string>
+  dag_versions: Array<{
+    id: string
+    version_number: number
+    dag_id: string
+    bundle_name: string
+    bundle_version: TMaybe<string>
+    created_at: string
+    bundle_url: TMaybe<string>
+  }>
+  bundle_version: TMaybe<string>
 }

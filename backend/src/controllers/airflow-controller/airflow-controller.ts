@@ -41,10 +41,15 @@ export class AirflowController {
         },
       )
 
+      const meta = {
+        totalCount: data.dags.length,
+      }
+
       response.status(200).json({
         dags: data.dags,
         total_entries: data.total_entries,
         message: 'Successful get dags',
+        meta,
       })
     } catch (error) {
       const axiosErrorData = error?.response?.data
@@ -137,9 +142,14 @@ export class AirflowController {
   }
 
   public getAllowFileTypeList(_request: Request, response: TGetAllowFileTypeListResponse) {
+    const meta = {
+      totalCount: ALLOWLABLE_FILE_TYPE_LIST.length,
+    }
+
     response.status(200).json({
       message: 'Ok',
       allowedFileTypeList: ALLOWLABLE_FILE_TYPE_LIST,
+      meta,
     })
   }
 
