@@ -1,0 +1,15 @@
+{
+  "services": {
+    "s3": {
+      "endpoint_url": "https://storage.yandexcloud.net",
+      "key_id": "",
+      "key_value": "",
+      "bucket_name": "",
+      "region_name": "ru-central1"
+    },
+    "rabbitmq": {
+      "url": "amqp://admin:admin@rabbitmq:5672",
+      "queue": "charts"
+    }
+  }
+}
