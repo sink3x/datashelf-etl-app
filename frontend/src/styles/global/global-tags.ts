@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 
+import { EColorsMain } from '../colors/colors-main'
+
 export const GlobalStyleTags = createGlobalStyle`
   html {
     height: 100%;
@@ -7,6 +9,7 @@ export const GlobalStyleTags = createGlobalStyle`
     -webkit-user-select: none;
     -ms-user-select: none;
     font-family: 'Inter Variable', sans-serif;
+    background-color: ${EColorsMain.WHITE_BACKGROUND};
 
     ::selection {
     }

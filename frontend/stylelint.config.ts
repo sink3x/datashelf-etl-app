@@ -1,11 +1,13 @@
 export default {
-	extends: ['stylelint-config-standard', 'stylelint-config-styled-components', 'stylelint-config-prettier'],
-	customSyntax: '@stylelint/postcss-css-in-js',
+	extends: ['stylelint-config-standard'],
+	overrides: [
+		{
+			files: ['**/*.styles.{ts,tsx}'],
+			customSyntax: 'postcss-styled-syntax',
+		},
+	],
 	rules: {
-		'at-rule-no-unknown': null,
 		'block-no-empty': true,
 		'color-no-invalid-hex': true,
-		'declaration-block-trailing-semicolon': 'always',
-		'no-descending-specificity': null,
 	},
 }

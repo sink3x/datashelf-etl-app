@@ -99,18 +99,36 @@ export default tseslint.config(
 			'import/order': [
 				'error',
 				{
-					groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
+					groups: ['builtin', 'external', 'internal', ['parent', 'sibling', 'index'], 'object', 'type'],
 					pathGroups: [
+						{
+							pattern: 'react',
+							group: 'external',
+							position: 'before',
+						},
+						{
+							pattern: 'react-dom',
+							group: 'external',
+							position: 'before',
+						},
 						{
 							pattern:
 								'@{assets,components,hooks,layouts,pages,redux,shared,utils,styles,interfaces,services,store}/**',
 							group: 'internal',
 							position: 'after',
 						},
+						{
+							pattern: '../**',
+							group: 'internal',
+							position: 'after',
+						},
 					],
 					pathGroupsExcludedImportTypes: ['builtin'],
 					'newlines-between': 'always',
-					alphabetize: { order: 'asc', caseInsensitive: true },
+					alphabetize: {
+						order: 'asc',
+						caseInsensitive: true,
+					},
 				},
 			],
 

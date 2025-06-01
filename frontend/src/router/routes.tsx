@@ -1,18 +1,21 @@
-import { HomePage } from '@pages/HomePage/HomePage'
+import { NotFoundPage } from '@pages/NotFoundPage/NotFoundPage'
+import { WelcomePage } from '@pages/WelcomePage/WelcomePage'
+
+import type { IRoutes } from './routes.interfaces'
 
 export const enum ERoutesPageNames {
 	HOME = 'HOME',
 	NOT_FOUND = 'NOT_FOUND',
 }
 
-export const Routes = {
+export const Routes: IRoutes = {
 	[ERoutesPageNames.HOME]: {
 		path: '/',
-		element: <HomePage />,
+		element: <WelcomePage />,
 		icon: null,
 	},
 	[ERoutesPageNames.NOT_FOUND]: {
 		path: '*',
-		elemnt: null,
+		element: <NotFoundPage />,
 	},
 }
