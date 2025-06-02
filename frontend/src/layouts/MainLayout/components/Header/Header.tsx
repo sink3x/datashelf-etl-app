@@ -9,7 +9,7 @@ import * as Styled from './Header.styles'
 export const Header = () => {
 	return (
 		<Styled.Header>
-			<Link to={Routes[ERoutesPageNames.HOME].path}>
+			<Link to={Routes[ERoutesPageNames.WELCOME]!.path}>
 				<Styled.HeaderLogo>
 					<Styled.Image src={DATASHELF_LOGO_URL} alt="🧊" />
 					<Styled.HeaderLogoTitle>Datashelf</Styled.HeaderLogoTitle>

@@ -13,7 +13,7 @@ export const WelcomePage = () => {
 	const navigate = useNavigate()
 
 	const handleClickOpenConsole = () => {
-		navigate(Routes[ERoutesPageNames.HOME].path)
+		navigate(Routes[ERoutesPageNames.CONSOLE]!.path)
 	}
 
 	const handleClickContactUs = () => {}

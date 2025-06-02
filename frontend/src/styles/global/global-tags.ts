@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-import { EColorsMain } from '../colors/colors-main'
+import { EColorsMain } from '@styles/colors/colors-main'
 
 export const GlobalStyleTags = createGlobalStyle`
   html {
@@ -10,6 +10,7 @@ export const GlobalStyleTags = createGlobalStyle`
     -ms-user-select: none;
     font-family: 'Inter Variable', sans-serif;
     background-color: ${EColorsMain.WHITE_BACKGROUND};
+    
 
     ::selection {
     }

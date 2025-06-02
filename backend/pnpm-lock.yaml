@@ -12,7 +12,7 @@ importers:
         specifier: 3.815.0
         version: 3.815.0
       amqplib:
-        specifier: ^0.10.8
+        specifier: 0.10.8
         version: 0.10.8
       axios:
         specifier: 1.9.0
@@ -36,7 +36,7 @@ importers:
         specifier: 3.6.1
         version: 3.6.1
       mongoose:
-        specifier: ^8.15.0
+        specifier: 8.15.0
         version: 8.15.0
       multer:
         specifier: 1.4.5-lts.2
@@ -52,7 +52,7 @@ importers:
         specifier: 19.8.1
         version: 19.8.1(@types/node@22.15.21)(typescript@5.8.3)
       '@types/amqplib':
-        specifier: ^0.10.7
+        specifier: 0.10.7
         version: 0.10.7
       '@types/compression':
         specifier: 1.7.5

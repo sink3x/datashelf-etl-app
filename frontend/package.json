@@ -27,6 +27,7 @@
 		"react-dom": "19.1.0",
 		"react-error-boundary": "6.0.0",
 		"react-lazyload": "3.2.1",
+		"react-pro-sidebar": "^1.1.0",
 		"react-router-dom": "7.6.1",
 		"react-toastify": "11.0.5",
 		"styled-components": "6.1.18",
