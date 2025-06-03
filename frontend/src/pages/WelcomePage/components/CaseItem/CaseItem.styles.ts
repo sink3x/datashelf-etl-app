@@ -2,8 +2,7 @@ import { Flex, Space, Typography } from 'antd'
 import styled from 'styled-components'
 
 import { EColorsMain } from '@styles/colors/colors-main'
-
-import { EColorsShadow } from '../../../../styles/colors/colors-shadow'
+import { EColorsShadow } from '@styles/colors/colors-shadow'
 
 export const CaseItem = styled(Flex)`
 	padding: 15px;

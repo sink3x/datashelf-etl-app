@@ -1,8 +1,9 @@
 import type { IBucketObject } from '@interfaces/bucket-object'
 import type { IDatasetProcessed } from '@interfaces/dataset-processed'
-import { IDocumentMongodb } from '@interfaces/document-mongodb'
+import type { IDocumentMongodb } from '@interfaces/document-mongodb'
 import type { IObjectAny } from '@interfaces/object-any'
-import { IResponseMeta } from '@interfaces/response-meta'
+import type { TRequestQuery } from '@interfaces/request'
+import type { IResponseMeta } from '@interfaces/response-meta'
 import type { Request, Response } from 'express'
 
 export type TDatasetProcessedDocument = IDocumentMongodb<IDatasetProcessed>[]
@@ -16,7 +17,10 @@ export type IGetProcessedResponse = Response<{
   meta?: IResponseMeta
 }>
 
-export type IGetRawRequest = Request
+export type IGetRawRequest = TRequestQuery<{
+  page?: string
+  limit?: string
+}>
 
 export type IGetRawResponse = Response<{
   message: string

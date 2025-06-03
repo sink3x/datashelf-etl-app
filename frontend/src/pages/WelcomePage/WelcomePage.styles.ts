@@ -10,7 +10,9 @@ import { EColorsMain } from '@styles/colors/colors-main'
 import { CaseItem as CaseItemVanila } from './components/CaseItem/CaseItem'
 
 export const WelcomePage = styled(Space)`
+	margin-bottom: 20px;
 	color: ${EColorsMain.BLACK};
+	box-sizing: border-box;
 `
 
 export const DescriptionSpace = styled(Space)`
@@ -51,6 +53,11 @@ export const DescriptionActionSpace = styled(Space)`
 export const ButtonBlack = styled(Button)`
 	color: ${EColorsMain.BLACK} !important;
 	border: 1px solid ${EColorsMain.BLACK} !important;
+	transition: all 0.3s ease;
+
+	&:hover {
+		opacity: 0.4;
+	}
 `
 
 export const CaseItemShowcase = styled(Flex)`

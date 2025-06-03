@@ -1,9 +1,10 @@
-import { Space } from 'antd'
+import { Flex } from 'antd'
 import styled from 'styled-components'
 
-export const MainLayout = styled(Space)`
+export const MainLayout = styled(Flex)`
 	height: 100vh;
 	width: 100vw;
-	display: flex;
+	margin-bottom: 30px;
 	flex-direction: column;
+	box-sizing: border-box;
 `

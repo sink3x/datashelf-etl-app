@@ -1,5 +1,6 @@
 import { Layout } from 'antd'
 import { RouterProvider } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 import { router } from '@router/create-router'
 
@@ -11,6 +12,7 @@ export const App = () => {
 		<StrictModeWrapper>
 			<GlobalStyles />
 			<Layout>
+				<ToastContainer position="bottom-right" pauseOnFocusLoss />
 				<RouterProvider router={router} />
 			</Layout>
 		</StrictModeWrapper>

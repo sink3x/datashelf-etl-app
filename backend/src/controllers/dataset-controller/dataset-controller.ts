@@ -46,8 +46,14 @@ export class DatasetController {
     }
   }
 
-  public async getRaw(_request: IGetRawRequest, response: IGetRawResponse) {
+  public async getRaw(request: IGetRawRequest, response: IGetRawResponse) {
     try {
+      const { page: __page, limit: __limit } = request.query
+
+      const page = parseInt(__page || '1')
+      const limit = parseInt(__limit || '10')
+      const offset = (page - 1) * limit
+
       const commandGetObjectList = new ListObjectsV2Command({
         Bucket: this.s3.config.bucketName,
         Prefix: 'raw-data',
@@ -74,11 +80,16 @@ export class DatasetController {
 
       const meta = {
         totalCount: fileList.length,
+        totalPages: Math.ceil(fileList.length / limit),
+        currentPage: page,
+        pageSize: limit,
       }
+
+      const paginatedData = fileList.toReversed().slice(offset, offset + limit)
 
       response.status(200).json({
         message: 'Ok',
-        datasetList: fileList,
+        datasetList: paginatedData,
         meta,
       })
     } catch (error) {

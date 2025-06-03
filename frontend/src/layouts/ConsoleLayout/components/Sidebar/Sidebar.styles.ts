@@ -1,12 +1,14 @@
 import { Divider, Flex, Space, Typography } from 'antd'
-import { MenuItem } from 'react-pro-sidebar'
+import { MenuItem, Sidebar } from 'react-pro-sidebar'
 import styled from 'styled-components'
 
-import type { ISidebarGroupProps } from './Sidebar.interfaces'
+import { EColorsMain } from '@styles/colors/colors-main'
 
-export const SidebarContainer = styled(Flex)`
-	flex-direction: column;
+import type { ISidebarGroupProps, ISiderbarGroupItemProps } from './Sidebar.interfaces'
+
+export const SidebarContainer = styled(Sidebar)`
 	height: 100vh;
+	position: fixed !important;
 `
 
 export const SidebarHeader = styled(Flex)`
@@ -53,13 +55,44 @@ export const SidebarGroupTitle = styled(Space)`
 	font-weight: bold;
 `
 
-export const SiderbarGroupItem = styled(MenuItem)`
+const menuItemStyles = ($isActive = false) => `
+	color: ${EColorsMain.BLACK};
+
 	span {
+		${$isActive && 'color:' + EColorsMain.BLUE};
 		display: flex;
 		align-items: center;
 
 		.icon {
 			margin-right: 10px;
 		}
+	}
+
+	* {
+		${$isActive && `pointer-events: none`};
+	}
+`
+
+export const SiderbarGroupItem = styled(MenuItem)<ISiderbarGroupItemProps>`
+	${({ $isActive }) => menuItemStyles($isActive)}
+`
+
+export const SiderbarGroupLink = styled.a<ISiderbarGroupItemProps>`
+	${({ $isActive }) => menuItemStyles($isActive)}
+
+	width: 100%;
+	height: 50px;
+	padding-right: 20px;
+	padding-left: 20px;
+	display: flex;
+	align-items: center;
+	position: relative;
+	cursor: pointer;
+	box-sizing: border-box;
+	transition: none;
+
+	&:hover {
+		color: ${EColorsMain.BLACK};
+		background-color: #f3f3f3;
 	}
 `

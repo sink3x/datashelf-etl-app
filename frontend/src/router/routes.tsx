@@ -1,7 +1,13 @@
 import { ChartPie, CodeCommits, Files, FolderArrowUpIn, Gear, House } from '@gravity-ui/icons'
 
+// TODO: use lazy load
 import { ConsoleLayout } from '@layouts/ConsoleLayout/ConsoleLayout'
+import { DashboardPage } from '@pages/Console/DashboardPage/DashboardPage'
 import { HomePage } from '@pages/Console/HomePage/HomePage'
+import { NotFoundPage as ConsoleNotFoundPage } from '@pages/Console/NotFoundPage/NotFoundPage'
+import { PipelinesPage } from '@pages/Console/PipelinesPage/PipelinesPage'
+import { StoragePage } from '@pages/Console/StoragePage/StoragePage'
+import { UploadPage } from '@pages/Console/UploadPage/UploadPage'
 import { NotFoundPage } from '@pages/NotFoundPage/NotFoundPage'
 import { WelcomePage } from '@pages/WelcomePage/WelcomePage'
 
@@ -16,7 +22,7 @@ export const enum ERoutesPageNames {
 	CONSOLE_FILES = 'CONSOLE_FILES',
 	CONSOLE_UPLOAD = 'CONSOLE_UPLOAD',
 	CONSOLE_PIPELINES = 'CONSOLE_PIPELINES',
-	CONSOLE_DASHBOARDS = 'CONSOLE_DASHBOARDS',
+	CONSOLE_DASHBOARD = 'CONSOLE_DASHBOARD',
 	CONSOLE_SETTIGS = 'CONSOLE_SETTINGS',
 }
 
@@ -28,7 +34,7 @@ export const Routes: IRoutes = {
 		icon: null,
 	},
 	[ERoutesPageNames.NOT_FOUND]: {
-		path: '*',
+		path: '/*',
 		element: <NotFoundPage />,
 		type: ERouterElementType.ABSTRACT,
 	},
@@ -48,7 +54,7 @@ export const Routes: IRoutes = {
 			[ERoutesPageNames.CONSOLE_FILES]: {
 				path: '/storage',
 				fullPath: '/console/storage',
-				element: <div> files </div>,
+				element: <StoragePage />,
 				icon: <Files />,
 				group: 'General',
 				name: 'Storage',
@@ -56,7 +62,7 @@ export const Routes: IRoutes = {
 			[ERoutesPageNames.CONSOLE_UPLOAD]: {
 				path: '/upload',
 				fullPath: '/console/upload',
-				element: <div> upload </div>,
+				element: <UploadPage />,
 				icon: <FolderArrowUpIn />,
 				group: 'General',
 				name: 'Upload',
@@ -64,15 +70,15 @@ export const Routes: IRoutes = {
 			[ERoutesPageNames.CONSOLE_PIPELINES]: {
 				path: '/pipelines',
 				fullPath: '/console/pipelines',
-				element: <div> pipelines </div>,
+				element: <PipelinesPage />,
 				icon: <CodeCommits />,
 				group: 'General',
 				name: 'Pipelines',
 			},
-			[ERoutesPageNames.CONSOLE_DASHBOARDS]: {
+			[ERoutesPageNames.CONSOLE_DASHBOARD]: {
 				path: '/dashboard',
 				fullPath: '/console/dashboard',
-				element: <div> dashboards </div>,
+				element: <DashboardPage />,
 				icon: <ChartPie />,
 				group: 'General',
 				name: 'Dashboard',
@@ -84,10 +90,11 @@ export const Routes: IRoutes = {
 				icon: <Gear />,
 				group: 'Support',
 				name: 'Settings',
+				isDisabled: true,
 			},
 			[ERoutesPageNames.NOT_FOUND]: {
-				path: '*',
-				element: <div> Nope </div>,
+				path: '/*',
+				element: <ConsoleNotFoundPage />,
 				icon: null,
 				type: ERouterElementType.ABSTRACT,
 			},

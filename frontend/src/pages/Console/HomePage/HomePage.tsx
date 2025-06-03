@@ -1,3 +1,3 @@
 export const HomePage = () => {
-	return 'console home'
+	return 'Console home page currently empty'
 }

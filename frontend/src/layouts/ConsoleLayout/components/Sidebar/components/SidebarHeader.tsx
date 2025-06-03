@@ -2,9 +2,8 @@ import type { FC } from 'react'
 
 import DATASHELF_LOGO_URL from '@assets/images/logo/datashelf.webp'
 
-import * as Styled from './Sidebar.styles'
-
-import type { ISidebarHeaderProps } from './Sidebar.interfaces'
+import type { ISidebarHeaderProps } from '../Sidebar.interfaces'
+import * as Styled from '../Sidebar.styles'
 
 export const SidebarHeader: FC<ISidebarHeaderProps> = (props) => {
 	const { ...restProps } = props

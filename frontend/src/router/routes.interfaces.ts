@@ -6,6 +6,7 @@ export const enum ERouterElementType {
 	ABSTRACT = 'ABSTRACT',
 	GROUP = 'GROUP',
 	PAGE = 'PAGE',
+	EXTERNAL_LINK = 'EXTERNAL_LINK',
 }
 
 export interface IRouterElement {
@@ -16,6 +17,7 @@ export interface IRouterElement {
 	type?: ERouterElementType
 	group?: string
 	name?: string
+	isDisabled?: boolean
 }
 
 export interface IRouteNode extends IRouterElement {

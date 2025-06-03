@@ -1,26 +1,10 @@
 import type { FC } from 'react'
 
-import { Button, Result } from 'antd'
 import { ErrorBoundary as ReactErrorBoundary } from 'react-error-boundary'
 
-import type { IErrorBoundaryLayoutProps, IFallbackContainerProps } from './ErrorBoundaryLayout.interfaces'
+import { FallbackContainer } from './components/FallbackContainer/FallbackContainer'
 
-const FallbackContainer: FC<IFallbackContainerProps> = (props) => {
-	const { error, resetErrorBoundary } = props
-
-	return (
-		<Result
-			status="500"
-			title="Something went wrong"
-			subTitle={error.message}
-			extra={
-				<Button type="primary" onClick={resetErrorBoundary}>
-					Reload page
-				</Button>
-			}
-		/>
-	)
-}
+import type { IErrorBoundaryLayoutProps } from './ErrorBoundaryLayout.interfaces'
 
 export const ErrorBoundaryLayout: FC<IErrorBoundaryLayoutProps> = (props) => {
 	const { children } = props

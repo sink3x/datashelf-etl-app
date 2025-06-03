@@ -1,6 +1,6 @@
 import { Normalize } from 'styled-normalize'
 
-import { GlobalStyleTags } from './global-tags'
+import { GlobalStyleTags } from './GlobalTags'
 
 import '@fontsource-variable/fira-code'
 import '@fontsource-variable/inter'

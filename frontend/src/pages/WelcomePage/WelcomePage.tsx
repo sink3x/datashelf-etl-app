@@ -5,9 +5,12 @@ import { ERoutesPageNames, Routes } from '@router/routes'
 import { Button } from '@ui/Button/Button'
 
 import { MainLayout } from '@layouts/MainLayout/MainLayout'
+import { APP_CONFIG } from '@shared/config/config'
 
 import { CASE_ITEM_LIST, WELCOME_DESCRIPTION, WELCOME_TITLE } from './WelcomePage.constants'
 import * as Styled from './WelcomePage.styles'
+
+const { urls } = APP_CONFIG
 
 export const WelcomePage = () => {
 	const navigate = useNavigate()
@@ -15,8 +18,6 @@ export const WelcomePage = () => {
 	const handleClickOpenConsole = () => {
 		navigate(Routes[ERoutesPageNames.CONSOLE]!.path)
 	}
-
-	const handleClickContactUs = () => {}
 
 	return (
 		<MainLayout>
@@ -29,9 +30,9 @@ export const WelcomePage = () => {
 							<Button type="primary" onClick={handleClickOpenConsole}>
 								Open console
 							</Button>
-							<Styled.ButtonBlack ghost onClick={handleClickContactUs}>
-								Contact us
-							</Styled.ButtonBlack>
+							<a href={urls.contactUsUrl} target="_blank" rel="noreferrer">
+								<Styled.ButtonBlack ghost>Contact us</Styled.ButtonBlack>
+							</a>
 						</Styled.DescriptionActionSpace>
 					</Styled.DescriptionSpace>
 					<Styled.CaseItemShowcase>

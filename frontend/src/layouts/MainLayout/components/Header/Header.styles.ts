@@ -5,8 +5,8 @@ import { LANDING_WIDTH } from '../../MainLayout.constants'
 
 export const Header = styled.header`
 	width: ${LANDING_WIDTH};
-	margin-inline: auto;
-	padding-block: 10px;
+	margin: 10px auto;
+	box-sizing: border-box;
 `
 
 export const HeaderLogo = styled(Flex)`
