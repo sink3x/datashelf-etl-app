@@ -43,7 +43,7 @@ def analyze_customer_category_wordcloud(**kwargs):
             "labels": labels,
             "values": values,
             "total": total,
-            "top_category": {
+            "top": {
                 "label": top_label,
                 "count": top_value,
                 "percentage": round(100 * top_value / total, 2) if total > 0 else 0

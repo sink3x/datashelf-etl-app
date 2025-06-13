@@ -43,7 +43,7 @@ def analyze_payment_methods(**kwargs):
             "labels": payment_counts["Payment_Method"].tolist(),
             "values": payment_counts["Count"].tolist(),
             "total": total,
-            "top_payment_method": {
+            "top": {
                 "label": top_row["Payment_Method"],
                 "count": int(top_row["Count"]),
                 "percentage": round(100 * top_row["Count"] / total, 2)

@@ -18,6 +18,7 @@ export interface IRouterElement {
 	group?: string
 	name?: string
 	isDisabled?: boolean
+	getFullPathDynamic?: (value: string) => string
 }
 
 export interface IRouteNode extends IRouterElement {

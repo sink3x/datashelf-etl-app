@@ -10,5 +10,7 @@ export const addProcessedDataset = (mongodbService: MongodbService) => async (pa
     }
 
     await mongodbService.models.datasetProcessed.insertOne(payload)
-  } catch {}
+  } catch (error) {
+    console.error(`[status] error to update model datasetProcessed with payload ${payload}\n` ,error)
+  }
 }

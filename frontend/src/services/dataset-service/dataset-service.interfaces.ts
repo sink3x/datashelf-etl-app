@@ -1,3 +1,4 @@
+import type { IDatasetProcessed } from '@interfaces/dataset-processed'
 import type { IRawFile } from '@interfaces/file-raw'
 import type { IObjectAny } from '@interfaces/object-any'
 import type { IResponseMeta } from '@interfaces/response-meta'
@@ -21,6 +22,23 @@ export interface IGetRawFileListResponse
 	extends AxiosResponse<{
 		message: string
 		datasetList?: IRawFile[]
+		info?: IObjectAny
+		meta?: IResponseMeta
+	}> {}
+
+export interface IGetChartsParams {
+	fileName: string
+}
+
+export interface IGetChartsRequest
+	extends AxiosRequestConfig<{
+		params: {}
+	}> {}
+
+export interface IGetChartsResponse
+	extends AxiosResponse<{
+		message: string
+		charts?: Record<string, IDatasetProcessed['chart'][]>
 		info?: IObjectAny
 		meta?: IResponseMeta
 	}> {}

@@ -23,6 +23,7 @@ export const enum ERoutesPageNames {
 	CONSOLE_UPLOAD = 'CONSOLE_UPLOAD',
 	CONSOLE_PIPELINES = 'CONSOLE_PIPELINES',
 	CONSOLE_DASHBOARD = 'CONSOLE_DASHBOARD',
+	CONSOLE_DASHBOARD_BY_FILENAME = 'CONSOLE_DASHBOARD_BY_FILENAME',
 	CONSOLE_SETTIGS = 'CONSOLE_SETTINGS',
 }
 
@@ -74,14 +75,25 @@ export const Routes: IRoutes = {
 				icon: <CodeCommits />,
 				group: 'General',
 				name: 'Pipelines',
+				isDisabled: true,
 			},
 			[ERoutesPageNames.CONSOLE_DASHBOARD]: {
 				path: '/dashboard',
 				fullPath: '/console/dashboard',
 				element: <DashboardPage />,
 				icon: <ChartPie />,
+				type: ERouterElementType.ABSTRACT,
 				group: 'General',
 				name: 'Dashboard',
+			},
+			[ERoutesPageNames.CONSOLE_DASHBOARD_BY_FILENAME]: {
+				path: '/dashboard/:filename',
+				fullPath: '/console/dashboard/:filename',
+				element: <DashboardPage />,
+				group: 'General',
+				name: 'Dashboard',
+				type: ERouterElementType.ABSTRACT,
+				getFullPathDynamic: (fileName: string) => `/console/dashboard/${fileName}`,
 			},
 			[ERoutesPageNames.CONSOLE_SETTIGS]: {
 				path: '/settings',

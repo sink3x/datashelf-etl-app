@@ -50,7 +50,7 @@ def analyze_seasons(**kwargs):
             "labels": list(products),
             "values": list(counts_vals),
             "total": total,
-            "top_product": {
+            "top": {
                 "label": top_label,
                 "count": top_count,
                 "percentage": round(100 * top_count / total, 2) if total > 0 else 0

@@ -2,10 +2,10 @@ import type { IDagInfo, IDagStatus, IDagTriggeredInfo } from '@interfaces/dag'
 import type { IMulterFile } from '@interfaces/multer-file'
 import type { IObjectAny } from '@interfaces/object-any'
 import type { TRequestBody, TRequestParams } from '@interfaces/request'
+import type { IResponseMeta } from '@interfaces/response-meta'
 import type { AxiosRequestConfig, AxiosResponse } from 'axios'
 import type { Response } from 'express'
 
-import { IResponseMeta } from '@interfaces/response-meta'
 import type { ALLOWLABLE_FILE_TYPE_LIST } from './airflow-controller.constants'
 
 export type TGetDagListAirflowRequest = AxiosRequestConfig<{}>

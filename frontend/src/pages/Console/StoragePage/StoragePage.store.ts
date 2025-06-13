@@ -22,8 +22,6 @@ export class StoragePageStore {
 
 	constructor() {
 		makeAutoObservable(this)
-
-		this.fetchRawFileList()
 	}
 
 	reset = () => {

@@ -1,4 +1,4 @@
-import { IObjectAny } from './object-any'
+import type { IObjectAny } from './object-any'
 
 export interface IDatasetProcessed {
   filename: string

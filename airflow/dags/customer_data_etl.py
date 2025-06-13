@@ -6,6 +6,7 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 
 ROOT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
 if ROOT_PATH not in sys.path:
     sys.path.insert(0, ROOT_PATH)
 
@@ -20,9 +21,13 @@ from jobs.analytics.analyze_store_type import analyze_store_type
 from jobs.analytics.analyze_payment_methods import analyze_payment_methods
 from jobs.analytics.analyze_customer_category import analyze_customer_category
 from jobs.analytics.analyze_monthly_sales import analyze_monthly_sales
+from jobs.analytics.analyze_city_sales_summary import analyze_city_sales_summary
+from jobs.analytics.analyze_retail_metrics import analyze_retail_metrics
 
 DAG_ID = 'customer_data_etl'
 DAG_TAGS = ['etl', 'remote', 's3', 'rabbitmq', 'retail', 'customer', 'for dasboard', 'prepare charts', 'for backend']
+
+# TODO: fix if some jobs crashed, we have no data in mongodb
 
 with DAG(
     dag_id=DAG_ID,
@@ -81,6 +86,16 @@ with DAG(
         task_id='analyze_monthly_sales',
         python_callable=analyze_monthly_sales,
     )
+    
+    analyze_city_sales_summary_task = PythonOperator(
+        task_id='analyze_city_sales_summary',
+        python_callable=analyze_city_sales_summary,
+    )
+    
+    analyze_retail_metrics_task = PythonOperator(
+        task_id='analyze_retail_metrics',
+        python_callable=analyze_retail_metrics,
+    )
 
     download_task >> detect_type_task >> load_df_task
     load_df_task >> [
@@ -91,4 +106,6 @@ with DAG(
         analyze_customer_wordcloud_task,
         analyze_seasons_task,
         analyze_monthly_sales_task,
+        analyze_city_sales_summary_task,
+        analyze_retail_metrics_task,
     ]

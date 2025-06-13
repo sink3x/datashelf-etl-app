@@ -43,7 +43,7 @@ def analyze_city_wordcloud(**kwargs):
             "labels": labels,
             "values": values,
             "total": total,
-            "top_city": {
+            "top": {
                 "label": top_label,
                 "count": top_value,
                 "percentage": round(100 * top_value / total, 2) if total > 0 else 0

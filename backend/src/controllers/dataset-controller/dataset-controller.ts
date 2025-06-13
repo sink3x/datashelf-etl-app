@@ -1,5 +1,6 @@
 import { ListObjectsV2Command } from '@aws-sdk/client-s3'
 import type { IBucketObject } from '@interfaces/bucket-object'
+import type { IDatasetProcessed } from '@interfaces/dataset-processed'
 import type { IDIContainer } from '@interfaces/DI-container'
 
 import type {
@@ -8,7 +9,10 @@ import type {
   IGetRawRequest,
   IGetRawResponse,
   TDatasetProcessedDocument,
+  TGetChartsRequest,
+  TGetChartsResponse,
 } from './dataset-controller.interfaces'
+import { aggregateChartList } from './dataset-controller.utils'
 
 export class DatasetController {
   private mongodb
@@ -95,6 +99,38 @@ export class DatasetController {
     } catch (error) {
       const axiosErrorData = error?.response?.data
       const { detail = 'Failed to get processed data' } = axiosErrorData || {}
+
+      response.status(500).json({
+        message: detail,
+        info: axiosErrorData,
+      })
+    }
+  }
+
+  // TODO: add swagger documentation
+  public async getCharts(request: TGetChartsRequest, response: TGetChartsResponse) {
+    try {
+      const { filename } = request.params
+
+      const matchingDatasetList = (await this.mongodb.models.datasetProcessed.find({
+        filename,
+      })) as IDatasetProcessed[]
+      const aggregatedChartList = aggregateChartList(matchingDatasetList)
+
+      // TODO: create util to generate meta by params
+      const meta = {
+        totalCount: Object.keys(aggregatedChartList).length,
+      }
+
+      response.status(200).json({
+        message: 'Ok',
+        charts: aggregatedChartList,
+        meta,
+      })
+    } catch (error) {
+      // TODO: create util to generate axios error
+      const axiosErrorData = error?.response?.data
+      const { detail = 'Failed to get charts' } = axiosErrorData || {}
 
       response.status(500).json({
         message: detail,

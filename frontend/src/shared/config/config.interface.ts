@@ -5,6 +5,9 @@ export interface IAppConfig {
 	urls: {
 		contactUsUrl: string
 		documentationUrl: string
+		georaphyAtlasUrl: string
 	}
-	vars: {}
+	vars: {
+		axiosCacheLifetimeInSec: number
+	}
 }

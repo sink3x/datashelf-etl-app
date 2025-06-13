@@ -43,7 +43,7 @@ def analyze_customer_category(**kwargs):
             "labels": category_counts["Customer_Category"].tolist(),
             "values": category_counts["Count"].tolist(),
             "total": total,
-            "top_category": {
+            "top": {
                 "label": top_row["Customer_Category"],
                 "count": int(top_row["Count"]),
                 "percentage": round(100 * top_row["Count"] / total, 2)

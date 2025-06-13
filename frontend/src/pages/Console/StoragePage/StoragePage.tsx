@@ -31,6 +31,10 @@ export const StoragePage = observer(() => {
 	} = storagePageStore
 
 	useEffect(() => {
+		if (isRawFileListEmpty) {
+			fetchRawFileList()
+		}
+
 		if (!isLoadingRawFileList) {
 			fetchRawFileList({ isUpdateIsLoading: false })
 		}
@@ -99,8 +103,14 @@ export const StoragePage = observer(() => {
 
 							return (
 								<Styled.RawFileList.Item>
-									<Link to={Routes[ERoutesPageNames.CONSOLE]!.children!.CONSOLE_DASHBOARD!.fullPath!}>
-										<Tooltip placement="bottom" title="Click to open dashboard">
+									<Link
+										to={
+											Routes[ERoutesPageNames.CONSOLE]!.children![
+												ERoutesPageNames.CONSOLE_DASHBOARD_BY_FILENAME
+											]!.getFullPathDynamic!(item.fileName)!
+										}
+									>
+										<Tooltip placement="bottom" title={`Click to open ${item.fileName} dashboard`}>
 											<Styled.CardContainer
 												title={
 													<Styled.CardTitle>

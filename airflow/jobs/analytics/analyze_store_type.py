@@ -43,7 +43,7 @@ def analyze_store_type(**kwargs):
             "labels": store_counts["Store_Type"].tolist(),
             "values": store_counts["Count"].tolist(),
             "total": total,
-            "top_store_type": {
+            "top": {
                 "label": top_row["Store_Type"],
                 "count": int(top_row["Count"]),
                 "percentage": round(100 * top_row["Count"] / total, 2)

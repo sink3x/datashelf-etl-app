@@ -10,5 +10,6 @@ export class DatasetRouter {
 
     this.router.get('/processed', datasetController.getProcessed.bind(datasetController))
     this.router.get('/raw', datasetController.getRaw.bind(datasetController))
+    this.router.get('/charts/:filename', datasetController.getCharts.bind(datasetController))
   }
 }

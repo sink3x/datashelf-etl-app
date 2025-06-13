@@ -28,6 +28,8 @@ export const SidebarBody = () => {
 						</Styled.SidebarGroupTitle>
 						<Menu>
 							{extendedNavigationElementsInGroup[navigationGroupName]?.map((menuElement) => {
+								const isActive = pathname === menuElement.fullPath! // TODO: fix nested path don't work
+
 								if (menuElement?.type === ERouterElementType.EXTERNAL_LINK) {
 									return (
 										<Styled.SiderbarGroupLink
@@ -46,7 +48,7 @@ export const SidebarBody = () => {
 
 								return (
 									<Styled.SiderbarGroupItem
-										$isActive={pathname === menuElement.fullPath!}
+										$isActive={isActive}
 										key={menuElement.name}
 										onClick={handleClickNavigateInElement(menuElement.fullPath!)}
 										disabled={!!menuElement?.isDisabled}
