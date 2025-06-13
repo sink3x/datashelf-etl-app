@@ -11,6 +11,7 @@ window.appConfig = {
 	},
 	vars: {
     axiosCacheLifetimeInSec: 60
+    defaultDagId: 'customer_data_etl',
   },
 }
 

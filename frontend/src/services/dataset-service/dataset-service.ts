@@ -12,14 +12,14 @@ import type {
 } from './dataset-service.interfaces'
 
 export const getRawFileList = (params: IGetRawFileListParams) =>
-	axiosInstance<IGetRawFileListResponse, IGetRawFileListRequest>(`${DATASET_BASE}/raw`, {
+	axiosInstance<IGetRawFileListRequest, IGetRawFileListResponse>(`${DATASET_BASE}/raw`, {
 		params,
 	})
 
 export const getCharts = (params: IGetChartsParams) => {
 	const { fileName } = params
 
-	return axiosInstance<IGetChartsResponse, IGetChartsRequest>(`${DATASET_BASE}/charts/${fileName}`, {
+	return axiosInstance<IGetChartsRequest, IGetChartsResponse>(`${DATASET_BASE}/charts/${fileName}`, {
 		params,
 	})
 }

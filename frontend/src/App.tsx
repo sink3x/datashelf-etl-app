@@ -7,6 +7,8 @@ import { router } from '@router/create-router'
 import { StrictModeWrapper } from '@components/StrictModeWrapper/StrictModeWrapper'
 import { GlobalStyles } from '@styles/global/GlobalStyles'
 
+import 'react-toastify/dist/ReactToastify.css'
+
 export const App = () => {
 	return (
 		<StrictModeWrapper>

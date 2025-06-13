@@ -8,6 +8,7 @@ window.appConfig = {
 		georaphyAtlasUrl: 'https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json',
 	},
 	vars: {
-		axiosCacheLifetimeInSec: 60,
+    axiosCacheLifetimeInSec: 60,
+    defaultDagId: 'customer_data_etl',
 	},
 }

@@ -9,5 +9,6 @@ export interface IAppConfig {
 	}
 	vars: {
 		axiosCacheLifetimeInSec: number
+		defaultDagId: string
 	}
 }
