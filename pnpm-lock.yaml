@@ -53,9 +53,6 @@ importers:
       helmet:
         specifier: 8.1.0
         version: 8.1.0
-      luxon:
-        specifier: 3.6.1
-        version: 3.6.1
       mongoose:
         specifier: 8.15.0
         version: 8.15.0
@@ -90,9 +87,6 @@ importers:
       '@types/express':
         specifier: 5.0.2
         version: 5.0.2
-      '@types/luxon':
-        specifier: 3.6.2
-        version: 3.6.2
       '@types/multer':
         specifier: 2.3.0
         version: 2.3.0

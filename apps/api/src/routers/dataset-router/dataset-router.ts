@@ -1,15 +1,14 @@
-import { DatasetController } from '@controllers/dataset-controller/dataset-controller'
-import type { IDIContainer } from '@interfaces/DI-container'
+import type { DatasetController } from '@controllers/dataset-controller/dataset-controller'
+import { validateRequest } from '@middlewares/validate-request'
+import { chartsSchemas, rawListSchemas } from '@validations/dataset-validations'
 import { Router } from 'express'
 
-export class DatasetRouter {
-  public readonly router = Router()
+export const createDatasetRouter = (controller: DatasetController) => {
+  const router = Router()
 
-  constructor(container: IDIContainer) {
-    const datasetController = new DatasetController(container)
+  router.get('/processed', controller.getProcessed)
+  router.get('/raw', validateRequest(rawListSchemas), controller.getRaw)
+  router.get('/charts/:filename', validateRequest(chartsSchemas), controller.getCharts)
 
-    this.router.get('/processed', datasetController.getProcessed.bind(datasetController))
-    this.router.get('/raw', datasetController.getRaw.bind(datasetController))
-    this.router.get('/charts/:filename', datasetController.getCharts.bind(datasetController))
-  }
+  return router
 }

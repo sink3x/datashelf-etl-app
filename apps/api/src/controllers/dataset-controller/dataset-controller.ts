@@ -1,141 +1,46 @@
-import { ListObjectsV2Command } from '@aws-sdk/client-s3'
-import type { IBucketObject } from '@interfaces/bucket-object'
-import type { IDatasetProcessed } from '@interfaces/dataset-processed'
-import type { IDIContainer } from '@interfaces/DI-container'
-
-import type {
-  IGetProcessedRequest,
-  IGetProcessedResponse,
-  IGetRawRequest,
-  IGetRawResponse,
-  TDatasetProcessedDocument,
-  TGetChartsRequest,
-  TGetChartsResponse,
-} from './dataset-controller.interfaces'
-import { aggregateChartList } from './dataset-controller.utils'
+import { getValidated } from '@middlewares/validate-request'
+import type { IDatasetService } from '@services/dataset-service/dataset-service'
+import { chartsSchemas, rawListSchemas } from '@validations/dataset-validations'
+import type { RequestHandler } from 'express'
 
 export class DatasetController {
-  private mongodb
-  private s3
+  constructor(private readonly datasetService: IDatasetService) {}
 
-  constructor(container: IDIContainer) {
-    const { services } = container
-    const { mongodb, s3 } = services
+  public getProcessed: RequestHandler = async (_request, response) => {
+    const datasetList = await this.datasetService.listProcessed()
 
-    this.mongodb = mongodb
-    this.s3 = s3
+    response.status(200).json({
+      message: 'Ok',
+      datasetList,
+      meta: { totalCount: datasetList.length },
+    })
   }
 
-  public async getProcessed(_request: IGetProcessedRequest, response: IGetProcessedResponse) {
-    try {
-      const datasetList = (await this.mongodb.models.datasetProcessed.find()) as TDatasetProcessedDocument[]
+  public getRaw: RequestHandler = async (_request, response) => {
+    const { query } = getValidated(response, rawListSchemas)
+    const { items, totalCount, totalPages, truncated } = await this.datasetService.listRaw(query)
 
-      const meta = {
-        totalCount: datasetList.length,
-      }
-
-      response.status(200).json({
-        message: 'Ok',
-        datasetList,
-        meta,
-      })
-    } catch (error) {
-      const axiosErrorData = error?.response?.data
-      const { detail = 'Failed to get processed data' } = axiosErrorData || {}
-
-      response.status(500).json({
-        message: detail,
-        info: axiosErrorData,
-      })
-    }
+    response.status(200).json({
+      message: 'Ok',
+      datasetList: items,
+      meta: {
+        totalCount,
+        totalPages,
+        currentPage: query.page,
+        pageSize: query.limit,
+        truncated,
+      },
+    })
   }
 
-  public async getRaw(request: IGetRawRequest, response: IGetRawResponse) {
-    try {
-      const { page: __page, limit: __limit } = request.query
+  public getCharts: RequestHandler = async (_request, response) => {
+    const { params } = getValidated(response, chartsSchemas)
+    const charts = await this.datasetService.getCharts(params.filename)
 
-      const page = parseInt(__page || '1')
-      const limit = parseInt(__limit || '10')
-      const offset = (page - 1) * limit
-
-      const commandGetObjectList = new ListObjectsV2Command({
-        Bucket: this.s3.config.bucket,
-        Prefix: `${this.s3.config.rawPrefix}/`,
-      })
-
-      const { Contents } = await this.s3.client.send(commandGetObjectList)
-      const fileList: IBucketObject[] = (Contents || [])
-        .map((bucketObject) => {
-          const { Key, LastModified, Size } = bucketObject
-          const fileName = Key?.split('/').at(-1)!
-
-          if (!fileName) {
-            return null
-          }
-
-          return {
-            fileName,
-            key: Key,
-            lastModified: LastModified!,
-            size: Size || 0,
-          } as unknown as IBucketObject
-        })
-        .filter((bucketObject) => bucketObject !== null)
-
-      const meta = {
-        totalCount: fileList.length,
-        totalPages: Math.ceil(fileList.length / limit),
-        currentPage: page,
-        pageSize: limit,
-      }
-
-      const paginatedData = fileList.toReversed().slice(offset, offset + limit)
-
-      response.status(200).json({
-        message: 'Ok',
-        datasetList: paginatedData,
-        meta,
-      })
-    } catch (error) {
-      const axiosErrorData = error?.response?.data
-      const { detail = 'Failed to get processed data' } = axiosErrorData || {}
-
-      response.status(500).json({
-        message: detail,
-        info: axiosErrorData,
-      })
-    }
-  }
-
-  // TODO: add swagger documentation
-  public async getCharts(request: TGetChartsRequest, response: TGetChartsResponse) {
-    try {
-      const { filename } = request.params
-
-      const matchingDatasetList = (await this.mongodb.models.datasetProcessed.find({
-        filename,
-      })) as IDatasetProcessed[]
-      const aggregatedChartList = aggregateChartList(matchingDatasetList)
-
-      // TODO: create util to generate meta by params
-      const meta = {
-        totalCount: Object.keys(aggregatedChartList).length,
-      }
-
-      response.status(200).json({
-        message: 'Ok',
-        charts: aggregatedChartList,
-        meta,
-      })
-    } catch (error) {
-      // TODO: create util to generate axios error
-      const axiosErrorData = error?.response?.data
-      const { detail = 'Failed to get charts' } = axiosErrorData || {}
-
-      response.status(500).json({
-        message: detail,
-        info: axiosErrorData,
-      })
-    }
+    response.status(200).json({
+      message: 'Ok',
+      charts,
+      meta: { totalCount: Object.keys(charts).length },
+    })
   }
 }

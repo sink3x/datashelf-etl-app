@@ -1,5 +1,4 @@
-import { API_PREFIX } from '@routers/router-store/router-store.constants'
-import { BACKEND_VERSION } from '@shared/constants'
+import { API_PREFIX, BACKEND_VERSION } from '@shared/constants'
 
 export const DOCUMENTATION_FILE_EXTENSION_LIST = ['yml', 'yaml']
 
@@ -17,6 +16,7 @@ export const swaggerSpecificationDocument = {
     version: BACKEND_VERSION,
   },
   tags: [
+    { name: 'health', description: 'Liveness and readiness probes for orchestrators' },
     {
       name: 'utils',
       description: 'Utility endpoints for service introspection with operational checks',

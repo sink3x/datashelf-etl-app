@@ -6,7 +6,6 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "useUnknownInCatchVariables": false,
     "skipLibCheck": true,
     "allowJs": true,
     "skipDefaultLibCheck": true,

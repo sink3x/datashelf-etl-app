@@ -1,18 +1,26 @@
-import type { IDIContainer } from '@interfaces/DI-container'
-import { AirflowRouter } from '@routers/airflow-router/airflow-router'
-import { DatasetRouter } from '@routers/dataset-router/dataset-router'
-import { healthcheckController } from '@routers/router-store/router-store.controller'
+import type { AirflowController } from '@controllers/airflow-controller/airflow-controller'
+import type { DatasetController } from '@controllers/dataset-controller/dataset-controller'
+import type { HealthController } from '@controllers/health-controller/health-controller'
+import { createAirflowRouter } from '@routers/airflow-router/airflow-router'
+import { createDatasetRouter } from '@routers/dataset-router/dataset-router'
 import { Router } from 'express'
 
-export class MainRouter {
-  public readonly router = Router()
+export interface IMainRouterDependencies {
+  airflowController: AirflowController
+  datasetController: DatasetController
+  healthController: HealthController
+  maxUploadSizeBytes: number
+}
 
-  constructor(container: IDIContainer) {
-    const airflowRouter = new AirflowRouter(container).router
-    const datasetRouter = new DatasetRouter(container).router
+export const createMainRouter = (dependencies: IMainRouterDependencies) => {
+  const router = Router()
 
-    this.router.get('/healthcheck', healthcheckController)
-    this.router.use('/airflow', airflowRouter)
-    this.router.use('/dataset', datasetRouter)
-  }
+  router.get('/healthcheck', dependencies.healthController.legacyHealthcheck)
+  router.use(
+    '/airflow',
+    createAirflowRouter(dependencies.airflowController, { maxUploadSizeBytes: dependencies.maxUploadSizeBytes }),
+  )
+  router.use('/dataset', createDatasetRouter(dependencies.datasetController))
+
+  return router
 }

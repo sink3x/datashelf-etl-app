@@ -1,187 +1,58 @@
-import { PutObjectCommand } from '@aws-sdk/client-s3'
-import type { IAppConfig } from '@config/config'
-import type { IDIContainer } from '@interfaces/DI-container'
-import axios from 'axios'
-import type { Request } from 'express'
-import { DateTime } from 'luxon'
+import { ValidationError } from '@errors/app-error'
+import { getValidated } from '@middlewares/validate-request'
+import type { IAirflowService } from '@services/airflow-service/airflow-service'
+import { dagRunStatusSchemas, processDataSchemas } from '@validations/airflow-validations'
+import type { RequestHandler } from 'express'
 
-import { ALLOWLABLE_FILE_TYPE_LIST } from './airflow-controller.constants'
-import type {
-  TGetAllowFileTypeListResponse,
-  TGetDagListAirflowRequest,
-  TGetDagListAirflowResponse,
-  TGetDagListResponse,
-  TGetDagStatusByDagRunIdRequest,
-  TGetDagStatusByDagRunIdResponse,
-  TProcessDataRequest,
-  TProcessDataResponse,
-} from './airflow-controller.interfaces'
+import { ALLOWED_FILE_TYPE_LIST } from './airflow-controller.constants'
 
 export class AirflowController {
-  private config: IAppConfig
-  private s3
-  private airflow
+  constructor(private readonly airflowService: IAirflowService) {}
 
-  constructor(container: IDIContainer) {
-    const { config, services } = container
-
-    this.config = config
-    this.s3 = services.s3
-    this.airflow = services.airflow
-  }
-
-  public async getDagList(_request: Request, response: TGetDagListResponse) {
-    try {
-      const { data } = await axios<TGetDagListAirflowRequest, TGetDagListAirflowResponse>(
-        `${this.config.airflow.url}/api/v2/dags`,
-        {
-          headers: {
-            ...this.airflow.apiHeaders,
-          },
-        },
-      )
-
-      const meta = {
-        totalCount: data.dags.length,
-      }
-
-      response.status(200).json({
-        dags: data.dags,
-        total_entries: data.total_entries,
-        message: 'Successful get dags',
-        meta,
-      })
-    } catch (error) {
-      const axiosErrorData = error?.response?.data
-      const { detail = 'Failed to get dags' } = axiosErrorData || {}
-
-      response.status(500).json({
-        message: detail,
-        info: axiosErrorData,
-      })
-    }
-  }
-
-  public async processData(request: TProcessDataRequest, response: TProcessDataResponse) {
-    try {
-      const { files: fileList, body } = request
-      const { dagId } = body
-
-      if (!fileList) {
-        return response.status(400).json({
-          message: 'File not uploaded or not correct',
-        })
-      }
-
-      if (fileList.length !== 1) {
-        return response.status(400).json({
-          message: 'Allowed only 1 file upload',
-        })
-      }
-
-      const file = fileList[0]
-      const { maxSizeBytes: maxFileSize, maxSizeMb: s3MaxFileSizeUploadMb } = this.config.upload
-
-      if (file.size > maxFileSize) {
-        return response.status(400).json({
-          message: `File size limit exceeded, allowed only ${s3MaxFileSizeUploadMb}mb`,
-        })
-      }
-
-      if (!dagId) {
-        return response.status(400).json({
-          message: 'Dag ID not provided',
-        })
-      }
-
-      if (!ALLOWLABLE_FILE_TYPE_LIST.includes(file.mimetype)) {
-        return response.status(400).json({ message: `File type ${file.mimetype} is not allowed` })
-      }
-
-      const fileExtension = file.originalname.split('.').at(-1) || ''
-      const { rawPrefix: s3RawDataDirectory } = this.config.s3
-      const fileObjectKey = `${s3RawDataDirectory}/${file.originalname.replace(`.${fileExtension}`, '')}-${DateTime.now().toUnixInteger()}.${fileExtension}`
-
-      await this.s3.client.send(
-        new PutObjectCommand({
-          Bucket: this.config.s3.bucket,
-          Key: fileObjectKey,
-          Body: file.buffer,
-        }),
-      )
-
-      const { data } = await axios.post(
-        `${this.config.airflow.url}/api/v2/dags/${dagId}/dagRuns`,
-        {
-          logical_date: DateTime.now(),
-          conf: {
-            object_key: fileObjectKey,
-          },
-        },
-        {
-          headers: {
-            ...this.airflow.apiHeaders,
-          },
-        },
-      )
-
-      response.status(200).json({
-        message: `Dag ${dagId} triggered`,
-        triggeredDagInfo: data,
-      })
-    } catch (error) {
-      const axiosErrorData = error?.response?.data
-      const { detail = 'Failed to process data' } = axiosErrorData || {}
-
-      response.status(500).json({
-        message: detail,
-        info: axiosErrorData,
-      })
-    }
-  }
-
-  public getAllowFileTypeList(_request: Request, response: TGetAllowFileTypeListResponse) {
-    const meta = {
-      totalCount: ALLOWLABLE_FILE_TYPE_LIST.length,
-    }
+  public getDagList: RequestHandler = async (_request, response) => {
+    const { dags, total_entries } = await this.airflowService.listDags()
 
     response.status(200).json({
-      message: 'Ok',
-      allowedFileTypeList: ALLOWLABLE_FILE_TYPE_LIST,
-      meta,
+      dags,
+      total_entries,
+      message: 'Successful get dags',
+      meta: { totalCount: dags.length },
     })
   }
 
-  public async getDagStatusByDagRunId(
-    request: TGetDagStatusByDagRunIdRequest,
-    response: TGetDagStatusByDagRunIdResponse,
-  ) {
-    try {
-      const { params } = request
-      const { dagId, dagRunId } = params
+  public processData: RequestHandler = async (request, response) => {
+    const { body } = getValidated(response, processDataSchemas)
 
-      const { data: dagStatus } = await axios(
-        `${this.config.airflow.url}/api/v2/dags/${dagId}/dagRuns/${dagRunId}`,
-
-        {
-          headers: {
-            ...this.airflow.apiHeaders,
-          },
-        },
-      )
-
-      response.status(200).json({
-        message: 'Ok',
-        dagStatus,
-      })
-    } catch (error) {
-      const axiosErrorData = error?.response?.data
-      const { detail = 'Failed to process data' } = axiosErrorData || {}
-
-      response.status(500).json({
-        message: detail,
-        info: axiosErrorData,
-      })
+    if (!request.file) {
+      throw new ValidationError('File not uploaded or not correct', { code: 'FILE_REQUIRED' })
     }
+
+    const triggeredDagInfo = await this.airflowService.triggerProcessing({
+      dagId: body.dagId,
+      file: request.file,
+    })
+
+    response.status(200).json({
+      message: `Dag ${body.dagId} triggered`,
+      triggeredDagInfo,
+    })
+  }
+
+  public getAllowedFileTypeList: RequestHandler = (_request, response) => {
+    response.status(200).json({
+      message: 'Ok',
+      allowedFileTypeList: ALLOWED_FILE_TYPE_LIST,
+      meta: { totalCount: ALLOWED_FILE_TYPE_LIST.length },
+    })
+  }
+
+  public getDagStatusByDagRunId: RequestHandler = async (_request, response) => {
+    const { params } = getValidated(response, dagRunStatusSchemas)
+    const dagStatus = await this.airflowService.getDagRun(params)
+
+    response.status(200).json({
+      message: 'Ok',
+      dagStatus,
+    })
   }
 }
