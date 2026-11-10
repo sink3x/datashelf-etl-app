@@ -1,4 +1,4 @@
-import type { ListObjectsV2Command} from '@aws-sdk/client-s3';
+import type { ListObjectsV2Command } from '@aws-sdk/client-s3'
 import { PutObjectCommand } from '@aws-sdk/client-s3'
 import { describe, expect, it, vi } from 'vitest'
 
