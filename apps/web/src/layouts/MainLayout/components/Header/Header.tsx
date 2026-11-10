@@ -9,9 +9,9 @@ import * as Styled from './Header.styles'
 export const Header = () => {
 	return (
 		<Styled.Header>
-			<Link to={Routes[ERoutesPageNames.WELCOME]!.path}>
+			<Link to={Routes[ERoutesPageNames.WELCOME]!.path} aria-label="Datashelf home">
 				<Styled.HeaderLogo>
-					<Styled.Image src={DATASHELF_LOGO_URL} alt="🧊" />
+					<Styled.Image src={DATASHELF_LOGO_URL} alt="" />
 					<Styled.HeaderLogoTitle>Datashelf</Styled.HeaderLogoTitle>
 				</Styled.HeaderLogo>
 			</Link>

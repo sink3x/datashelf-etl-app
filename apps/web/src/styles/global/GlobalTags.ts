@@ -1,69 +1,64 @@
 import { createGlobalStyle } from 'styled-components'
 
-import { EColorsMain } from '@styles/colors/colors-main'
+import { colors, fonts } from '@styles/tokens'
 
 export const GlobalStyleTags = createGlobalStyle`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
 
-  html, body {
-    overflow-x: hidden;
-  }
-  
-  html {
-    height: 100%;
-    user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    font-family: 'Inter Variable', sans-serif;
-    background-color: ${EColorsMain.WHITE_BACKGROUND};
-    
-    &::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
+	html {
+		height: 100%;
+		scrollbar-color: ${colors.lineStrong} transparent;
+		scrollbar-width: thin;
+		text-size-adjust: 100%;
+	}
 
-    &::-webkit-scrollbar-track {
-      background: transparent;
-    }
+	body {
+		min-height: 100%;
+		margin: 0;
+		background-color: ${colors.canvas};
+		color: ${colors.ink};
+		font-family: ${fonts.sans};
+		font-feature-settings: 'cv11', 'ss01';
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
 
-    &::-webkit-scrollbar-thumb {
-      background-color: rgba(0, 0, 0, 0.2);
-      border-radius: 4px;
-      transition: background-color 0.3s ease;
-    }
+	#root {
+		min-height: 100vh;
+	}
 
-    &:hover::-webkit-scrollbar-thumb {
-      background-color: rgba(0, 0, 0, 0.4);
-    }
+	code {
+		font-family: ${fonts.mono};
+	}
 
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.2);
+	a {
+		color: ${colors.accent};
+		text-decoration: none;
+	}
 
-    ::selection {
-      color: ${EColorsMain.WHITE};
-      background-color: ${EColorsMain.BLUE}
-    }
+	a:focus-visible,
+	button:focus-visible,
+	[tabindex]:focus-visible {
+		outline: 2px solid ${colors.accent};
+		outline-offset: 2px;
+	}
 
-    body {
-      margin: 0;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+	::selection {
+		color: ${colors.surface};
+		background-color: ${colors.accent};
+	}
 
-      code {
-        font-family: 'Fira Code Variable', monospace;
-      }
-
-      a,
-      a:hover,
-      a:active,
-      a:focus {
-        text-decoration: none;
-        outline: none;
-      }
-    }
-  }
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+		}
+	}
 `

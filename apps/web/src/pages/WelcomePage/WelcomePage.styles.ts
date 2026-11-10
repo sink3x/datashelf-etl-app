@@ -1,78 +1,71 @@
-import { Flex, Space, Typography } from 'antd'
 import styled from 'styled-components'
 
-import { Button } from '@ui/Button/Button'
-
-import WELCOME_DESCRIPTION_BACKGROUND_IMAGE_URL from '@assets/images/background/violet-lines-background.webp'
+import WELCOME_BACKGROUND_IMAGE_URL from '@assets/images/background/violet-lines-background.webp'
 import { LANDING_WIDTH } from '@layouts/MainLayout/MainLayout.constants'
-import { EColorsMain } from '@styles/colors/colors-main'
+import { colors, fontSizes, media, radii, space } from '@styles/tokens'
 
-import { CaseItem as CaseItemVanila } from './components/CaseItem/CaseItem'
+import { CaseItem as CaseItemBase } from './components/CaseItem/CaseItem'
 
-export const WelcomePage = styled(Space)`
-	margin-bottom: 20px;
-	color: ${EColorsMain.BLACK};
-	box-sizing: border-box;
-`
-
-export const DescriptionSpace = styled(Space)`
-	width: 100vw;
-	min-height: 230px;
+export const WelcomePage = styled.main`
+	padding-bottom: ${space(16)};
 	display: flex;
 	flex-direction: column;
-	background-image: url(${WELCOME_DESCRIPTION_BACKGROUND_IMAGE_URL});
-	background-position: center top;
+	gap: ${space(10)};
+`
+
+export const Hero = styled.section`
+	width: 100%;
+	padding: ${space(16)} 0;
+	background-color: ${colors.accentSoft};
+	background-image: url(${WELCOME_BACKGROUND_IMAGE_URL});
+	background-position: center;
 	background-size: cover;
-	animation: move-background 10s linear infinite;
 
-	@keyframes move-background {
-		from {
-			background-position: center top;
-		}
-
-		to {
-			background-position: center bottom;
-		}
+	${media.belowMd} {
+		padding: ${space(10)} 0;
 	}
 `
 
-export const DescriptionTitle = styled(Typography.Title)`
+export const HeroInner = styled.div`
 	width: ${LANDING_WIDTH};
-	font-size: 2.3em !important;
+	margin: 0 auto;
 `
 
-export const DescriptionParagraph = styled(Typography.Paragraph)`
-	width: ${LANDING_WIDTH};
-	font-size: 1.3em;
+export const HeroTitle = styled.h1`
+	max-width: 18ch;
+	margin: 0 0 ${space(4)};
+	color: ${colors.ink};
+	font-size: clamp(32px, 6vw, 56px);
+	font-weight: 750;
+	letter-spacing: -0.03em;
+	line-height: 1.05;
 `
 
-export const DescriptionActionSpace = styled(Space)`
-	width: ${LANDING_WIDTH};
+export const HeroText = styled.p`
+	max-width: 56ch;
+	margin: 0 0 ${space(8)};
+	color: ${colors.ink};
+	font-size: ${fontSizes.lg};
+	line-height: 1.6;
 `
 
-export const ButtonBlack = styled(Button)`
-	color: ${EColorsMain.BLACK} !important;
-	border: 1px solid ${EColorsMain.BLACK} !important;
-	transition: all 0.3s ease;
-
-	&:hover {
-		opacity: 0.4;
-	}
-`
-
-export const CaseItemShowcase = styled(Flex)`
-	width: ${LANDING_WIDTH};
-	margin-top: 5vh;
-	margin-inline: auto;
+export const HeroActions = styled.div`
+	display: flex;
 	flex-wrap: wrap;
+	gap: ${space(3)};
 `
 
-export const CaseItem = styled(CaseItemVanila)`
-	width: 350px;
-	min-height: 180px;
-	transition: transform 0.2s ease-out;
+export const CaseList = styled.ol`
+	width: ${LANDING_WIDTH};
+	margin: 0 auto;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: ${space(4)};
+	list-style: none;
+`
 
-	&:hover {
-		transform: translateY(-5px);
-	}
+export const CaseItem = styled(CaseItemBase)`
+	height: 100%;
+	border-radius: ${radii.lg};
 `

@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react'
 
 import { ArrowRotateRight, ChartColumn, TriangleExclamation } from '@gravity-ui/icons'
 import { observer } from 'mobx-react-lite'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 
 import { ERoutesPageNames, Routes } from '@router/routes'
 import { Button } from '@ui/Button/Button'
+import { ButtonLink } from '@ui/ButtonLink/ButtonLink'
 
 import { PageState } from '@components/PageState/PageState'
 
@@ -76,9 +77,7 @@ export const DashboardPage = observer(() => {
 							<Button type="primary" onClick={handleRefresh}>
 								Try again
 							</Button>
-							<Link to={STORAGE_PATH}>
-								<Button>Back to storage</Button>
-							</Link>
+							<ButtonLink to={STORAGE_PATH}>Back to storage</ButtonLink>
 						</>
 					}
 				/>
@@ -96,9 +95,7 @@ export const DashboardPage = observer(() => {
 							<Button type="primary" onClick={handleRefresh}>
 								Refresh
 							</Button>
-							<Link to={UPLOAD_PATH}>
-								<Button>Upload a dataset</Button>
-							</Link>
+							<ButtonLink to={UPLOAD_PATH}>Upload a dataset</ButtonLink>
 						</>
 					}
 				/>

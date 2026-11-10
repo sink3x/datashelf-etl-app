@@ -4,10 +4,10 @@ import { ArrowRotateRight, File, FolderOpen, TriangleExclamation } from '@gravit
 import { Skeleton } from 'antd'
 import { DateTime } from 'luxon'
 import { observer } from 'mobx-react-lite'
-import { Link } from 'react-router-dom'
 
 import { ERoutesPageNames, Routes } from '@router/routes'
 import { Button } from '@ui/Button/Button'
+import { ButtonLink } from '@ui/ButtonLink/ButtonLink'
 
 import { PageState } from '@components/PageState/PageState'
 import { convertFileSize } from '@utils/convert-file-size'
@@ -75,9 +75,9 @@ export const StoragePage = observer(() => {
 					title="No datasets stored yet"
 					description="Upload a CSV or JSON file to store it and run the ETL pipeline on it."
 					actions={
-						<Link to={UPLOAD_PATH}>
-							<Button type="primary">Upload a dataset</Button>
-						</Link>
+						<ButtonLink to={UPLOAD_PATH} type="primary">
+							Upload a dataset
+						</ButtonLink>
 					}
 				/>
 			)
@@ -132,9 +132,9 @@ export const StoragePage = observer(() => {
 					>
 						Refresh
 					</Button>
-					<Link to={UPLOAD_PATH}>
-						<Button type="primary">Upload</Button>
-					</Link>
+					<ButtonLink to={UPLOAD_PATH} type="primary">
+						Upload
+					</ButtonLink>
 				</Styled.ToolbarActions>
 			</Styled.Toolbar>
 			{renderContent()}

@@ -3,11 +3,11 @@ import { useState } from 'react'
 import { CloudArrowUpIn, File as FileIcon, TriangleExclamation } from '@gravity-ui/icons'
 import { Progress, Steps, Upload, type UploadProps } from 'antd'
 import { observer } from 'mobx-react-lite'
-import { Link } from 'react-router-dom'
 
 import { ERoutesPageNames, Routes } from '@router/routes'
 import { isTerminalRunState, runsStore } from '@stores/runs-store'
 import { Button } from '@ui/Button/Button'
+import { ButtonLink } from '@ui/ButtonLink/ButtonLink'
 
 import { StatusBadge } from '@components/StatusBadge/StatusBadge'
 import { useInterval } from '@hooks/use-interval'
@@ -130,14 +130,14 @@ export const UploadPage = observer(() => {
 					{run.errorMessage && <Styled.InlineError role="alert">{run.errorMessage}</Styled.InlineError>}
 					<Styled.PanelActions>
 						{run.state === 'success' && (
-							<Link to={getDashboardPath(run.filename)}>
-								<Button type="primary">Open dashboard</Button>
-							</Link>
+							<ButtonLink to={getDashboardPath(run.filename)} type="primary">
+								Open dashboard
+							</ButtonLink>
 						)}
 						{isFailed && (
-							<Link to={PIPELINES_PATH}>
-								<Button type="primary">View pipelines</Button>
-							</Link>
+							<ButtonLink to={PIPELINES_PATH} type="primary">
+								View pipelines
+							</ButtonLink>
 						)}
 						<Button onClick={handleReset}>Upload another file</Button>
 					</Styled.PanelActions>

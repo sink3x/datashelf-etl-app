@@ -4,11 +4,11 @@ import { Pipeline, TriangleExclamation } from '@gravity-ui/icons'
 import { Skeleton } from 'antd'
 import { DateTime } from 'luxon'
 import { observer } from 'mobx-react-lite'
-import { Link } from 'react-router-dom'
 
 import { ERoutesPageNames, Routes } from '@router/routes'
 import { runsStore } from '@stores/runs-store'
 import { Button } from '@ui/Button/Button'
+import { ButtonLink } from '@ui/ButtonLink/ButtonLink'
 
 import { PageState } from '@components/PageState/PageState'
 import { StatusBadge } from '@components/StatusBadge/StatusBadge'
@@ -116,9 +116,9 @@ const RecentRuns = observer(() => {
 				title="No runs started from this browser"
 				description="Upload a dataset to start a pipeline run. Its progress shows up here."
 				actions={
-					<Link to={UPLOAD_PATH}>
-						<Button type="primary">Upload a dataset</Button>
-					</Link>
+					<ButtonLink to={UPLOAD_PATH} type="primary">
+						Upload a dataset
+					</ButtonLink>
 				}
 			/>
 		)
