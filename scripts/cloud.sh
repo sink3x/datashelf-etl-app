@@ -33,9 +33,8 @@ window.appConfig = {
   urls: {
     contactUsUrl: 'https://github.com/sink3x',
     documentationUrl: '${api_url}/docs',
-    geographyAtlasUrl: 'https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json',
   },
-  vars: { axiosCacheLifetimeInSec: 60, defaultDagId: 'customer_data_etl' },
+  vars: { defaultDagId: 'customer_data_etl' },
 }
 EOF
 

@@ -24,7 +24,7 @@ done
 log "uploading ${DATASET}"
 response="$(curl -fsS -X POST "${API_URL}/api/airflow/process-data" \
   -F "dagId=${DAG_ID}" \
-  -F "files=@${DATASET};type=text/csv")" || fail "upload rejected"
+  -F "file=@${DATASET};type=text/csv")" || fail "upload rejected"
 
 run_id="$(jq -r '.triggeredDagInfo.dag_run_id' <<<"${response}")"
 object_key="$(jq -r '.triggeredDagInfo.conf.object_key' <<<"${response}")"
@@ -35,7 +35,7 @@ log "dag run ${run_id} for ${filename}"
 encoded_run_id="$(jq -rn --arg v "${run_id}" '$v|@uri')"
 deadline=$((SECONDS + TIMEOUT_SEC))
 while :; do
-  state="$(curl -fsS "${API_URL}/api/airflow/dags/${DAG_ID}/dagRuns/${encoded_run_id}" | jq -r '.dagStatus.state')"
+  state="$(curl -fsS "${API_URL}/api/airflow/dag/status/${DAG_ID}/${encoded_run_id}" | jq -r '.dagStatus.state')"
   log "state: ${state}"
   case "${state}" in
     success) break ;;
