@@ -12,6 +12,8 @@ TF ?= terraform
 export TF_CLI_CONFIG_FILE := $(CURDIR)/infra/terraform/cli.tfrc
 
 IMAGE_TAG ?= $(shell git rev-parse --short HEAD)
+PLATFORM ?=
+PLATFORM_FLAG := $(if $(PLATFORM),--platform $(PLATFORM))
 
 ##@ Setup
 
@@ -95,10 +97,10 @@ dev: ## Run api + web in watch mode against the compose infrastructure
 ##@ Images
 
 .PHONY: images
-images: ## Build production images tagged with IMAGE_TAG
-	docker build -f apps/api/Dockerfile -t datashelf-api:$(IMAGE_TAG) .
-	docker build -f apps/web/Dockerfile -t datashelf-web:$(IMAGE_TAG) .
-	docker build -t datashelf-etl:$(IMAGE_TAG) services/etl
+images: ## Build production images tagged with IMAGE_TAG (PLATFORM=linux/amd64 for cloud VMs)
+	docker build $(PLATFORM_FLAG) -f apps/api/Dockerfile -t datashelf-api:$(IMAGE_TAG) .
+	docker build $(PLATFORM_FLAG) -f apps/web/Dockerfile -t datashelf-web:$(IMAGE_TAG) .
+	docker build $(PLATFORM_FLAG) -t datashelf-etl:$(IMAGE_TAG) services/etl
 
 ##@ Cloud (Yandex Cloud)
 
@@ -129,8 +131,13 @@ tf-apply: ## Apply the saved plan
 tf-destroy: ## Destroy the environment
 	cd $(TF_DIR) && $(TF) destroy -var image_tag=$(IMAGE_TAG)
 
+.PHONY: tf-registry
+tf-registry: ## Create only the container registry (needed before the first push)
+	cd $(TF_DIR) && $(TF) apply -auto-approve -input=false -var image_tag=$(IMAGE_TAG) -target=module.registry
+
 .PHONY: cloud-push
-cloud-push: images ## Push images to Yandex Container Registry
+cloud-push: PLATFORM = linux/amd64
+cloud-push: images ## Build amd64 images and push them to Yandex Container Registry
 	./scripts/cloud.sh push $(IMAGE_TAG)
 
 .PHONY: cloud-web
@@ -142,7 +149,7 @@ cloud-smoke: sample ## Run the end-to-end smoke test against the cloud API
 	./scripts/smoke.sh "$$(cd $(TF_DIR) && $(TF) output -raw api_url)" research/data/sample.csv
 
 .PHONY: cloud-up
-cloud-up: cloud-push tf-plan tf-apply cloud-web ## Push images, apply infra, publish web
+cloud-up: tf-registry cloud-push tf-plan tf-apply cloud-web ## Registry, images, infra, web — in that order
 
 .PHONY: clean
 clean: ## Remove build artifacts and caches
