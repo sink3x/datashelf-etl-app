@@ -10,7 +10,10 @@
 		"lint:fix": "eslint . --fix",
 		"typecheck": "tsc -p tsconfig.app.json --noEmit",
 		"stylelint": "stylelint 'src/**/*.styles.{ts,tsx}'",
-		"stylelint:fix": "stylelint 'src/**/*.styles.{ts,tsx}' --fix"
+		"stylelint:fix": "stylelint 'src/**/*.styles.{ts,tsx}' --fix",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"test:coverage": "vitest run --coverage"
 	},
 	"dependencies": {
 		"@ant-design/plots": "^2.4.0",
@@ -40,6 +43,8 @@
 	},
 	"devDependencies": {
 		"@nabla/vite-plugin-eslint": "2.0.5",
+		"@testing-library/dom": "10.4.2",
+		"@testing-library/react": "16.3.3",
 		"@types/d3-scale": "^4.0.9",
 		"@types/luxon": "3.6.2",
 		"@types/node": "22.15.29",
@@ -47,6 +52,7 @@
 		"@types/react-dom": "19.1.2",
 		"@types/react-simple-maps": "^3.0.6",
 		"@vitejs/plugin-react-swc": "3.9.0",
+		"@vitest/coverage-v8": "3.2.7",
 		"eslint": "9.25.0",
 		"eslint-import-resolver-alias": "1.1.2",
 		"eslint-plugin-import": "2.31.0",
@@ -59,6 +65,7 @@
 		"eslint-plugin-sonarjs": "3.0.2",
 		"eslint-plugin-unused-imports": "4.1.4",
 		"globals": "16.0.0",
+		"jsdom": "26.1.0",
 		"msw": "2.15.0",
 		"postcss": "8.5.4",
 		"postcss-styled-syntax": "0.7.1",
@@ -70,7 +77,8 @@
 		"vite": "6.3.5",
 		"vite-plugin-compression": "0.5.1",
 		"vite-plugin-html": "3.2.2",
-		"vite-tsconfig-paths": "5.1.4"
+		"vite-tsconfig-paths": "5.1.4",
+		"vitest": "3.2.7"
 	},
 	"private": true
 }
