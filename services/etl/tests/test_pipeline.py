@@ -77,6 +77,16 @@ def test_build_event_defaults_are_unique_and_utc() -> None:
     assert first.processing_time_sec == 0
 
 
+def test_build_event_rejects_nan_values() -> None:
+    result = AnalyticsResult(
+        charts=[MetricChart(name="total_sales", title="T", description="", value=1.0)],
+        meta={},
+    )
+    result.charts[0].value = float("nan")
+    with pytest.raises(ValueError, match="finite"):
+        build_event(job="seasons", run_id=RUN_ID, object_key=OBJECT_KEY, result=result, processing_time_sec=0)
+
+
 def test_build_event_rejects_invalid_job() -> None:
     with pytest.raises(ValueError, match="job"):
         build_event(

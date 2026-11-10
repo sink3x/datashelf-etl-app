@@ -73,6 +73,11 @@ def test_normalize_rejects_empty_dataset(retail_df: pd.DataFrame) -> None:
         normalize_retail(retail_df.head(0))
 
 
+def test_normalize_rejects_blank_required_column(retail_df: pd.DataFrame) -> None:
+    with pytest.raises(DatasetError, match=r"Required columns have no values: \['Total_Cost'\]"):
+        normalize_retail(retail_df.assign(Total_Cost=None))
+
+
 def test_normalize_drops_blank_rows(retail_df: pd.DataFrame) -> None:
     blank = pd.DataFrame([dict.fromkeys(retail_df.columns)])
     assert len(normalize_retail(pd.concat([retail_df, blank], ignore_index=True))) == 30

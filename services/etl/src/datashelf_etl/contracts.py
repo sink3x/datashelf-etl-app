@@ -22,7 +22,7 @@ ChartName = Annotated[str, Field(pattern=r"^[a-z0-9_]+$")]
 
 
 class _LooseModel(BaseModel):
-    model_config = ConfigDict(extra="allow")
+    model_config = ConfigDict(extra="allow", allow_inf_nan=False, revalidate_instances="always")
 
 
 class Top(_LooseModel):
@@ -81,7 +81,7 @@ class Dataset(BaseModel):
 
 
 class ChartsComputedEvent(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", allow_inf_nan=False)
 
     event_id: UUID
     event_type: Literal["dataset.charts.computed"] = CHARTS_COMPUTED_EVENT_TYPE

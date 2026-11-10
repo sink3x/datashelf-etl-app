@@ -82,6 +82,10 @@ def normalize_retail(df: pd.DataFrame) -> pd.DataFrame:
     if df.empty:
         raise DatasetError("Dataset contains no rows")
 
+    empty = [column for column in REQUIRED_COLUMNS if df[column].isna().all()]
+    if empty:
+        raise DatasetError(f"Required columns have no values: {empty}")
+
     out = df.copy()
     for column in DATETIME_COLUMNS:
         out[column] = pd.to_datetime(out[column], errors="coerce", format="mixed")
