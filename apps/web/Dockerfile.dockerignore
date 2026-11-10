@@ -1,0 +1,15 @@
+**/node_modules
+**/build
+**/dist
+**/coverage
+**/.env
+**/.env.*
+!apps/web/.env.demo
+**/*.tsbuildinfo
+.git
+.husky
+research
+services
+infra
+apps/api/src
+apps/api/public
