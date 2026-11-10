@@ -33,19 +33,22 @@ const spaFallbackPlugin = (basePath: string): Plugin => {
 	}
 }
 
-const pruneMockWorkerPlugin = (isApiMock: boolean): Plugin => {
+const mockBuildPlugin = (isApiMock: boolean): Plugin => {
 	let outDir = ''
 
 	return {
-		name: 'datashelf-prune-mock-worker',
+		name: 'datashelf-mock-build',
 		apply: 'build',
 		configResolved(config) {
 			outDir = path.resolve(config.root, config.build.outDir)
 		},
 		closeBundle() {
-			if (!isApiMock) {
-				fs.rmSync(path.join(outDir, 'mockServiceWorker.js'), { force: true })
+			if (isApiMock) {
+				fs.copyFileSync(path.resolve(__dirname, 'config/app-config.demo.js'), path.join(outDir, 'app-config.js'))
+				return
 			}
+
+			fs.rmSync(path.join(outDir, 'mockServiceWorker.js'), { force: true })
 		},
 	}
 }
@@ -76,7 +79,7 @@ export default ({ command, mode }: ConfigEnv) => {
 			compression({ algorithm: 'brotliCompress', ext: '.br', threshold: 1024 }),
 			createHtmlPlugin({ minify: true }),
 			spaFallbackPlugin(BASE_PATH),
-			pruneMockWorkerPlugin(IS_API_MOCK),
+			mockBuildPlugin(IS_API_MOCK),
 		],
 		build: {
 			outDir: './build',
