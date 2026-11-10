@@ -10,20 +10,8 @@ import { UploadPage } from '@pages/Console/UploadPage/UploadPage'
 import { NotFoundPage } from '@pages/NotFoundPage/NotFoundPage'
 import { WelcomePage } from '@pages/WelcomePage/WelcomePage'
 
+import { ERoutesPageNames, getDashboardPath, ROUTE_PATHS } from './paths'
 import { ERouterElementType, type IRoutes } from './routes.interfaces'
-
-export const enum ERoutesPageNames {
-	WELCOME = 'WELCOME',
-	NOT_FOUND = 'NOT_FOUND',
-	CONSOLE = 'CONSOLE',
-	CONSOLE_HOME = 'CONSOLE_HOME',
-	CONSOLE_NOT_FOUND = 'CONSOLE_NOT_FOUND',
-	CONSOLE_FILES = 'CONSOLE_FILES',
-	CONSOLE_UPLOAD = 'CONSOLE_UPLOAD',
-	CONSOLE_PIPELINES = 'CONSOLE_PIPELINES',
-	CONSOLE_DASHBOARD = 'CONSOLE_DASHBOARD',
-	CONSOLE_DASHBOARD_BY_FILENAME = 'CONSOLE_DASHBOARD_BY_FILENAME',
-}
 
 // TODO: separate, each group in own object
 export const Routes: IRoutes = {
@@ -44,7 +32,7 @@ export const Routes: IRoutes = {
 		children: {
 			[ERoutesPageNames.CONSOLE_HOME]: {
 				path: '/',
-				fullPath: '/console',
+				fullPath: ROUTE_PATHS.CONSOLE,
 				element: <HomePage />,
 				icon: <House />,
 				group: 'General',
@@ -52,7 +40,7 @@ export const Routes: IRoutes = {
 			},
 			[ERoutesPageNames.CONSOLE_FILES]: {
 				path: '/storage',
-				fullPath: '/console/storage',
+				fullPath: ROUTE_PATHS.CONSOLE_FILES,
 				element: <StoragePage />,
 				icon: <Files />,
 				group: 'General',
@@ -60,7 +48,7 @@ export const Routes: IRoutes = {
 			},
 			[ERoutesPageNames.CONSOLE_UPLOAD]: {
 				path: '/upload',
-				fullPath: '/console/upload',
+				fullPath: ROUTE_PATHS.CONSOLE_UPLOAD,
 				element: <UploadPage />,
 				icon: <FolderArrowUpIn />,
 				group: 'General',
@@ -68,7 +56,7 @@ export const Routes: IRoutes = {
 			},
 			[ERoutesPageNames.CONSOLE_PIPELINES]: {
 				path: '/pipelines',
-				fullPath: '/console/pipelines',
+				fullPath: ROUTE_PATHS.CONSOLE_PIPELINES,
 				element: <PipelinesPage />,
 				icon: <Pipeline />,
 				group: 'General',
@@ -76,7 +64,7 @@ export const Routes: IRoutes = {
 			},
 			[ERoutesPageNames.CONSOLE_DASHBOARD]: {
 				path: '/dashboard',
-				fullPath: '/console/dashboard',
+				fullPath: ROUTE_PATHS.CONSOLE_DASHBOARD,
 				element: <DashboardPage />,
 				icon: <ChartPie />,
 				type: ERouterElementType.ABSTRACT,
@@ -90,7 +78,7 @@ export const Routes: IRoutes = {
 				group: 'General',
 				name: 'Dashboard',
 				type: ERouterElementType.ABSTRACT,
-				getFullPathDynamic: (fileName: string) => `/console/dashboard/${encodeURIComponent(fileName)}`,
+				getFullPathDynamic: getDashboardPath,
 			},
 			[ERoutesPageNames.NOT_FOUND]: {
 				path: '/*',

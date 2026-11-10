@@ -4,7 +4,7 @@ import { ArrowRotateRight, ChartColumn, TriangleExclamation } from '@gravity-ui/
 import { observer } from 'mobx-react-lite'
 import { Navigate, useParams } from 'react-router-dom'
 
-import { ERoutesPageNames, Routes } from '@router/routes'
+import { ROUTE_PATHS } from '@router/paths'
 import { Button } from '@ui/Button/Button'
 import { ButtonLink } from '@ui/ButtonLink/ButtonLink'
 
@@ -16,8 +16,8 @@ import { WIDE_CHART_TYPES } from './DashboardPage.constants'
 import { DashboardPageStore } from './DashboardPage.store'
 import * as Styled from './DashboardPage.styles'
 
-const STORAGE_PATH = Routes[ERoutesPageNames.CONSOLE]!.children![ERoutesPageNames.CONSOLE_FILES]!.fullPath!
-const UPLOAD_PATH = Routes[ERoutesPageNames.CONSOLE]!.children![ERoutesPageNames.CONSOLE_UPLOAD]!.fullPath!
+const STORAGE_PATH = ROUTE_PATHS.CONSOLE_FILES
+const UPLOAD_PATH = ROUTE_PATHS.CONSOLE_UPLOAD
 
 const DashboardSkeleton = () => (
 	<Styled.Page aria-busy="true" aria-label="Loading dashboard">

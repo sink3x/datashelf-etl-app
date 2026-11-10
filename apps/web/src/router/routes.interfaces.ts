@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-import type { ERoutesPageNames } from './routes'
+import type { ERoutesPageNames } from './paths'
 
 export const enum ERouterElementType {
 	ABSTRACT = 'ABSTRACT',

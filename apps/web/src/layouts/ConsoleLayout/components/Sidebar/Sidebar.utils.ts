@@ -1,4 +1,5 @@
-import { ERoutesPageNames, Routes } from '@router/routes'
+import { ERoutesPageNames, ROUTE_PATHS } from '@router/paths'
+import { Routes } from '@router/routes'
 import { ERouterElementType } from '@router/routes.interfaces'
 
 import type { IAppConfig } from '@shared/config/config.interface'
@@ -6,8 +7,6 @@ import type { IAppConfig } from '@shared/config/config.interface'
 import { getSupportNavItems } from './Sidebar.constants'
 
 import type { ISidebarNavGroup, ISidebarNavItem } from './Sidebar.interfaces'
-
-const DASHBOARD_PATH_PREFIX = '/console/dashboard'
 
 export const getNavigationGroups = (urls: IAppConfig['urls']): ISidebarNavGroup[] => {
 	const consoleChildren = Routes[ERoutesPageNames.CONSOLE]!.children!
@@ -23,7 +22,7 @@ export const getNavigationGroups = (urls: IAppConfig['urls']): ISidebarNavGroup[
 			name: element.name ?? key,
 			icon: element.icon,
 			to: element.fullPath,
-			...(key === ERoutesPageNames.CONSOLE_FILES ? { matchPaths: [DASHBOARD_PATH_PREFIX] } : {}),
+			...(key === ERoutesPageNames.CONSOLE_FILES ? { matchPaths: [ROUTE_PATHS.CONSOLE_DASHBOARD] } : {}),
 		}
 
 		groups.set(element.group, [...(groups.get(element.group) ?? []), item])

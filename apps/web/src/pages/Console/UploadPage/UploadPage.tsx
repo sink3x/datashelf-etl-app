@@ -4,7 +4,7 @@ import { CloudArrowUpIn, File as FileIcon, TriangleExclamation } from '@gravity-
 import { Progress, Steps, Upload, type UploadProps } from 'antd'
 import { observer } from 'mobx-react-lite'
 
-import { ERoutesPageNames, Routes } from '@router/routes'
+import { getDashboardPath, ROUTE_PATHS } from '@router/paths'
 import { isTerminalRunState, runsStore } from '@stores/runs-store'
 import { Button } from '@ui/Button/Button'
 import { ButtonLink } from '@ui/ButtonLink/ButtonLink'
@@ -20,9 +20,7 @@ import { getAxiosError } from '@utils/get-axios-error/get-axios-error'
 import { ALLOWED_FILE_EXTENSIONS, isAllowedFile, RUN_POLL_INTERVAL_MS } from './UploadPage.constants'
 import * as Styled from './UploadPage.styles'
 
-const consoleRoutes = Routes[ERoutesPageNames.CONSOLE]!.children!
-const getDashboardPath = consoleRoutes[ERoutesPageNames.CONSOLE_DASHBOARD_BY_FILENAME]!.getFullPathDynamic!
-const PIPELINES_PATH = consoleRoutes[ERoutesPageNames.CONSOLE_PIPELINES]!.fullPath!
+const PIPELINES_PATH = ROUTE_PATHS.CONSOLE_PIPELINES
 
 const RUN_STEP_INDEX: Record<TDagRunState, number> = {
 	queued: 1,

@@ -3,7 +3,7 @@ import type { FC } from 'react'
 import { Menu, MenuItem } from 'react-pro-sidebar'
 import { Link, useLocation } from 'react-router-dom'
 
-import { ERoutesPageNames, Routes } from '@router/routes'
+import { ROUTE_PATHS } from '@router/paths'
 
 import { DemoBadge } from '@components/DemoBadge/DemoBadge'
 import { getAppConfig } from '@shared/config/config'
@@ -16,7 +16,7 @@ import { getNavigationGroups, isNavItemActive } from './Sidebar.utils'
 
 import type { ISidebarProps } from './Sidebar.interfaces'
 
-const CONSOLE_ROOT_PATH = Routes[ERoutesPageNames.CONSOLE]!.path
+const CONSOLE_ROOT_PATH = ROUTE_PATHS.CONSOLE
 
 export const Sidebar: FC<ISidebarProps> = (props) => {
 	const { isMobileOpen, onMobileClose } = props

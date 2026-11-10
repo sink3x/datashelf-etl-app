@@ -1,31 +1,28 @@
 import { Files, FolderArrowUpIn, Pipeline } from '@gravity-ui/icons'
 import { observer } from 'mobx-react-lite'
 
-import { ERoutesPageNames, Routes } from '@router/routes'
+import { getDashboardPath, ROUTE_PATHS } from '@router/paths'
 import { runsStore } from '@stores/runs-store'
 
 import { StatusBadge } from '@components/StatusBadge/StatusBadge'
 
 import * as Styled from './HomePage.styles'
 
-const consoleRoutes = Routes[ERoutesPageNames.CONSOLE]!.children!
-const getDashboardPath = consoleRoutes[ERoutesPageNames.CONSOLE_DASHBOARD_BY_FILENAME]!.getFullPathDynamic!
-
 const ACTIONS = [
 	{
-		to: consoleRoutes[ERoutesPageNames.CONSOLE_UPLOAD]!.fullPath!,
+		to: ROUTE_PATHS.CONSOLE_UPLOAD,
 		icon: <FolderArrowUpIn />,
 		title: 'Upload a dataset',
 		description: 'Send a CSV or JSON file to storage and start the ETL pipeline on it.',
 	},
 	{
-		to: consoleRoutes[ERoutesPageNames.CONSOLE_FILES]!.fullPath!,
+		to: ROUTE_PATHS.CONSOLE_FILES,
 		icon: <Files />,
 		title: 'Browse storage',
 		description: 'Find an uploaded file and open the dashboard built from it.',
 	},
 	{
-		to: consoleRoutes[ERoutesPageNames.CONSOLE_PIPELINES]!.fullPath!,
+		to: ROUTE_PATHS.CONSOLE_PIPELINES,
 		icon: <Pipeline />,
 		title: 'Check pipelines',
 		description: 'See which Airflow pipelines are active and follow your recent runs.',

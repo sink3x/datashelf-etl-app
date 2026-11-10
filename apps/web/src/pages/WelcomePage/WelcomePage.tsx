@@ -1,4 +1,4 @@
-import { ERoutesPageNames, Routes } from '@router/routes'
+import { ROUTE_PATHS } from '@router/paths'
 import { Button } from '@ui/Button/Button'
 import { ButtonLink } from '@ui/ButtonLink/ButtonLink'
 
@@ -19,7 +19,7 @@ export const WelcomePage = () => {
 						<Styled.HeroTitle>{WELCOME_TITLE}</Styled.HeroTitle>
 						<Styled.HeroText>{WELCOME_DESCRIPTION}</Styled.HeroText>
 						<Styled.HeroActions>
-							<ButtonLink to={Routes[ERoutesPageNames.CONSOLE]!.path} type="primary" size="large">
+							<ButtonLink to={ROUTE_PATHS.CONSOLE} type="primary" size="large">
 								Open console
 							</ButtonLink>
 							{urls.contactUsUrl && (

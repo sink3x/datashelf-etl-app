@@ -5,7 +5,7 @@ import { Skeleton } from 'antd'
 import { DateTime } from 'luxon'
 import { observer } from 'mobx-react-lite'
 
-import { ERoutesPageNames, Routes } from '@router/routes'
+import { getDashboardPath, ROUTE_PATHS } from '@router/paths'
 import { Button } from '@ui/Button/Button'
 import { ButtonLink } from '@ui/ButtonLink/ButtonLink'
 
@@ -16,9 +16,7 @@ import { PAGE_SIZE_OPTIONS, RAW_FILE_SKELETON_ITEM_COUNT } from './StoragePage.c
 import { StoragePageStore } from './StoragePage.store'
 import * as Styled from './StoragePage.styles'
 
-const consoleRoutes = Routes[ERoutesPageNames.CONSOLE]!.children!
-const UPLOAD_PATH = consoleRoutes[ERoutesPageNames.CONSOLE_UPLOAD]!.fullPath!
-const getDashboardPath = consoleRoutes[ERoutesPageNames.CONSOLE_DASHBOARD_BY_FILENAME]!.getFullPathDynamic!
+const UPLOAD_PATH = ROUTE_PATHS.CONSOLE_UPLOAD
 
 const formatModifiedAt = (isoDate: string) => {
 	const date = DateTime.fromISO(isoDate, { zone: 'utc' }).setZone('local')

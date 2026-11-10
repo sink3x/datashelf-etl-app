@@ -5,7 +5,7 @@ import { Skeleton } from 'antd'
 import { DateTime } from 'luxon'
 import { observer } from 'mobx-react-lite'
 
-import { ERoutesPageNames, Routes } from '@router/routes'
+import { getDashboardPath, ROUTE_PATHS } from '@router/paths'
 import { runsStore } from '@stores/runs-store'
 import { Button } from '@ui/Button/Button'
 import { ButtonLink } from '@ui/ButtonLink/ButtonLink'
@@ -18,9 +18,7 @@ import type { IDag } from '@interfaces/dag'
 import { PipelinesPageStore } from './PipelinesPage.store'
 import * as Styled from './PipelinesPage.styles'
 
-const consoleRoutes = Routes[ERoutesPageNames.CONSOLE]!.children!
-const UPLOAD_PATH = consoleRoutes[ERoutesPageNames.CONSOLE_UPLOAD]!.fullPath!
-const getDashboardPath = consoleRoutes[ERoutesPageNames.CONSOLE_DASHBOARD_BY_FILENAME]!.getFullPathDynamic!
+const UPLOAD_PATH = ROUTE_PATHS.CONSOLE_UPLOAD
 
 const RUNS_POLL_INTERVAL_MS = 5000
 

@@ -1,4 +1,4 @@
-import { ERoutesPageNames, Routes } from '@router/routes'
+import { ROUTE_PATHS } from '@router/paths'
 import { ButtonLink } from '@ui/ButtonLink/ButtonLink'
 
 import NOT_FOUND_IMAGE_URL from '@assets/images/background/not-found.webp'
@@ -15,7 +15,7 @@ export const NotFoundPage = () => (
 				<Styled.NotFoundParagraph>
 					The link may be outdated or mistyped. Go back to the start page or open the console.
 				</Styled.NotFoundParagraph>
-				<ButtonLink to={Routes[ERoutesPageNames.WELCOME]!.path} type="primary">
+				<ButtonLink to={ROUTE_PATHS.WELCOME} type="primary">
 					Back to start page
 				</ButtonLink>
 			</Styled.NotFoundText>
