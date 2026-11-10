@@ -1,21 +1,25 @@
-import type { IDagInfo } from '@interfaces/dag'
-import type { IObjectAny } from '@interfaces/object-any'
+import type { IApiResponse } from '@interfaces/api-response'
+import type { IDag, IDagRun } from '@interfaces/dag'
 
-import type { AxiosRequestConfig, AxiosResponse } from 'axios'
+export interface IGetDagListResponse extends IApiResponse {
+	dags?: IDag[]
+	total_entries?: number
+}
 
-export type TUploadRawDataPayload = FormData
-export type TUploadRawDataParams = {}
+export interface IGetAllowedFileTypesResponse extends IApiResponse {
+	allowedFileTypeList: string[]
+}
 
-export interface IUploadRawDataResponse
-	extends AxiosResponse<{
-		message: string
-		triggeredDagInfo: IDagInfo
-		info?: IObjectAny
-	}> {}
+export interface IUploadRawDataParams {
+	file: File
+	dagId: string
+	onProgress?: (percent: number) => void
+}
 
-export interface IUploadRawDataRequest extends AxiosRequestConfig<TUploadRawDataPayload> {}
+export interface IUploadRawDataResponse extends IApiResponse {
+	triggeredDagInfo?: IDagRun
+}
 
-export type TUploadRawDataService = (
-	payload: TUploadRawDataPayload,
-	params: TUploadRawDataParams,
-) => Promise<IUploadRawDataResponse>
+export interface IGetDagRunStatusResponse extends IApiResponse {
+	dagStatus?: IDagRun
+}

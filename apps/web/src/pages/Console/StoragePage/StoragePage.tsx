@@ -1,146 +1,143 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
-import { File } from '@gravity-ui/icons'
-import { Col, Empty, Row, Skeleton, Tooltip, Typography, type PaginationProps } from 'antd'
+import { ArrowRotateRight, File, FolderOpen, TriangleExclamation } from '@gravity-ui/icons'
+import { Skeleton } from 'antd'
 import { DateTime } from 'luxon'
 import { observer } from 'mobx-react-lite'
 import { Link } from 'react-router-dom'
 
 import { ERoutesPageNames, Routes } from '@router/routes'
+import { Button } from '@ui/Button/Button'
 
-import type { IRawFile } from '@interfaces/file-raw'
+import { PageState } from '@components/PageState/PageState'
 import { convertFileSize } from '@utils/convert-file-size'
 
-import { RAW_FILE_SKELETON_ITEM_COUNT, SHOW_TOTAL } from './StoragePage.constants'
+import { PAGE_SIZE_OPTIONS, RAW_FILE_SKELETON_ITEM_COUNT } from './StoragePage.constants'
 import { StoragePageStore } from './StoragePage.store'
 import * as Styled from './StoragePage.styles'
 
-const storagePageStore = new StoragePageStore()
+const consoleRoutes = Routes[ERoutesPageNames.CONSOLE]!.children!
+const UPLOAD_PATH = consoleRoutes[ERoutesPageNames.CONSOLE_UPLOAD]!.fullPath!
+const getDashboardPath = consoleRoutes[ERoutesPageNames.CONSOLE_DASHBOARD_BY_FILENAME]!.getFullPathDynamic!
+
+const formatModifiedAt = (isoDate: string) => {
+	const date = DateTime.fromISO(isoDate, { zone: 'utc' }).setZone('local')
+
+	return date.isValid ? date.toFormat('dd LLL yyyy, HH:mm') : isoDate
+}
 
 export const StoragePage = observer(() => {
-	const {
-		rawFileList,
-		isLoadingRawFileList,
-		fetchRawFileList,
-		page,
-		totalCount,
-		setPage,
-		setPageSize,
-		isRawFileListEmpty,
-		reset,
-	} = storagePageStore
+	const [store] = useState(() => new StoragePageStore())
+
+	const { rawFileList, isLoading, errorMessage, isEmpty, page, pageSize, totalCount } = store
 
 	useEffect(() => {
-		if (isRawFileListEmpty) {
-			fetchRawFileList()
-		}
+		void store.fetchRawFileList()
+	}, [store])
 
-		if (!isLoadingRawFileList) {
-			fetchRawFileList({ isUpdateIsLoading: false })
-		}
-
-		return () => {
-			reset()
-		}
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
-
-	const handleChangeShowSize: PaginationProps['onShowSizeChange'] = (_currentPageNumber, pageSize) => {
-		setPageSize(pageSize)
-		fetchRawFileList()
+	const handleRefresh = () => {
+		void store.fetchRawFileList()
 	}
 
-	const handleChangePageNumber: PaginationProps['onChange'] = (pageNumber) => {
-		setPage(pageNumber)
-		fetchRawFileList()
-	}
+	const renderContent = () => {
+		if (isLoading && isEmpty) {
+			return (
+				<Styled.FileGrid aria-busy="true" aria-label="Loading files">
+					{Array.from({ length: RAW_FILE_SKELETON_ITEM_COUNT }, (_, index) => (
+						<Styled.FileCardSkeleton key={index}>
+							<Skeleton active title={false} paragraph={{ rows: 3, width: ['80%', '40%', '60%'] }} />
+						</Styled.FileCardSkeleton>
+					))}
+				</Styled.FileGrid>
+			)
+		}
 
-	const handleClickRefreshRawFileList = () => {
-		fetchRawFileList()
+		if (errorMessage) {
+			return (
+				<PageState
+					tone="error"
+					icon={<TriangleExclamation />}
+					title="Couldn’t load stored files"
+					description={errorMessage}
+					actions={
+						<Button type="primary" onClick={handleRefresh}>
+							Try again
+						</Button>
+					}
+				/>
+			)
+		}
+
+		if (isEmpty) {
+			return (
+				<PageState
+					icon={<FolderOpen />}
+					title="No datasets stored yet"
+					description="Upload a CSV or JSON file to store it and run the ETL pipeline on it."
+					actions={
+						<Link to={UPLOAD_PATH}>
+							<Button type="primary">Upload a dataset</Button>
+						</Link>
+					}
+				/>
+			)
+		}
+
+		return (
+			<>
+				<Styled.FileGrid>
+					{rawFileList.map((file) => (
+						<li key={file.key}>
+							<Styled.FileCard
+								to={getDashboardPath(file.fileName)}
+								aria-label={`Open dashboard for ${file.fileName}`}
+							>
+								<Styled.FileIcon aria-hidden>
+									<File />
+								</Styled.FileIcon>
+								<Styled.FileName title={file.fileName}>{file.fileName}</Styled.FileName>
+								<Styled.FileMeta>
+									<span>{convertFileSize(file.size)}</span>
+									<span>{formatModifiedAt(file.lastModified)}</span>
+								</Styled.FileMeta>
+							</Styled.FileCard>
+						</li>
+					))}
+				</Styled.FileGrid>
+				<Styled.StoragePagination
+					current={page}
+					pageSize={pageSize}
+					total={totalCount}
+					pageSizeOptions={PAGE_SIZE_OPTIONS}
+					showSizeChanger
+					showTotal={(total) => `${total} ${total === 1 ? 'file' : 'files'}`}
+					onChange={store.setPagination}
+					disabled={isLoading}
+				/>
+			</>
+		)
 	}
 
 	return (
-		<Styled.StorageSpace>
-			<Styled.StorageContent>
-				<Row gutter={4}>
-					{isLoadingRawFileList &&
-						[...new Array(RAW_FILE_SKELETON_ITEM_COUNT)].map((_, index) => (
-							<Col key={index}>
-								<Styled.CardContainer
-									style={{
-										marginBottom: '16px',
-										marginLeft: '12px',
-									}}
-									title={
-										<Styled.CardTitle>
-											<Skeleton active paragraph={{ rows: 1, width: ['70%'] }} title={false} />
-										</Styled.CardTitle>
-									}
-								>
-									<Skeleton active paragraph={{ rows: 2, width: ['10%', '50%'] }} title={false} />
-								</Styled.CardContainer>
-							</Col>
-						))}
-				</Row>
-				{!isLoadingRawFileList && isRawFileListEmpty && (
-					<Styled.StorageRawFileListNoData>
-						<Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
-						<Styled.StorageRawFileRefreshButton onClick={handleClickRefreshRawFileList}>
-							Refresh
-						</Styled.StorageRawFileRefreshButton>
-					</Styled.StorageRawFileListNoData>
-				)}
-				{!isLoadingRawFileList && !isRawFileListEmpty && (
-					<Styled.RawFileList
-						grid={{ gutter: 16, column: 4 }}
-						dataSource={rawFileList}
-						// @ts-ignore
-						renderItem={(item: IRawFile) => {
-							const lastModifiedFormatted = DateTime.fromISO(item.lastModified, { zone: 'utc' })
-								.setZone('local')
-								.toFormat('dd.MM.yyyy HH:mm:ss')
-
-							return (
-								<Styled.RawFileList.Item>
-									<Link
-										to={
-											Routes[ERoutesPageNames.CONSOLE]!.children![
-												ERoutesPageNames.CONSOLE_DASHBOARD_BY_FILENAME
-											]!.getFullPathDynamic!(item.fileName)!
-										}
-									>
-										<Tooltip placement="bottom" title={`Click to open ${item.fileName} dashboard`}>
-											<Styled.CardContainer
-												title={
-													<Styled.CardTitle>
-														<File /> <span>{item.fileName}</span>
-													</Styled.CardTitle>
-												}
-											>
-												<Styled.CardDescription>
-													<Typography> {convertFileSize(item.size)}</Typography>
-													<Typography> {lastModifiedFormatted}</Typography>
-												</Styled.CardDescription>
-											</Styled.CardContainer>
-										</Tooltip>
-									</Link>
-								</Styled.RawFileList.Item>
-							)
-						}}
-					/>
-				)}
-			</Styled.StorageContent>
-			<Styled.StoragePagination
-				disabled={isRawFileListEmpty}
-				current={page}
-				total={totalCount}
-				showTotal={SHOW_TOTAL!}
-				showSizeChanger
-				showQuickJumper
-				onShowSizeChange={handleChangeShowSize}
-				onChange={handleChangePageNumber}
-			/>
-		</Styled.StorageSpace>
+		<Styled.StoragePage>
+			<Styled.Toolbar>
+				<Styled.ToolbarText>
+					Raw datasets in object storage. Open one to see its dashboard.
+				</Styled.ToolbarText>
+				<Styled.ToolbarActions>
+					<Button
+						icon={<ArrowRotateRight aria-hidden />}
+						onClick={handleRefresh}
+						loading={isLoading && !isEmpty}
+					>
+						Refresh
+					</Button>
+					<Link to={UPLOAD_PATH}>
+						<Button type="primary">Upload</Button>
+					</Link>
+				</Styled.ToolbarActions>
+			</Styled.Toolbar>
+			{renderContent()}
+		</Styled.StoragePage>
 	)
 })

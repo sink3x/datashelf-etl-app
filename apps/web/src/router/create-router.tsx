@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 
 import { ErrorBoundaryLayout } from '@layouts/ErrorBoundaryLayout/ErrorBoundaryLayout'
+import { ROUTER_BASENAME } from '@shared/constants'
 
 import { Routes } from './routes'
 import { ERouterElementType, type IRouteNode } from './routes.interfaces'
@@ -28,4 +29,4 @@ const routerList = Object.values(Routes).map((__routerObject) => {
 	}
 })
 
-export const router = createBrowserRouter(routerList)
+export const router = createBrowserRouter(routerList, { basename: ROUTER_BASENAME })

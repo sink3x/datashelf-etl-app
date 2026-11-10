@@ -156,6 +156,9 @@ importers:
       '@ant-design/plots':
         specifier: ^2.4.0
         version: 2.6.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@datashelf/contracts':
+        specifier: workspace:*
+        version: link:../../packages/contracts
       '@fontsource-variable/fira-code':
         specifier: 5.2.6
         version: 5.2.6

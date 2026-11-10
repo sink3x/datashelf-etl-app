@@ -1,6 +1,5 @@
-import { ChartPie, CodeCommits, Files, FolderArrowUpIn, Gear, House } from '@gravity-ui/icons'
+import { ChartPie, Files, FolderArrowUpIn, House, Pipeline } from '@gravity-ui/icons'
 
-// TODO: use lazy load
 import { ConsoleLayout } from '@layouts/ConsoleLayout/ConsoleLayout'
 import { DashboardPage } from '@pages/Console/DashboardPage/DashboardPage'
 import { HomePage } from '@pages/Console/HomePage/HomePage'
@@ -24,7 +23,6 @@ export const enum ERoutesPageNames {
 	CONSOLE_PIPELINES = 'CONSOLE_PIPELINES',
 	CONSOLE_DASHBOARD = 'CONSOLE_DASHBOARD',
 	CONSOLE_DASHBOARD_BY_FILENAME = 'CONSOLE_DASHBOARD_BY_FILENAME',
-	CONSOLE_SETTIGS = 'CONSOLE_SETTINGS',
 }
 
 // TODO: separate, each group in own object
@@ -72,10 +70,9 @@ export const Routes: IRoutes = {
 				path: '/pipelines',
 				fullPath: '/console/pipelines',
 				element: <PipelinesPage />,
-				icon: <CodeCommits />,
+				icon: <Pipeline />,
 				group: 'General',
 				name: 'Pipelines',
-				isDisabled: true,
 			},
 			[ERoutesPageNames.CONSOLE_DASHBOARD]: {
 				path: '/dashboard',
@@ -93,16 +90,7 @@ export const Routes: IRoutes = {
 				group: 'General',
 				name: 'Dashboard',
 				type: ERouterElementType.ABSTRACT,
-				getFullPathDynamic: (fileName: string) => `/console/dashboard/${fileName}`,
-			},
-			[ERoutesPageNames.CONSOLE_SETTIGS]: {
-				path: '/settings',
-				fullPath: '/console/settings',
-				element: <div> settigns </div>,
-				icon: <Gear />,
-				group: 'Support',
-				name: 'Settings',
-				isDisabled: true,
+				getFullPathDynamic: (fileName: string) => `/console/dashboard/${encodeURIComponent(fileName)}`,
 			},
 			[ERoutesPageNames.NOT_FOUND]: {
 				path: '/*',

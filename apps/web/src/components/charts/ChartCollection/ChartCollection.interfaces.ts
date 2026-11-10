@@ -1,9 +1,5 @@
-import type { IObjectAny } from '@interfaces/object-any'
-
-export type TChartType = 'pie' | 'line' | 'bar' | 'frequency' | 'grouped'
+import type { TChart } from '@interfaces/chart'
 
 export interface IChartCollectionProps {
-	data: IObjectAny
-	values: IObjectAny
-	type: TChartType
+	chart: TChart
 }

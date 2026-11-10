@@ -1,23 +1,36 @@
-import { Card, Typography } from 'antd'
 import styled from 'styled-components'
 
-export const MetricCardContainer = styled(Card)`
+import { colors, focusRing, fontSizes, radii, space } from '@styles/tokens'
+
+export const MetricCardContainer = styled.div`
+	min-width: 0;
+	padding: ${space(4)} ${space(5)};
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	padding: 16px;
-	text-align: center;
+	gap: ${space(1)};
+	background: ${colors.surface};
 `
 
-export const CardTitle = styled(Typography.Paragraph)`
-	font-size: 14px;
-	color: #888;
-	margin-bottom: 4px;
+export const CardTitle = styled.p`
+	margin: 0;
+	color: ${colors.inkMuted};
+	font-size: ${fontSizes.sm};
+	line-height: 1.4;
 `
 
-export const CardValue = styled(Typography.Paragraph)`
-	font-size: 24px;
-	font-weight: bold;
-	color: #333;
+export const CardValue = styled.p`
+	margin: 0;
+	width: fit-content;
+	border-radius: ${radii.sm};
+	color: ${colors.ink};
+	font-size: ${fontSizes.xxl};
+	font-weight: 650;
+	font-variant-numeric: tabular-nums;
+	letter-spacing: -0.02em;
+	line-height: 1.2;
+	white-space: nowrap;
+
+	&:focus-visible {
+		${focusRing}
+	}
 `

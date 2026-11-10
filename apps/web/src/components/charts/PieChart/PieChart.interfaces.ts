@@ -1,8 +1,5 @@
-export interface IPieChartValue {
-	value: number
-	type: string
-}
+import type { ILabelValue } from '../chart-adapters'
 
 export interface IPieChartProps {
-	values: IPieChartValue[]
+	values: ILabelValue[]
 }

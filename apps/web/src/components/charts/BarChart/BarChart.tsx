@@ -1,43 +1,44 @@
-import { useRef, type FC } from 'react'
+import type { FC } from 'react'
 
 import { Column } from '@ant-design/plots'
 
-import type { IBarchartProps } from './BarChart.interfaces'
+import { chartPalette } from '@styles/tokens'
+import { formatCompactNumber } from '@utils/format-number'
 
-export const BarChart: FC<IBarchartProps> = (props) => {
+import { AXIS_STYLE, CHART_HEIGHT, CHART_THEME } from '../chart.constants'
+
+import type { IBarChartProps } from './BarChart.interfaces'
+
+const LONG_LABEL_THRESHOLD = 6
+
+export const BarChart: FC<IBarChartProps> = (props) => {
 	const { values } = props
 
-	const chartRef = useRef<unknown>(null)
+	const hasManyBars = values.length > LONG_LABEL_THRESHOLD
 
 	const config = {
 		data: values,
-		xField: 'type',
+		xField: 'label',
 		yField: 'value',
-		colorField: 'type',
+		colorField: 'label',
+		height: CHART_HEIGHT,
+		autoFit: true,
+		theme: CHART_THEME,
+		legend: false,
+		scale: { color: { range: [...chartPalette] } },
+		style: { radiusTopLeft: 4, radiusTopRight: 4, maxWidth: 48 },
 		axis: {
 			x: {
-				label: {
-					autoRotate: false,
-					rotate: 45,
-					textAlign: 'right',
-					textBaseline: 'middle',
-				},
-				size: 60,
+				...AXIS_STYLE,
+				grid: false,
+				labelAutoRotate: hasManyBars,
+				labelAutoHide: hasManyBars,
 			},
+			y: { ...AXIS_STYLE, labelFormatter: (value: number) => formatCompactNumber(value) },
 		},
-		annotations: [
-			{
-				type: 'text',
-				style: {
-					x: '50%',
-					y: '50%',
-					textAlign: 'center',
-					fontSize: 15,
-					fontStyle: 'bold',
-				},
-			},
-		],
-		onReady: (plot: unknown) => (chartRef.current = plot),
+		tooltip: {
+			items: [{ channel: 'y', valueFormatter: (value: number) => formatCompactNumber(value) }],
+		},
 	}
 
 	return <Column {...config} />

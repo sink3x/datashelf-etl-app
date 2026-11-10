@@ -1,42 +1,43 @@
-import type { FC } from 'react'
+import { useMemo, type FC } from 'react'
 
-import { theme } from 'antd'
-import { scaleOrdinal } from 'd3-scale'
 import WordCloudD3 from 'react-d3-cloud'
 
+import { chartPalette, fonts } from '@styles/tokens'
+
+import * as Styled from './WordCloud.styles'
+
 import type { IWordCloudProps } from './WordCloud.interfaces'
+
+const MIN_FONT_SIZE = 14
+const MAX_FONT_SIZE = 56
+const CLOUD_WIDTH = 640
+const CLOUD_HEIGHT = 300
 
 export const WordCloud: FC<IWordCloudProps> = (props) => {
 	const { values } = props
 
-	const { token } = theme.useToken()
-
-	const colors = [
-		token.colorPrimary,
-		token.colorSuccess,
-		token.colorWarning,
-		token.colorError,
-		token.colorInfo,
-		token.colorText,
-		token.colorBorder,
-	]
-
-	const colorScale = scaleOrdinal(colors)
+	const maxValue = useMemo(() => Math.max(1, ...values.map(({ value }) => value)), [values])
+	const colorByWord = useMemo(
+		() => new Map(values.map(({ text }, index) => [text, chartPalette[index % chartPalette.length]!])),
+		[values],
+	)
 
 	return (
-		<div style={{ width: '100%', height: '100%' }}>
+		<Styled.CloudContainer>
 			<WordCloudD3
 				data={values}
-				width={600}
-				height={300}
-				font="Inter Variable"
-				fontWeight="bold"
-				fontSize={(word) => Math.min(60, Math.max(12, word.value * 0.5))}
+				width={CLOUD_WIDTH}
+				height={CLOUD_HEIGHT}
+				font={fonts.sans}
+				fontWeight={600}
+				fontSize={(word) =>
+					MIN_FONT_SIZE + Math.sqrt(word.value / maxValue) * (MAX_FONT_SIZE - MIN_FONT_SIZE)
+				}
 				spiral="archimedean"
 				rotate={0}
-				// @ts-ignore
-				fill={(_: unknown, word: string) => colorScale(word)}
+				padding={3}
+				fill={(word: { text: string }) => colorByWord.get(word.text) ?? chartPalette[0]}
 			/>
-		</div>
+		</Styled.CloudContainer>
 	)
 }

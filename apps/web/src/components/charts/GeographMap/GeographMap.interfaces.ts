@@ -1,12 +1,5 @@
-export interface CitySalesValue {
-	city: string
-	saleSum: number
-}
+import type { ICitySales } from '../chart-adapters'
 
 export interface IGeographMapProps {
-	values: CitySalesValue[]
-}
-
-export interface IGeographMapColoredProps {
-	$glowColor: string
+	values: ICitySales[]
 }

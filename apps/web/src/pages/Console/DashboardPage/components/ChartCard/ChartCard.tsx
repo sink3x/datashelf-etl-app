@@ -1,48 +1,63 @@
-import { useRef, type FC } from 'react'
+import { useRef, useState, type FC } from 'react'
 
-import { FloppyDisk } from '@gravity-ui/icons'
-import { Card } from 'antd'
-import html2canvas from 'html2canvas'
+import { ArrowDownToLine } from '@gravity-ui/icons'
+import { Tooltip } from 'antd'
 
 import { ChartCollection } from '@components/charts/ChartCollection/ChartCollection'
-import { EColorsMain } from '@styles/colors/colors-main'
+import { colors } from '@styles/tokens'
 
 import * as Styled from './ChartCard.styles'
 
 import type { IChartCardProps } from './ChartCard.interfaces'
 
 export const ChartCard: FC<IChartCardProps> = (props) => {
-	const { chartFormatted } = props
+	const { chart, isWide = false } = props
 
-	const chartRef = useRef(null)
+	const chartRef = useRef<HTMLDivElement>(null)
+	const [isExporting, setIsExporting] = useState(false)
+
+	const titleId = `chart-title-${chart.name}`
 
 	const handleDownload = async () => {
-		if (!chartRef.current) return
+		if (!chartRef.current) {
+			return
+		}
 
-		const canvas = await html2canvas(chartRef.current, {
-			backgroundColor: EColorsMain.WHITE,
-			scale: 2,
-		})
+		setIsExporting(true)
 
-		const dataURL = canvas.toDataURL('image/jpeg', 1.0)
-		const link = document.createElement('a')
+		try {
+			const { default: html2canvas } = await import('html2canvas')
+			const canvas = await html2canvas(chartRef.current, { backgroundColor: colors.surface, scale: 2 })
+			const link = document.createElement('a')
 
-		link.href = dataURL
-		link.download = `${chartFormatted.name}.jpg`
-		link.click()
+			link.href = canvas.toDataURL('image/png')
+			link.download = `${chart.name}.png`
+			link.click()
+		} finally {
+			setIsExporting(false)
+		}
 	}
 
 	return (
-		<Card key={chartFormatted.name} className={`chart-card chart-${chartFormatted.type}`}>
-			<Styled.CardTitle>
-				{chartFormatted.title}
-				<Styled.CardTitleSaveButton type="text" onClick={handleDownload}>
-					<FloppyDisk width={25} height={25} />
-				</Styled.CardTitleSaveButton>
-			</Styled.CardTitle>
-			<div ref={chartRef}>
-				<ChartCollection data={chartFormatted} values={chartFormatted.values} type={chartFormatted.type} />
-			</div>
-		</Card>
+		<Styled.Card aria-labelledby={titleId} $isWide={isWide} data-testid={`chart-${chart.name}`}>
+			<Styled.Header>
+				<div>
+					<Styled.Title id={titleId}>{chart.title}</Styled.Title>
+					{chart.description && <Styled.Description>{chart.description}</Styled.Description>}
+				</div>
+				<Tooltip title="Download as PNG">
+					<Styled.DownloadButton
+						type="text"
+						aria-label={`Download ${chart.title} as PNG`}
+						icon={<ArrowDownToLine aria-hidden />}
+						loading={isExporting}
+						onClick={handleDownload}
+					/>
+				</Tooltip>
+			</Styled.Header>
+			<Styled.Body ref={chartRef}>
+				<ChartCollection chart={chart} />
+			</Styled.Body>
+		</Styled.Card>
 	)
 }

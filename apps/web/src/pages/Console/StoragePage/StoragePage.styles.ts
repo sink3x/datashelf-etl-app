@@ -1,59 +1,104 @@
-import { Card, Flex, List, Pagination, Space } from 'antd'
+import { Pagination } from 'antd'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { Button } from '@ui/Button/Button'
+import { colors, focusRing, fonts, fontSizes, radii, space } from '@styles/tokens'
 
-export const StorageSpace = styled(Flex)`
-	margin-top: 0;
+export const StoragePage = styled.div`
+	width: 100%;
+	display: flex;
 	flex-direction: column;
-	align-items: start;
+	gap: ${space(6)};
 `
 
-export const StorageContent = styled(Space)`
-	margin-left: -20px;
+export const Toolbar = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	gap: ${space(3)};
+	align-items: center;
+	justify-content: space-between;
 `
 
-export const StorageRawFileListNoData = styled(Flex)`
-	margin-left: -10px;
-	flex-direction: column;
+export const ToolbarText = styled.p`
+	margin: 0;
+	color: ${colors.inkMuted};
+	font-size: ${fontSizes.md};
 `
 
-export const StorageRawFileRefreshButton = styled(Button)`
-	margin-left: 20px;
-	margin-bottom: 30px;
+export const ToolbarActions = styled.div`
+	display: flex;
+	gap: ${space(2)};
 `
 
-export const RawFileList = styled(List)`
-	margin-left: 10px;
+export const FileGrid = styled.ul`
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	gap: ${space(3)};
+	list-style: none;
 `
 
-export const CardContainer = styled(Card)`
-	min-width: 17vw;
-	cursor: pointer;
-	transition: all 0.3s ease;
+export const FileCard = styled(Link)`
+	height: 100%;
+	padding: ${space(4)};
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	gap: ${space(1)} ${space(3)};
+	align-items: center;
+	border: 1px solid ${colors.line};
+	border-radius: ${radii.md};
+	background: ${colors.surface};
+	color: ${colors.ink};
+	transition: border-color 0.15s ease;
 
 	&:hover {
-		transform: translateY(-5px);
+		border-color: ${colors.accent};
+		color: ${colors.ink};
+	}
+
+	&:focus-visible {
+		${focusRing}
 	}
 `
 
-export const CardTitle = styled(Flex)`
-	width: 100%;
+export const FileCardSkeleton = styled.li`
+	padding: ${space(4)};
+	border: 1px solid ${colors.line};
+	border-radius: ${radii.md};
+	background: ${colors.surface};
+`
+
+export const FileIcon = styled.span`
+	width: 32px;
+	height: 32px;
+	grid-row: span 2;
+	display: inline-flex;
 	align-items: center;
-
-	span {
-		width: 90%;
-		margin-left: 7px;
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
-	}
+	justify-content: center;
+	border-radius: ${radii.sm};
+	background: ${colors.accentSoft};
+	color: ${colors.accent};
 `
 
-export const CardDescription = styled(Flex)`
-	flex-direction: column;
+export const FileName = styled.span`
+	overflow: hidden;
+	font-family: ${fonts.mono};
+	font-size: ${fontSizes.sm};
+	font-weight: 500;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+`
+
+export const FileMeta = styled.span`
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0 ${space(3)};
+	color: ${colors.inkMuted};
+	font-size: ${fontSizes.xs};
+	font-variant-numeric: tabular-nums;
 `
 
 export const StoragePagination = styled(Pagination)`
-	margin-bottom: 25px;
+	align-self: flex-end;
 `

@@ -1,36 +1,46 @@
-import { type FC } from 'react'
+import { lazy, Suspense, type FC } from 'react'
 
-import { toJS } from 'mobx'
+import { Skeleton } from 'antd'
 
-import { adapterWordCloudValueList } from '@components/charts/WordCloud/WordCloud.utils'
-
-import { AreaChart } from '../AreaChart/AreaChart'
-import { BarChart } from '../BarChart/BarChart'
-import { GeographMap } from '../GeographMap/GeographMap'
-import { adapterGeographMapValuesList } from '../GeographMap/GeographMap.utils'
-import { PieChart } from '../PieChart/PieChart'
-import { WordCloud } from '../WordCloud/WordCloud'
-
-import { adapterBaseChartValueList } from './ChartCollection.utils'
+import { toCitySalesList, toLabelValueList, toWordCloudList } from '../chart-adapters'
+import { CHART_HEIGHT } from '../chart.constants'
 
 import type { IChartCollectionProps } from './ChartCollection.interfaces'
 
-export const ChartCollection: FC<IChartCollectionProps> = (props) => {
-	const { data, type } = props
+const AreaChart = lazy(() =>
+	import('../AreaChart/AreaChart').then((module) => ({ default: module.AreaChart })),
+)
+const BarChart = lazy(() => import('../BarChart/BarChart').then((module) => ({ default: module.BarChart })))
+const PieChart = lazy(() => import('../PieChart/PieChart').then((module) => ({ default: module.PieChart })))
+const WordCloud = lazy(() =>
+	import('../WordCloud/WordCloud').then((module) => ({ default: module.WordCloud })),
+)
+const GeographMap = lazy(() =>
+	import('../GeographMap/GeographMap').then((module) => ({ default: module.GeographMap })),
+)
 
-	switch (type) {
+const ChartBody: FC<IChartCollectionProps> = (props) => {
+	const { chart } = props
+
+	switch (chart.type) {
 		case 'pie':
-			return <PieChart values={adapterBaseChartValueList(data?.values, data?.labels)} />
+			return <PieChart values={toLabelValueList(chart.labels, chart.values)} />
 		case 'line':
-			return <AreaChart values={adapterBaseChartValueList(data?.values, data?.labels)} />
+		case 'area':
+			return <AreaChart values={toLabelValueList(chart.labels, chart.values)} />
 		case 'bar':
-			return <BarChart values={adapterBaseChartValueList(data?.values, data?.labels)} />
+			return <BarChart values={toLabelValueList(chart.labels, chart.values)} />
 		case 'frequency':
-			return <WordCloud values={adapterWordCloudValueList(data?.values, data?.labels)} />
+			return <WordCloud values={toWordCloudList(chart.labels, chart.values)} />
 		case 'grouped':
-			return <GeographMap values={adapterGeographMapValuesList(data?.values_sum, data?.labels)} />
+			return <GeographMap values={toCitySalesList(chart.labels, chart.values_sum)} />
 		default:
-			console.log('# type', toJS(type))
 			return null
 	}
 }
+
+export const ChartCollection: FC<IChartCollectionProps> = (props) => (
+	<Suspense fallback={<Skeleton.Node active style={{ width: '100%', height: CHART_HEIGHT }} />}>
+		<ChartBody {...props} />
+	</Suspense>
+)
