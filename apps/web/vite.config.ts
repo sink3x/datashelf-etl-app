@@ -33,6 +33,23 @@ const spaFallbackPlugin = (basePath: string): Plugin => {
 	}
 }
 
+const pruneMockWorkerPlugin = (isApiMock: boolean): Plugin => {
+	let outDir = ''
+
+	return {
+		name: 'datashelf-prune-mock-worker',
+		apply: 'build',
+		configResolved(config) {
+			outDir = path.resolve(config.root, config.build.outDir)
+		},
+		closeBundle() {
+			if (!isApiMock) {
+				fs.rmSync(path.join(outDir, 'mockServiceWorker.js'), { force: true })
+			}
+		},
+	}
+}
+
 export default ({ command, mode }: ConfigEnv) => {
 	const env = loadEnv(mode, process.cwd())
 	const isBuild = command === 'build'
@@ -40,6 +57,7 @@ export default ({ command, mode }: ConfigEnv) => {
 	const HOST = env.VITE_REACT_HOST || 'localhost'
 	const PORT = Number(env.VITE_REACT_PORT) || 3000
 	const BASE_PATH = normalizeBasePath(env.VITE_BASE_PATH)
+	const IS_API_MOCK = env.VITE_API_MOCK === 'true'
 
 	return defineConfig({
 		base: BASE_PATH,
@@ -58,6 +76,7 @@ export default ({ command, mode }: ConfigEnv) => {
 			compression({ algorithm: 'brotliCompress', ext: '.br', threshold: 1024 }),
 			createHtmlPlugin({ minify: true }),
 			spaFallbackPlugin(BASE_PATH),
+			pruneMockWorkerPlugin(IS_API_MOCK),
 		],
 		build: {
 			outDir: './build',
