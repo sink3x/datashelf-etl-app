@@ -1,5 +1,4 @@
-import { ConflictError, NotFoundError, UpstreamError, ValidationError } from '@errors/app-error'
-import type { AppError } from '@errors/app-error'
+import { AppError, ConflictError, NotFoundError, UpstreamError, ValidationError } from '@errors/app-error'
 import type { TLogger } from '@shared/logger'
 import type { AxiosInstance, AxiosRequestConfig } from 'axios'
 import axios, { isAxiosError } from 'axios'
@@ -40,7 +39,11 @@ export const readJwtExpiry = (token: string): number | null => {
 }
 
 const readDetail = (data: unknown): string | null => {
-  if (typeof data === 'object' && data !== null && typeof (data as { detail?: unknown }).detail === 'string') {
+  if (
+    typeof data === 'object' &&
+    data !== null &&
+    typeof (data as { detail?: unknown }).detail === 'string'
+  ) {
     return (data as { detail: string }).detail
   }
 
@@ -48,6 +51,10 @@ const readDetail = (data: unknown): string | null => {
 }
 
 export const toAirflowError = (error: unknown): AppError => {
+  if (error instanceof AppError) {
+    return error
+  }
+
   if (!isAxiosError(error)) {
     return new UpstreamError('Airflow request failed', { code: 'AIRFLOW_UNAVAILABLE', cause: error })
   }
@@ -65,7 +72,10 @@ export const toAirflowError = (error: unknown): AppError => {
   const detail = readDetail(data)
 
   if (status === 404) {
-    return new NotFoundError(detail ?? 'Airflow resource not found', { code: 'AIRFLOW_NOT_FOUND', cause: error })
+    return new NotFoundError(detail ?? 'Airflow resource not found', {
+      code: 'AIRFLOW_NOT_FOUND',
+      cause: error,
+    })
   }
 
   if (status === 409) {
@@ -162,9 +172,15 @@ export class AirflowClient {
         throw error
       }
 
-      this.logger.error({ status: isAxiosError(error) ? error.response?.status : undefined }, 'airflow auth failed')
+      this.logger.error(
+        { status: isAxiosError(error) ? error.response?.status : undefined },
+        'airflow auth failed',
+      )
 
-      throw new UpstreamError('Failed to authenticate with Airflow', { code: 'AIRFLOW_AUTH_FAILED', cause: error })
+      throw new UpstreamError('Failed to authenticate with Airflow', {
+        code: 'AIRFLOW_AUTH_FAILED',
+        cause: error,
+      })
     }
   }
 }
