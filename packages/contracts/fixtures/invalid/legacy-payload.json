@@ -1,0 +1,14 @@
+{
+  "filename": "a.csv",
+  "processed_at": "2025-06-01T10:15:30",
+  "processing_time_sec": 0.1,
+  "meta": {},
+  "chart": {
+    "name": "total_sales_by_month",
+    "title": "",
+    "description": "",
+    "type": "line",
+    "labels": [],
+    "values": []
+  }
+}

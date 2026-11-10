@@ -1,0 +1,25 @@
+{
+  "name": "@datashelf/contracts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Versioned message contracts shared by the ETL service, the API and the web console.",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "files": [
+    "src",
+    "schemas"
+  ],
+  "scripts": {
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.29",
+    "typescript": "5.8.3",
+    "vitest": "3.2.7"
+  }
+}
