@@ -43,6 +43,7 @@ def analytics_task_id(job: str) -> str:
     schedule=None,
     start_date=datetime(2025, 5, 21),
     catchup=False,
+    is_paused_upon_creation=False,
     max_active_runs=8,
     default_args=DEFAULT_ARGS,
     tags=["etl", "s3", "rabbitmq", "retail"],
