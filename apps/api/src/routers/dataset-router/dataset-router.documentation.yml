@@ -4,7 +4,9 @@ paths:
       tags:
         - dataset
       summary: Get list of processed datasets
-      description: Returns a list of processed datasets from the database.
+      description: >
+        Returns up to 1000 most recent chart results (one item per ETL run and job) from the `chart_results`
+        collection, mapped to the legacy processed dataset shape.
       responses:
         '200':
           description: Successful response with processed datasets
@@ -38,16 +40,16 @@ paths:
                           type: object
                           additionalProperties: true
                         chart:
-                          type: object
-                          description: Chart configuration and data
-                          additionalProperties: true
-                          example:
-                            type: bar
-                            data:
-                              labels: ['Jan', 'Feb']
-                              datasets:
-                                - label: Sales
-                                  data: [100, 200]
+                          type: array
+                          description: Charts computed for the dataset by one ETL job
+                          items:
+                            $ref: '#/components/schemas/Chart'
+                        run_id:
+                          type: string
+                          example: manual__2025-06-01T10:15:00+00:00
+                        job:
+                          type: string
+                          example: retail_metrics
                         createdAt:
                           type: string
                           format: date-time
@@ -63,23 +65,29 @@ paths:
                         type: integer
                         example: 7
         '500':
-          description: Failed to retrieve processed datasets
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Failed to retrieve datasets
+          $ref: '#/components/responses/InternalError'
   /api/dataset/raw:
     get:
       summary: Get list of raw dataset files
       description: |
-        Returns a list of dataset files stored in the S3 bucket under the `raw-data` prefix.
-        This endpoint is intended for retrieving metadata about raw dataset files such as name, key, size, and last modified date.
+        Returns uploaded dataset files stored in the S3 bucket under `S3_RAW_PREFIX`, newest first.
+        The listing is collected page by page from S3 and capped at 10000 objects (`meta.truncated` is true when the cap is hit).
       tags:
         - dataset
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
       responses:
         '200':
           description: Successful response with list of raw dataset files
@@ -112,8 +120,26 @@ paths:
                         size:
                           type: integer
                           example: 56
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '500':
-          description: Internal server error
+          $ref: '#/components/responses/InternalError'
+  /api/dataset/charts/{filename}:
+    get:
+      tags:
+        - dataset
+      summary: Get charts for a dataset
+      description: Returns every chart computed for the dataset filename, grouped by chart name.
+      parameters:
+        - name: filename
+          in: path
+          required: true
+          schema:
+            type: string
+          example: retail-1748772900.csv
+      responses:
+        '200':
+          description: Charts grouped by name (empty object when the dataset has no results yet)
           content:
             application/json:
               schema:
@@ -121,7 +147,19 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: Failed to get processed data
-                  info:
+                    example: Ok
+                  charts:
                     type: object
-                    nullable: true
+                    additionalProperties:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Chart'
+                  meta:
+                    type: object
+                    properties:
+                      totalCount:
+                        type: integer
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalError'

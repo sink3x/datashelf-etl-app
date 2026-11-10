@@ -11,12 +11,12 @@ import { DOCUMENTATION_FILE_EXTENSION_LIST, swaggerSpecificationDocument } from 
 
 interface IYamlDocumentation {
   paths: Record<string, IObjectAny>
-  schemas: Record<string, IObjectAny>
+  components: Record<string, IObjectAny>
 }
 
 const loadYamlDocumentation = (directory: string): IYamlDocumentation => {
   const fileList = readdirSync(directory, { recursive: true }) as string[]
-  const documentation: IYamlDocumentation = { paths: {}, schemas: {} }
+  const documentation: IYamlDocumentation = { paths: {}, components: {} }
 
   for (const file of fileList) {
     if (!DOCUMENTATION_FILE_EXTENSION_LIST.includes(file.split('.').at(-1) ?? '')) {
@@ -26,14 +26,16 @@ const loadYamlDocumentation = (directory: string): IYamlDocumentation => {
     const yamlDocument: IObjectAny = YAML.load(path.join(directory, file)) ?? {}
 
     Object.assign(documentation.paths, yamlDocument.paths)
-    Object.assign(documentation.schemas, yamlDocument.components?.schemas)
+    for (const [section, entries] of Object.entries<IObjectAny>(yamlDocument.components ?? {})) {
+      documentation.components[section] = { ...documentation.components[section], ...entries }
+    }
   }
 
   return documentation
 }
 
 export const buildSwaggerSpecification = (logger?: TLogger, directory = OPENAPI_DIR): OpenAPIV3.Document => {
-  let documentation: IYamlDocumentation = { paths: {}, schemas: {} }
+  let documentation: IYamlDocumentation = { paths: {}, components: {} }
 
   try {
     documentation = loadYamlDocumentation(directory)
@@ -44,6 +46,6 @@ export const buildSwaggerSpecification = (logger?: TLogger, directory = OPENAPI_
   return {
     ...swaggerSpecificationDocument,
     paths: documentation.paths,
-    components: { schemas: documentation.schemas },
+    components: documentation.components,
   }
 }
