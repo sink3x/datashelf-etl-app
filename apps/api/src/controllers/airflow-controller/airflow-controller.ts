@@ -1,5 +1,5 @@
 import { PutObjectCommand } from '@aws-sdk/client-s3'
-import type { IAppConfig } from '@interfaces/config'
+import type { IAppConfig } from '@config/config'
 import type { IDIContainer } from '@interfaces/DI-container'
 import axios from 'axios'
 import type { Request } from 'express'
@@ -33,7 +33,7 @@ export class AirflowController {
   public async getDagList(_request: Request, response: TGetDagListResponse) {
     try {
       const { data } = await axios<TGetDagListAirflowRequest, TGetDagListAirflowResponse>(
-        `${this.config.services.airflow.url}/api/v2/dags`,
+        `${this.config.airflow.url}/api/v2/dags`,
         {
           headers: {
             ...this.airflow.apiHeaders,
@@ -80,8 +80,7 @@ export class AirflowController {
       }
 
       const file = fileList[0]
-      const { s3MaxFileSizeUploadMb } = this.config.vars
-      const maxFileSize = s3MaxFileSizeUploadMb * 1024 * 1024
+      const { maxSizeBytes: maxFileSize, maxSizeMb: s3MaxFileSizeUploadMb } = this.config.upload
 
       if (file.size > maxFileSize) {
         return response.status(400).json({
@@ -100,19 +99,19 @@ export class AirflowController {
       }
 
       const fileExtension = file.originalname.split('.').at(-1) || ''
-      const { s3RawDataDirectory } = this.config.vars
+      const { rawPrefix: s3RawDataDirectory } = this.config.s3
       const fileObjectKey = `${s3RawDataDirectory}/${file.originalname.replace(`.${fileExtension}`, '')}-${DateTime.now().toUnixInteger()}.${fileExtension}`
 
       await this.s3.client.send(
         new PutObjectCommand({
-          Bucket: this.config.services.s3.bucketName,
+          Bucket: this.config.s3.bucket,
           Key: fileObjectKey,
           Body: file.buffer,
         }),
       )
 
       const { data } = await axios.post(
-        `${this.config.services.airflow.url}/api/v2/dags/${dagId}/dagRuns`,
+        `${this.config.airflow.url}/api/v2/dags/${dagId}/dagRuns`,
         {
           logical_date: DateTime.now(),
           conf: {
@@ -162,7 +161,7 @@ export class AirflowController {
       const { dagId, dagRunId } = params
 
       const { data: dagStatus } = await axios(
-        `${this.config.services.airflow.url}/api/v2/dags/${dagId}/dagRuns/${dagRunId}`,
+        `${this.config.airflow.url}/api/v2/dags/${dagId}/dagRuns/${dagRunId}`,
 
         {
           headers: {

@@ -2,14 +2,15 @@
   "name": "@datashelf/api",
   "version": "1.0.0",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development tsx watch ./src/index.ts",
-    "build:development": "rm -rf build && cross-env NODE_ENV=development tsup",
-    "build:production": "rm -rf build && cross-env NODE_ENV=production tsup",
-    "serve": "node ./build/index.cjs",
-    "lint": "eslint"
+    "dev": "tsx watch src/index.ts",
+    "build": "tsup",
+    "start": "node --enable-source-maps build/index.cjs",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.815.0",
+    "@datashelf/contracts": "workspace:*",
     "amqplib": "0.10.8",
     "axios": "1.9.0",
     "compression": "1.8.0",
@@ -21,7 +22,8 @@
     "mongoose": "8.15.0",
     "multer": "1.4.5-lts.2",
     "swagger-ui-express": "5.0.1",
-    "yamljs": "0.3.0"
+    "yamljs": "0.3.0",
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@types/amqplib": "0.10.7",
@@ -35,9 +37,6 @@
     "@types/yamljs": "0.2.34",
     "@typescript-eslint/eslint-plugin": "8.32.1",
     "@typescript-eslint/parser": "8.32.1",
-    "cross-env": "7.0.3",
-    "esbuild-copy-static-files": "0.1.0",
-    "esbuild-plugin-yaml": "0.0.1",
     "eslint": "9.27.0",
     "eslint-flat-config-utils": "2.0.1",
     "eslint-import-resolver-alias": "1.1.2",

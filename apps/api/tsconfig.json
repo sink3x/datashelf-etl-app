@@ -6,11 +6,11 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "useUnknownInCatchVariables": false,
     "skipLibCheck": true,
     "allowJs": true,
     "skipDefaultLibCheck": true,
     "allowSyntheticDefaultImports": true,
-    "useUnknownInCatchVariables": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noFallthroughCasesInSwitch": true,
@@ -27,9 +27,14 @@
       "@utils/*": ["utils/*"],
       "@helpers/*": ["helpers/*"],
       "@validations/*": ["validations/*"],
-      "@documentation/*": ["documentation/*"]
+      "@documentation/*": ["documentation/*"],
+      "@config/*": ["config/*"],
+      "@errors/*": ["errors/*"],
+      "@repositories/*": ["repositories/*"],
+      "@clients/*": ["clients/*"],
+      "@messaging/*": ["messaging/*"]
     }
   },
-  "include": ["./src/**/*"],
+  "include": ["./src/**/*", "./test/**/*"],
   "exclude": ["node_modules", "build"]
 }

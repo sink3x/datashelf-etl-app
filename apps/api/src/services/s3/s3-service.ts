@@ -3,7 +3,7 @@ import type { IDIContainer } from '@interfaces/DI-container'
 
 export class S3Service {
   private appConfig
-  
+
   public client
   public config
 
@@ -11,16 +11,17 @@ export class S3Service {
     const { config: appConfig } = container
 
     this.appConfig = appConfig
-    this.config = appConfig.services.s3
+    this.config = appConfig.s3
 
-    const { regionName, url, keyId, keyValue } = this.config
+    const { region, endpoint, accessKeyId, secretAccessKey, forcePathStyle } = this.config
 
     this.client = new S3Client({
-      region: regionName,
-      endpoint: url,
+      region,
+      endpoint,
+      forcePathStyle,
       credentials: {
-        accessKeyId: keyId,
-        secretAccessKey: keyValue,
+        accessKeyId,
+        secretAccessKey,
       },
     })
   }

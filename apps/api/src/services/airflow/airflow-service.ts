@@ -6,6 +6,8 @@ import type {
   TCreateApiAccessTokenResponse,
 } from './airflow-service.interfaces'
 
+const TOKEN_REFRESH_INTERVAL_MS = 15 * 60 * 1000
+
 export class AirflowService {
   private appConfig
   private config
@@ -16,15 +18,13 @@ export class AirflowService {
     const { config: appConfig } = container
 
     this.appConfig = appConfig
-    this.config = appConfig.services.airflow
-
-    const { intervalToUpdateAirflowAccessToken } = appConfig.vars
+    this.config = appConfig.airflow
 
     this.createApiAccessToken()
 
     setInterval(async () => {
       this.createApiAccessToken()
-    }, intervalToUpdateAirflowAccessToken)
+    }, TOKEN_REFRESH_INTERVAL_MS)
   }
 
   private async createApiAccessToken() {

@@ -1,5 +1,5 @@
 import type { TMaybe } from './maybe'
-import { IObjectAny } from './object-any'
+import type { IObjectAny } from './object-any'
 
 export interface IDagScheduleInterval {
   __type: string

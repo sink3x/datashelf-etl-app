@@ -1,4 +1,4 @@
-import { IObjectAny } from '@interfaces/object-any'
+import type { IObjectAny } from '@interfaces/object-any'
 import type { Document } from 'mongoose'
 
 export const schemaOptions = {

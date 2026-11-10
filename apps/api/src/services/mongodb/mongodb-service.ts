@@ -14,7 +14,7 @@ export class MongodbService {
 
   constructor(container: IDIContainer) {
     const { config } = container
-    const { mongodb } = config.services
+    const { mongodb } = config
 
     this.config = mongodb
 
@@ -23,7 +23,11 @@ export class MongodbService {
 
   private async connectDb() {
     try {
-      await mongoose.connect(this.config.uri, this.config.parameters)
+      await mongoose.connect(this.config.uri, {
+        dbName: this.config.dbName,
+        autoIndex: false,
+        serverSelectionTimeoutMS: 10000,
+      })
 
       this.client = mongoose
     } catch (error) {

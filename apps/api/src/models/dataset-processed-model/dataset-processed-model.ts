@@ -1,6 +1,6 @@
+import { schemaOptions } from '@shared/mongodb/schema-options'
 import type { Mongoose } from 'mongoose'
 
-import { schemaOptions } from '@shared/mongodb/schema-options'
 import type { IDatasetProcessedSchema } from './dataset-processed-model.interfaces'
 
 export const DatasetProcessedModel = (mongodbInstance: Mongoose) => {

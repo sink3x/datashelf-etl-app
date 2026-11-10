@@ -1,38 +1,41 @@
-import copy from 'esbuild-copy-static-files'
-import { createRequire } from 'module'
+import { cpSync, readdirSync } from 'fs'
 import path from 'path'
 import { defineConfig } from 'tsup'
 
-const OUT_DIRECTORY = './build'
-const require = createRequire(import.meta.url)
-const swaggerUiDistPath = path.dirname(require.resolve('swagger-ui-dist/package.json'))
+const OUT_DIRECTORY = path.resolve(__dirname, 'build')
+const ROUTERS_DIRECTORY = path.resolve(__dirname, 'src/routers')
 
-const FILENAME_LIST_FOR_COPY = ['swagger-ui-bundle.js', 'swagger-ui-standalone-preset.js', 'swagger-ui.css']
-const copiedFileList = FILENAME_LIST_FOR_COPY.map((fileName) => {
-  return copy({
-    src: path.join(swaggerUiDistPath, fileName),
-    dest: path.resolve(__dirname, `${OUT_DIRECTORY}/${fileName}`),
-  })
-})
+const copyAssets = async () => {
+  cpSync(path.resolve(__dirname, 'public'), path.join(OUT_DIRECTORY, 'public'), { recursive: true })
+
+  const documentationFileList = (readdirSync(ROUTERS_DIRECTORY, { recursive: true }) as string[]).filter((file) =>
+    /\.ya?ml$/.test(file),
+  )
+
+  for (const file of documentationFileList) {
+    cpSync(path.join(ROUTERS_DIRECTORY, file), path.join(OUT_DIRECTORY, 'openapi', path.basename(file)))
+  }
+}
 
 export default defineConfig({
   entry: ['./src/index.ts'],
   outDir: OUT_DIRECTORY,
   format: ['cjs'],
-  target: 'node20',
-  minify: true,
-  sourcemap: false,
+  target: 'node22',
+  platform: 'node',
+  minify: false,
+  sourcemap: true,
   dts: false,
   clean: true,
   splitting: false,
-  noExternal: [/(.*)/],
+  noExternal: ['@datashelf/contracts'],
   outExtension: () => ({ js: '.cjs' }),
-  esbuildPlugins: copiedFileList,
+  onSuccess: copyAssets,
   esbuildOptions(options) {
     options.legalComments = 'none'
-    options.entryNames = 'index'
     options.define = {
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      ...options.define,
+      __BUNDLED__: 'true',
     }
   },
 })

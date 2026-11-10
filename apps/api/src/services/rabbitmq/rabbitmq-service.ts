@@ -11,7 +11,7 @@ export class RabbitmqService {
   public channel: TMaybe<Channel> = null
 
   constructor(container: IDIContainer) {
-    const { rabbitmq } = container.config.services
+    const { rabbitmq } = container.config
 
     this.config = rabbitmq
 

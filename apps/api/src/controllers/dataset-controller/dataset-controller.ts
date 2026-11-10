@@ -59,8 +59,8 @@ export class DatasetController {
       const offset = (page - 1) * limit
 
       const commandGetObjectList = new ListObjectsV2Command({
-        Bucket: this.s3.config.bucketName,
-        Prefix: 'raw-data',
+        Bucket: this.s3.config.bucket,
+        Prefix: `${this.s3.config.rawPrefix}/`,
       })
 
       const { Contents } = await this.s3.client.send(commandGetObjectList)

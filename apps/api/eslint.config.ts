@@ -10,7 +10,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default [
   {
-    ignores: ['node_modules', 'build', '*.d.ts', '*.config.*'],
+    ignores: ['node_modules', 'build', 'coverage', '*.d.ts', '*.config.*'],
   },
 
   {
@@ -93,6 +93,11 @@ export default [
             ['@helpers', './src/helpers'],
             ['@validations', './src/validations'],
             ['@documentation', './src/documentation'],
+            ['@config', './src/config'],
+            ['@errors', './src/errors'],
+            ['@repositories', './src/repositories'],
+            ['@clients', './src/clients'],
+            ['@messaging', './src/messaging'],
           ],
           extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
         },
