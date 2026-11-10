@@ -1,0 +1,133 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, develop]
+  workflow_call:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  typescript:
+    name: TypeScript · lint, typecheck, test, build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm -r lint
+      - run: pnpm -r typecheck
+      - run: pnpm -r --if-present test:coverage
+      - run: pnpm -r build
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: coverage-typescript
+          path: |
+            apps/*/coverage
+            packages/*/coverage
+          if-no-files-found: ignore
+
+  python:
+    name: Python · ruff, mypy, pytest
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: services/etl
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10
+        with:
+          enable-cache: true
+      - run: uv sync --locked --all-groups
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run mypy src
+      - run: uv run pytest --cov-report=xml
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: coverage-python
+          path: services/etl/coverage.xml
+          if-no-files-found: ignore
+
+  terraform:
+    name: Terraform · fmt, validate, tflint
+    runs-on: ubuntu-latest
+    env:
+      TF_CLI_CONFIG_FILE: ${{ github.workspace }}/infra/terraform/cli.tfrc
+    steps:
+      - uses: actions/checkout@v7
+      - uses: hashicorp/setup-terraform@v4
+      - uses: terraform-linters/setup-tflint@v6
+      - run: terraform fmt -check -recursive infra/terraform
+      - name: validate
+        run: |
+          for stack in infra/terraform/bootstrap infra/terraform/envs/dev; do
+            terraform -chdir="$stack" init -backend=false -input=false
+            terraform -chdir="$stack" validate
+          done
+      - name: tflint
+        working-directory: infra/terraform
+        run: |
+          tflint --init
+          tflint --recursive --format compact
+
+  docker:
+    name: Docker · ${{ matrix.image }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - image: datashelf-api
+            context: .
+            dockerfile: apps/api/Dockerfile
+          - image: datashelf-web
+            context: .
+            dockerfile: apps/web/Dockerfile
+          - image: datashelf-etl
+            context: services/etl
+            dockerfile: services/etl/Dockerfile
+    steps:
+      - uses: actions/checkout@v7
+      - uses: docker/setup-buildx-action@v4
+      - uses: docker/build-push-action@v7
+        with:
+          context: ${{ matrix.context }}
+          file: ${{ matrix.dockerfile }}
+          push: false
+          cache-from: type=gha,scope=${{ matrix.image }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.image }}
+
+  compose:
+    name: Compose · config
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: docker compose --env-file example.env config --quiet
+
+  security:
+    name: Security · secrets, workflows
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: actionlint
+        run: |
+          bash <(curl -sSfL https://raw.githubusercontent.com/rhysd/actionlint/v1.7.12/scripts/download-actionlint.bash) 1.7.12
+          ./actionlint -color
