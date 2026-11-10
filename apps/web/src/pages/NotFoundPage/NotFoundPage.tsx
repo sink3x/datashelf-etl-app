@@ -13,7 +13,7 @@ export const NotFoundPage = () => {
 	const navigate = useNavigate()
 
 	const handleClickBackToHome = () => {
-		navigate(Routes[ERoutesPageNames.HOME].path)
+		navigate(Routes[ERoutesPageNames.WELCOME]!.path)
 	}
 
 	return (

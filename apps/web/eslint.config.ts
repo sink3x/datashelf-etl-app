@@ -10,7 +10,7 @@ import unusedImports from 'eslint-plugin-unused-imports'
 import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
-	{ ignores: ['build', 'dist', '*.config.*', '*.d.ts', '*.json'] },
+	{ ignores: ['build', 'dist', 'coverage', 'public', '*.config.*', '*.d.ts', '*.json'] },
 
 	{
 		files: ['**/*.{ts,tsx}'],
