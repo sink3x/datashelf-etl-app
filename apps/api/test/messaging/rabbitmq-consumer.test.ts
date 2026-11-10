@@ -183,6 +183,28 @@ describe('RabbitmqConsumer', () => {
     expect(secondChannel.consume).toHaveBeenCalledOnce()
   })
 
+  it('does not start consuming when stopped during a reconnect', async () => {
+    const firstConnection = createConnection()
+    let releaseConnect: () => void = () => undefined
+    const secondConnection = createConnection()
+    const connect = vi
+      .fn()
+      .mockResolvedValueOnce(firstConnection)
+      .mockImplementationOnce(
+        () => new Promise((resolve) => (releaseConnect = () => resolve(secondConnection))),
+      )
+    const consumer = createConsumer(connect)
+
+    await consumer.start()
+    firstConnection.emit('close')
+    await vi.waitFor(() => expect(connect).toHaveBeenCalledTimes(2))
+    await consumer.stop()
+    releaseConnect()
+
+    await vi.waitFor(() => expect(secondConnection.close).toHaveBeenCalled())
+    expect(consumer.isReady()).toBe(false)
+  })
+
   it('cancels consumption and does not reconnect after stop', async () => {
     const channel = createChannel()
     const connect = vi.fn().mockResolvedValue(createConnection(channel))

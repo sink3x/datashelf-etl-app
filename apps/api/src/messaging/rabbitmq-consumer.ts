@@ -179,6 +179,10 @@ export class RabbitmqConsumer {
       await assertTopology(channel, topology)
       await channel.prefetch(prefetch)
 
+      if (this.closing) {
+        throw new Error('consumer stopped while connecting')
+      }
+
       const { consumerTag } = await channel.consume(
         topology.queue,
         (message) => {
