@@ -6,7 +6,7 @@ import pandas as pd
 
 from datashelf_etl.analytics.base import AnalyticsResult
 from datashelf_etl.analytics.sales import sales_by_month
-from datashelf_etl.analytics.seasons import product_counts_by_season, seasons_meta, top_products_chart
+from datashelf_etl.analytics.seasons import product_counts_by_season, seasons_meta
 from datashelf_etl.contracts import Chart, MetricChart, SeriesChart
 
 
@@ -23,9 +23,7 @@ def _sales_by(df: pd.DataFrame, column: str) -> pd.Series[float]:
 
 def retail_metrics(df: pd.DataFrame) -> AnalyticsResult:
     by_season = product_counts_by_season(df)
-    charts: list[Chart] = [
-        top_products_chart(season, counts, with_season=False) for season, counts in by_season.items()
-    ]
+    charts: list[Chart] = []
 
     customers = df["Customer_Name"].dropna()
     by_month = sales_by_month(df)

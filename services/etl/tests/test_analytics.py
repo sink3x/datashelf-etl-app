@@ -173,7 +173,7 @@ def test_retail_metrics(retail_df: pd.DataFrame) -> None:
     assert charts["monthly_sales"]["labels"] == ["2024-01", "2024-02", "2024-03"]
     assert charts["sales_by_store_type"]["labels"][0] == "Supermarket"
     assert sum(charts["sales_by_city"]["values"]) == pytest.approx(735.0)
-    assert "season" not in charts["top5_products_winter"]
+    assert not any(name.startswith("top5_products_") for name in charts)
     assert "Month" in result.meta["data_columns"]
 
 

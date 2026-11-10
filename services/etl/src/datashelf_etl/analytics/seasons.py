@@ -34,13 +34,14 @@ def season_slug(season: str) -> str:
     return re.sub(r"[^a-z0-9]+", "_", season.lower()).strip("_") or "unknown"
 
 
-def top_products_chart(season: str, counts: Counter[str], *, with_season: bool) -> SeriesChart:
+def top_products_chart(season: str, counts: Counter[str]) -> SeriesChart:
     ranked = sorted(counts.items(), key=lambda item: (-item[1], item[0]))
     top = ranked[:TOP_N]
     total = sum(counts.values())
     top_label, top_count = ranked[0] if ranked else (None, 0)
     slug = season_slug(season)
     data: dict[str, Any] = {
+        "season": slug,
         "name": f"top5_products_{slug}",
         "title": f"Top 5 Products in {season}",
         "description": f"Top 5 most frequent products sold in the {season} season.",
@@ -50,8 +51,6 @@ def top_products_chart(season: str, counts: Counter[str], *, with_season: bool) 
         "total": total,
         "top": {"label": top_label, "count": top_count, "percentage": percentage(top_count, total)},
     }
-    if with_season:
-        data = {"season": slug, **data}
     return SeriesChart.model_validate(data)
 
 
@@ -66,7 +65,7 @@ def seasons_meta(by_season: dict[str, Counter[str]]) -> dict[str, Any]:
 
 def seasons(df: pd.DataFrame) -> AnalyticsResult:
     by_season = product_counts_by_season(df)
-    charts = [top_products_chart(season, counts, with_season=True) for season, counts in by_season.items()]
+    charts = [top_products_chart(season, counts) for season, counts in by_season.items()]
     return AnalyticsResult(
         charts=list(charts),
         meta={**seasons_meta(by_season), "data_columns": ["Product", "Count"]},
