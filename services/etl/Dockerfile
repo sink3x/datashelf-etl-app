@@ -19,3 +19,7 @@ RUN pip install --no-cache-dir \
         --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
 
 COPY --chown=airflow:0 dags /opt/airflow/dags
+
+# Shared by the init container and the api-server for the simple auth manager password file;
+# a named volume mounted here inherits this ownership.
+RUN mkdir -p /opt/airflow/auth
