@@ -8,6 +8,7 @@ import type { TMongodbClassPropertyModel } from './mongodb-service.interfaces'
 
 export class MongodbService {
   private config
+  private logger
 
   public client: TMaybe<Mongoose> = null
   public models: TMongodbClassPropertyModel = {} as TMongodbClassPropertyModel
@@ -17,6 +18,7 @@ export class MongodbService {
     const { mongodb } = config
 
     this.config = mongodb
+    this.logger = container.logger.child({ component: 'mongodb' })
 
     this.init()
   }
@@ -31,7 +33,7 @@ export class MongodbService {
 
       this.client = mongoose
     } catch (error) {
-      console.log(`[status] mongodb connection failed ${error}`)
+      this.logger.error({ err: error }, 'mongodb connection failed')
     }
   }
 

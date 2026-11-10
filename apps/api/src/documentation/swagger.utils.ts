@@ -33,7 +33,7 @@ const loadYamlDocumentation = (): Record<string, IObjectAny> => {
 
     return documentationPaths
   } catch (error) {
-    console.log(`[status] documentation files not found`, error)
+    process.emitWarning(`openapi documentation not loaded: ${error.message}`)
 
     return {}
   }

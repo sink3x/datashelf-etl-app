@@ -6,6 +6,7 @@ import amqp from 'amqplib'
 
 export class RabbitmqService {
   private config
+  private logger
 
   public client: TMaybe<ChannelModel> = null
   public channel: TMaybe<Channel> = null
@@ -14,6 +15,7 @@ export class RabbitmqService {
     const { rabbitmq } = container.config
 
     this.config = rabbitmq
+    this.logger = container.logger.child({ component: 'rabbitmq' })
 
     this.init()
   }
@@ -30,7 +32,7 @@ export class RabbitmqService {
       this.client = connection
       this.channel = channel
     } catch (error) {
-      console.log(`[status] rabbitmq connection failed ${error}`)
+      this.logger.error({ err: error }, 'rabbitmq connection failed')
     }
   }
 
@@ -63,7 +65,7 @@ export class RabbitmqService {
         { noAck: false },
       )
     } catch (error) {
-      console.log(`[RabbitMQ] Failed to listen queue '${queue}':`, error)
+      this.logger.error({ err: error, queue }, 'failed to consume queue')
     }
   }
 }

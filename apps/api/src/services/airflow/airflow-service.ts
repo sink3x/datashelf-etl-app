@@ -11,6 +11,7 @@ const TOKEN_REFRESH_INTERVAL_MS = 15 * 60 * 1000
 export class AirflowService {
   private appConfig
   private config
+  private logger
 
   public apiAcessToken = ''
 
@@ -19,6 +20,7 @@ export class AirflowService {
 
     this.appConfig = appConfig
     this.config = appConfig.airflow
+    this.logger = container.logger.child({ component: 'airflow' })
 
     this.createApiAccessToken()
 
@@ -42,9 +44,7 @@ export class AirflowService {
 
       this.apiAcessToken = data.access_token
     } catch (error) {
-      const axiosErrorData = error?.response?.data
-
-      console.error('[status] create api access token for airflow failed:', axiosErrorData)
+      this.logger.error({ status: error?.response?.status }, 'failed to create airflow access token')
     }
   }
 
