@@ -36,8 +36,10 @@ const DEFAULT_RECONNECT_POLICY: IReconnectPolicy = {
 
 const CONNECTION_NAME = 'datashelf-api'
 
-export const getBackoffDelay = (attempt: number, policy: Pick<IReconnectPolicy, 'initialDelayMs' | 'maxDelayMs'>) =>
-  Math.min(policy.maxDelayMs, policy.initialDelayMs * 2 ** Math.max(0, attempt - 1))
+export const getBackoffDelay = (
+  attempt: number,
+  policy: Pick<IReconnectPolicy, 'initialDelayMs' | 'maxDelayMs'>,
+) => Math.min(policy.maxDelayMs, policy.initialDelayMs * 2 ** Math.max(0, attempt - 1))
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 

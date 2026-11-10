@@ -18,7 +18,9 @@ export const createMainRouter = (dependencies: IMainRouterDependencies) => {
   router.get('/healthcheck', dependencies.healthController.legacyHealthcheck)
   router.use(
     '/airflow',
-    createAirflowRouter(dependencies.airflowController, { maxUploadSizeBytes: dependencies.maxUploadSizeBytes }),
+    createAirflowRouter(dependencies.airflowController, {
+      maxUploadSizeBytes: dependencies.maxUploadSizeBytes,
+    }),
   )
   router.use('/dataset', createDatasetRouter(dependencies.datasetController))
 

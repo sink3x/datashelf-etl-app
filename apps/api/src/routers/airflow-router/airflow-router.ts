@@ -7,7 +7,10 @@ import { Router } from 'express'
 
 export const UPLOAD_FIELD_NAME = 'file'
 
-export const createAirflowRouter = (controller: AirflowController, options: { maxUploadSizeBytes: number }) => {
+export const createAirflowRouter = (
+  controller: AirflowController,
+  options: { maxUploadSizeBytes: number },
+) => {
   const router = Router()
 
   router.get('/dags', controller.getDagList)
@@ -22,7 +25,11 @@ export const createAirflowRouter = (controller: AirflowController, options: { ma
     validateRequest(processDataSchemas),
     controller.processData,
   )
-  router.get('/dag/status/:dagId/:dagRunId', validateRequest(dagRunStatusSchemas), controller.getDagStatusByDagRunId)
+  router.get(
+    '/dag/status/:dagId/:dagRunId',
+    validateRequest(dagRunStatusSchemas),
+    controller.getDagStatusByDagRunId,
+  )
 
   return router
 }

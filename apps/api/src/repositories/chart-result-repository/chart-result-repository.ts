@@ -16,7 +16,9 @@ export interface IChartResultRepository {
 const DUPLICATE_KEY_ERROR_CODE = 11000
 
 const isDuplicateKeyError = (error: unknown) =>
-  typeof error === 'object' && error !== null && (error as { code?: unknown }).code === DUPLICATE_KEY_ERROR_CODE
+  typeof error === 'object' &&
+  error !== null &&
+  (error as { code?: unknown }).code === DUPLICATE_KEY_ERROR_CODE
 
 export class ChartResultRepository implements IChartResultRepository {
   constructor(private readonly model: TChartResultModel) {}
