@@ -44,12 +44,18 @@ export const Page = styled.div`
 export const MetricStrip = styled.div`
 	width: 100%;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
-	gap: 1px;
+	grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
 	overflow: hidden;
 	border: 1px solid ${colors.line};
 	border-radius: ${radii.lg};
-	background: ${colors.line};
+	background: ${colors.surface};
+
+	& > * {
+		margin: -1px 0 0 -1px;
+		border-top: 1px solid ${colors.line};
+		border-left: 1px solid ${colors.line};
+		border-radius: 0;
+	}
 `
 
 export const Section = styled.section`

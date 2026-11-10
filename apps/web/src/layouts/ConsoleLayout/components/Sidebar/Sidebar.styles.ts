@@ -46,7 +46,7 @@ export const LogoText = styled.span`
 	letter-spacing: -0.01em;
 `
 
-export const SidebarNav = styled.nav`
+export const SidebarNav = styled.div`
 	flex: 1;
 	padding: ${space(2)} 0;
 	display: flex;

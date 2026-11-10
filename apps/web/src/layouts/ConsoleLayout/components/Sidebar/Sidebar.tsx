@@ -38,7 +38,7 @@ export const Sidebar: FC<ISidebarProps> = (props) => {
 				<Link to={CONSOLE_ROOT_PATH} aria-label="Datashelf console home">
 					<SidebarHeader />
 				</Link>
-				<Styled.SidebarNav aria-label="Console">
+				<Styled.SidebarNav>
 					{navigationGroups.map((group) => (
 						<Styled.SidebarGroup key={group.name}>
 							<Styled.SidebarGroupTitle id={`nav-group-${group.name}`}>{group.name}</Styled.SidebarGroupTitle>

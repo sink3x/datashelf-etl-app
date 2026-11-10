@@ -14,9 +14,22 @@ const bootstrap = async () => {
 	}
 
 	if (IS_API_MOCK) {
-		const { startMockApi } = await import('./mocks/browser')
+		try {
+			const { startMockApi } = await import('./mocks/browser')
 
-		await startMockApi()
+			await startMockApi()
+		} catch (error) {
+			root.render(
+				<ConfigErrorScreen
+					title="The demo can’t start"
+					description="The demo answers API requests with a service worker, and this browser didn’t allow it to register. Open the page in a regular browser window; private windows and some embedded browsers block service workers."
+					issues={[
+						{ path: 'mockServiceWorker.js', message: error instanceof Error ? error.message : String(error) },
+					]}
+				/>,
+			)
+			return
+		}
 	}
 
 	const { App } = await import('./App')
