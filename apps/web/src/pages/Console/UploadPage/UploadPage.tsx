@@ -8,7 +8,7 @@ import { toast } from 'react-toastify'
 import { ERoutesPageNames, Routes } from '@router/routes'
 
 import { uploadRawData } from '@services/airflow-service/airflow-service'
-import { APP_CONFIG } from '@shared/config/config'
+import { getAppConfig } from '@shared/config/config'
 
 import {
 	ALLOWLABLE_FILE_TYPE_LIST,
@@ -19,7 +19,7 @@ import * as Styled from './UploadPage.styles'
 
 import type { AxiosError } from 'axios'
 
-const { vars } = APP_CONFIG
+const { vars } = getAppConfig()
 
 export const UploadPage = () => {
 	const navigate = useNavigate()

@@ -1,14 +1,4 @@
-export interface IAppConfig {
-	services: {
-		apiUrl: string
-	}
-	urls: {
-		contactUsUrl: string
-		documentationUrl: string
-		georaphyAtlasUrl: string
-	}
-	vars: {
-		axiosCacheLifetimeInSec: number
-		defaultDagId: string
-	}
-}
+import type { appConfigSchema } from './config.schema'
+import type { z } from 'zod'
+
+export type IAppConfig = z.infer<typeof appConfigSchema>

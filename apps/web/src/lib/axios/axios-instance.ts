@@ -1,22 +1,16 @@
 import axios from 'axios'
 import axiosRetry from 'axios-retry'
 
-import { APP_CONFIG } from '@shared/config/config'
+import { getAppConfig } from '@shared/config/config'
 
-const { services } = APP_CONFIG
+const { services } = getAppConfig()
 
 export const axiosInstance = axios.create({
 	baseURL: services.apiUrl,
 })
 
 axiosRetry(axiosInstance, {
-	retries: 3,
+	retries: import.meta.env.MODE === 'test' ? 0 : 3,
 	retryDelay: axiosRetry.exponentialDelay,
-	retryCondition: (error) => {
-		const status = error?.response?.status
-		return (
-			axiosRetry.isNetworkOrIdempotentRequestError(error) ||
-			(status != null && status >= 500 && status <= 599)
-		)
-	},
+	retryCondition: axiosRetry.isNetworkOrIdempotentRequestError,
 })

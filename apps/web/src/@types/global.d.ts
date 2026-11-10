@@ -1,6 +1,6 @@
 declare global {
 	interface Window {
-		appConfig: Object
+		appConfig?: unknown
 	}
 }
 

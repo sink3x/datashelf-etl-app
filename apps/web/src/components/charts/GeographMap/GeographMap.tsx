@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 import { ComposableMap, Geographies } from 'react-simple-maps'
 import { Tooltip } from 'react-tooltip'
 
-import { APP_CONFIG } from '@shared/config/config'
+import { getAppConfig } from '@shared/config/config'
 import { EColorsMain } from '@styles/colors/colors-main'
 import 'react-tooltip/dist/react-tooltip.css'
 
@@ -14,7 +14,7 @@ import { getColorList } from './GeographMap.utils'
 
 import type { IGeographMapProps } from './GeographMap.interfaces'
 
-const { urls } = APP_CONFIG
+const { urls } = getAppConfig()
 
 export const GeographMap: FC<IGeographMapProps> = (props) => {
 	const { values } = props
@@ -53,7 +53,7 @@ export const GeographMap: FC<IGeographMapProps> = (props) => {
 	return (
 		<>
 			<ComposableMap projection="geoAlbersUsa" width={800} height={500}>
-				<Geographies geography={urls.georaphyAtlasUrl}>
+				<Geographies geography={urls.geographyAtlasUrl}>
 					{({ geographies }) =>
 						geographies.map((geo) => {
 							const stateId = geo.id

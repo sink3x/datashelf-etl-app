@@ -2,9 +2,9 @@ import { BookOpen } from '@gravity-ui/icons'
 
 import { ERouterElementType, type IRouterElement } from '@router/routes.interfaces'
 
-import { APP_CONFIG } from '@shared/config/config'
+import { getAppConfig } from '@shared/config/config'
 
-const { urls } = APP_CONFIG
+const { urls } = getAppConfig()
 
 export const EXTENTED_SUPPORT_GROUP: IRouterElement[] = [
 	{

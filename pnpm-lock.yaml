@@ -222,6 +222,9 @@ importers:
       styled-normalize:
         specifier: 8.1.1
         version: 8.1.1(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
+      zod:
+        specifier: 4.6.7
+        version: 4.6.7
     devDependencies:
       '@nabla/vite-plugin-eslint':
         specifier: 2.0.5

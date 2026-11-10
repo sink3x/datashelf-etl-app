@@ -5,12 +5,12 @@ import { ERoutesPageNames, Routes } from '@router/routes'
 import { Button } from '@ui/Button/Button'
 
 import { MainLayout } from '@layouts/MainLayout/MainLayout'
-import { APP_CONFIG } from '@shared/config/config'
+import { getAppConfig } from '@shared/config/config'
 
 import { CASE_ITEM_LIST, WELCOME_DESCRIPTION, WELCOME_TITLE } from './WelcomePage.constants'
 import * as Styled from './WelcomePage.styles'
 
-const { urls } = APP_CONFIG
+const { urls } = getAppConfig()
 
 export const WelcomePage = () => {
 	const navigate = useNavigate()
