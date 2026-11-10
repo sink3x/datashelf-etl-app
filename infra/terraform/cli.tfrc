@@ -1,0 +1,11 @@
+# Use the Yandex Cloud provider mirror (works for both Terraform and OpenTofu).
+# export TF_CLI_CONFIG_FILE="$(pwd)/infra/terraform/cli.tfrc"
+provider_installation {
+  network_mirror {
+    url     = "https://terraform-mirror.yandexcloud.net/"
+    include = ["registry.terraform.io/*/*"]
+  }
+  direct {
+    exclude = ["registry.terraform.io/*/*"]
+  }
+}
