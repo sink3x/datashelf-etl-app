@@ -1,0 +1,6 @@
+cloud_id       = "b1gxxxxxxxxxxxxxxxxx"
+folder_id      = "b1gxxxxxxxxxxxxxxxxx"
+admin_cidrs    = ["203.0.113.10/32"]
+ssh_public_key = "ssh-ed25519 AAAAC3Nza...example operator@laptop"
+image_tag      = "latest"
+preemptible    = true

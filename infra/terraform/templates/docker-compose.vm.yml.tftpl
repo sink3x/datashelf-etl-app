@@ -1,0 +1,132 @@
+version: "3.7"
+
+# Rendered by Terraform and executed by the Container Optimized Image on the application VM.
+# Startup ordering is handled by restart policies and client-side retries (COI compose has no health conditions).
+
+x-airflow-env: &airflow-env
+  AIRFLOW__CORE__EXECUTOR: LocalExecutor
+  AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+  AIRFLOW__CORE__FERNET_KEY: "${secrets.airflow_fernet_key}"
+  AIRFLOW__CORE__EXECUTION_API_SERVER_URL: http://airflow-apiserver:8080/execution/
+  AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_USERS: "${airflow_user}:admin"
+  AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_PASSWORDS_FILE: /opt/airflow/auth/passwords.json
+  AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:${secrets.postgres_password}@postgres:5432/airflow
+  AIRFLOW__API_AUTH__JWT_SECRET: "${secrets.airflow_jwt_secret}"
+  AIRFLOW__API__SECRET_KEY: "${secrets.airflow_api_secret}"
+  S3_ENDPOINT: https://storage.yandexcloud.net
+  S3_REGION: ru-central1
+  S3_BUCKET: ${s3_bucket}
+  S3_ACCESS_KEY_ID: "${secrets.s3_access_key_id}"
+  S3_SECRET_ACCESS_KEY: "${secrets.s3_secret_access_key}"
+  S3_FORCE_PATH_STYLE: "false"
+  S3_RAW_PREFIX: raw-data
+  S3_STAGING_PREFIX: staging
+  RABBITMQ_URL: amqp://datashelf:${secrets.rabbitmq_password}@rabbitmq:5672/
+  RABBITMQ_EXCHANGE: datashelf.events
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: "${secrets.postgres_password}"
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  mongodb:
+    image: mongo:7
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: datashelf
+      MONGO_INITDB_ROOT_PASSWORD: "${secrets.mongodb_password}"
+    volumes:
+      - mongo-data:/data/db
+
+  rabbitmq:
+    image: rabbitmq:3.13-management-alpine
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: datashelf
+      RABBITMQ_DEFAULT_PASS: "${secrets.rabbitmq_password}"
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+
+  airflow-init:
+    image: ${registry}/datashelf-etl:${image_tag}
+    restart: on-failure
+    environment: *airflow-env
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        printf '{"${airflow_user}": "%s"}' "${secrets.airflow_password}" > /opt/airflow/auth/passwords.json
+        airflow db migrate
+    volumes:
+      - airflow-auth:/opt/airflow/auth
+
+  airflow-apiserver:
+    image: ${registry}/datashelf-etl:${image_tag}
+    restart: always
+    command: api-server
+    environment: *airflow-env
+    ports:
+      - "8080:8080"
+    volumes:
+      - airflow-auth:/opt/airflow/auth
+
+  airflow-scheduler:
+    image: ${registry}/datashelf-etl:${image_tag}
+    restart: always
+    command: scheduler
+    environment: *airflow-env
+    volumes:
+      - airflow-auth:/opt/airflow/auth
+
+  airflow-dag-processor:
+    image: ${registry}/datashelf-etl:${image_tag}
+    restart: always
+    command: dag-processor
+    environment: *airflow-env
+
+  airflow-triggerer:
+    image: ${registry}/datashelf-etl:${image_tag}
+    restart: always
+    command: triggerer
+    environment: *airflow-env
+
+  api:
+    image: ${registry}/datashelf-api:${image_tag}
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      NODE_ENV: production
+      PORT: "5000"
+      LOG_LEVEL: ${log_level}
+      CORS_ORIGINS: "${cors_origins}"
+      MONGODB_URI: mongodb://datashelf:${secrets.mongodb_password}@mongodb:27017/?authSource=admin
+      MONGODB_DB: datashelf
+      RABBITMQ_URL: amqp://datashelf:${secrets.rabbitmq_password}@rabbitmq:5672/
+      RABBITMQ_EXCHANGE: datashelf.events
+      RABBITMQ_QUEUE: datashelf.api.charts-computed
+      RABBITMQ_PREFETCH: "10"
+      S3_ENDPOINT: https://storage.yandexcloud.net
+      S3_REGION: ru-central1
+      S3_BUCKET: ${s3_bucket}
+      S3_ACCESS_KEY_ID: "${secrets.s3_access_key_id}"
+      S3_SECRET_ACCESS_KEY: "${secrets.s3_secret_access_key}"
+      S3_FORCE_PATH_STYLE: "false"
+      S3_RAW_PREFIX: raw-data
+      UPLOAD_MAX_SIZE_MB: "${upload_max_mb}"
+      AIRFLOW_URL: http://airflow-apiserver:8080
+      AIRFLOW_USERNAME: ${airflow_user}
+      AIRFLOW_PASSWORD: "${secrets.airflow_password}"
+      AIRFLOW_DAG_ID: customer_data_etl
+
+volumes:
+  postgres-data:
+  mongo-data:
+  rabbitmq-data:
+  airflow-auth:
