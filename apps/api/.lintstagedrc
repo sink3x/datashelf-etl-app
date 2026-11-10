@@ -1,4 +1,0 @@
-{
-  "*.ts": ["yarn lint"],
-  "*.json": ["prettier --write"]
-}
