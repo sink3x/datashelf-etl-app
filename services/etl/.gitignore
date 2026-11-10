@@ -2,3 +2,8 @@ logs/
 webserver_config.py
 airflow.db
 *.pid
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
+data/
