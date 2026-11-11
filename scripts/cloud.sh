@@ -47,13 +47,17 @@ EOF
 }
 
 purge() {
-  local registry_id
+  local registry_id token api=https://container-registry.api.cloud.yandex.net/container-registry/v1
   registry_id="$(cd "${TF_DIR}" && "${TF}" show -json \
     | jq -r '[.. | objects | select(.type? == "yandex_container_registry") | .values.id] | first // empty')"
   [[ -n "${registry_id}" ]] || return 0
-  yc container image list --registry-id "${registry_id}" --format json \
-    | jq -r '.[].id' \
-    | while read -r image_id; do yc container image delete "${image_id}" >/dev/null; done
+  token="${YC_TOKEN:-$(yc iam create-token)}"
+
+  curl -fsS -H "Authorization: Bearer ${token}" "${api}/images?registryId=${registry_id}&pageSize=1000" \
+    | jq -r '.images[]?.id' \
+    | while read -r image_id; do
+        curl -fsS -X DELETE -H "Authorization: Bearer ${token}" "${api}/images/${image_id}" >/dev/null
+      done
 }
 
 case "${1:-}" in
