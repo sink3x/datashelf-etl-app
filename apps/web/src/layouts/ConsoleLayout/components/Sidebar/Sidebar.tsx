@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 
+import { useTranslation } from 'react-i18next'
 import { Menu, MenuItem } from 'react-pro-sidebar'
 import { Link, useLocation } from 'react-router-dom'
 
@@ -22,6 +23,7 @@ export const Sidebar: FC<ISidebarProps> = (props) => {
 	const { isMobileOpen, onMobileClose } = props
 
 	const { pathname } = useLocation()
+	const { t } = useTranslation()
 	const { urls } = getAppConfig()
 
 	const navigationGroups = getNavigationGroups(urls)
@@ -35,14 +37,16 @@ export const Sidebar: FC<ISidebarProps> = (props) => {
 			onBackdropClick={onMobileClose}
 		>
 			<Styled.SidebarInner>
-				<Link to={CONSOLE_ROOT_PATH} aria-label="Datashelf console home">
+				<Link to={CONSOLE_ROOT_PATH} aria-label={t('layout.consoleHomeLink')}>
 					<SidebarHeader />
 				</Link>
 				<Styled.SidebarNav>
 					{navigationGroups.map((group) => (
-						<Styled.SidebarGroup key={group.name}>
-							<Styled.SidebarGroupTitle id={`nav-group-${group.name}`}>{group.name}</Styled.SidebarGroupTitle>
-							<Menu menuItemStyles={Styled.menuItemStyles} aria-labelledby={`nav-group-${group.name}`}>
+						<Styled.SidebarGroup key={group.id}>
+							<Styled.SidebarGroupTitle id={`nav-group-${group.id}`}>
+								{t(`navGroups.${group.id}`)}
+							</Styled.SidebarGroupTitle>
+							<Menu menuItemStyles={Styled.menuItemStyles} aria-labelledby={`nav-group-${group.id}`}>
 								{group.items.map((item) => {
 									const isActive = isNavItemActive(item, pathname, CONSOLE_ROOT_PATH)
 
@@ -60,7 +64,7 @@ export const Sidebar: FC<ISidebarProps> = (props) => {
 												)
 											}
 										>
-											{item.name}
+											{t(item.name)}
 										</MenuItem>
 									)
 								})}

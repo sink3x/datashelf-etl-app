@@ -4,6 +4,7 @@ import { ArrowRotateRight, File, FolderOpen, TriangleExclamation } from '@gravit
 import { Skeleton } from 'antd'
 import { DateTime } from 'luxon'
 import { observer } from 'mobx-react-lite'
+import { useTranslation } from 'react-i18next'
 
 import { getDashboardPath, ROUTE_PATHS } from '@router/paths'
 import { Button } from '@ui/Button/Button'
@@ -26,6 +27,7 @@ const formatModifiedAt = (isoDate: string) => {
 
 export const StoragePage = observer(() => {
 	const [store] = useState(() => new StoragePageStore())
+	const { t } = useTranslation()
 
 	const { rawFileList, isLoading, errorMessage, isEmpty, page, pageSize, totalCount } = store
 
@@ -40,7 +42,7 @@ export const StoragePage = observer(() => {
 	const renderContent = () => {
 		if (isLoading && isEmpty) {
 			return (
-				<Styled.FileGrid aria-busy="true" aria-label="Loading files">
+				<Styled.FileGrid aria-busy="true" aria-label={t('storage.loading')}>
 					{Array.from({ length: RAW_FILE_SKELETON_ITEM_COUNT }, (_, index) => (
 						<Styled.FileCardSkeleton key={index}>
 							<Skeleton active title={false} paragraph={{ rows: 3, width: ['80%', '40%', '60%'] }} />
@@ -55,11 +57,11 @@ export const StoragePage = observer(() => {
 				<PageState
 					tone="error"
 					icon={<TriangleExclamation />}
-					title="Couldn’t load stored files"
+					title={t('storage.loadError')}
 					description={errorMessage}
 					actions={
 						<Button type="primary" onClick={handleRefresh}>
-							Try again
+							{t('common.tryAgain')}
 						</Button>
 					}
 				/>
@@ -70,11 +72,11 @@ export const StoragePage = observer(() => {
 			return (
 				<PageState
 					icon={<FolderOpen />}
-					title="No datasets stored yet"
-					description="Upload a CSV or JSON file to store it and run the ETL pipeline on it."
+					title={t('storage.emptyTitle')}
+					description={t('storage.emptyDescription')}
 					actions={
 						<ButtonLink to={UPLOAD_PATH} type="primary">
-							Upload a dataset
+							{t('common.uploadDataset')}
 						</ButtonLink>
 					}
 				/>
@@ -88,7 +90,7 @@ export const StoragePage = observer(() => {
 						<li key={file.key}>
 							<Styled.FileCard
 								to={getDashboardPath(file.fileName)}
-								aria-label={`Open dashboard for ${file.fileName}`}
+								aria-label={t('storage.openDashboard', { fileName: file.fileName })}
 							>
 								<Styled.FileIcon aria-hidden>
 									<File />
@@ -108,7 +110,7 @@ export const StoragePage = observer(() => {
 					total={totalCount}
 					pageSizeOptions={PAGE_SIZE_OPTIONS}
 					showSizeChanger
-					showTotal={(total) => `${total} ${total === 1 ? 'file' : 'files'}`}
+					showTotal={(total) => t('storage.fileCount', { count: total })}
 					onChange={store.setPagination}
 					disabled={isLoading}
 				/>
@@ -119,19 +121,17 @@ export const StoragePage = observer(() => {
 	return (
 		<Styled.StoragePage>
 			<Styled.Toolbar>
-				<Styled.ToolbarText>
-					Raw datasets in object storage. Open one to see its dashboard.
-				</Styled.ToolbarText>
+				<Styled.ToolbarText>{t('storage.intro')}</Styled.ToolbarText>
 				<Styled.ToolbarActions>
 					<Button
 						icon={<ArrowRotateRight aria-hidden />}
 						onClick={handleRefresh}
 						loading={isLoading && !isEmpty}
 					>
-						Refresh
+						{t('common.refresh')}
 					</Button>
 					<ButtonLink to={UPLOAD_PATH} type="primary">
-						Upload
+						{t('common.upload')}
 					</ButtonLink>
 				</Styled.ToolbarActions>
 			</Styled.Toolbar>

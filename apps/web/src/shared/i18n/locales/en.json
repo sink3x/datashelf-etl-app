@@ -1,0 +1,192 @@
+{
+	"common": {
+		"refresh": "Refresh",
+		"tryAgain": "Try again",
+		"reloadPage": "Reload page",
+		"upload": "Upload",
+		"uploadDataset": "Upload a dataset",
+		"clear": "Clear"
+	},
+	"language": {
+		"switcherLabel": "Interface language"
+	},
+	"nav": {
+		"home": "Home",
+		"storage": "Storage",
+		"upload": "Upload",
+		"pipelines": "Pipelines",
+		"dashboard": "Dashboard",
+		"apiDocumentation": "API documentation",
+		"contact": "Contact"
+	},
+	"navGroups": {
+		"general": "General",
+		"support": "Support"
+	},
+	"layout": {
+		"skipToContent": "Skip to content",
+		"openNavigation": "Open navigation",
+		"consoleHomeLink": "Datashelf console home",
+		"homeLink": "Datashelf home"
+	},
+	"demoBadge": {
+		"label": "Demo mode — mock data",
+		"tooltip": "Requests are answered by an in-browser mock API. Uploads simulate a pipeline run."
+	},
+	"configError": {
+		"title": "The console can’t start",
+		"description": "The runtime configuration in <code>app-config.js</code> is missing or invalid. Fix the values below and reload the page. In the container they come from the <code>API_URL</code>, <code>DOCS_URL</code>, <code>CONTACT_URL</code> and <code>DEFAULT_DAG_ID</code> environment variables.",
+		"demoTitle": "The demo can’t start",
+		"demoDescription": "The demo answers API requests with a service worker, and this browser didn’t allow it to register. Open the page in a regular browser window; private windows and some embedded browsers block service workers."
+	},
+	"errorBoundary": {
+		"title": "Something went wrong"
+	},
+	"errors": {
+		"serviceUnavailable": "The API is unavailable. Check that it is running and try again.",
+		"unknown": "Something went wrong. Try again.",
+		"apiStatus": "The API responded with status {{status}}."
+	},
+	"welcome": {
+		"title": "From raw retail data to a dashboard in one upload",
+		"description": "Datashelf stores your transactions file, runs an Airflow ETL pipeline on it and turns the results into sales, customer and seasonal charts.",
+		"openConsole": "Open console",
+		"contactUs": "Contact us",
+		"howItWorks": "How it works",
+		"cases": {
+			"upload": {
+				"title": "Upload",
+				"description": "Drop a CSV or JSON export. The file lands in object storage and starts a pipeline run."
+			},
+			"process": {
+				"title": "Process",
+				"description": "Airflow cleans the data and computes metrics, distributions and seasonal top products."
+			},
+			"follow": {
+				"title": "Follow the run",
+				"description": "Watch the run move from queued to finished without leaving the console."
+			},
+			"explore": {
+				"title": "Explore",
+				"description": "Open the dashboard for any stored file and download each chart as an image."
+			}
+		}
+	},
+	"notFound": {
+		"title": "This page doesn’t exist",
+		"description": "The link may be outdated or mistyped. Go back to the start page or open the console.",
+		"backToStart": "Back to start page"
+	},
+	"consoleNotFound": {
+		"title": "This console page doesn’t exist",
+		"description": "Check the address or pick a section from the navigation.",
+		"goHome": "Go to console home"
+	},
+	"home": {
+		"intro": "Datashelf turns raw retail transactions into a dashboard: upload a file, let Airflow process it, then explore sales, customers and seasonal products.",
+		"latestRuns": "Your latest runs",
+		"actions": {
+			"upload": {
+				"title": "Upload a dataset",
+				"description": "Send a CSV or JSON file to storage and start the ETL pipeline on it."
+			},
+			"storage": {
+				"title": "Browse storage",
+				"description": "Find an uploaded file and open the dashboard built from it."
+			},
+			"pipelines": {
+				"title": "Check pipelines",
+				"description": "See which Airflow pipelines are active and follow your recent runs."
+			}
+		}
+	},
+	"runState": {
+		"queued": "Queued",
+		"running": "Running",
+		"success": "Succeeded",
+		"failed": "Failed"
+	},
+	"dashboard": {
+		"loading": "Loading dashboard",
+		"keyMetrics": "Key metrics",
+		"chartCount_one": "{{count}} chart",
+		"chartCount_other": "{{count}} charts",
+		"loadError": "Couldn’t load the dashboard",
+		"backToStorage": "Back to storage",
+		"emptyTitle": "No charts for this file yet",
+		"emptyDescription": "The pipeline publishes charts as each analysis step finishes, usually within a minute of the upload. Refresh to check again, or upload the file again if the run failed.",
+		"downloadTooltip": "Download as PNG",
+		"downloadChart": "Download {{title}} as PNG",
+		"sections": {
+			"sales": {
+				"title": "Sales",
+				"description": "Revenue over time, by city and by store type."
+			},
+			"customers": {
+				"title": "Customers",
+				"description": "Who buys, where they buy and how they pay."
+			},
+			"seasons": {
+				"title": "Seasonal products",
+				"description": "The five most frequent products in each season."
+			},
+			"other": {
+				"title": "Other charts",
+				"description": "Charts produced by the pipeline that have no dedicated place on this dashboard yet."
+			}
+		}
+	},
+	"charts": {
+		"stateSales": "{{state}}: {{sales}} in sales ({{cities}})",
+		"stateNoSales": "{{state}}: no sales"
+	},
+	"storage": {
+		"intro": "Raw datasets in object storage. Open one to see its dashboard.",
+		"loading": "Loading files",
+		"loadError": "Couldn’t load stored files",
+		"emptyTitle": "No datasets stored yet",
+		"emptyDescription": "Upload a CSV or JSON file to store it and run the ETL pipeline on it.",
+		"openDashboard": "Open dashboard for {{fileName}}",
+		"fileCount_one": "{{count}} file",
+		"fileCount_other": "{{count}} files"
+	},
+	"pipelines": {
+		"dagsTitle": "Airflow pipelines",
+		"dagsDescription": "DAGs registered in Airflow and whether they accept runs.",
+		"loading": "Loading pipelines",
+		"loadError": "Couldn’t load pipelines from Airflow",
+		"emptyTitle": "Airflow has no pipelines",
+		"emptyDescription": "Check that the DAG files are mounted into Airflow and that the DAG processor has parsed them.",
+		"schedule": "Schedule: {{schedule}}",
+		"status": {
+			"importErrors": "Import errors",
+			"paused": "Paused",
+			"active": "Active"
+		},
+		"runsTitle": "Recent runs",
+		"runsDescription": "Runs started from this browser. The console API doesn’t list run history, so runs started elsewhere aren’t shown.",
+		"noRunsTitle": "No runs started from this browser",
+		"noRunsDescription": "Upload a dataset to start a pipeline run. Its progress shows up here.",
+		"clearList": "Clear list"
+	},
+	"upload": {
+		"intro": "Upload a retail dataset to store it and start the <code>{{dagId}}</code> pipeline. When the run finishes, its charts appear on the file’s dashboard.",
+		"dropTitle": "Drop a file here or click to choose one",
+		"dropHint": "CSV or JSON, one file per run",
+		"progress": "Upload progress",
+		"submit": "Upload and process",
+		"unsupportedFile": "{{fileName}} isn’t supported. Choose a {{extensions}} file.",
+		"processing": "Processing {{fileName}}",
+		"runInfo": "Pipeline <code>{{dagId}}</code>, run <code>{{runId}}</code>",
+		"steps": {
+			"uploaded": "Uploaded",
+			"queued": "Queued",
+			"running": "Running",
+			"failed": "Failed",
+			"chartsReady": "Charts ready"
+		},
+		"openDashboard": "Open dashboard",
+		"viewPipelines": "View pipelines",
+		"uploadAnother": "Upload another file"
+	}
+}

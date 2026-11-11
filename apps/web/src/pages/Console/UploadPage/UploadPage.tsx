@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { CloudArrowUpIn, File as FileIcon, TriangleExclamation } from '@gravity-ui/icons'
 import { Progress, Steps, Upload, type UploadProps } from 'antd'
 import { observer } from 'mobx-react-lite'
+import { Trans, useTranslation } from 'react-i18next'
 
 import { getDashboardPath, ROUTE_PATHS } from '@router/paths'
 import { isTerminalRunState, runsStore } from '@stores/runs-store'
@@ -31,6 +32,7 @@ const RUN_STEP_INDEX: Record<TDagRunState, number> = {
 
 export const UploadPage = observer(() => {
 	const { vars } = getAppConfig()
+	const { t, i18n } = useTranslation()
 
 	const [file, setFile] = useState<File | null>(null)
 	const [isUploading, setIsUploading] = useState(false)
@@ -54,7 +56,12 @@ export const UploadPage = observer(() => {
 	const handleBeforeUpload: UploadProps['beforeUpload'] = (selectedFile) => {
 		if (!isAllowedFile(selectedFile)) {
 			setErrorMessage(
-				`${selectedFile.name} isn’t supported. Choose a ${ALLOWED_FILE_EXTENSIONS.join(' or ')} file.`,
+				t('upload.unsupportedFile', {
+					fileName: selectedFile.name,
+					extensions: new Intl.ListFormat(i18n.resolvedLanguage, { type: 'disjunction' }).format(
+						ALLOWED_FILE_EXTENSIONS,
+					),
+				}),
 			)
 
 			return Upload.LIST_IGNORE
@@ -107,9 +114,13 @@ export const UploadPage = observer(() => {
 				<Styled.Panel aria-live="polite">
 					<Styled.PanelHeader>
 						<div>
-							<Styled.PanelTitle>Processing {run.filename}</Styled.PanelTitle>
+							<Styled.PanelTitle>{t('upload.processing', { fileName: run.filename })}</Styled.PanelTitle>
 							<Styled.PanelText>
-								Pipeline <code>{run.dagId}</code>, run <code>{run.dagRunId}</code>
+								<Trans
+									i18nKey="upload.runInfo"
+									values={{ dagId: run.dagId, runId: run.dagRunId }}
+									components={{ code: <code /> }}
+								/>
 							</Styled.PanelText>
 						</div>
 						<StatusBadge state={run.state} />
@@ -119,25 +130,25 @@ export const UploadPage = observer(() => {
 						current={RUN_STEP_INDEX[run.state]}
 						status={isFailed ? 'error' : run.state === 'success' ? 'finish' : 'process'}
 						items={[
-							{ title: 'Uploaded' },
-							{ title: 'Queued' },
-							{ title: isFailed ? 'Failed' : 'Running' },
-							{ title: 'Charts ready' },
+							{ title: t('upload.steps.uploaded') },
+							{ title: t('upload.steps.queued') },
+							{ title: isFailed ? t('upload.steps.failed') : t('upload.steps.running') },
+							{ title: t('upload.steps.chartsReady') },
 						]}
 					/>
 					{run.errorMessage && <Styled.InlineError role="alert">{run.errorMessage}</Styled.InlineError>}
 					<Styled.PanelActions>
 						{run.state === 'success' && (
 							<ButtonLink to={getDashboardPath(run.filename)} type="primary">
-								Open dashboard
+								{t('upload.openDashboard')}
 							</ButtonLink>
 						)}
 						{isFailed && (
 							<ButtonLink to={PIPELINES_PATH} type="primary">
-								View pipelines
+								{t('upload.viewPipelines')}
 							</ButtonLink>
 						)}
-						<Button onClick={handleReset}>Upload another file</Button>
+						<Button onClick={handleReset}>{t('upload.uploadAnother')}</Button>
 					</Styled.PanelActions>
 				</Styled.Panel>
 			</Styled.UploadPage>
@@ -147,8 +158,7 @@ export const UploadPage = observer(() => {
 	return (
 		<Styled.UploadPage>
 			<Styled.Intro>
-				Upload a retail dataset to store it and start the <code>{vars.defaultDagId}</code> pipeline. When the
-				run finishes, its charts appear on the file’s dashboard.
+				<Trans i18nKey="upload.intro" values={{ dagId: vars.defaultDagId }} components={{ code: <code /> }} />
 			</Styled.Intro>
 			<Upload.Dragger
 				accept={ALLOWED_FILE_EXTENSIONS.join(',')}
@@ -161,8 +171,8 @@ export const UploadPage = observer(() => {
 					<Styled.DropzoneIcon aria-hidden>
 						<CloudArrowUpIn />
 					</Styled.DropzoneIcon>
-					<Styled.DropzoneTitle>Drop a file here or click to choose one</Styled.DropzoneTitle>
-					<Styled.DropzoneHint>CSV or JSON, one file per run</Styled.DropzoneHint>
+					<Styled.DropzoneTitle>{t('upload.dropTitle')}</Styled.DropzoneTitle>
+					<Styled.DropzoneHint>{t('upload.dropHint')}</Styled.DropzoneHint>
 				</Styled.DropzoneBody>
 			</Upload.Dragger>
 			{file && (
@@ -174,7 +184,7 @@ export const UploadPage = observer(() => {
 					<Styled.SelectedFileSize>{convertFileSize(file.size)}</Styled.SelectedFileSize>
 					{isUploading && (
 						<Styled.SelectedFileProgress>
-							<Progress percent={uploadProgress} size="small" aria-label="Upload progress" />
+							<Progress percent={uploadProgress} size="small" aria-label={t('upload.progress')} />
 						</Styled.SelectedFileProgress>
 					)}
 				</Styled.SelectedFile>
@@ -187,9 +197,9 @@ export const UploadPage = observer(() => {
 			)}
 			<Styled.PanelActions>
 				<Button type="primary" onClick={handleUpload} disabled={!file} loading={isUploading}>
-					Upload and process
+					{t('upload.submit')}
 				</Button>
-				{file && !isUploading && <Button onClick={handleReset}>Clear</Button>}
+				{file && !isUploading && <Button onClick={handleReset}>{t('common.clear')}</Button>}
 			</Styled.PanelActions>
 		</Styled.UploadPage>
 	)

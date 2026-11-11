@@ -1,6 +1,6 @@
 import { ERoutesPageNames, ROUTE_PATHS } from '@router/paths'
 import { Routes } from '@router/routes'
-import { ERouterElementType } from '@router/routes.interfaces'
+import { ERouterElementType, type TNavGroupId } from '@router/routes.interfaces'
 
 import type { IAppConfig } from '@shared/config/config.interface'
 
@@ -10,16 +10,21 @@ import type { ISidebarNavGroup, ISidebarNavItem } from './Sidebar.interfaces'
 
 export const getNavigationGroups = (urls: IAppConfig['urls']): ISidebarNavGroup[] => {
 	const consoleChildren = Routes[ERoutesPageNames.CONSOLE]!.children!
-	const groups = new Map<string, ISidebarNavItem[]>()
+	const groups = new Map<TNavGroupId, ISidebarNavItem[]>()
 
 	Object.entries(consoleChildren).forEach(([key, element]) => {
-		if (element.type === ERouterElementType.ABSTRACT || !element.group || !element.fullPath) {
+		if (
+			element.type === ERouterElementType.ABSTRACT ||
+			!element.group ||
+			!element.name ||
+			!element.fullPath
+		) {
 			return
 		}
 
 		const item: ISidebarNavItem = {
 			key,
-			name: element.name ?? key,
+			name: element.name,
 			icon: element.icon,
 			to: element.fullPath,
 			...(key === ERoutesPageNames.CONSOLE_FILES ? { matchPaths: [ROUTE_PATHS.CONSOLE_DASHBOARD] } : {}),
@@ -31,10 +36,10 @@ export const getNavigationGroups = (urls: IAppConfig['urls']): ISidebarNavGroup[
 	const supportItems = getSupportNavItems(urls)
 
 	if (supportItems.length) {
-		groups.set('Support', [...(groups.get('Support') ?? []), ...supportItems])
+		groups.set('support', [...(groups.get('support') ?? []), ...supportItems])
 	}
 
-	return [...groups.entries()].map(([name, items]) => ({ name, items }))
+	return [...groups.entries()].map(([id, items]) => ({ id, items }))
 }
 
 export const isNavItemActive = (item: ISidebarNavItem, pathname: string, consoleRootPath: string) => {

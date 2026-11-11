@@ -1,3 +1,5 @@
+import type { TTranslationResources } from '@shared/i18n/i18n.interfaces'
+
 export const METRIC_ORDER = [
 	'total_sales',
 	'total_transactions',
@@ -8,10 +10,10 @@ export const METRIC_ORDER = [
 	'best_month',
 ]
 
+export type TDashboardSectionId = keyof TTranslationResources['dashboard']['sections']
+
 export interface IDashboardSectionTemplate {
-	id: string
-	title: string
-	description: string
+	id: TDashboardSectionId
 	slots: Array<string | string[]>
 	namePrefix?: string
 	prefixOrder?: string[]
@@ -20,8 +22,6 @@ export interface IDashboardSectionTemplate {
 export const DASHBOARD_SECTIONS: IDashboardSectionTemplate[] = [
 	{
 		id: 'sales',
-		title: 'Sales',
-		description: 'Revenue over time, by city and by store type.',
 		slots: [
 			['monthly_sales', 'total_sales_by_month'],
 			'city_sales_summary',
@@ -31,8 +31,6 @@ export const DASHBOARD_SECTIONS: IDashboardSectionTemplate[] = [
 	},
 	{
 		id: 'customers',
-		title: 'Customers',
-		description: 'Who buys, where they buy and how they pay.',
 		slots: [
 			'customer_category_distribution_pie',
 			'payment_method_distribution_pie',
@@ -43,18 +41,12 @@ export const DASHBOARD_SECTIONS: IDashboardSectionTemplate[] = [
 	},
 	{
 		id: 'seasons',
-		title: 'Seasonal products',
-		description: 'The five most frequent products in each season.',
 		slots: [],
 		namePrefix: 'top5_products_',
 		prefixOrder: ['winter', 'spring', 'summer', 'fall', 'autumn'],
 	},
 ]
 
-export const OTHER_SECTION = {
-	id: 'other',
-	title: 'Other charts',
-	description: 'Charts produced by the pipeline that have no dedicated place on this dashboard yet.',
-}
+export const OTHER_SECTION_ID: TDashboardSectionId = 'other'
 
 export const WIDE_CHART_TYPES = new Set(['line', 'area', 'grouped', 'frequency'])

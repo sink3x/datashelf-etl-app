@@ -1,6 +1,7 @@
 import { useEffect, useState, type FC } from 'react'
 
 import { Bars } from '@gravity-ui/icons'
+import { useTranslation } from 'react-i18next'
 import { Outlet, useLocation, useMatches } from 'react-router-dom'
 
 import { DemoBadge } from '@components/DemoBadge/DemoBadge'
@@ -8,17 +9,21 @@ import { DemoBadge } from '@components/DemoBadge/DemoBadge'
 import { Sidebar } from './components/Sidebar/Sidebar'
 import * as Styled from './ConsoleLayout.styles'
 
-const getRouteTitle = (handle: unknown) =>
-	handle && typeof handle === 'object' && 'title' in handle && typeof handle.title === 'string'
-		? handle.title
-		: ''
+import type { TNavKey } from '@router/routes.interfaces'
+
+const getRouteTitleKey = (handle: unknown) =>
+	handle && typeof handle === 'object' && 'titleKey' in handle && typeof handle.titleKey === 'string'
+		? (handle.titleKey as TNavKey)
+		: null
 
 export const ConsoleLayout: FC = () => {
 	const matches = useMatches()
 	const { pathname } = useLocation()
+	const { t } = useTranslation()
 	const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
 
-	const title = getRouteTitle(matches.at(-1)?.handle)
+	const titleKey = getRouteTitleKey(matches.at(-1)?.handle)
+	const title = titleKey ? t(titleKey) : ''
 
 	useEffect(() => {
 		document.title = title ? `${title} · Datashelf` : 'Datashelf'
@@ -30,14 +35,14 @@ export const ConsoleLayout: FC = () => {
 
 	return (
 		<Styled.LayoutContainer>
-			<Styled.SkipLink href="#console-main">Skip to content</Styled.SkipLink>
+			<Styled.SkipLink href="#console-main">{t('layout.skipToContent')}</Styled.SkipLink>
 			<Sidebar isMobileOpen={isMobileSidebarOpen} onMobileClose={() => setIsMobileSidebarOpen(false)} />
 			<Styled.MainContainer id="console-main" tabIndex={-1}>
 				<Styled.MobileBar>
 					<Styled.MenuButton
 						type="text"
 						icon={<Bars aria-hidden />}
-						aria-label="Open navigation"
+						aria-label={t('layout.openNavigation')}
 						aria-expanded={isMobileSidebarOpen}
 						onClick={() => setIsMobileSidebarOpen(true)}
 					/>

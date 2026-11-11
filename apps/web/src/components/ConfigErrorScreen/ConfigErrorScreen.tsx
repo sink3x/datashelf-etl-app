@@ -1,25 +1,22 @@
 import type { FC } from 'react'
 
+import { Trans, useTranslation } from 'react-i18next'
+
 import * as Styled from './ConfigErrorScreen.styles'
 
 import type { IConfigErrorScreenProps } from './ConfigErrorScreen.interfaces'
 
 export const ConfigErrorScreen: FC<IConfigErrorScreenProps> = (props) => {
-	const { issues, title = 'The console can’t start', description } = props
+	const { issues, title, description } = props
+
+	const { t } = useTranslation()
 
 	return (
 		<Styled.Screen role="alert" aria-labelledby="config-error-title">
 			<Styled.Panel>
-				<Styled.Title id="config-error-title">{title}</Styled.Title>
+				<Styled.Title id="config-error-title">{title ?? t('configError.title')}</Styled.Title>
 				<Styled.Text>
-					{description ?? (
-						<>
-							The runtime configuration in <code>app-config.js</code> is missing or invalid. Fix the values
-							below and reload the page. In the container they come from the <code>API_URL</code>,{' '}
-							<code>DOCS_URL</code>, <code>CONTACT_URL</code> and <code>DEFAULT_DAG_ID</code> environment
-							variables.
-						</>
-					)}
+					{description ?? <Trans i18nKey="configError.description" components={{ code: <code /> }} />}
 				</Styled.Text>
 				<Styled.IssueList>
 					{issues.map((issue) => (
@@ -30,7 +27,7 @@ export const ConfigErrorScreen: FC<IConfigErrorScreenProps> = (props) => {
 					))}
 				</Styled.IssueList>
 				<Styled.ReloadButton type="button" onClick={() => window.location.reload()}>
-					Reload page
+					{t('common.reloadPage')}
 				</Styled.ReloadButton>
 			</Styled.Panel>
 		</Styled.Screen>

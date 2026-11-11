@@ -1,6 +1,7 @@
 import type { FC } from 'react'
 
 import { Button } from 'antd'
+import { useTranslation } from 'react-i18next'
 
 import { Header } from '@layouts/MainLayout/components/Header/Header'
 
@@ -10,16 +11,18 @@ import type { IFallbackContainerProps } from './FallbackContainer.interfaces'
 export const FallbackContainer: FC<IFallbackContainerProps> = (props) => {
 	const { error, resetErrorBoundary } = props
 
+	const { t } = useTranslation()
+
 	return (
 		<>
 			<Header />
 			<Styled.FallbackResult
 				status="500"
-				title="Something went wrong"
+				title={t('errorBoundary.title')}
 				subTitle={error.message}
 				extra={
 					<Button type="primary" onClick={resetErrorBoundary}>
-						Reload page
+						{t('common.reloadPage')}
 					</Button>
 				}
 			/>
