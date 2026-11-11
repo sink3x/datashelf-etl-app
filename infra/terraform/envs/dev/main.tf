@@ -73,6 +73,7 @@ module "compute" {
   preemptible        = var.preemptible
   cores              = var.vm_cores
   memory_gb          = var.vm_memory_gb
+  disk_type          = var.vm_disk_type
   labels             = local.labels
 
   docker_compose = templatefile("${path.module}/../../templates/docker-compose.vm.yml.tftpl", {

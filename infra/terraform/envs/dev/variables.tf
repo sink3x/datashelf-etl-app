@@ -65,6 +65,12 @@ variable "vm_memory_gb" {
   default     = 8
 }
 
+variable "vm_disk_type" {
+  description = "VM boot disk type; HDD keeps the dev environment cheap"
+  type        = string
+  default     = "network-hdd"
+}
+
 variable "extra_cors_origins" {
   description = "Additional origins allowed to call the API (e.g. GitHub Pages)"
   type        = list(string)

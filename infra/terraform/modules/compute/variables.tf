@@ -70,6 +70,12 @@ variable "disk_gb" {
   default     = 40
 }
 
+variable "disk_type" {
+  description = "Boot disk type: network-ssd, network-hdd or network-ssd-nonreplicated"
+  type        = string
+  default     = "network-ssd"
+}
+
 variable "labels" {
   description = "Resource labels"
   type        = map(string)
