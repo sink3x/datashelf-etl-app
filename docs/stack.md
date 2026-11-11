@@ -78,7 +78,8 @@ libraries, while services use uv for lean, locked production installs.
 | -------------- | ---------------------------------------------- |
 | Network        | VPC, subnet, security groups                   |
 | Compute        | Container Optimized Image VM running compose   |
-| Object storage | Data bucket (lifecycle rules), website bucket  |
+| Object storage | Data bucket with lifecycle rules               |
+| Entry point    | Caddy (Let's Encrypt) on a static public IP    |
 | Images         | Container Registry with cleanup policies       |
 | Secrets        | Lockbox                                        |
 | Identity       | Service accounts with least-privilege roles    |

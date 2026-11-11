@@ -122,11 +122,15 @@ are unit-tested without Airflow. Tasks retry with backoff; publishing is idempot
 
 ## Deployment views
 
-| Environment  | Web                           | Backend                                                    | Storage          |
-| ------------ | ----------------------------- | ---------------------------------------------------------- | ---------------- |
-| Local        | nginx container `:3000`       | docker compose: API, Airflow ×4, Postgres, Mongo, RabbitMQ | RustFS (S3 mock) |
-| Demo         | GitHub Pages, mock API (MSW)  | —                                                          | —                |
-| Yandex Cloud | Object Storage static website | Container Optimized VM running the same compose spec       | Object Storage   |
+| Environment  | Entry point                                | Backend                                                    | Storage          |
+| ------------ | ------------------------------------------ | ---------------------------------------------------------- | ---------------- |
+| Local        | web `:3000`, API `:5000`                   | docker compose: API, Airflow ×4, Postgres, Mongo, RabbitMQ | RustFS (S3 mock) |
+| Demo         | GitHub Pages, mock API (MSW)               | —                                                          | —                |
+| Yandex Cloud | Caddy with Let's Encrypt, one HTTPS origin | Container Optimized VM running the same compose spec       | Object Storage   |
+
+In the cloud, Caddy routes `/api`, `/docs`, `/healthz` and `/readyz` to the API and everything else to the web
+container, so the browser talks to a single origin: no CORS, no mixed content
+([ADR-0007](adr/0007-single-https-origin-in-the-cloud.md)).
 
 Infrastructure details: [infra/terraform/README.md](../infra/terraform/README.md) and
 [ADR-0004](adr/0004-single-vm-for-dev-environment.md).

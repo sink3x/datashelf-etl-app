@@ -42,15 +42,17 @@ Airflow tasks.
 
 ## Cloud (Yandex Cloud)
 
-| Task                     | Command                                                                                              |
-| ------------------------ | ---------------------------------------------------------------------------------------------------- |
-| Plan / apply             | `make tf-plan IMAGE_TAG=<sha>` then `make tf-apply`                                                  |
-| Full rollout             | `make cloud-up`                                                                                      |
-| Smoke test               | `make cloud-smoke`                                                                                   |
-| Tear down                | `make tf-destroy`                                                                                    |
-| Read runtime secrets     | `yc lockbox payload get $(terraform -chdir=infra/terraform/envs/dev output -raw lockbox_secret_id)`  |
-| Airflow UI               | `ssh -L 8080:localhost:8080 datashelf@<vm_public_ip>` (SSH and :8080 are open only to `admin_cidrs`) |
-| Container logs on the VM | `ssh datashelf@<ip> docker logs <container>`                                                         |
+| Task                     | Command                                                                                                 |
+| ------------------------ | ------------------------------------------------------------------------------------------------------- |
+| Plan / apply             | `make tf-plan IMAGE_TAG=<sha>` then `make tf-apply`                                                     |
+| Open the environment     | `terraform -chdir=infra/terraform/envs/dev output -raw app_url`                                         |
+| Full rollout             | `make cloud-up`                                                                                         |
+| Smoke test               | `make cloud-smoke`                                                                                      |
+| Tear down                | `make tf-destroy`                                                                                       |
+| Read runtime secrets     | `yc lockbox payload get $(terraform -chdir=infra/terraform/envs/dev output -raw lockbox_secret_id)`     |
+| Airflow UI               | `ssh -L 8080:localhost:8080 datashelf@<vm_public_ip>` (SSH and :8080 are open only to `admin_cidrs`)    |
+| Container logs on the VM | `ssh datashelf@<ip> docker logs <container>`                                                            |
+| TLS / routing issues     | `ssh datashelf@<ip> docker logs <edge container>` — Caddy logs certificate issuance and upstream errors |
 
 Rollback: re-run `make tf-plan tf-apply IMAGE_TAG=<previous sha>` — the VM metadata switches back to the
 previous images and the Container Optimized Image restarts the compose spec.
