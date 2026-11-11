@@ -84,5 +84,6 @@
 		"vite-tsconfig-paths": "5.1.4",
 		"vitest": "3.2.7"
 	},
-	"private": true
+	"private": true,
+	"version": "1.0.0"
 }
