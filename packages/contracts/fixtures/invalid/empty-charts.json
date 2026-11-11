@@ -1,0 +1,12 @@
+{
+  "event_id": "4f0d3c1e-8a5b-4b8e-9f43-2d6c1a7e9b10",
+  "event_type": "dataset.charts.computed",
+  "schema_version": 1,
+  "occurred_at": "2025-06-01T10:15:30.000Z",
+  "run_id": "manual__2025-06-01T10:15:00+00:00",
+  "job": "retail_metrics",
+  "dataset": { "object_key": "raw-data/a.csv", "filename": "a.csv" },
+  "processing_time_sec": 0.42,
+  "meta": {},
+  "charts": []
+}
