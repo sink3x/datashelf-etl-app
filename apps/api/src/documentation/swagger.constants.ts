@@ -1,22 +1,12 @@
-import path from 'path'
+import { API_PREFIX, BACKEND_VERSION } from '@shared/constants'
 
-import type { IAppConfig } from '@interfaces/config'
-import { API_PREFIX } from '@routers/router-store/router-store.constants'
-import { APP_MODE, BACKEND_VERSION } from '@shared/constants'
-import { loadConfig } from '@utils/load-config'
-
-const { server } = loadConfig(APP_MODE) || ({} as IAppConfig)
-const { protocol, host, port } = server || {}
-const appUrl = `${protocol}://${host}:${port}${API_PREFIX}`
-
-export const ROUTER_PATH = path.resolve('./src/routers')
-export const DOCUMNETATION_FILE_EXTENSION_LIST = ['yml', 'yaml']
+export const DOCUMENTATION_FILE_EXTENSION_LIST = ['yml', 'yaml']
 
 export const swaggerSpecificationDocument = {
   openapi: '3.0.0',
   externalDocs: {
-    description: `Backend application - ${appUrl}`,
-    url: appUrl,
+    description: `Backend application - ${API_PREFIX}`,
+    url: API_PREFIX,
   },
   info: {
     title: 'Datashelf API',
@@ -26,6 +16,7 @@ export const swaggerSpecificationDocument = {
     version: BACKEND_VERSION,
   },
   tags: [
+    { name: 'health', description: 'Liveness and readiness probes for orchestrators' },
     {
       name: 'utils',
       description: 'Utility endpoints for service introspection with operational checks',

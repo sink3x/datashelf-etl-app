@@ -105,16 +105,10 @@ paths:
                   meta:
                     type: object
                     additionalProperties: true
+        '502':
+          $ref: '#/components/responses/UpstreamError'
         '500':
-          description: Failed to get DAGs
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Failed to get dags
+          $ref: '#/components/responses/InternalError'
   /api/airflow/process-data:
     post:
       tags:
@@ -136,11 +130,11 @@ paths:
                 file:
                   type: string
                   format: binary
-                  description:
-                  File to upload (allowed types: application/json, etc.)
+                  description: File to upload (application/json or text/csv, up to UPLOAD_MAX_SIZE_MB)
                 dagId:
                   type: string
-                  description: ID of the DAG to trigger
+                  description: ID of the DAG to trigger; must match AIRFLOW_DAG_ID
+                  example: customer_data_etl
       responses:
         '200':
           description: DAG triggered successfully
@@ -151,7 +145,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: Dag etl_pipeline triggered
+                    example: Dag customer_data_etl triggered
                   triggeredDagInfo:
                     type: object
                     properties:
@@ -226,27 +220,11 @@ paths:
                         type: string
                         nullable: true
         '400':
-          description: Invalid request (e.g. file not uploaded or dagId missing)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: File not uploaded or uploaded not correct
+          $ref: '#/components/responses/BadRequest'
+        '502':
+          $ref: '#/components/responses/UpstreamError'
         '500':
-          description: Internal server error (e.g. failed to trigger DAG)
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Failed to process data
-                  info:
-                    type: object
+          $ref: '#/components/responses/InternalError'
   /api/airflow/allowed-file-type-list:
     get:
       tags:
@@ -273,18 +251,10 @@ paths:
                       type: string
                     example:
                       - application/json
-                      - application/csv
+                      - text/csv
         '500':
-          description: Failed to retrieve allowed file types
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Failed to get allowed file types
-  /api/airflow/dag/status/:dag_id/:dag_run_id:
+          $ref: '#/components/responses/InternalError'
+  /api/airflow/dag/status/{dagId}/{dagRunId}:
     get:
       summary: Get DAG run status by dagId and dagRunId
       description: |
@@ -298,7 +268,7 @@ paths:
           required: true
           schema:
             type: string
-          example: etl_pipeline
+          example: customer_data_etl
         - name: dagRunId
           in: path
           required: true
@@ -324,7 +294,7 @@ paths:
                         example: manual__2025-05-26T21:47:12.346117+00:00
                       dag_id:
                         type: string
-                        example: etl_pipeline
+                        example: customer_data_etl
                       logical_date:
                         type: string
                         format: date-time
@@ -382,7 +352,7 @@ paths:
                               example: 1
                             dag_id:
                               type: string
-                              example: etl_pipeline
+                              example: customer_data_etl
                             bundle_name:
                               type: string
                               example: dags-folder
@@ -398,16 +368,11 @@ paths:
                       bundle_version:
                         type: string
                         nullable: true
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '502':
+          $ref: '#/components/responses/UpstreamError'
         '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Failed to process data
-                  info:
-                    type: object
-                    nullable: true
+          $ref: '#/components/responses/InternalError'

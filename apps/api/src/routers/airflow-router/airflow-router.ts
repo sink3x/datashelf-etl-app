@@ -1,27 +1,35 @@
-import { AirflowController } from '@controllers/airflow-controller/airflow-controller'
-import type { IDIContainer } from '@interfaces/DI-container'
+import type { AirflowController } from '@controllers/airflow-controller/airflow-controller'
+import { ALLOWED_FILE_TYPE_LIST } from '@controllers/airflow-controller/airflow-controller.constants'
+import { createUploadFileMiddleware } from '@middlewares/upload-file'
+import { validateRequest } from '@middlewares/validate-request'
+import { dagRunStatusSchemas, processDataSchemas } from '@validations/airflow-validations'
 import { Router } from 'express'
-import multer from 'multer'
 
-const upload = multer()
+export const UPLOAD_FIELD_NAME = 'file'
 
-export class AirflowRouter {
-  public readonly router = Router()
+export const createAirflowRouter = (
+  controller: AirflowController,
+  options: { maxUploadSizeBytes: number },
+) => {
+  const router = Router()
 
-  constructor(container: IDIContainer) {
-    const airflowController = new AirflowController(container)
+  router.get('/dags', controller.getDagList)
+  router.get('/allowed-file-type-list', controller.getAllowedFileTypeList)
+  router.post(
+    '/process-data',
+    createUploadFileMiddleware({
+      fieldName: UPLOAD_FIELD_NAME,
+      maxSizeBytes: options.maxUploadSizeBytes,
+      allowedMimeTypes: ALLOWED_FILE_TYPE_LIST,
+    }),
+    validateRequest(processDataSchemas),
+    controller.processData,
+  )
+  router.get(
+    '/dag/status/:dagId/:dagRunId',
+    validateRequest(dagRunStatusSchemas),
+    controller.getDagStatusByDagRunId,
+  )
 
-    this.router.get('/dags', airflowController.getDagList.bind(airflowController))
-    this.router.get('/allowed-file-type-list', airflowController.getAllowFileTypeList.bind(airflowController))
-    this.router.post(
-      '/process-data',
-      upload.array('file'),
-      // @ts-ignore
-      airflowController.processData.bind(airflowController),
-    )
-    this.router.get(
-      '/dag/status/:dagId/:dagRunId',
-      airflowController.getDagStatusByDagRunId.bind(airflowController),
-    )
-  }
+  return router
 }

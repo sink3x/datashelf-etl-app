@@ -1,0 +1,56 @@
+paths:
+  /healthz:
+    get:
+      tags:
+        - health
+      summary: Liveness probe
+      description: Returns 200 while the process is running. Does not check dependencies.
+      responses:
+        '200':
+          description: Process is alive
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+  /readyz:
+    get:
+      tags:
+        - health
+      summary: Readiness probe
+      description: >
+        Checks MongoDB (ping), the RabbitMQ consumer and the S3 bucket (HeadBucket). Returns 503 while any
+        dependency is down, while RabbitMQ is reconnecting and during graceful shutdown.
+      responses:
+        '200':
+          description: All dependencies are reachable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadinessReport'
+        '503':
+          description: At least one dependency is unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadinessReport'
+components:
+  schemas:
+    ReadinessReport:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [ready, not_ready]
+        checks:
+          type: object
+          additionalProperties:
+            type: string
+            enum: [up, down]
+          example:
+            mongodb: up
+            rabbitmq: up
+            s3: down

@@ -16,3 +16,71 @@ paths:
                   status:
                     type: string
                     example: alive
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      required:
+        - message
+        - code
+      properties:
+        message:
+          type: string
+          example: Dag ID not provided
+        code:
+          type: string
+          example: VALIDATION_ERROR
+        details:
+          description: Optional machine-readable context, e.g. validation issues
+          oneOf:
+            - type: array
+              items:
+                type: object
+                additionalProperties: true
+            - type: object
+              additionalProperties: true
+    Chart:
+      type: object
+      description: Chart from the dataset.charts.computed v1 contract (packages/contracts)
+      required:
+        - name
+        - title
+        - description
+        - type
+      properties:
+        name:
+          type: string
+          example: total_sales
+        title:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum: [line, bar, pie, area, frequency, grouped, metric]
+      additionalProperties: true
+  responses:
+    BadRequest:
+      description: Request validation failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    UpstreamError:
+      description: An upstream dependency (Airflow, S3) failed or timed out
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalError:
+      description: Unexpected server error (details are logged, never returned)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

@@ -1,96 +1,59 @@
-import type { IAppConfig, TAppServices } from '@interfaces/config'
-import type { IDIContainer } from '@interfaces/DI-container'
-import type { TMaybe } from '@interfaces/maybe'
-import { RouterStore } from '@routers/router-store/router-store'
-import { AirflowService } from '@services/airflow/airflow-service'
-import { MongodbService } from '@services/mongodb/mongodb-service'
-import { RabbitmqService } from '@services/rabbitmq/rabbitmq-service'
-import { S3Service } from '@services/s3/s3-service'
-import { APP_MODE } from '@shared/constants'
-import { addProcessedDataset } from '@utils/add-processed-dataset/add-processed-dataset'
-import { loadConfig } from '@utils/load-config'
+import type { AirflowController } from '@controllers/airflow-controller/airflow-controller'
+import type { DatasetController } from '@controllers/dataset-controller/dataset-controller'
+import type { HealthController } from '@controllers/health-controller/health-controller'
+import { swaggerSpecificationOptions } from '@documentation/swagger.constants'
+import { buildSwaggerSpecification } from '@documentation/swagger.utils'
+import { createErrorHandler, notFoundHandler } from '@middlewares/error-handler'
+import { createRequestLogger } from '@middlewares/request-logger'
+import { createHealthRouter } from '@routers/health-router/health-router'
+import { createMainRouter } from '@routers/main-router/main-router'
+import { API_PREFIX } from '@shared/constants'
+import type { TLogger } from '@shared/logger'
+import { PUBLIC_DIR } from '@shared/paths'
 import compression from 'compression'
 import cors from 'cors'
 import express from 'express'
+import type { Express } from 'express'
 import helmet from 'helmet'
+import swaggerUi from 'swagger-ui-express'
 
-export class App {
-  private readonly app = express()
-  private config: TMaybe<IAppConfig> = null
-  private services: TMaybe<TAppServices> = null
+export interface IAppDependencies {
+  logger: TLogger
+  corsOrigins: string[]
+  maxUploadSizeBytes: number
+  maxUploadSizeMb: number
+  airflowController: AirflowController
+  datasetController: DatasetController
+  healthController: HealthController
+  enableDocs?: boolean
+}
 
-  constructor() {
-    this.setupConfig()
+export const createApp = (dependencies: IAppDependencies): Express => {
+  const { logger, corsOrigins, enableDocs = true } = dependencies
+  const app = express()
 
-    if (!this.config) {
-      return
-    }
+  app.disable('x-powered-by')
+  app.use(createRequestLogger(logger))
+  app.use(createHealthRouter(dependencies.healthController))
 
-    const { intervalToCheckRabbitAndMongoStatus } = this.config.vars
+  app.use(cors({ origin: corsOrigins.includes('*') ? '*' : corsOrigins }))
+  app.use(helmet())
+  app.use(compression())
+  app.use(express.json({ limit: '100kb' }))
+  app.use(express.static(PUBLIC_DIR))
 
-    this.setupServiceList()
-    this.setupMiddleWareList()
-    this.setupRouterList()
-
-    const intervalIdCheckListenQueue = setInterval(() => {
-      this.setupListenQueue(() => clearInterval(intervalIdCheckListenQueue))
-    }, intervalToCheckRabbitAndMongoStatus)
-  }
-
-  private setupServiceList() {
-    const container = { config: this.config! } as IDIContainer
-
-    this.services = {
-      s3: new S3Service(container),
-      airflow: new AirflowService(container),
-      mongodb: new MongodbService(container),
-      rabbitmq: new RabbitmqService(container),
-    }
-  }
-
-  private setupMiddleWareList() {
-    this.app.use(
-      cors({
-        origin: '*',
-      }),
+  if (enableDocs) {
+    app.use(
+      '/docs',
+      swaggerUi.serve,
+      swaggerUi.setup(buildSwaggerSpecification(logger), swaggerSpecificationOptions),
     )
-
-    this.app.use(helmet())
-    this.app.use(express.json())
-    this.app.use(compression())
   }
 
-  private setupRouterList() {
-    new RouterStore({ app: this.app, config: this.config!, services: this.services! })
-  }
+  app.use(API_PREFIX, createMainRouter(dependencies))
 
-  private setupConfig() {
-    const loadedConfig = loadConfig(APP_MODE)
+  app.use(notFoundHandler)
+  app.use(createErrorHandler(logger, { maxUploadSizeMb: dependencies.maxUploadSizeMb }))
 
-    this.config = loadedConfig!
-  }
-
-  private setupListenQueue(callback: () => void) {
-    if (!this.services?.rabbitmq || !this.services?.mongodb) {
-      return
-    }
-
-    callback()
-
-    const addProcessedDatasetToMongodb = addProcessedDataset(this.services.mongodb)
-
-    this.services.rabbitmq.listenQueue(this.config!.services.rabbitmq.queue, addProcessedDatasetToMongodb)
-  }
-
-  public start() {
-    if (!this.config) {
-      throw new Error('setup config failed: no app connfig')
-    }
-
-    const { protocol, host, port } = this.config.server
-
-    this.app.listen(port, () => {
-      console.log(`[status] start app successful: ${protocol}://${host}:${port}`)
-    })
-  }
+  return app
 }
