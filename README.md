@@ -146,6 +146,18 @@ scripts/           Smoke test and cloud helpers
 docs/              Architecture, stack, ADRs, runbook
 ```
 
+## Project history
+
+| Version                                                                   | When           | What                                                                                                   |
+| ------------------------------------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------ |
+| [v0.1.0](https://github.com/sink3x/datashelf-etl-app/releases/tag/v0.1.0) | May – Jun 2025 | Working prototype: Express API, Airflow DAG with pandas analytics, React dashboard in separate folders |
+| [v1.0.0](https://github.com/sink3x/datashelf-etl-app/releases/tag/v1.0.0) | Nov 2026       | Re-architecture into a tested monorepo with contracts, IaC, CI/CD and a cloud environment              |
+
+The rework was planned as a series of git flow feature branches, one per concern (monorepo layout, event
+contracts, API hardening, ETL pipeline, web console, i18n, local platform, infrastructure, CI/CD, docs), each
+merged into `develop` with `--no-ff` and released through `release/1.0.0`. The reasoning behind each change is
+recorded in the [ADRs](docs/adr/README.md); the full list of changes is in the [CHANGELOG](CHANGELOG.md).
+
 ## Contributing
 
 Git flow with Conventional Commits — see [CONTRIBUTING.md](CONTRIBUTING.md).
