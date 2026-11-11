@@ -1,10 +1,14 @@
-import { render, screen, within } from '@testing-library/react'
+import { screen, within } from '@testing-library/react'
 import { http, HttpResponse } from 'msw'
 import { createMemoryRouter, RouterProvider } from 'react-router-dom'
 import { describe, expect, it, vi } from 'vitest'
 
+import { i18n } from '@shared/i18n/i18n'
+
 import { DashboardPage } from './DashboardPage'
 import { mockServer } from '../../../mocks/node'
+import ru from '../../../shared/i18n/locales/ru.json'
+import { renderWithI18n } from '../../../test/render'
 
 vi.mock('@components/charts/ChartCollection/ChartCollection', () => ({
 	ChartCollection: ({ chart }: { chart: { type: string } }) => (
@@ -23,10 +27,19 @@ const renderDashboard = (filename: string) => {
 		{ initialEntries: [`/console/dashboard/${encodeURIComponent(filename)}`] },
 	)
 
-	return render(<RouterProvider router={router} />)
+	return renderWithI18n(<RouterProvider router={router} />)
 }
 
 describe('DashboardPage', () => {
+	it('uses russian plural rules for the chart count', async () => {
+		await i18n.changeLanguage('ru')
+
+		renderDashboard(SEEDED_FILE)
+
+		expect(await screen.findByText(ru.dashboard.chartCount_one.replace('{{count}}', '21'))).toBeTruthy()
+		expect(screen.getByRole('heading', { name: ru.dashboard.sections.sales.title })).toBeTruthy()
+	})
+
 	it('renders metrics and chart sections from the charts endpoint', async () => {
 		renderDashboard(SEEDED_FILE)
 

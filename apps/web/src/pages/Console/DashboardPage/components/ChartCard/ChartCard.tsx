@@ -2,6 +2,7 @@ import { useRef, useState, type FC } from 'react'
 
 import { ArrowDownToLine } from '@gravity-ui/icons'
 import { Tooltip } from 'antd'
+import { useTranslation } from 'react-i18next'
 
 import { ChartCollection } from '@components/charts/ChartCollection/ChartCollection'
 import { colors } from '@styles/tokens'
@@ -12,6 +13,8 @@ import type { IChartCardProps } from './ChartCard.interfaces'
 
 export const ChartCard: FC<IChartCardProps> = (props) => {
 	const { chart, isWide = false } = props
+
+	const { t } = useTranslation()
 
 	const chartRef = useRef<HTMLDivElement>(null)
 	const [isExporting, setIsExporting] = useState(false)
@@ -45,10 +48,10 @@ export const ChartCard: FC<IChartCardProps> = (props) => {
 					<Styled.Title id={titleId}>{chart.title}</Styled.Title>
 					{chart.description && <Styled.Description>{chart.description}</Styled.Description>}
 				</div>
-				<Tooltip title="Download as PNG">
+				<Tooltip title={t('dashboard.downloadTooltip')}>
 					<Styled.DownloadButton
 						type="text"
-						aria-label={`Download ${chart.title} as PNG`}
+						aria-label={t('dashboard.downloadChart', { title: chart.title })}
 						icon={<ArrowDownToLine aria-hidden />}
 						loading={isExporting}
 						onClick={handleDownload}

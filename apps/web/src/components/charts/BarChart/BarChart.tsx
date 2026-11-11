@@ -2,6 +2,7 @@ import type { FC } from 'react'
 
 import { Column } from '@ant-design/plots'
 
+import { useLanguage } from '@hooks/use-language'
 import { chartPalette } from '@styles/tokens'
 import { formatCompactNumber } from '@utils/format-number'
 
@@ -13,6 +14,8 @@ const LONG_LABEL_THRESHOLD = 6
 
 export const BarChart: FC<IBarChartProps> = (props) => {
 	const { values } = props
+
+	const { intlLocale } = useLanguage()
 
 	const hasManyBars = values.length > LONG_LABEL_THRESHOLD
 
@@ -34,10 +37,10 @@ export const BarChart: FC<IBarChartProps> = (props) => {
 				labelAutoRotate: hasManyBars,
 				labelAutoHide: hasManyBars,
 			},
-			y: { ...AXIS_STYLE, labelFormatter: (value: number) => formatCompactNumber(value) },
+			y: { ...AXIS_STYLE, labelFormatter: (value: number) => formatCompactNumber(value, intlLocale) },
 		},
 		tooltip: {
-			items: [{ channel: 'y', valueFormatter: (value: number) => formatCompactNumber(value) }],
+			items: [{ channel: 'y', valueFormatter: (value: number) => formatCompactNumber(value, intlLocale) }],
 		},
 	}
 

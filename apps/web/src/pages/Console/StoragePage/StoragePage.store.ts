@@ -1,10 +1,8 @@
-import { makeAutoObservable, runInAction } from 'mobx'
+import { makeAutoObservable, observable, runInAction } from 'mobx'
 
 import type { IRawFile } from '@interfaces/file-raw'
-import type { TMaybe } from '@interfaces/maybe'
 import type { IResponseMeta } from '@interfaces/response-meta'
 import { getRawFileList } from '@services/dataset-service/dataset-service'
-import { getAxiosError } from '@utils/get-axios-error/get-axios-error'
 
 import { INITIAL_CURRENT_PAGE, INITIAL_CURRENT_PAGE_SIZE } from './StoragePage.constants'
 
@@ -12,13 +10,13 @@ export class StoragePageStore {
 	rawFileList: IRawFile[] = []
 	rawFileListMeta: IResponseMeta = {}
 	isLoading = true
-	errorMessage: TMaybe<string> = null
+	error: unknown = null
 
 	page = INITIAL_CURRENT_PAGE
 	pageSize = INITIAL_CURRENT_PAGE_SIZE
 
 	constructor() {
-		makeAutoObservable(this)
+		makeAutoObservable(this, { error: observable.ref })
 	}
 
 	get totalCount() {
@@ -37,7 +35,7 @@ export class StoragePageStore {
 
 	fetchRawFileList = async () => {
 		this.isLoading = true
-		this.errorMessage = null
+		this.error = null
 
 		try {
 			const { datasetList, meta } = await getRawFileList({ page: this.page, limit: this.pageSize })
@@ -48,7 +46,7 @@ export class StoragePageStore {
 			})
 		} catch (error) {
 			runInAction(() => {
-				this.errorMessage = getAxiosError(error)
+				this.error = error
 			})
 		} finally {
 			runInAction(() => {

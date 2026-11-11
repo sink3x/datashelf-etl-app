@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { ConfigErrorScreen } from '@components/ConfigErrorScreen/ConfigErrorScreen'
 import { initAppConfig } from '@shared/config/config'
 import { IS_API_MOCK } from '@shared/constants'
+import { i18n } from '@shared/i18n/i18n'
 
 const bootstrap = async () => {
 	const root = createRoot(document.getElementById('root')!)
@@ -21,8 +22,8 @@ const bootstrap = async () => {
 		} catch (error) {
 			root.render(
 				<ConfigErrorScreen
-					title="The demo can’t start"
-					description="The demo answers API requests with a service worker, and this browser didn’t allow it to register. Open the page in a regular browser window; private windows and some embedded browsers block service workers."
+					title={i18n.t('configError.demoTitle')}
+					description={i18n.t('configError.demoDescription')}
 					issues={[
 						{ path: 'mockServiceWorker.js', message: error instanceof Error ? error.message : String(error) },
 					]}

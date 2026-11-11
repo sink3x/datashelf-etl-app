@@ -1,19 +1,17 @@
-import { makeAutoObservable, runInAction } from 'mobx'
+import { makeAutoObservable, observable, runInAction } from 'mobx'
 
 import type { TChartsByName } from '@interfaces/chart'
-import type { TMaybe } from '@interfaces/maybe'
 import { getCharts } from '@services/dataset-service/dataset-service'
-import { getAxiosError } from '@utils/get-axios-error/get-axios-error'
 
 import { buildDashboardLayout } from './DashboardPage.utils'
 
 export class DashboardPageStore {
 	charts: TChartsByName = {}
 	isLoading = true
-	errorMessage: TMaybe<string> = null
+	error: unknown = null
 
 	constructor() {
-		makeAutoObservable(this)
+		makeAutoObservable(this, { error: observable.ref })
 	}
 
 	get layout() {
@@ -26,7 +24,7 @@ export class DashboardPageStore {
 
 	fetchCharts = async (filename: string) => {
 		this.isLoading = true
-		this.errorMessage = null
+		this.error = null
 
 		try {
 			const { charts } = await getCharts(filename)
@@ -37,7 +35,7 @@ export class DashboardPageStore {
 		} catch (error) {
 			runInAction(() => {
 				this.charts = {}
-				this.errorMessage = getAxiosError(error)
+				this.error = error
 			})
 		} finally {
 			runInAction(() => {

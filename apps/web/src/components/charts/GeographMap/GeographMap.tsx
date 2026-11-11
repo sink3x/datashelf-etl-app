@@ -1,8 +1,10 @@
 import { useMemo, type FC } from 'react'
 
+import { useTranslation } from 'react-i18next'
 import { ComposableMap, Geographies } from 'react-simple-maps'
 import { Tooltip } from 'react-tooltip'
 
+import { useLanguage } from '@hooks/use-language'
 import { getAppConfig } from '@shared/config/config'
 import { colors } from '@styles/tokens'
 import { formatFullNumber } from '@utils/format-number'
@@ -16,15 +18,21 @@ import type { IGeographMapProps } from './GeographMap.interfaces'
 
 const TOOLTIP_ID = 'state-sales-tooltip'
 
-const getStateTooltip = (stateName: string, sales: number, cities: string[]) =>
-	sales
-		? `${stateName}: ${formatFullNumber(sales)} in sales (${cities.join(', ')})`
-		: `${stateName}: no sales`
-
 export const GeographMap: FC<IGeographMapProps> = (props) => {
 	const { values } = props
 
 	const { urls } = getAppConfig()
+	const { t } = useTranslation()
+	const { intlLocale } = useLanguage()
+
+	const getStateTooltip = (state: string, sales: number, cities: string[]) =>
+		sales
+			? t('charts.stateSales', {
+					state,
+					sales: formatFullNumber(sales, intlLocale),
+					cities: cities.join(', '),
+				})
+			: t('charts.stateNoSales', { state })
 
 	const { salesByState, citiesByState } = useMemo(() => aggregateSalesByState(values), [values])
 	const colorScale = useMemo(() => getColorScale(Math.max(0, ...salesByState.values())), [salesByState])

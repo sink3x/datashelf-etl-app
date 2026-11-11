@@ -1,6 +1,11 @@
 import type { ReactNode } from 'react'
 
+import type { TTranslationResources } from '@shared/i18n/i18n.interfaces'
+
 import type { ERoutesPageNames } from './paths'
+
+export type TNavKey = `nav.${keyof TTranslationResources['nav']}`
+export type TNavGroupId = keyof TTranslationResources['navGroups']
 
 export const enum ERouterElementType {
 	ABSTRACT = 'ABSTRACT',
@@ -15,8 +20,8 @@ export interface IRouterElement {
 	element?: ReactNode
 	icon?: ReactNode
 	type?: ERouterElementType
-	group?: string
-	name?: string
+	group?: TNavGroupId
+	name?: TNavKey
 	isDisabled?: boolean
 	getFullPathDynamic?: (value: string) => string
 }

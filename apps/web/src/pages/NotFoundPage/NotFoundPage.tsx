@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import { ROUTE_PATHS } from '@router/paths'
 import { ButtonLink } from '@ui/ButtonLink/ButtonLink'
 
@@ -6,19 +8,21 @@ import { MainLayout } from '@layouts/MainLayout/MainLayout'
 
 import * as Styled from './NotFoundPage.styles'
 
-export const NotFoundPage = () => (
-	<MainLayout>
-		<Styled.NotFoundMain>
-			<Styled.NotFoundImage src={NOT_FOUND_IMAGE_URL} alt="" />
-			<Styled.NotFoundText>
-				<Styled.NotFoundTitle>This page doesn’t exist</Styled.NotFoundTitle>
-				<Styled.NotFoundParagraph>
-					The link may be outdated or mistyped. Go back to the start page or open the console.
-				</Styled.NotFoundParagraph>
-				<ButtonLink to={ROUTE_PATHS.WELCOME} type="primary">
-					Back to start page
-				</ButtonLink>
-			</Styled.NotFoundText>
-		</Styled.NotFoundMain>
-	</MainLayout>
-)
+export const NotFoundPage = () => {
+	const { t } = useTranslation()
+
+	return (
+		<MainLayout>
+			<Styled.NotFoundMain>
+				<Styled.NotFoundImage src={NOT_FOUND_IMAGE_URL} alt="" />
+				<Styled.NotFoundText>
+					<Styled.NotFoundTitle>{t('notFound.title')}</Styled.NotFoundTitle>
+					<Styled.NotFoundParagraph>{t('notFound.description')}</Styled.NotFoundParagraph>
+					<ButtonLink to={ROUTE_PATHS.WELCOME} type="primary">
+						{t('notFound.backToStart')}
+					</ButtonLink>
+				</Styled.NotFoundText>
+			</Styled.NotFoundMain>
+		</MainLayout>
+	)
+}

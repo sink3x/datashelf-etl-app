@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
 import { ChartCard } from './ChartCard'
+import { renderWithI18n } from '../../../../../test/render'
 
 vi.mock('@components/charts/ChartCollection/ChartCollection', () => ({
 	ChartCollection: ({ chart }: { chart: { type: string; name: string } }) => (
@@ -11,7 +12,7 @@ vi.mock('@components/charts/ChartCollection/ChartCollection', () => ({
 
 describe('ChartCard', () => {
 	it('labels the card with the chart title and renders the chart body', () => {
-		render(
+		renderWithI18n(
 			<ChartCard
 				chart={{
 					name: 'sales_by_city',

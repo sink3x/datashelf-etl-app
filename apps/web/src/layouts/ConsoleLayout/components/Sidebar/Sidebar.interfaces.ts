@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react'
 
+import type { TNavGroupId, TNavKey } from '@router/routes.interfaces'
+
 export interface ISidebarProps {
 	isMobileOpen: boolean
 	onMobileClose: () => void
@@ -7,7 +9,7 @@ export interface ISidebarProps {
 
 export interface ISidebarNavItem {
 	key: string
-	name: string
+	name: TNavKey
 	icon: ReactNode
 	to: string
 	isExternal?: boolean
@@ -15,6 +17,6 @@ export interface ISidebarNavItem {
 }
 
 export interface ISidebarNavGroup {
-	name: string
+	id: TNavGroupId
 	items: ISidebarNavItem[]
 }

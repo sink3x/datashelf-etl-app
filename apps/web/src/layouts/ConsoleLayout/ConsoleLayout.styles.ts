@@ -60,7 +60,11 @@ export const MenuButton = styled(Button)`
 `
 
 export const MobileBrand = styled.span`
+	min-width: 0;
 	flex: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 	color: ${colors.ink};
 	font-size: ${fontSizes.lg};
 	font-weight: 700;

@@ -1,5 +1,7 @@
 import { z } from 'zod'
 
+import { i18n } from '@shared/i18n/i18n'
+
 export const DEFAULT_GEOGRAPHY_ATLAS_URL = 'https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json'
 export const DEFAULT_DAG_ID = 'customer_data_etl'
 
@@ -36,7 +38,7 @@ export const parseAppConfig = (rawConfig: unknown): TParseAppConfigResult => {
 	if (rawConfig === undefined || rawConfig === null) {
 		return {
 			success: false,
-			issues: [{ path: 'window.appConfig', message: 'Runtime config is missing. Is app-config.js loaded?' }],
+			issues: [{ path: 'window.appConfig', message: i18n.t('configError.missingConfig') }],
 		}
 	}
 

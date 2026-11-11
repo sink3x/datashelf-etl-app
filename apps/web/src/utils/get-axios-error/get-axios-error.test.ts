@@ -2,7 +2,6 @@ import { AxiosError, AxiosHeaders } from 'axios'
 import { describe, expect, it } from 'vitest'
 
 import { getAxiosError } from './get-axios-error'
-import { SERVICE_UNAVAILABLE_MESSAGE, UNKNOWN_ERROR_MESSAGE } from './get-axios.error.constants'
 
 const responseError = (status: number, data: unknown) =>
 	new AxiosError('Request failed', 'ERR_BAD_RESPONSE', undefined, undefined, {
@@ -31,11 +30,13 @@ describe('getAxiosError', () => {
 	})
 
 	it('reports network failures as an unavailable api', () => {
-		expect(getAxiosError(new AxiosError('Network Error', 'ERR_NETWORK'))).toBe(SERVICE_UNAVAILABLE_MESSAGE)
+		expect(getAxiosError(new AxiosError('Network Error', 'ERR_NETWORK'))).toBe(
+			'The API is unavailable. Check that it is running and try again.',
+		)
 	})
 
 	it('handles plain errors and unknown values', () => {
 		expect(getAxiosError(new Error('Boom'))).toBe('Boom')
-		expect(getAxiosError('nope')).toBe(UNKNOWN_ERROR_MESSAGE)
+		expect(getAxiosError('nope')).toBe('Something went wrong. Try again.')
 	})
 })

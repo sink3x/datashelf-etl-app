@@ -1,11 +1,14 @@
 import type { TChart, TChartsByName, TMetricChart } from '@interfaces/chart'
 
-import { DASHBOARD_SECTIONS, METRIC_ORDER, OTHER_SECTION } from './DashboardPage.constants'
+import {
+	DASHBOARD_SECTIONS,
+	METRIC_ORDER,
+	OTHER_SECTION_ID,
+	type TDashboardSectionId,
+} from './DashboardPage.constants'
 
 export interface IDashboardSection {
-	id: string
-	title: string
-	description: string
+	id: TDashboardSectionId
 	charts: TChart[]
 }
 
@@ -80,8 +83,6 @@ export const buildDashboardLayout = (charts: TChartsByName): IDashboardLayout =>
 
 		return {
 			id: template.id,
-			title: template.title,
-			description: template.description,
 			charts: sectionCharts,
 		}
 	})
@@ -90,7 +91,7 @@ export const buildDashboardLayout = (charts: TChartsByName): IDashboardLayout =>
 
 	return {
 		metrics,
-		sections: [...sections, { ...OTHER_SECTION, charts: leftovers }].filter(
+		sections: [...sections, { id: OTHER_SECTION_ID, charts: leftovers }].filter(
 			({ charts: list }) => list.length,
 		),
 		chartCount: latest.size,

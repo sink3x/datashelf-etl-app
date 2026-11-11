@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { ArrowRotateRight, ChartColumn, TriangleExclamation } from '@gravity-ui/icons'
 import { observer } from 'mobx-react-lite'
+import { useTranslation } from 'react-i18next'
 import { Navigate, useParams } from 'react-router-dom'
 
 import { ROUTE_PATHS } from '@router/paths'
@@ -9,6 +10,7 @@ import { Button } from '@ui/Button/Button'
 import { ButtonLink } from '@ui/ButtonLink/ButtonLink'
 
 import { PageState } from '@components/PageState/PageState'
+import { getAxiosError } from '@utils/get-axios-error/get-axios-error'
 
 import { ChartCard } from './components/ChartCard/ChartCard'
 import { MetricCard } from './components/MetricCard/MetricCard'
@@ -19,26 +21,33 @@ import * as Styled from './DashboardPage.styles'
 const STORAGE_PATH = ROUTE_PATHS.CONSOLE_FILES
 const UPLOAD_PATH = ROUTE_PATHS.CONSOLE_UPLOAD
 
-const DashboardSkeleton = () => (
-	<Styled.Page aria-busy="true" aria-label="Loading dashboard">
-		<Styled.MetricStrip>
-			{Array.from({ length: 4 }, (_, index) => (
-				<Styled.SkeletonBlock key={index} $height={88} />
-			))}
-		</Styled.MetricStrip>
-		<Styled.ChartGrid>
-			<Styled.SkeletonBlock $height={360} $isWide />
-			<Styled.SkeletonBlock $height={360} />
-			<Styled.SkeletonBlock $height={360} />
-		</Styled.ChartGrid>
-	</Styled.Page>
-)
+const DashboardSkeleton = () => {
+	const { t } = useTranslation()
+
+	return (
+		<Styled.Page aria-busy="true" aria-label={t('dashboard.loading')}>
+			<Styled.MetricStrip>
+				{Array.from({ length: 4 }, (_, index) => (
+					<Styled.SkeletonBlock key={index} $height={88} />
+				))}
+			</Styled.MetricStrip>
+			<Styled.ChartGrid>
+				<Styled.SkeletonBlock $height={360} $isWide />
+				<Styled.SkeletonBlock $height={360} />
+				<Styled.SkeletonBlock $height={360} />
+			</Styled.ChartGrid>
+		</Styled.Page>
+	)
+}
 
 export const DashboardPage = observer(() => {
 	const { filename } = useParams()
 	const [store] = useState(() => new DashboardPageStore())
+	const { t } = useTranslation()
 
-	const { fetchCharts, isLoading, errorMessage, isEmpty, layout } = store
+	const { fetchCharts, isLoading, error, isEmpty, layout } = store
+
+	const errorMessage = error ? getAxiosError(error) : null
 
 	useEffect(() => {
 		if (filename) {
@@ -56,7 +65,7 @@ export const DashboardPage = observer(() => {
 
 	const refreshButton = (
 		<Button icon={<ArrowRotateRight aria-hidden />} onClick={handleRefresh} loading={isLoading && !isEmpty}>
-			Refresh
+			{t('common.refresh')}
 		</Button>
 	)
 
@@ -70,14 +79,14 @@ export const DashboardPage = observer(() => {
 				<PageState
 					tone="error"
 					icon={<TriangleExclamation />}
-					title="Couldn’t load the dashboard"
+					title={t('dashboard.loadError')}
 					description={errorMessage}
 					actions={
 						<>
 							<Button type="primary" onClick={handleRefresh}>
-								Try again
+								{t('common.tryAgain')}
 							</Button>
-							<ButtonLink to={STORAGE_PATH}>Back to storage</ButtonLink>
+							<ButtonLink to={STORAGE_PATH}>{t('dashboard.backToStorage')}</ButtonLink>
 						</>
 					}
 				/>
@@ -88,14 +97,14 @@ export const DashboardPage = observer(() => {
 			return (
 				<PageState
 					icon={<ChartColumn />}
-					title="No charts for this file yet"
-					description="The pipeline publishes charts as each analysis step finishes, usually within a minute of the upload. Refresh to check again, or upload the file again if the run failed."
+					title={t('dashboard.emptyTitle')}
+					description={t('dashboard.emptyDescription')}
 					actions={
 						<>
 							<Button type="primary" onClick={handleRefresh}>
-								Refresh
+								{t('common.refresh')}
 							</Button>
-							<ButtonLink to={UPLOAD_PATH}>Upload a dataset</ButtonLink>
+							<ButtonLink to={UPLOAD_PATH}>{t('common.uploadDataset')}</ButtonLink>
 						</>
 					}
 				/>
@@ -105,7 +114,7 @@ export const DashboardPage = observer(() => {
 		return (
 			<Styled.Page>
 				{layout.metrics.length > 0 && (
-					<Styled.MetricStrip aria-label="Key metrics">
+					<Styled.MetricStrip aria-label={t('dashboard.keyMetrics')}>
 						{layout.metrics.map((chart) => (
 							<MetricCard key={chart.name} chart={chart} />
 						))}
@@ -114,8 +123,12 @@ export const DashboardPage = observer(() => {
 				{layout.sections.map((section) => (
 					<Styled.Section key={section.id} aria-labelledby={`section-${section.id}`}>
 						<Styled.SectionHeader>
-							<Styled.SectionTitle id={`section-${section.id}`}>{section.title}</Styled.SectionTitle>
-							<Styled.SectionDescription>{section.description}</Styled.SectionDescription>
+							<Styled.SectionTitle id={`section-${section.id}`}>
+								{t(`dashboard.sections.${section.id}.title`)}
+							</Styled.SectionTitle>
+							<Styled.SectionDescription>
+								{t(`dashboard.sections.${section.id}.description`)}
+							</Styled.SectionDescription>
 						</Styled.SectionHeader>
 						<Styled.ChartGrid>
 							{section.charts.map((chart) => (
@@ -134,9 +147,7 @@ export const DashboardPage = observer(() => {
 				<Styled.FileInfo>
 					<Styled.FileName title={filename}>{filename}</Styled.FileName>
 					{!isLoading && !errorMessage && !isEmpty && (
-						<Styled.FileMeta>
-							{layout.chartCount} {layout.chartCount === 1 ? 'chart' : 'charts'}
-						</Styled.FileMeta>
+						<Styled.FileMeta>{t('dashboard.chartCount', { count: layout.chartCount })}</Styled.FileMeta>
 					)}
 				</Styled.FileInfo>
 				{refreshButton}
