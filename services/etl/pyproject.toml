@@ -1,6 +1,6 @@
 [project]
 name = "datashelf-etl"
-version = "1.0.0"
+version = "1.0.1"
 description = "Retail dataset ETL: Airflow tasks, pandas analytics and charts-computed event publishing."
 requires-python = ">=3.12,<3.13"
 # Pinned to the versions in the Airflow 3.3.2 constraints for Python 3.12 so the image stays consistent.
