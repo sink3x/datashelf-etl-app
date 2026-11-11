@@ -38,6 +38,21 @@
 
 The live demo runs the console against a mocked API (MSW), so it works without any backend.
 
+<p align="center">
+  <img src="docs/images/dashboard.png" alt="Analytics dashboard built from an uploaded dataset" width="860" />
+</p>
+
+<details>
+<summary>More screenshots</summary>
+
+| Upload                                 | Full dashboard                                    |
+| -------------------------------------- | ------------------------------------------------- |
+| ![Upload page](docs/images/upload.png) | ![Full dashboard](docs/images/dashboard-full.png) |
+
+Captured from the Yandex Cloud environment after an end-to-end run.
+
+</details>
+
 ## Architecture
 
 ```mermaid
@@ -112,7 +127,7 @@ make help        # all targets
 | ------------- | ----------------------------------------------------------------------------------------------- |
 | Demo          | Every push to `main` publishes the mock-mode console to GitHub Pages                            |
 | Images        | Tag `vX.Y.Z` → CI → images in GHCR + GitHub Release                                             |
-| Yandex Cloud  | Release or manual run of _Deploy to Yandex Cloud_ → Terraform apply → smoke test                |
+| Yandex Cloud  | Release or manual run of _Deploy to Yandex Cloud_ → Terraform apply → smoke test over HTTPS     |
 | From a laptop | `make cloud-up`, `make cloud-smoke`, `make tf-destroy` (see [infra](infra/terraform/README.md)) |
 
 ## Repository layout
