@@ -1,11 +1,12 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import { MetricCard } from './MetricCard'
+import { renderWithI18n } from '../../../../../test/render'
 
 describe('MetricCard', () => {
 	it('shows the title and a compact value with an accessible full value', () => {
-		render(
+		renderWithI18n(
 			<MetricCard
 				chart={{
 					name: 'total_sales',
@@ -24,7 +25,7 @@ describe('MetricCard', () => {
 	})
 
 	it('renders string metrics without a unit', () => {
-		render(
+		renderWithI18n(
 			<MetricCard
 				chart={{
 					name: 'best_month',
