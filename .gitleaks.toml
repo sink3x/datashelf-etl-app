@@ -1,0 +1,10 @@
+# Extends the default ruleset. Example files hold throwaway local values by design.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Committed examples with non-secret local defaults"
+paths = [
+  '''(^|/)example\.env$''',
+  '''\.example(\.[a-z]+)?$''',
+]
