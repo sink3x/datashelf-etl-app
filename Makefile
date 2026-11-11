@@ -9,6 +9,7 @@ ETL := uv run --project services/etl
 
 TF_DIR ?= infra/terraform/envs/dev
 TF ?= terraform
+export TF TF_DIR
 export TF_CLI_CONFIG_FILE := $(CURDIR)/infra/terraform/cli.tfrc
 
 IMAGE_TAG ?= $(shell git rev-parse --short HEAD)
