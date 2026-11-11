@@ -5,7 +5,7 @@ description = "Retail dataset ETL: Airflow tasks, pandas analytics and charts-co
 requires-python = ">=3.12,<3.13"
 # Pinned to the versions in the Airflow 3.3.2 constraints for Python 3.12 so the image stays consistent.
 dependencies = [
-    "boto3==1.43.75",
+    "boto3==1.43.126",
     "pandas==3.0.5",
     "pika==1.4.4",
     "pyarrow==25.0.1",
