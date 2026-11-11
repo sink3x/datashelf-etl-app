@@ -1,111 +1,116 @@
-import sys
-import os
-from datetime import datetime
+"""Retail dataset ETL triggered by the API with `conf={"object_key": "raw-data/<file>"}`.
 
-from airflow import DAG
-from airflow.operators.python import PythonOperator
+Only S3 keys travel through XCom; the dataset itself is staged as parquet in S3.
+Imports of the ETL package happen inside tasks so DAG parsing does not need S3/RabbitMQ settings.
+"""
 
-ROOT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+from __future__ import annotations
 
-if ROOT_PATH not in sys.path:
-    sys.path.insert(0, ROOT_PATH)
+from datetime import datetime, timedelta
+from typing import Any
 
-from jobs.main.load_to_dataframe import load_to_dataframe
-from jobs.main.download_file_from_s3 import download_file_from_s3
-from jobs.main.detect_file_type import detect_file_type
+from airflow.sdk import TriggerRule, dag, get_current_context, task
+from airflow.sdk.exceptions import AirflowFailException
 
-from jobs.analytics.analyze_city_wordcloud import analyze_city_wordcloud
-from jobs.analytics.analyze_seasons import analyze_seasons
-from jobs.analytics.analyze_customer_category_wordcloud import analyze_customer_category_wordcloud
-from jobs.analytics.analyze_store_type import analyze_store_type
-from jobs.analytics.analyze_payment_methods import analyze_payment_methods
-from jobs.analytics.analyze_customer_category import analyze_customer_category
-from jobs.analytics.analyze_monthly_sales import analyze_monthly_sales
-from jobs.analytics.analyze_city_sales_summary import analyze_city_sales_summary
-from jobs.analytics.analyze_retail_metrics import analyze_retail_metrics
+DAG_ID = "customer_data_etl"
+ANALYTICS_JOBS = (
+    "customer_category",
+    "payment_methods",
+    "store_type",
+    "city_wordcloud",
+    "customer_category_wordcloud",
+    "seasons",
+    "monthly_sales",
+    "city_sales_summary",
+    "retail_metrics",
+)
 
-DAG_ID = 'customer_data_etl'
-DAG_TAGS = ['etl', 'remote', 's3', 'rabbitmq', 'retail', 'customer', 'for dasboard', 'prepare charts', 'for backend']
+DEFAULT_ARGS: dict[str, Any] = {
+    "retries": 3,
+    "retry_delay": timedelta(seconds=20),
+    "retry_exponential_backoff": 2.0,
+    "max_retry_delay": timedelta(minutes=5),
+    "execution_timeout": timedelta(minutes=15),
+}
 
-# TODO: fix if some jobs crashed, we have no data in mongodb
 
-with DAG(
+def analytics_task_id(job: str) -> str:
+    return f"analyze_{job}"
+
+
+@dag(
     dag_id=DAG_ID,
+    schedule=None,
     start_date=datetime(2025, 5, 21),
-    schedule='@once',
     catchup=False,
-    tags=DAG_TAGS,
-) as dag:
+    is_paused_upon_creation=False,
+    max_active_runs=8,
+    default_args=DEFAULT_ARGS,
+    tags=["etl", "s3", "rabbitmq", "retail"],
+    doc_md=__doc__,
+)
+def customer_data_etl() -> None:
+    @task
+    def extract() -> dict[str, str]:
+        from datashelf_etl.config import Settings
+        from datashelf_etl.io.loaders import DatasetError
+        from datashelf_etl.io.s3 import make_client
+        from datashelf_etl.pipeline import stage_dataset
 
-    download_task = PythonOperator(
-        task_id='download_file_from_s3',
-        python_callable=download_file_from_s3,
-    )
+        context = get_current_context()
+        conf = context["dag_run"].conf or {}
+        settings = Settings()
+        try:
+            staged = stage_dataset(make_client(settings), settings, conf.get("object_key"), context["run_id"])
+        except DatasetError as exc:
+            raise AirflowFailException(str(exc)) from exc
+        return staged.to_xcom()
 
-    detect_type_task = PythonOperator(
-        task_id='detect_file_type',
-        python_callable=detect_file_type,
-    )
+    def make_analytics_task(job: str) -> Any:
+        @task(task_id=analytics_task_id(job))
+        def analyze(staged: dict[str, str]) -> dict[str, str]:
+            from datashelf_etl.config import Settings
+            from datashelf_etl.io.loaders import DatasetError
+            from datashelf_etl.io.s3 import make_client
+            from datashelf_etl.messaging.publisher import RabbitMQConnection
+            from datashelf_etl.pipeline import StagedDataset, publish_job
 
-    load_df_task = PythonOperator(
-        task_id='load_to_pandas_dataframe',
-        python_callable=load_to_dataframe,
-    )
+            settings = Settings()
 
-    analyze_customer_task = PythonOperator(
-        task_id='analyze_customer_category_and_send',
-        python_callable=analyze_customer_category,
-    )
+            def connect() -> RabbitMQConnection:
+                return RabbitMQConnection(
+                    settings.rabbitmq_url.get_secret_value(), settings.rabbitmq_exchange
+                )
 
-    analyze_payment_task = PythonOperator(
-        task_id='analyze_payment_methods_and_send',
-        python_callable=analyze_payment_methods,
-    )
+            try:
+                return publish_job(
+                    job,
+                    make_client(settings),
+                    settings,
+                    StagedDataset.from_xcom(staged),
+                    get_current_context()["run_id"],
+                    connect,
+                )
+            except DatasetError as exc:
+                raise AirflowFailException(str(exc)) from exc
 
-    analyze_store_task = PythonOperator(
-        task_id='analyze_store_type_and_send',
-        python_callable=analyze_store_type,
-    )
+        return analyze
 
-    analyze_city_task = PythonOperator(
-        task_id='analyze_city_wordcloud',
-        python_callable=analyze_city_wordcloud,
-    )
+    @task(trigger_rule=TriggerRule.ALL_DONE, retries=0)
+    def summarize() -> list[str]:
+        from datashelf_etl.pipeline import JobsFailedError
+        from datashelf_etl.pipeline import summarize as summarize_results
 
-    analyze_customer_wordcloud_task = PythonOperator(
-        task_id='analyze_customer_category_wordcloud',
-        python_callable=analyze_customer_category_wordcloud,
-    )
+        task_ids = [analytics_task_id(job) for job in ANALYTICS_JOBS]
+        results = get_current_context()["ti"].xcom_pull(task_ids=task_ids) or []
+        try:
+            return summarize_results(ANALYTICS_JOBS, results)
+        except JobsFailedError as exc:
+            raise AirflowFailException(str(exc)) from exc
 
-    analyze_seasons_task = PythonOperator(
-        task_id='analyze_seasons',
-        python_callable=analyze_seasons,
-    )
+    staged = extract()
+    analytics = [make_analytics_task(job)(staged) for job in ANALYTICS_JOBS]
+    analytics >> summarize()
 
-    analyze_monthly_sales_task = PythonOperator(
-        task_id='analyze_monthly_sales',
-        python_callable=analyze_monthly_sales,
-    )
-    
-    analyze_city_sales_summary_task = PythonOperator(
-        task_id='analyze_city_sales_summary',
-        python_callable=analyze_city_sales_summary,
-    )
-    
-    analyze_retail_metrics_task = PythonOperator(
-        task_id='analyze_retail_metrics',
-        python_callable=analyze_retail_metrics,
-    )
 
-    download_task >> detect_type_task >> load_df_task
-    load_df_task >> [
-        analyze_customer_task,
-        analyze_payment_task,
-        analyze_store_task,
-        analyze_city_task,
-        analyze_customer_wordcloud_task,
-        analyze_seasons_task,
-        analyze_monthly_sales_task,
-        analyze_city_sales_summary_task,
-        analyze_retail_metrics_task,
-    ]
+dag_object = customer_data_etl()
