@@ -141,16 +141,12 @@ tf-registry: ## Create only the container registry (needed before the first push
 cloud-push: ## Build amd64 images and push them to Yandex Container Registry
 	./scripts/cloud.sh push $(IMAGE_TAG)
 
-.PHONY: cloud-web
-cloud-web: ## Build the web console and upload it to the website bucket
-	./scripts/cloud.sh web
-
 .PHONY: cloud-smoke
 cloud-smoke: sample ## Run the end-to-end smoke test against the cloud API
 	./scripts/smoke.sh "$$(cd $(TF_DIR) && $(TF) output -raw api_url)" research/data/sample.csv
 
 .PHONY: cloud-up
-cloud-up: tf-registry cloud-push tf-plan tf-apply cloud-web ## Registry, images, infra, web — in that order
+cloud-up: tf-registry cloud-push tf-plan tf-apply ## Registry, images, then infrastructure
 
 .PHONY: clean
 clean: ## Remove build artifacts and caches
