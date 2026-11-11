@@ -1,0 +1,8 @@
+pnpm-lock.yaml
+**/build
+**/dist
+**/coverage
+services/etl
+research
+infra/**/.terraform
+apps/web

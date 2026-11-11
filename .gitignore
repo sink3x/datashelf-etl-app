@@ -1,10 +1,49 @@
-# Data
-/data
+# Dependencies
+node_modules/
+.pnpm-store/
 
-# OS 
+# Build and test output
+build/
+dist/
+coverage/
+*.tsbuildinfo
+.eslintcache
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+*.auto.tfvars
+!*.example.auto.tfvars
+.terraform.tfstate.lock.info
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.local.json
+*.pem
+*.key
+
+# Logs
+logs/
+*.log
+
+# OS and editors
 .DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
 *.swp
 *.swo
 *.bak
-.idea/
-.vscode/
