@@ -77,6 +77,12 @@ variable "vm_disk_gb" {
   default     = 20
 }
 
+variable "domain" {
+  description = "Public hostname pointing at the VM; defaults to <ip>.sslip.io"
+  type        = string
+  default     = null
+}
+
 variable "extra_cors_origins" {
   description = "Additional origins allowed to call the API (e.g. GitHub Pages)"
   type        = list(string)

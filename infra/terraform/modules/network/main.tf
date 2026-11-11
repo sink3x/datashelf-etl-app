@@ -17,9 +17,16 @@ resource "yandex_vpc_security_group" "app" {
   labels     = var.labels
 
   ingress {
-    description    = "Public API"
+    description    = "HTTPS entry point (Caddy)"
     protocol       = "TCP"
-    port           = 5000
+    port           = 443
+    v4_cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description    = "HTTP for ACME challenges and redirect to HTTPS"
+    protocol       = "TCP"
+    port           = 80
     v4_cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -51,5 +58,13 @@ resource "yandex_vpc_security_group" "app" {
     v4_cidr_blocks = ["0.0.0.0/0"]
     from_port      = 0
     to_port        = 65535
+  }
+}
+
+resource "yandex_vpc_address" "public" {
+  name = "${var.name}-ip"
+
+  external_ipv4_address {
+    zone_id = var.zone
   }
 }

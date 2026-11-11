@@ -1,6 +1,9 @@
 locals {
   name = "${var.project}-${var.environment}"
 
+  # sslip.io resolves <a-b-c-d>.sslip.io to a.b.c.d, which gives the VM a hostname for a free Let's Encrypt certificate.
+  site_address = coalesce(var.domain, "${replace(module.network.public_ip, ".", "-")}.sslip.io")
+
   labels = {
     project     = var.project
     environment = var.environment
@@ -67,6 +70,7 @@ module "compute" {
   name               = local.name
   zone               = var.zone
   subnet_id          = module.network.subnet_id
+  public_ip          = module.network.public_ip
   security_group_ids = [module.network.security_group_id]
   service_account_id = module.iam.vm_service_account_id
   ssh_public_key     = var.ssh_public_key
@@ -80,7 +84,8 @@ module "compute" {
   docker_compose = templatefile("${path.module}/../../templates/docker-compose.vm.yml.tftpl", {
     registry      = module.registry.registry_url
     image_tag     = var.image_tag
-    cors_origins  = join(",", concat(["http://${module.storage.web_bucket}.website.yandexcloud.net"], var.extra_cors_origins))
+    site_address  = local.site_address
+    cors_origins  = join(",", concat(["https://${local.site_address}"], var.extra_cors_origins))
     s3_bucket     = module.storage.data_bucket
     secrets       = module.secrets.values
     airflow_user  = "datashelf"

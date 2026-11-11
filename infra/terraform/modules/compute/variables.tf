@@ -13,6 +13,11 @@ variable "subnet_id" {
   type        = string
 }
 
+variable "public_ip" {
+  description = "Reserved static public IPv4 address for the VM"
+  type        = string
+}
+
 variable "security_group_ids" {
   description = "Security groups attached to the VM"
   type        = list(string)

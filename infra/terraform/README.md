@@ -5,9 +5,9 @@ infra/terraform
 ├── bootstrap/            # one-time: remote-state bucket + Terraform service account (local state)
 ├── envs/dev/             # environment root: wires modules, renders the VM compose spec
 ├── modules/
-│   ├── network/          # VPC, subnet, security group (API public, SSH/Airflow UI for admin CIDRs only)
-│   ├── iam/              # least-privilege service accounts: vm, app (S3), ci (registry push + web upload)
-│   ├── storage/          # data bucket (raw + staging with lifecycle) and static-website bucket for the web
+│   ├── network/          # VPC, subnet, static IP, security group (HTTPS public, SSH/Airflow UI for admin CIDRs)
+│   ├── iam/              # least-privilege service accounts: vm, app (S3), ci (registry push)
+│   ├── storage/          # data bucket: raw uploads + staging parquet with lifecycle rules
 │   ├── registry/         # Container Registry + repositories with cleanup policies
 │   ├── secrets/          # generated runtime credentials stored in Lockbox
 │   └── compute/          # Container Optimized Image VM that runs the docker-compose spec from metadata
@@ -19,7 +19,8 @@ infra/terraform
 
 | Component            | Yandex Cloud service                       | Why                                                        |
 | -------------------- | ------------------------------------------ | ---------------------------------------------------------- |
-| Web console          | Object Storage static website              | Static SPA, no servers, pennies per month                  |
+| Entry point          | Caddy on the VM, `<ip>.sslip.io` hostname  | One HTTPS origin with a free Let's Encrypt certificate     |
+| Web console          | nginx container on the VM                  | Same origin as the API: no CORS, no mixed content          |
 | API, Airflow, queues | 1 × Compute VM (Container Optimized Image) | Whole backend in one compose spec; cheap, easy to rebuild  |
 | Datasets             | Object Storage bucket                      | S3 API, lifecycle expires staging parquet after 7 days     |
 | Images               | Container Registry                         | Pulled by the VM through its service account (no keys)    |

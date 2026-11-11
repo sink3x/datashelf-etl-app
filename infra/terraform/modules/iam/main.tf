@@ -1,5 +1,5 @@
 # Least-privilege identities: the VM pulls images and reads secrets, the app reads/writes its bucket,
-# CI pushes images and uploads the web bundle.
+# CI pushes images.
 
 resource "yandex_iam_service_account" "vm" {
   name        = "${var.name}-vm"
@@ -13,7 +13,7 @@ resource "yandex_iam_service_account" "app" {
 
 resource "yandex_iam_service_account" "ci" {
   name        = "${var.name}-ci"
-  description = "GitHub Actions: pushes images and publishes the web console"
+  description = "GitHub Actions: pushes images"
 }
 
 locals {
@@ -22,7 +22,6 @@ locals {
     vm_lockbox  = { sa = yandex_iam_service_account.vm.id, role = "lockbox.payloadViewer" }
     app_storage = { sa = yandex_iam_service_account.app.id, role = "storage.editor" }
     ci_pusher   = { sa = yandex_iam_service_account.ci.id, role = "container-registry.images.pusher" }
-    ci_storage  = { sa = yandex_iam_service_account.ci.id, role = "storage.editor" }
   }
 }
 
@@ -37,9 +36,4 @@ resource "yandex_resourcemanager_folder_iam_member" "this" {
 resource "yandex_iam_service_account_static_access_key" "app" {
   service_account_id = yandex_iam_service_account.app.id
   description        = "S3 credentials consumed by the API and ETL"
-}
-
-resource "yandex_iam_service_account_static_access_key" "ci" {
-  service_account_id = yandex_iam_service_account.ci.id
-  description        = "S3 credentials used by CI to upload the web bundle"
 }

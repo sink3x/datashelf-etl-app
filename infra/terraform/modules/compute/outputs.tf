@@ -3,5 +3,5 @@ output "instance_id" {
 }
 
 output "public_ip" {
-  value = yandex_vpc_address.this.external_ipv4_address[0].address
+  value = var.public_ip
 }

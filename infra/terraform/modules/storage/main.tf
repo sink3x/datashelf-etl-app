@@ -37,22 +37,3 @@ resource "yandex_storage_bucket" "data" {
 
   force_destroy = var.force_destroy
 }
-
-resource "yandex_storage_bucket" "web" {
-  bucket     = "${var.name}-web-${var.suffix}"
-  access_key = var.access_key
-  secret_key = var.secret_key
-
-  anonymous_access_flags {
-    read        = true
-    list        = false
-    config_read = false
-  }
-
-  website {
-    index_document = "index.html"
-    error_document = "index.html"
-  }
-
-  force_destroy = true
-}

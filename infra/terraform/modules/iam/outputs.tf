@@ -20,16 +20,6 @@ output "app_secret_key" {
   sensitive = true
 }
 
-output "ci_access_key" {
-  value     = yandex_iam_service_account_static_access_key.ci.access_key
-  sensitive = true
-}
-
-output "ci_secret_key" {
-  value     = yandex_iam_service_account_static_access_key.ci.secret_key
-  sensitive = true
-}
-
 output "role_bindings" {
   description = "Used to order resources after IAM has propagated"
   value       = [for b in yandex_resourcemanager_folder_iam_member.this : b.id]

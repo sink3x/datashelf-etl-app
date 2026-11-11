@@ -5,14 +5,6 @@ data "yandex_compute_image" "coi" {
   folder_id = "standard-images"
 }
 
-resource "yandex_vpc_address" "this" {
-  name = "${var.name}-ip"
-
-  external_ipv4_address {
-    zone_id = var.zone
-  }
-}
-
 resource "yandex_compute_instance" "this" {
   name               = "${var.name}-app"
   hostname           = "${var.name}-app"
@@ -45,7 +37,7 @@ resource "yandex_compute_instance" "this" {
     subnet_id          = var.subnet_id
     security_group_ids = var.security_group_ids
     nat                = true
-    nat_ip_address     = yandex_vpc_address.this.external_ipv4_address[0].address
+    nat_ip_address     = var.public_ip
   }
 
   metadata = {
