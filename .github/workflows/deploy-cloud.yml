@@ -71,7 +71,9 @@ jobs:
         if: inputs.action == 'destroy'
         env:
           YC_TOKEN: ${{ steps.iam.outputs.token }}
-        run: terraform -chdir="$TF_DIR" destroy -auto-approve -input=false
+        run: |
+          TF=terraform ./scripts/cloud.sh purge
+          terraform -chdir="$TF_DIR" destroy -auto-approve -input=false
 
       - name: create registry
         if: inputs.action != 'destroy'
@@ -102,6 +104,8 @@ jobs:
           push: true
           tags: ${{ steps.registry.outputs.url }}/datashelf-api:${{ github.sha }}
           cache-from: type=gha,scope=datashelf-api
+          provenance: false
+          sbom: false
 
       - name: build and push etl
         if: inputs.action != 'destroy'
@@ -111,6 +115,8 @@ jobs:
           push: true
           tags: ${{ steps.registry.outputs.url }}/datashelf-etl:${{ github.sha }}
           cache-from: type=gha,scope=datashelf-etl
+          provenance: false
+          sbom: false
 
       - name: terraform apply
         if: inputs.action != 'destroy'
