@@ -71,6 +71,12 @@ variable "vm_disk_type" {
   default     = "network-hdd"
 }
 
+variable "vm_disk_gb" {
+  description = "VM boot disk size in GB"
+  type        = number
+  default     = 20
+}
+
 variable "extra_cors_origins" {
   description = "Additional origins allowed to call the API (e.g. GitHub Pages)"
   type        = list(string)

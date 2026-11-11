@@ -74,6 +74,7 @@ module "compute" {
   cores              = var.vm_cores
   memory_gb          = var.vm_memory_gb
   disk_type          = var.vm_disk_type
+  disk_gb            = var.vm_disk_gb
   labels             = local.labels
 
   docker_compose = templatefile("${path.module}/../../templates/docker-compose.vm.yml.tftpl", {
