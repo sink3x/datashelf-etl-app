@@ -1,6 +1,6 @@
 {
   "name": "@datashelf/contracts",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "description": "Versioned message contracts shared by the ETL service, the API and the web console.",
   "main": "src/index.ts",

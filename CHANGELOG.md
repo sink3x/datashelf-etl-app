@@ -4,6 +4,17 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [1.0.2] - 2026-11-11
+
+### Changed
+
+- The contact link in the web console and the deployed environments points to https://t.me/sink3x.
+- README: project history section with the prototype and re-architecture timeline.
+
+### Removed
+
+- Dependabot configuration; dependency updates are reviewed and pinned manually.
+
 ## [1.0.1] - 2026-11-11
 
 ### Fixed
@@ -58,6 +69,7 @@ Re-architecture of the original monolith into a tested, deployable monorepo.
 
 Original monolithic prototype: Express API, Airflow DAG with analytics jobs, React dashboard.
 
+[1.0.2]: https://github.com/sink3x/datashelf-etl-app/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/sink3x/datashelf-etl-app/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/sink3x/datashelf-etl-app/compare/v0.1.0...v1.0.0
 [0.1.0]: https://github.com/sink3x/datashelf-etl-app/releases/tag/v0.1.0
