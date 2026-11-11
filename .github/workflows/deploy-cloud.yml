@@ -1,0 +1,162 @@
+name: Deploy to Yandex Cloud
+
+# Builds images, pushes them to Yandex Container Registry, applies Terraform for the environment,
+# uploads the web console and runs the end-to-end smoke test. Gated by the GitHub environment
+# (required reviewers) and by the repository variable YC_DEPLOY_ENABLED.
+#
+# Environment secrets: YC_SA_JSON_CREDENTIALS, TF_STATE_ACCESS_KEY, TF_STATE_SECRET_KEY, SSH_PUBLIC_KEY
+# Environment variables: YC_CLOUD_ID, YC_FOLDER_ID, TF_STATE_BUCKET, ADMIN_CIDRS (JSON list)
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Target environment
+        type: choice
+        options: [dev]
+        default: dev
+      action:
+        description: apply or destroy
+        type: choice
+        options: [apply, destroy]
+        default: apply
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-${{ inputs.environment || 'dev' }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: vars.YC_DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment || 'dev' }}
+      url: ${{ steps.outputs.outputs.app_url }}
+    env:
+      TF_CLI_CONFIG_FILE: ${{ github.workspace }}/infra/terraform/cli.tfrc
+      TF_DIR: infra/terraform/envs/${{ inputs.environment || 'dev' }}
+      TF_IN_AUTOMATION: 'true'
+      TF_VAR_cloud_id: ${{ vars.YC_CLOUD_ID }}
+      TF_VAR_folder_id: ${{ vars.YC_FOLDER_ID }}
+      TF_VAR_admin_cidrs: ${{ vars.ADMIN_CIDRS }}
+      TF_VAR_ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
+      TF_VAR_image_tag: ${{ github.sha }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - id: iam
+        uses: yc-actions/yc-iam-token@v1
+        with:
+          yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+
+      - uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_wrapper: false
+
+      - name: terraform init
+        env:
+          YC_TOKEN: ${{ steps.iam.outputs.token }}
+        run: |
+          terraform -chdir="$TF_DIR" init -input=false \
+            -backend-config="bucket=${{ vars.TF_STATE_BUCKET }}" \
+            -backend-config="access_key=${{ secrets.TF_STATE_ACCESS_KEY }}" \
+            -backend-config="secret_key=${{ secrets.TF_STATE_SECRET_KEY }}"
+
+      - name: terraform destroy
+        if: inputs.action == 'destroy'
+        env:
+          YC_TOKEN: ${{ steps.iam.outputs.token }}
+        run: |
+          TF=terraform ./scripts/cloud.sh purge
+          terraform -chdir="$TF_DIR" destroy -auto-approve -input=false
+
+      - name: create registry
+        if: inputs.action != 'destroy'
+        env:
+          YC_TOKEN: ${{ steps.iam.outputs.token }}
+        run: terraform -chdir="$TF_DIR" apply -auto-approve -input=false -target=module.registry
+
+      - id: registry
+        if: inputs.action != 'destroy'
+        run: echo "url=$(terraform -chdir="$TF_DIR" output -raw registry_url)" >> "$GITHUB_OUTPUT"
+
+      - uses: docker/login-action@v4
+        if: inputs.action != 'destroy'
+        with:
+          registry: cr.yandex
+          username: iam
+          password: ${{ steps.iam.outputs.token }}
+
+      - uses: docker/setup-buildx-action@v4
+        if: inputs.action != 'destroy'
+
+      - name: build and push api
+        if: inputs.action != 'destroy'
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: apps/api/Dockerfile
+          push: true
+          tags: ${{ steps.registry.outputs.url }}/datashelf-api:${{ github.sha }}
+          cache-from: type=gha,scope=datashelf-api
+          provenance: false
+          sbom: false
+
+      - name: build and push web
+        if: inputs.action != 'destroy'
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: apps/web/Dockerfile
+          push: true
+          tags: ${{ steps.registry.outputs.url }}/datashelf-web:${{ github.sha }}
+          cache-from: type=gha,scope=datashelf-web
+          provenance: false
+          sbom: false
+
+      - name: build and push etl
+        if: inputs.action != 'destroy'
+        uses: docker/build-push-action@v7
+        with:
+          context: services/etl
+          push: true
+          tags: ${{ steps.registry.outputs.url }}/datashelf-etl:${{ github.sha }}
+          cache-from: type=gha,scope=datashelf-etl
+          provenance: false
+          sbom: false
+
+      - name: terraform apply
+        if: inputs.action != 'destroy'
+        env:
+          YC_TOKEN: ${{ steps.iam.outputs.token }}
+        run: |
+          terraform -chdir="$TF_DIR" plan -input=false -out=tfplan
+          terraform -chdir="$TF_DIR" apply -input=false tfplan
+
+      - id: outputs
+        if: inputs.action != 'destroy'
+        run: |
+          echo "app_url=$(terraform -chdir="$TF_DIR" output -raw app_url)" >> "$GITHUB_OUTPUT"
+
+      - uses: astral-sh/setup-uv@v10
+        if: inputs.action != 'destroy'
+
+      - name: smoke test
+        if: inputs.action != 'destroy'
+        run: |
+          uv run --project services/etl python services/etl/scripts/generate_sample_dataset.py --rows 500 --output sample.csv
+          SMOKE_TIMEOUT_SEC=900 ./scripts/smoke.sh "${{ steps.outputs.outputs.app_url }}" sample.csv
+
+      - name: summary
+        if: inputs.action != 'destroy'
+        run: |
+          {
+            echo "### Deployed ${GITHUB_SHA::7}"
+            echo "- Console: ${{ steps.outputs.outputs.app_url }}"
+            echo "- API docs: ${{ steps.outputs.outputs.app_url }}/docs"
+          } >> "$GITHUB_STEP_SUMMARY"
