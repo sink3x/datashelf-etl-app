@@ -32,7 +32,7 @@ RUN pnpm --filter @datashelf/web build \
 	&& find apps/web/build -name '*.br' -delete
 
 
-FROM nginxinc/nginx-unprivileged:1.28-alpine AS runtime
+FROM nginxinc/nginx-unprivileged:1.31-alpine AS runtime
 
 ENV API_URL="" \
 	DOCS_URL="" \
