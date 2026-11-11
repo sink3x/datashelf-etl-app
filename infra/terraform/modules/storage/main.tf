@@ -9,10 +9,6 @@ resource "yandex_storage_bucket" "data" {
     config_read = false
   }
 
-  versioning {
-    enabled = false
-  }
-
   lifecycle_rule {
     id      = "expire-staging"
     enabled = true
