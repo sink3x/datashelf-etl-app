@@ -138,8 +138,7 @@ tf-registry: ## Create only the container registry (needed before the first push
 	cd $(TF_DIR) && $(TF) apply -auto-approve -input=false -var image_tag=$(IMAGE_TAG) -target=module.registry
 
 .PHONY: cloud-push
-cloud-push: PLATFORM = linux/amd64
-cloud-push: images ## Build amd64 images and push them to Yandex Container Registry
+cloud-push: ## Build amd64 images and push them to Yandex Container Registry
 	./scripts/cloud.sh push $(IMAGE_TAG)
 
 .PHONY: cloud-web

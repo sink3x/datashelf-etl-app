@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Yandex Cloud helpers used by the Makefile and CI.
-#   scripts/cloud.sh push <tag>   push datashelf-{api,etl} images to Container Registry
+#   scripts/cloud.sh push <tag>   build amd64 datashelf-{api,etl} images and push them to Container Registry
 #   scripts/cloud.sh web          build the web console for the cloud API and upload it to the website bucket
 #   scripts/cloud.sh purge        delete all images from the registry so Terraform can destroy it
 set -euo pipefail
@@ -13,13 +13,14 @@ tf_output() { (cd "${TF_DIR}" && "${TF}" output -raw "$1"); }
 push() {
   local tag="${1:?image tag required}"
   local registry
-  registry="$(tf_output registry_url 2>/dev/null || yc container registry get --name datashelf-dev-registry --format json | jq -r '"cr.yandex/" + .id')"
+  registry="$(tf_output registry_url)"
 
   yc container registry configure-docker >/dev/null
-  for image in datashelf-api datashelf-etl; do
-    docker tag "${image}:${tag}" "${registry}/${image}:${tag}"
-    docker push "${registry}/${image}:${tag}"
-  done
+  # Build and push in one step: amd64 for the cloud VM, single manifest (no attestations) for Container Registry.
+  docker buildx build --platform linux/amd64 --provenance=false --sbom=false --push \
+    -f apps/api/Dockerfile -t "${registry}/datashelf-api:${tag}" .
+  docker buildx build --platform linux/amd64 --provenance=false --sbom=false --push \
+    -t "${registry}/datashelf-etl:${tag}" services/etl
 }
 
 web() {
