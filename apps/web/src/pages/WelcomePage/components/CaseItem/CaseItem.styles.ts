@@ -1,31 +1,38 @@
-import { Flex, Space, Typography } from 'antd'
 import styled from 'styled-components'
 
-import { EColorsMain } from '@styles/colors/colors-main'
-import { EColorsShadow } from '@styles/colors/colors-shadow'
+import { colors, fontSizes, radii, space } from '@styles/tokens'
 
-export const CaseItem = styled(Flex)`
-	padding: 15px;
-	flex-direction: column;
-	border-radius: 15px;
-	background-color: ${EColorsMain.WHITE};
-	color: ${EColorsMain.BLACK};
-	box-shadow:
-		0 4px 24px ${EColorsShadow.BLACK_ELEMENT_BORDER},
-		0 2px 8px ${EColorsShadow.BLACK_ELEMENT_BORDER};
-	box-sizing: border-box;
-`
-
-export const CaseItemIconWrapper = styled(Space)`
-	width: 40px;
-	height: 40px;
-`
-
-export const CaseItemTitle = styled(Typography.Title)`
+export const CaseItem = styled.div`
+	padding: ${space(5)};
 	display: flex;
-	align-items: center;
-	font-size: 20px !important;
+	flex-direction: column;
+	gap: ${space(2)};
+	border: 1px solid ${colors.line};
+	background-color: ${colors.surface};
+	color: ${colors.ink};
 `
-export const CaseItemDescription = styled(Typography.Paragraph)`
-	margin-left: 40px;
+
+export const CaseItemIconWrapper = styled.span`
+	width: 36px;
+	height: 36px;
+	margin-bottom: ${space(2)};
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: ${radii.md};
+	background: ${colors.accentSoft};
+	color: ${colors.accent};
+`
+
+export const CaseItemTitle = styled.h2`
+	margin: 0;
+	font-size: ${fontSizes.lg};
+	font-weight: 650;
+`
+
+export const CaseItemDescription = styled.p`
+	margin: 0;
+	color: ${colors.inkMuted};
+	font-size: ${fontSizes.md};
+	line-height: 1.6;
 `

@@ -1,68 +1,48 @@
-import { makeAutoObservable } from 'mobx'
-import { toast } from 'react-toastify'
+import { makeAutoObservable, runInAction } from 'mobx'
 
-import type { IDatasetProcessed } from '@interfaces/dataset-processed'
+import type { TChartsByName } from '@interfaces/chart'
 import type { TMaybe } from '@interfaces/maybe'
 import { getCharts } from '@services/dataset-service/dataset-service'
 import { getAxiosError } from '@utils/get-axios-error/get-axios-error'
 
-import { AXIOS_ERROR_MESSAGE } from './DashboardPage.constants'
-
-import type { ICharts } from './DashboardPage.interfaces'
+import { buildDashboardLayout } from './DashboardPage.utils'
 
 export class DashboardPageStore {
-	charts: ICharts = {}
-	isLoadingCharts = true
-	errorMessageCharts: TMaybe<string> = null
+	charts: TChartsByName = {}
+	isLoading = true
+	errorMessage: TMaybe<string> = null
 
 	constructor() {
 		makeAutoObservable(this)
 	}
 
-	setCharts = (charts: ICharts) => {
-		this.charts = charts
+	get layout() {
+		return buildDashboardLayout(this.charts)
 	}
 
-	setIsLoadingCharts = (flag: boolean) => {
-		this.isLoadingCharts = flag
+	get isEmpty() {
+		return this.layout.chartCount === 0
 	}
 
-	setErrorMessageCharts = (errorMessage: string) => {
-		this.errorMessageCharts = errorMessage
-	}
-
-	fetchChartListByFileName = async (fileName: string) => {
-		this.setIsLoadingCharts(true)
+	fetchCharts = async (filename: string) => {
+		this.isLoading = true
+		this.errorMessage = null
 
 		try {
-			const { data } = await getCharts({ fileName })
-			const { charts } = data
+			const { charts } = await getCharts(filename)
 
-			if (charts && Object.keys(charts).length) {
-				this.setCharts(charts)
-			} else {
-				throw new Error('Failed to generate charts')
-			}
+			runInAction(() => {
+				this.charts = charts ?? {}
+			})
 		} catch (error) {
-			let errorMessage = getAxiosError(error)
-
-			const vanilaErrorMessage = (error as Error)!.message
-
-			if (vanilaErrorMessage !== AXIOS_ERROR_MESSAGE) {
-				errorMessage = vanilaErrorMessage
-			}
-
-			this.setErrorMessageCharts(errorMessage)
-
-			toast(errorMessage, {
-				type: 'error',
+			runInAction(() => {
+				this.charts = {}
+				this.errorMessage = getAxiosError(error)
+			})
+		} finally {
+			runInAction(() => {
+				this.isLoading = false
 			})
 		}
-
-		this.setIsLoadingCharts(false)
-	}
-
-	get chartsFormatted() {
-		return Object.values(this.charts).map((chart) => chart[0]) as IDatasetProcessed['chart'][]
 	}
 }

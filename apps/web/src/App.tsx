@@ -1,22 +1,19 @@
-import { Layout } from 'antd'
+import { ConfigProvider } from 'antd'
 import { RouterProvider } from 'react-router-dom'
-import { ToastContainer } from 'react-toastify'
 
 import { router } from '@router/create-router'
 
 import { StrictModeWrapper } from '@components/StrictModeWrapper/StrictModeWrapper'
 import { GlobalStyles } from '@styles/global/GlobalStyles'
-
-import 'react-toastify/dist/ReactToastify.css'
+import { antdTheme } from '@styles/theme'
 
 export const App = () => {
 	return (
 		<StrictModeWrapper>
-			<GlobalStyles />
-			<Layout>
-				<ToastContainer position="bottom-right" pauseOnFocusLoss />
+			<ConfigProvider theme={antdTheme}>
+				<GlobalStyles />
 				<RouterProvider router={router} />
-			</Layout>
+			</ConfigProvider>
 		</StrictModeWrapper>
 	)
 }

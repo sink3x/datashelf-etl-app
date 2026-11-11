@@ -1,15 +1,3 @@
-export const colorGlowMap: Record<string, string> = {
-	'#e6f7ff': 'rgba(230, 247, 255, 0.6)',
-	'#bae7ff': 'rgba(186, 231, 255, 0.6)',
-	'#91d5ff': 'rgba(145, 213, 255, 0.6)',
-	'#69c0ff': 'rgba(105, 192, 255, 0.6)',
-	'#40a9ff': 'rgba(64, 169, 255, 0.6)',
-	'#1890ff': 'rgba(24, 144, 255, 0.6)',
-	'#096dd9': 'rgba(9, 109, 217, 0.6)',
-	'#0050b3': 'rgba(0, 80, 179, 0.6)',
-	'#003a8c': 'rgba(0, 58, 140, 0.6)',
-}
-
 export const STATE_NAME_LIST: Record<string, string> = {
 	Alabama: '01',
 	Alaska: '02',

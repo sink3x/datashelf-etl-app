@@ -1,17 +1,25 @@
-import { BookOpen } from '@gravity-ui/icons'
+import { BookOpen, Comment } from '@gravity-ui/icons'
 
-import { ERouterElementType, type IRouterElement } from '@router/routes.interfaces'
+import type { IAppConfig } from '@shared/config/config.interface'
 
-import { APP_CONFIG } from '@shared/config/config'
+import type { ISidebarNavItem } from './Sidebar.interfaces'
 
-const { urls } = APP_CONFIG
+export const SIDEBAR_WIDTH = '248px'
 
-export const EXTENTED_SUPPORT_GROUP: IRouterElement[] = [
-	{
-		path: urls.documentationUrl,
-		fullPath: urls.documentationUrl,
-		name: 'Documentation',
-		icon: <BookOpen />,
-		type: ERouterElementType.EXTERNAL_LINK,
-	},
-]
+export const getSupportNavItems = (urls: IAppConfig['urls']): ISidebarNavItem[] =>
+	[
+		{
+			key: 'documentation',
+			name: 'API documentation',
+			icon: <BookOpen />,
+			to: urls.documentationUrl,
+			isExternal: true,
+		},
+		{
+			key: 'contact',
+			name: 'Contact',
+			icon: <Comment />,
+			to: urls.contactUsUrl,
+			isExternal: true,
+		},
+	].filter((item) => item.to)

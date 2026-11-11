@@ -2,61 +2,42 @@ import type { FC } from 'react'
 
 import { Pie } from '@ant-design/plots'
 
-import { EColorsMain } from '@styles/colors/colors-main'
+import { chartPalette, colors, fonts } from '@styles/tokens'
 
-import type { IPieChartProps, IPieChartValue } from './PieChart.interfaces'
+import { CHART_HEIGHT, CHART_THEME } from '../chart.constants'
+
+import type { IPieChartProps } from './PieChart.interfaces'
 
 export const PieChart: FC<IPieChartProps> = (props) => {
 	const { values } = props
 
+	const total = values.reduce((sum, { value }) => sum + value, 0)
+
 	const config = {
 		data: values,
 		angleField: 'value',
-		colorField: 'type',
-		innerRadius: 0.6,
-		labels: [
-			{
-				text: 'type',
-				style: {
-					fontWeight: 'bold',
-					fill: EColorsMain.BLACK,
-				},
-			},
-			{
-				text: (dataValue: IPieChartValue, _index: number, _allData: IPieChartValue[]) => dataValue.value,
-				style: {
-					fontSize: 9,
-					dy: 12,
-					fill: EColorsMain.BLACK,
-				},
-			},
-		],
+		colorField: 'label',
+		height: CHART_HEIGHT,
+		autoFit: true,
+		theme: CHART_THEME,
+		innerRadius: 0.62,
+		radius: 0.9,
+		scale: { color: { range: [...chartPalette] } },
+		style: { stroke: colors.surface, lineWidth: 2, inset: 1, radius: 4 },
+		label: {
+			text: (datum: { value: number }) => (total ? `${Math.round((datum.value / total) * 100)}%` : ''),
+			position: 'outside',
+			style: { fill: colors.inkMuted, fontFamily: fonts.sans, fontSize: 12 },
+		},
 		legend: {
 			color: {
 				title: false,
-				position: 'right',
-				rowPadding: 5,
+				position: 'bottom',
+				layout: { justifyContent: 'center' },
+				itemLabelFill: colors.ink,
+				itemLabelFontFamily: fonts.sans,
 			},
 		},
-		style: { stroke: '#fff', inset: 1, radius: 10 },
-		scale: {
-			color: {
-				palette: 'spectral',
-				offset: (t: number) => t * 0.8 + 0.1,
-			},
-		},
-		annotations: [
-			{
-				type: 'text',
-				style: {
-					x: '50%',
-					y: '50%',
-					textAlign: 'center',
-					fontSize: 15,
-					fontStyle: 'bold',
-				},
-			},
-		],
 	}
 
 	return <Pie {...config} />

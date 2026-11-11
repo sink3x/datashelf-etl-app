@@ -1,27 +1,19 @@
-import { useNavigate } from 'react-router-dom'
+import { CircleQuestion } from '@gravity-ui/icons'
 
-import { ERoutesPageNames, Routes } from '@router/routes'
-import { Button } from '@ui/Button/Button'
+import { ROUTE_PATHS } from '@router/paths'
+import { ButtonLink } from '@ui/ButtonLink/ButtonLink'
 
-import * as Styled from './NotFoundPage.styles'
+import { PageState } from '@components/PageState/PageState'
 
-export const NotFoundPage = () => {
-	const navigate = useNavigate()
-
-	const handleClickBackHome = () => {
-		navigate(Routes[ERoutesPageNames.CONSOLE]!.children!.CONSOLE_HOME!.fullPath!)
-	}
-
-	return (
-		<Styled.ConsoleNotFoundResult
-			status="404"
-			title="Page not found"
-			subTitle="Sorry, the page you visited does not exist."
-			extra={
-				<Button type="primary" onClick={handleClickBackHome}>
-					Back Home
-				</Button>
-			}
-		/>
-	)
-}
+export const NotFoundPage = () => (
+	<PageState
+		icon={<CircleQuestion />}
+		title="This console page doesn’t exist"
+		description="Check the address or pick a section from the navigation."
+		actions={
+			<ButtonLink to={ROUTE_PATHS.CONSOLE} type="primary">
+				Go to console home
+			</ButtonLink>
+		}
+	/>
+)

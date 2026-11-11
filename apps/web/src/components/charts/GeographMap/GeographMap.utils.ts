@@ -1,23 +1,35 @@
 import { scaleQuantize } from 'd3-scale'
 
-export const getColorList = (maxSale: number) =>
-	scaleQuantize<string>()
-		.domain([0, maxSale])
-		.range([
-			'#e6f7ff',
-			'#bae7ff',
-			'#91d5ff',
-			'#69c0ff',
-			'#40a9ff',
-			'#1890ff',
-			'#096dd9',
-			'#0050b3',
-			'#003a8c',
-		])
+import { mapScale } from '@styles/tokens'
 
-export const adapterGeographMapValuesList = (valueList: number[], labelList: string[]) => {
-	return valueList.map((valueNumber, index) => ({
-		saleSum: Number(valueNumber.toFixed(0)),
-		city: labelList[index]!,
-	}))
+import type { ICitySales } from '../chart-adapters'
+
+import { CITY_STATE_ID_MAP } from './GeographMap.constants'
+
+export const getColorScale = (maxSale: number) =>
+	scaleQuantize<string>()
+		.domain([0, Math.max(maxSale, 1)])
+		.range(mapScale)
+
+export const aggregateSalesByState = (values: ICitySales[]) => {
+	const salesByState = new Map<string, number>()
+	const citiesByState = new Map<string, string[]>()
+
+	values.forEach(({ city, saleSum }) => {
+		const stateId = CITY_STATE_ID_MAP[city]
+
+		if (!stateId) {
+			return
+		}
+
+		salesByState.set(stateId, (salesByState.get(stateId) ?? 0) + saleSum)
+
+		const cities = citiesByState.get(stateId) ?? []
+
+		if (!cities.includes(city)) {
+			citiesByState.set(stateId, [...cities, city])
+		}
+	})
+
+	return { salesByState, citiesByState }
 }

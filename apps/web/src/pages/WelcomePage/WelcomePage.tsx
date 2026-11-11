@@ -1,54 +1,46 @@
-import { Col, Row } from 'antd'
-import { useNavigate } from 'react-router-dom'
-
-import { ERoutesPageNames, Routes } from '@router/routes'
+import { ROUTE_PATHS } from '@router/paths'
 import { Button } from '@ui/Button/Button'
+import { ButtonLink } from '@ui/ButtonLink/ButtonLink'
 
 import { MainLayout } from '@layouts/MainLayout/MainLayout'
-import { APP_CONFIG } from '@shared/config/config'
+import { getAppConfig } from '@shared/config/config'
 
 import { CASE_ITEM_LIST, WELCOME_DESCRIPTION, WELCOME_TITLE } from './WelcomePage.constants'
 import * as Styled from './WelcomePage.styles'
 
-const { urls } = APP_CONFIG
-
 export const WelcomePage = () => {
-	const navigate = useNavigate()
-
-	const handleClickOpenConsole = () => {
-		navigate(Routes[ERoutesPageNames.CONSOLE]!.path)
-	}
+	const { urls } = getAppConfig()
 
 	return (
 		<MainLayout>
 			<Styled.WelcomePage>
-				<main>
-					<Styled.DescriptionSpace>
-						<Styled.DescriptionTitle>{WELCOME_TITLE}</Styled.DescriptionTitle>
-						<Styled.DescriptionParagraph>{WELCOME_DESCRIPTION}</Styled.DescriptionParagraph>
-						<Styled.DescriptionActionSpace>
-							<Button type="primary" onClick={handleClickOpenConsole}>
+				<Styled.Hero>
+					<Styled.HeroInner>
+						<Styled.HeroTitle>{WELCOME_TITLE}</Styled.HeroTitle>
+						<Styled.HeroText>{WELCOME_DESCRIPTION}</Styled.HeroText>
+						<Styled.HeroActions>
+							<ButtonLink to={ROUTE_PATHS.CONSOLE} type="primary" size="large">
 								Open console
-							</Button>
-							<a href={urls.contactUsUrl} target="_blank" rel="noreferrer">
-								<Styled.ButtonBlack ghost>Contact us</Styled.ButtonBlack>
-							</a>
-						</Styled.DescriptionActionSpace>
-					</Styled.DescriptionSpace>
-					<Styled.CaseItemShowcase>
-						<Row gutter={[24, 24]}>
-							{CASE_ITEM_LIST.map((caseItem) => (
-								<Col key={caseItem.title}>
-									<Styled.CaseItem
-										icon={caseItem.icon}
-										title={caseItem.title}
-										description={caseItem.description}
-									/>
-								</Col>
-							))}
-						</Row>
-					</Styled.CaseItemShowcase>
-				</main>
+							</ButtonLink>
+							{urls.contactUsUrl && (
+								<Button size="large" href={urls.contactUsUrl} target="_blank" rel="noreferrer">
+									Contact us
+								</Button>
+							)}
+						</Styled.HeroActions>
+					</Styled.HeroInner>
+				</Styled.Hero>
+				<Styled.CaseList aria-label="How it works">
+					{CASE_ITEM_LIST.map((caseItem) => (
+						<li key={caseItem.title}>
+							<Styled.CaseItem
+								icon={caseItem.icon}
+								title={caseItem.title}
+								description={caseItem.description}
+							/>
+						</li>
+					))}
+				</Styled.CaseList>
 			</Styled.WelcomePage>
 		</MainLayout>
 	)

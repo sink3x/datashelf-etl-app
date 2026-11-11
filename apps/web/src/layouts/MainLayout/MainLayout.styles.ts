@@ -1,10 +1,11 @@
-import { Flex } from 'antd'
 import styled from 'styled-components'
 
-export const MainLayout = styled(Flex)`
-	height: 100vh;
-	width: 100vw;
-	margin-bottom: 30px;
+import { colors } from '@styles/tokens'
+
+export const MainLayout = styled.div`
+	min-height: 100vh;
+	width: 100%;
+	display: flex;
 	flex-direction: column;
-	box-sizing: border-box;
+	background: ${colors.canvas};
 `

@@ -2,91 +2,94 @@ import eslint from '@nabla/vite-plugin-eslint'
 import react from '@vitejs/plugin-react-swc'
 import fs from 'fs'
 import path from 'path'
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig, loadEnv, type ConfigEnv, type Plugin } from 'vite'
 import compression from 'vite-plugin-compression'
 import { createHtmlPlugin } from 'vite-plugin-html'
-import viteImagemin from 'vite-plugin-imagemin'
-import { ViteMinifyPlugin } from 'vite-plugin-minify'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
-export default ({ mode }: { mode: string }) => {
+const normalizeBasePath = (value: string | undefined) => {
+	const trimmed = (value || '/').trim()
+	const withLeading = trimmed.startsWith('/') ? trimmed : `/${trimmed}`
+
+	return withLeading.endsWith('/') ? withLeading : `${withLeading}/`
+}
+
+const spaFallbackPlugin = (basePath: string): Plugin => {
+	let outDir = ''
+
+	return {
+		name: 'datashelf-spa-fallback',
+		apply: 'build',
+		configResolved(config) {
+			outDir = path.resolve(config.root, config.build.outDir)
+		},
+		closeBundle() {
+			if (basePath === '/') {
+				return
+			}
+
+			fs.copyFileSync(path.join(outDir, 'index.html'), path.join(outDir, '404.html'))
+		},
+	}
+}
+
+const mockBuildPlugin = (isApiMock: boolean): Plugin => {
+	let outDir = ''
+
+	return {
+		name: 'datashelf-mock-build',
+		apply: 'build',
+		configResolved(config) {
+			outDir = path.resolve(config.root, config.build.outDir)
+		},
+		closeBundle() {
+			if (isApiMock) {
+				fs.copyFileSync(path.resolve(__dirname, 'config/app-config.demo.js'), path.join(outDir, 'app-config.js'))
+				return
+			}
+
+			fs.rmSync(path.join(outDir, 'mockServiceWorker.js'), { force: true })
+		},
+	}
+}
+
+export default ({ command, mode }: ConfigEnv) => {
 	const env = loadEnv(mode, process.cwd())
-	const isProduction = mode === 'production'
-	const isDevelopment = mode === 'development'
+	const isBuild = command === 'build'
 
 	const HOST = env.VITE_REACT_HOST || 'localhost'
 	const PORT = Number(env.VITE_REACT_PORT) || 3000
+	const BASE_PATH = normalizeBasePath(env.VITE_BASE_PATH)
+	const IS_API_MOCK = env.VITE_API_MOCK === 'true'
 
 	return defineConfig({
-		base: '/',
+		base: BASE_PATH,
 		publicDir: './public',
 		resolve: {
 			alias: [{ find: '@', replacement: path.resolve(__dirname, './src') }],
 		},
 		esbuild: {
-			sourcemap: !isProduction,
-			drop: isProduction ? ['console', 'debugger'] : [],
-			tsconfigRaw: {
-				compilerOptions: {
-					strict: true,
-				},
-			},
+			drop: isBuild ? ['console', 'debugger'] : [],
 		},
 		plugins: [
 			tsconfigPaths(),
 			react(),
-			eslint(),
-			ViteMinifyPlugin(),
-			compression({ algorithm: 'gzip', ext: '.gz', threshold: 10240 }),
-			compression({ algorithm: 'brotliCompress', ext: '.br', threshold: 10240 }),
-			viteImagemin({
-				gifsicle: { optimizationLevel: 3 },
-				optipng: { optimizationLevel: 6 },
-				mozjpeg: { quality: 70 },
-				webp: { quality: 70 },
-				svgo: {
-					plugins: [
-						{ name: 'removeViewBox', active: false },
-						{ name: 'cleanupIDs', active: true },
-						{ name: 'removeEmptyAttrs', active: true },
-					],
-				},
-				filter: (file: string) => {
-					const extname = path.extname(file)
-
-					return extname === '.png' && fs.existsSync(file)
-				},
-			}),
-			createHtmlPlugin({
-				minify: true,
-			}),
+			{ ...eslint(), apply: 'serve' },
+			compression({ algorithm: 'gzip', ext: '.gz', threshold: 1024 }),
+			compression({ algorithm: 'brotliCompress', ext: '.br', threshold: 1024 }),
+			createHtmlPlugin({ minify: true }),
+			spaFallbackPlugin(BASE_PATH),
+			mockBuildPlugin(IS_API_MOCK),
 		],
 		build: {
 			outDir: './build',
 			assetsDir: 'assets',
 			minify: 'esbuild',
 			cssCodeSplit: true,
-			sourcemap: isDevelopment,
+			sourcemap: false,
 			emptyOutDir: true,
 			chunkSizeWarningLimit: 1500,
-			terserOptions: {
-				compress: {
-					drop_console: true,
-					drop_debugger: true,
-					passes: 3,
-					ecma: 2020,
-					unsafe: true,
-				},
-				mangle: {
-					properties: {
-						reserved: ['React', 'mobx'],
-					},
-				},
-				module: true,
-				output: { comments: false },
-			},
 			rollupOptions: {
-				treeshake: true,
 				onwarn(warning, warn) {
 					if (warning?.code && ['SOURCE_MAP_ERROR', 'MODULE_LEVEL_DIRECTIVE'].includes(warning.code)) {
 						return
@@ -94,46 +97,18 @@ export default ({ mode }: { mode: string }) => {
 
 					warn(warning)
 				},
-				input: {
-					main: path.resolve(__dirname, 'index.html'),
-				},
 				output: {
 					entryFileNames: 'js/[name].[hash].js',
 					chunkFileNames: 'js/[name].[hash].js',
 					assetFileNames: 'assets/[name].[hash][extname]',
-					manualChunks(id) {
-						if (!id.includes('node_modules')) {
-							return
-						}
-
-						switch (true) {
-							case id.includes('@mui'):
-								return 'mui'
-							case id.includes('lodash'):
-								return 'lodash'
-							case id.includes('moment') || id.includes('dayjs'):
-								return 'date-utils'
-							case id.includes('three'):
-								return 'three'
-							case id.includes('sentry') || id.includes('analytics'):
-								return 'analytics'
-							case id.includes('vite') || id.includes('vite-plugin'):
-								return 'vite-plugins'
-							default:
-								return 'vendor'
-						}
-					},
 				},
-			},
-			commonjsOptions: {
-				transformMixedEsModules: true,
 			},
 		},
 		server: {
 			host: HOST,
 			port: PORT,
 			strictPort: true,
-			open: `http://${HOST}:${PORT}`,
+			open: `http://${HOST}:${PORT}${BASE_PATH}`,
 			watch: { usePolling: true },
 		},
 		preview: {

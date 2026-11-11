@@ -1,98 +1,108 @@
-import { Divider, Flex, Space, Typography } from 'antd'
-import { MenuItem, Sidebar } from 'react-pro-sidebar'
+import { Sidebar, type MenuItemStyles } from 'react-pro-sidebar'
 import styled from 'styled-components'
 
-import { EColorsMain } from '@styles/colors/colors-main'
-
-import type { ISidebarGroupProps, ISiderbarGroupItemProps } from './Sidebar.interfaces'
+import { colors, fonts, fontSizes, radii, space } from '@styles/tokens'
 
 export const SidebarContainer = styled(Sidebar)`
 	height: 100vh;
-	position: fixed !important;
+	flex: none;
+	border-right: 1px solid ${colors.line} !important;
+
+	&:not(.ps-broken) {
+		position: sticky !important;
+		top: 0;
+	}
+
+	.ps-sidebar-container {
+		background: ${colors.surface};
+	}
 `
 
-export const SidebarHeader = styled(Flex)`
-	padding: 20px;
-	margin-bottom: 0;
-	align-items: center;
+export const SidebarInner = styled.div`
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	font-family: ${fonts.sans};
 `
 
-export const LogoSpace = styled(Flex)`
+export const SidebarHeader = styled.div`
+	padding: ${space(5)} ${space(5)} ${space(4)};
+	display: flex;
+	gap: ${space(3)};
 	align-items: center;
-	cursor: pointer;
 `
 
 export const LogoImage = styled.img`
-	width: 37px;
-	margin-right: 10px;
+	width: 32px;
+	height: 32px;
 	user-select: none;
 	pointer-events: none;
 `
 
-export const LogoText = styled(Typography.Text)`
-	font-size: 20px;
-	font-weight: 800;
+export const LogoText = styled.span`
+	color: ${colors.ink};
+	font-size: ${fontSizes.lg};
+	font-weight: 700;
+	letter-spacing: -0.01em;
 `
 
-export const SidebarDivider = styled(Divider)`
-	margin: 0;
-`
-
-export const SidebarBody = styled(Flex)`
+export const SidebarNav = styled.div`
 	flex: 1;
-	flex-direction: column;
-	margin-top: 32px;
-`
-
-export const SidebarGroup = styled(Space)<ISidebarGroupProps>`
-	display: block;
-	margin-top: ${({ $groupIndex }) => ($groupIndex > 0 ? '60px' : 'initial')};
-`
-
-export const SidebarGroupTitle = styled(Space)`
-	padding: 0 20px;
-	margin-bottom: 8px;
-	font-weight: bold;
-`
-
-const menuItemStyles = ($isActive = false) => `
-	color: ${EColorsMain.BLACK};
-
-	span {
-		${$isActive && 'color:' + EColorsMain.BLUE};
-		display: flex;
-		align-items: center;
-
-		.icon {
-			margin-right: 10px;
-		}
-	}
-
-	* {
-		${$isActive && `pointer-events: none`};
-	}
-`
-
-export const SiderbarGroupItem = styled(MenuItem)<ISiderbarGroupItemProps>`
-	${({ $isActive }) => menuItemStyles($isActive)}
-`
-
-export const SiderbarGroupLink = styled.a<ISiderbarGroupItemProps>`
-	${({ $isActive }) => menuItemStyles($isActive)}
-
-	width: 100%;
-	height: 50px;
-	padding-right: 20px;
-	padding-left: 20px;
+	padding: ${space(2)} 0;
 	display: flex;
-	align-items: center;
-	position: relative;
-	cursor: pointer;
-	box-sizing: border-box;
-	transition: none;
+	flex-direction: column;
+	gap: ${space(6)};
+	overflow-y: auto;
+`
 
-	&:hover {
-		color: ${EColorsMain.BLACK};
-		background-color: #f3f3f3;
+export const SidebarGroup = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: ${space(1)};
+`
+
+export const SidebarGroupTitle = styled.h2`
+	margin: 0;
+	padding: 0 ${space(5)};
+	color: ${colors.inkMuted};
+	font-size: ${fontSizes.xs};
+	font-weight: 600;
+`
+
+export const SidebarFooter = styled.div`
+	padding: ${space(4)} ${space(5)};
+
+	&:empty {
+		display: none;
 	}
 `
+
+export const menuItemStyles: MenuItemStyles = {
+	root: {
+		padding: `0 ${space(3)}`,
+	},
+	button: ({ active }) => ({
+		height: '38px',
+		paddingLeft: space(2),
+		paddingRight: space(2),
+		borderRadius: radii.sm,
+		color: active ? colors.accent : colors.ink,
+		backgroundColor: active ? colors.accentSoft : 'transparent',
+		fontSize: fontSizes.md,
+		fontWeight: active ? 600 : 500,
+		'&:hover': {
+			backgroundColor: active ? colors.accentSoft : colors.surfaceSunken,
+			color: active ? colors.accent : colors.ink,
+		},
+		'&:focus-visible': {
+			outline: `2px solid ${colors.accent}`,
+			outlineOffset: '-2px',
+		},
+	}),
+	icon: ({ active }) => ({
+		minWidth: '28px',
+		width: '28px',
+		marginRight: space(2),
+		color: active ? colors.accent : colors.inkMuted,
+	}),
+}

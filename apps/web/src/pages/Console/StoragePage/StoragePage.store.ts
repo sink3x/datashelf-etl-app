@@ -1,5 +1,4 @@
-import { makeAutoObservable } from 'mobx'
-import { toast } from 'react-toastify'
+import { makeAutoObservable, runInAction } from 'mobx'
 
 import type { IRawFile } from '@interfaces/file-raw'
 import type { TMaybe } from '@interfaces/maybe'
@@ -9,13 +8,11 @@ import { getAxiosError } from '@utils/get-axios-error/get-axios-error'
 
 import { INITIAL_CURRENT_PAGE, INITIAL_CURRENT_PAGE_SIZE } from './StoragePage.constants'
 
-import type { IFetchRawFileListParams } from './StoragePage.interfaces'
-
 export class StoragePageStore {
 	rawFileList: IRawFile[] = []
 	rawFileListMeta: IResponseMeta = {}
-	isLoadingRawFileList = true
-	errorMessageRawFileList: TMaybe<string> = null
+	isLoading = true
+	errorMessage: TMaybe<string> = null
 
 	page = INITIAL_CURRENT_PAGE
 	pageSize = INITIAL_CURRENT_PAGE_SIZE
@@ -24,84 +21,39 @@ export class StoragePageStore {
 		makeAutoObservable(this)
 	}
 
-	reset = () => {
-		this.setPage(INITIAL_CURRENT_PAGE)
-		this.setPageSize(INITIAL_CURRENT_PAGE_SIZE)
+	get totalCount() {
+		return this.rawFileListMeta.totalCount ?? 0
 	}
 
-	setRawFileListMeta = (newMeta: IResponseMeta) => {
-		this.rawFileListMeta = newMeta
+	get isEmpty() {
+		return this.rawFileList.length === 0
 	}
 
-	setRawFileList = (newFileList: IRawFile[]) => {
-		this.rawFileList = newFileList
+	setPagination = (page: number, pageSize: number) => {
+		this.page = pageSize === this.pageSize ? page : INITIAL_CURRENT_PAGE
+		this.pageSize = pageSize
+		void this.fetchRawFileList()
 	}
 
-	setIsLoadingRawFileList = (flag: boolean) => {
-		this.isLoadingRawFileList = flag
-	}
-
-	setErrorMessageRawFileList = (errorMessage: string) => {
-		this.errorMessageRawFileList = errorMessage
-	}
-
-	setPage = (newPage: number) => {
-		this.page = newPage
-	}
-
-	setPageSize = (newPageSize: number) => {
-		this.pageSize = newPageSize
-	}
-
-	fetchRawFileList = async (params?: IFetchRawFileListParams) => {
-		const { isUpdateIsLoading = true } = params || {}
-
-		if (isUpdateIsLoading) {
-			this.setIsLoadingRawFileList(true)
-		}
+	fetchRawFileList = async () => {
+		this.isLoading = true
+		this.errorMessage = null
 
 		try {
-			const { data } = await getRawFileList({
-				page: this.page,
-				limit: this.pageSize,
+			const { datasetList, meta } = await getRawFileList({ page: this.page, limit: this.pageSize })
+
+			runInAction(() => {
+				this.rawFileList = datasetList ?? []
+				this.rawFileListMeta = meta ?? {}
 			})
-			const { datasetList, meta } = data
-
-			if (meta) {
-				this.setRawFileListMeta(meta)
-			}
-
-			if (datasetList) {
-				this.setRawFileList(datasetList)
-			}
 		} catch (error) {
-			const errorMessage = getAxiosError(error)
-
-			if (errorMessage) {
-				this.setErrorMessageRawFileList(errorMessage)
-
-				toast(errorMessage, {
-					type: 'error',
-				})
-			}
+			runInAction(() => {
+				this.errorMessage = getAxiosError(error)
+			})
+		} finally {
+			runInAction(() => {
+				this.isLoading = false
+			})
 		}
-
-		if (isUpdateIsLoading) {
-			this.setIsLoadingRawFileList(false)
-		}
-	}
-
-	get totalCount() {
-		const { totalCount = 0 } = this.rawFileListMeta
-		return totalCount
-	}
-
-	get totalPages() {
-		const { totalPages = 1 } = this.rawFileListMeta
-		return totalPages
-	}
-
-	get isRawFileListEmpty() {
-		return this.rawFileList.length === 0
 	}
 }

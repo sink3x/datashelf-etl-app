@@ -1,8 +1,5 @@
-export interface IBarchartValue {
-	value: number
-	type: string
-}
+import type { ILabelValue } from '../chart-adapters'
 
-export interface IBarchartProps {
-	values: IBarchartValue[]
+export interface IBarChartProps {
+	values: ILabelValue[]
 }

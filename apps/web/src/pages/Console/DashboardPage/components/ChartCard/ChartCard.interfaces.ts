@@ -1,5 +1,6 @@
-import type { IDatasetProcessed } from '@interfaces/dataset-processed'
+import type { TChart } from '@interfaces/chart'
 
 export interface IChartCardProps {
-	chartFormatted: IDatasetProcessed['chart']
+	chart: TChart
+	isWide?: boolean
 }

@@ -1,8 +1,5 @@
-export interface IWordCloudValue {
-	value: number
-	text: string
-}
+import type { IWordCloudDatum } from '../chart-adapters'
 
 export interface IWordCloudProps {
-	values: IWordCloudValue[]
+	values: IWordCloudDatum[]
 }

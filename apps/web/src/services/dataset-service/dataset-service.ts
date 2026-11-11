@@ -1,25 +1,28 @@
 import { axiosInstance } from '@lib/axios/axios-instance'
 
-import { DATASET_BASE } from './dataset-service.constants'
+import { DATASET_ROUTES } from './dataset-service.constants'
 
 import type {
-	IGetChartsParams,
-	IGetChartsRequest,
 	IGetChartsResponse,
+	IGetProcessedDatasetListResponse,
 	IGetRawFileListParams,
-	IGetRawFileListRequest,
 	IGetRawFileListResponse,
 } from './dataset-service.interfaces'
 
-export const getRawFileList = (params: IGetRawFileListParams) =>
-	axiosInstance<IGetRawFileListRequest, IGetRawFileListResponse>(`${DATASET_BASE}/raw`, {
-		params,
-	})
+export const getRawFileList = async (params: IGetRawFileListParams) => {
+	const { data } = await axiosInstance.get<IGetRawFileListResponse>(DATASET_ROUTES.raw, { params })
 
-export const getCharts = (params: IGetChartsParams) => {
-	const { fileName } = params
+	return data
+}
 
-	return axiosInstance<IGetChartsRequest, IGetChartsResponse>(`${DATASET_BASE}/charts/${fileName}`, {
-		params,
-	})
+export const getProcessedDatasetList = async () => {
+	const { data } = await axiosInstance.get<IGetProcessedDatasetListResponse>(DATASET_ROUTES.processed)
+
+	return data
+}
+
+export const getCharts = async (filename: string) => {
+	const { data } = await axiosInstance.get<IGetChartsResponse>(DATASET_ROUTES.charts(filename))
+
+	return data
 }

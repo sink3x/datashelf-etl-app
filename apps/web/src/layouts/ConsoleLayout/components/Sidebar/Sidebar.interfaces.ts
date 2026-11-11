@@ -1,11 +1,20 @@
-import type { HTMLAttributes } from 'react'
+import type { ReactNode } from 'react'
 
-export interface ISidebarHeaderProps extends HTMLAttributes<HTMLDivElement> {}
-
-export interface ISidebarGroupProps {
-	$groupIndex: number
+export interface ISidebarProps {
+	isMobileOpen: boolean
+	onMobileClose: () => void
 }
 
-export interface ISiderbarGroupItemProps {
-	$isActive?: boolean
+export interface ISidebarNavItem {
+	key: string
+	name: string
+	icon: ReactNode
+	to: string
+	isExternal?: boolean
+	matchPaths?: string[]
+}
+
+export interface ISidebarNavGroup {
+	name: string
+	items: ISidebarNavItem[]
 }
