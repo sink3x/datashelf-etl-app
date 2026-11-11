@@ -18,6 +18,8 @@ demo, against an in-browser mock API.
   and a skip link.
 - Runtime configuration validated with zod at startup; an invalid config renders an explanation instead of a
   blank page.
+- English and Russian interface with an EN / RU switcher and locale-aware number, currency, file size and date
+  formatting (see [Internationalization](#internationalization)).
 
 Chart payloads are typed with `TChart` from [`@datashelf/contracts`](../../packages/contracts).
 
@@ -75,8 +77,8 @@ answers every API call the UI makes from [`src/mocks`](src/mocks):
   which the new file appears in storage with its own dashboard;
 - uploaded files and runs survive a reload through `localStorage`.
 
-A "Demo mode — mock data" badge is shown in the sidebar. Regular builds do not include the worker or the mock
-code.
+A "Demo mode" badge is shown in the sidebar and the mobile bar. Regular builds do not include the worker or
+the mock code.
 
 The same handlers back the tests through `msw/node`.
 
@@ -110,11 +112,57 @@ The image is based on `nginxinc/nginx-unprivileged` (runs as uid 101, listens on
 
 Pass `--build-arg VITE_API_MOCK=true` to build a self-contained demo image.
 
+## Internationalization
+
+The console uses [i18next](https://www.i18next.com) with [react-i18next](https://react.i18next.com).
+Everything lives in [`src/shared/i18n`](src/shared/i18n):
+
+- `locales/en.json` and `locales/ru.json` are bundled with the app and loaded synchronously, so translations
+  work offline and in the mock demo without extra requests. English is the default and fallback language.
+- The language is detected from the `?lng=` query parameter, then `localStorage` (`datashelf.language`), then
+  the browser. A choice made in the switcher is saved to `localStorage`, and `<html lang>` follows the active
+  language.
+- [`src/@types/i18next.d.ts`](src/@types/i18next.d.ts) types the resources from `en.json`, so `t()` and
+  `<Trans>` keys are checked by `tsc`.
+- Formatting goes through `Intl` and luxon with the locale from `useLanguage()` (`en-US` or `ru-RU`):
+  [`format-number.ts`](src/utils/format-number.ts), [`convert-file-size.ts`](src/utils/convert-file-size.ts)
+  and [`format-date.ts`](src/utils/format-date.ts) take the locale as an argument.
+- antd components receive the matching antd locale through `ConfigProvider`.
+
+Chart titles and descriptions come from the API and are shown as they are.
+
+### Key conventions
+
+- Keys are grouped by screen or component (`dashboard.*`, `upload.*`, `nav.*`); strings shared by several
+  screens live in `common.*`. Use camelCase segments.
+- Use `{{name}}` interpolation instead of concatenating strings, and `<Trans>` with named components
+  (`<code>`) for markup inside a sentence.
+- Counted strings use i18next plural suffixes. English needs `_one` and `_other`; Russian needs `_one`,
+  `_few`, `_many` and `_other`. Call `t('dashboard.chartCount', { count })` with the base key.
+- Module-level constants (routes, dashboard sections, landing cards) store keys or ids, not text, and are
+  translated at render time so they follow a language switch.
+- [`locales.test.ts`](src/shared/i18n/locales/locales.test.ts) fails when a locale misses a key, a plural
+  category of its language or a placeholder used in English.
+
+### Adding a language
+
+1. Add the code to `SUPPORTED_LANGUAGES` and its `Intl` locale to `INTL_LOCALES` in
+   [`i18n.constants.ts`](src/shared/i18n/i18n.constants.ts).
+2. Create `locales/<code>.json` with the same keys as `en.json` and the plural categories the language needs
+   (`new Intl.PluralRules('<locale>').resolvedOptions().pluralCategories`).
+3. Register the file in `resources` in [`i18n.ts`](src/shared/i18n/i18n.ts), add the antd locale to
+   `ANTD_LOCALES` in [`App.tsx`](src/App.tsx) and import the file into `LOCALES` in `locales.test.ts` (`tsc`
+   reports both maps as incomplete until you do).
+4. Run `pnpm --filter @datashelf/web test`. The switcher picks the new language up from `SUPPORTED_LANGUAGES`
+   and labels it with its native name from `Intl.DisplayNames`.
+
 ## Tests
 
 Vitest with jsdom and Testing Library. The suite covers config parsing, chart adapters and metric formatting,
 dashboard layout building, API error messages, the simulated DAG run, contract validity of the mock fixtures,
-`MetricCard`, `ChartCard` and the dashboard page against the MSW handlers (success, empty and error states).
+`MetricCard`, `ChartCard` and the dashboard page against the MSW handlers (success, empty and error states),
+locale parity between `en.json` and `ru.json`, the language switcher and locale-aware formatting. Render
+components that use translations with `renderWithI18n` from [`src/test/render.tsx`](src/test/render.tsx).
 
 ## Screenshots
 
