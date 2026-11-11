@@ -71,16 +71,16 @@ More diagrams (containers, sequence, DAG) and the reliability design are in
 
 ## Stack at a glance
 
-| Layer          | Technology                                                                 | Where                |
-| -------------- | -------------------------------------------------------------------------- | -------------------- |
-| Frontend       | React 19, TypeScript, Vite, MobX, Ant Design / Gravity UI, MSW, Vitest     | `apps/web`           |
-| Backend        | Node.js 22, Express 5, TypeScript, zod, pino, Mongoose, amqplib, Vitest    | `apps/api`           |
-| Contracts      | JSON Schema, zod, pydantic                                                 | `packages/contracts` |
-| ETL            | Python 3.12, Airflow 3 TaskFlow, pandas, pyarrow, uv, ruff, mypy, pytest   | `services/etl`       |
-| Research       | Jupyter, conda                                                             | `research`           |
-| Data           | MongoDB, RabbitMQ, PostgreSQL (Airflow), S3 (RustFS locally)               | `docker-compose.yml` |
-| Infrastructure | Terraform, Yandex Cloud (VPC, Compute COI, Object Storage, CR, Lockbox)    | `infra/terraform`    |
-| Delivery       | Docker, GitHub Actions, GHCR, GitHub Pages, git flow, Conventional Commits | `.github/workflows`  |
+| Layer          | Technology                                                                              | Where                |
+| -------------- | --------------------------------------------------------------------------------------- | -------------------- |
+| Frontend       | React 19, TypeScript, Vite, MobX, Ant Design / Gravity UI, i18next (en/ru), MSW, Vitest | `apps/web`           |
+| Backend        | Node.js 22, Express 5, TypeScript, zod, pino, Mongoose, amqplib, Vitest                 | `apps/api`           |
+| Contracts      | JSON Schema, zod, pydantic                                                              | `packages/contracts` |
+| ETL            | Python 3.12, Airflow 3 TaskFlow, pandas, pyarrow, uv, ruff, mypy, pytest                | `services/etl`       |
+| Research       | Jupyter, conda                                                                          | `research`           |
+| Data           | MongoDB, RabbitMQ, PostgreSQL (Airflow), S3 (RustFS locally)                            | `docker-compose.yml` |
+| Infrastructure | Terraform, Yandex Cloud (VPC, Compute COI, Object Storage, CR, Lockbox)                 | `infra/terraform`    |
+| Delivery       | Docker, GitHub Actions, GHCR, GitHub Pages, git flow, Conventional Commits              | `.github/workflows`  |
 
 Detailed breakdown with the reasoning behind each choice: [docs/stack.md](docs/stack.md).
 

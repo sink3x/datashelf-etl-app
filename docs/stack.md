@@ -19,19 +19,20 @@ datashelf/
 
 ## Frontend — `apps/web`
 
-| Concern      | Choice                                        | Why                                                 |
-| ------------ | --------------------------------------------- | --------------------------------------------------- |
-| Language     | TypeScript (strict)                           | Typed API layer shared with backend contracts       |
-| UI           | React 19, Gravity UI, Ant Design              | Component kits for a data-heavy console             |
-| Charts       | @ant-design/plots, d3 (maps, word clouds)     | Declarative charts plus custom visualizations       |
-| State        | MobX                                          | Small page stores without boilerplate               |
-| Styling      | styled-components, design tokens in `styles/` | Co-located styles, theme in one place               |
-| Routing      | React Router 7                                | Nested console layouts                              |
-| Validation   | zod                                           | Runtime config is validated before the app renders  |
-| Mock backend | MSW                                           | Same handlers in tests and in the GitHub Pages demo |
-| Build        | Vite 6, SWC                                   | Fast dev server, small production bundle            |
-| Tests        | Vitest, Testing Library, jsdom                | Component and page tests against MSW                |
-| Runtime      | nginx (unprivileged) container                | Static hosting, config rendered from env at start   |
+| Concern      | Choice                                        | Why                                                       |
+| ------------ | --------------------------------------------- | --------------------------------------------------------- |
+| Language     | TypeScript (strict)                           | Typed API layer shared with backend contracts             |
+| UI           | React 19, Gravity UI, Ant Design              | Component kits for a data-heavy console                   |
+| Charts       | @ant-design/plots, d3 (maps, word clouds)     | Declarative charts plus custom visualizations             |
+| State        | MobX                                          | Small page stores without boilerplate                     |
+| Styling      | styled-components, design tokens in `styles/` | Co-located styles, theme in one place                     |
+| Routing      | React Router 7                                | Nested console layouts                                    |
+| Validation   | zod                                           | Runtime config is validated before the app renders        |
+| i18n         | i18next, react-i18next (English, Russian)     | Typed keys, plural rules, Intl number and date formatting |
+| Mock backend | MSW                                           | Same handlers in tests and in the GitHub Pages demo       |
+| Build        | Vite 6, SWC                                   | Fast dev server, small production bundle                  |
+| Tests        | Vitest, Testing Library, jsdom                | Component and page tests against MSW                      |
+| Runtime      | nginx (unprivileged) container                | Static hosting, config rendered from env at start         |
 
 ## Backend API — `apps/api`
 
