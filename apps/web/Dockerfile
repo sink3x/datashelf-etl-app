@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.7
 # Build context is the repository root: docker build -f apps/web/Dockerfile .
 
-FROM node:22-alpine AS build
+FROM node:26-alpine AS build
 
 ENV PNPM_HOME=/pnpm \
 	PATH=/pnpm:$PATH \
