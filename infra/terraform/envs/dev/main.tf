@@ -95,3 +95,8 @@ module "compute" {
 
   depends_on = [module.iam]
 }
+
+moved {
+  from = module.compute.yandex_vpc_address.this
+  to   = module.network.yandex_vpc_address.public
+}
