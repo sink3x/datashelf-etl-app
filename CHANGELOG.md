@@ -4,6 +4,13 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [1.0.1] - 2026-11-11
+
+### Fixed
+
+- CI: pin `astral-sh/setup-uv` to `v10.3.3`; the action no longer publishes a floating major tag, which broke
+  the Python job and the cloud deployment smoke test.
+
 ## [1.0.0] - 2026-11-11
 
 Re-architecture of the original monolith into a tested, deployable monorepo.
@@ -51,5 +58,6 @@ Re-architecture of the original monolith into a tested, deployable monorepo.
 
 Original monolithic prototype: Express API, Airflow DAG with analytics jobs, React dashboard.
 
+[1.0.1]: https://github.com/sink3x/datashelf-etl-app/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/sink3x/datashelf-etl-app/compare/v0.1.0...v1.0.0
 [0.1.0]: https://github.com/sink3x/datashelf-etl-app/releases/tag/v0.1.0
