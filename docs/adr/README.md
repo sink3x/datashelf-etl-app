@@ -8,6 +8,7 @@
 | [0004](0004-single-vm-for-dev-environment.md)                       | Dev environment on one Container Optimized VM     |
 | [0005](0005-rustfs-as-local-s3.md)                                  | RustFS as local S3                                |
 | [0006](0006-environment-based-configuration.md)                     | Validated environment-based configuration         |
+| [0007](0007-single-https-origin-in-the-cloud.md)                    | One HTTPS origin for web and API in the cloud     |
 
 New records: copy the structure of an existing one (Context, Decision, Consequences, Alternatives considered),
 use the next number, never rewrite an accepted record — supersede it.
