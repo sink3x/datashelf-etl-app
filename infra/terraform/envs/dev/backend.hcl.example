@@ -1,0 +1,4 @@
+# terraform init -backend-config=backend.hcl
+bucket     = "datashelf-tfstate-b1gxxxxxxxxxxxxxxxxx"
+access_key = "YCAJExampleAccessKey"
+secret_key = "YCPExampleSecretKey"

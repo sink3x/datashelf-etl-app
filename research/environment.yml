@@ -1,0 +1,12 @@
+name: datashelf-research
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pandas=3.0
+  - numpy=2.5
+  - matplotlib=3.10
+  - seaborn=0.13
+  - scikit-learn=1.8
+  - wordcloud=1.9
+  - jupyterlab=4.5

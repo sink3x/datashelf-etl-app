@@ -1,0 +1,23 @@
+# Used by BuildKit for `docker build -f apps/api/Dockerfile .` (paths are relative to the repo root)
+**/node_modules
+**/build
+**/dist
+**/coverage
+**/.env
+**/.env.*
+!**/.env.example
+**/*.log
+**/.DS_Store
+.git
+.github
+.husky
+.vscode
+.idea
+services
+research
+infra
+docs
+apps/web/**
+!apps/web/package.json
+apps/api/test
+apps/api/Dockerfile*

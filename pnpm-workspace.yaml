@@ -1,0 +1,16 @@
+packages:
+  - apps/*
+  - packages/*
+
+onlyBuiltDependencies:
+  - esbuild
+  - '@swc/core'
+
+ignoredBuiltDependencies:
+  - '@scarf/scarf'
+  - cwebp-bin
+  - gifsicle
+  - jpegtran-bin
+  - mozjpeg
+  - optipng-bin
+  - pngquant-bin

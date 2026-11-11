@@ -1,0 +1,28 @@
+{
+  "name": "datashelf",
+  "private": true,
+  "description": "Upload a dataset, run an Airflow ETL pipeline and explore the resulting analytics dashboard.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@10.34.9",
+  "scripts": {
+    "dev": "pnpm -r --parallel --filter ./apps/** dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "19.8.1",
+    "@commitlint/config-conventional": "19.8.1",
+    "husky": "9.1.7",
+    "lint-staged": "16.1.0",
+    "prettier": "3.5.3"
+  },
+  "version": "1.0.0"
+}

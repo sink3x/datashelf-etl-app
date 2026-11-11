@@ -1,0 +1,165 @@
+paths:
+  /api/dataset/processed:
+    get:
+      tags:
+        - dataset
+      summary: Get list of processed datasets
+      description: >
+        Returns up to 1000 most recent chart results (one item per ETL run and job) from the `chart_results`
+        collection, mapped to the legacy processed dataset shape.
+      responses:
+        '200':
+          description: Successful response with processed datasets
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Ok
+                  datasetList:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 6837f49fd09dabb2e3e39cb4
+                        filename:
+                          type: string
+                          example: trimmed_1000_retail_transactions_dataset-1748497554.csv
+                        processed_at:
+                          type: string
+                          format: date-time
+                          example: 2025-05-29T05:46:07.948031
+                        processing_time_sec:
+                          type: number
+                          example: 0.0017
+                        meta:
+                          type: object
+                          additionalProperties: true
+                        chart:
+                          type: array
+                          description: Charts computed for the dataset by one ETL job
+                          items:
+                            $ref: '#/components/schemas/Chart'
+                        run_id:
+                          type: string
+                          example: manual__2025-06-01T10:15:00+00:00
+                        job:
+                          type: string
+                          example: retail_metrics
+                        createdAt:
+                          type: string
+                          format: date-time
+                          example: 2025-05-29T05:46:07.992Z
+                        updatedAt:
+                          type: string
+                          format: date-time
+                          example: 2025-05-29T05:46:07.992Z
+                  meta:
+                    type: object
+                    properties:
+                      totalCount:
+                        type: integer
+                        example: 7
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /api/dataset/raw:
+    get:
+      summary: Get list of raw dataset files
+      description: |
+        Returns uploaded dataset files stored in the S3 bucket under `S3_RAW_PREFIX`, newest first.
+        The listing is collected page by page from S3 and capped at 10000 objects (`meta.truncated` is true when the cap is hit).
+      tags:
+        - dataset
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+      responses:
+        '200':
+          description: Successful response with list of raw dataset files
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Ok
+                  meta:
+                    type: object
+                    additionalProperties: true
+                  datasetList:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        fileName:
+                          type: string
+                          example: formData-1748225513.json
+                        key:
+                          type: string
+                          example: raw-data/formData-1748225513.json
+                        lastModified:
+                          type: string
+                          format: date-time
+                          example: 2025-05-26T02:11:54.003Z
+                        size:
+                          type: integer
+                          example: 56
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /api/dataset/charts/{filename}:
+    get:
+      tags:
+        - dataset
+      summary: Get charts for a dataset
+      description: Returns every chart computed for the dataset filename, grouped by chart name.
+      parameters:
+        - name: filename
+          in: path
+          required: true
+          schema:
+            type: string
+          example: retail-1748772900.csv
+      responses:
+        '200':
+          description: Charts grouped by name (empty object when the dataset has no results yet)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Ok
+                  charts:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Chart'
+                  meta:
+                    type: object
+                    properties:
+                      totalCount:
+                        type: integer
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalError'

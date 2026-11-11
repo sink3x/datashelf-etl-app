@@ -1,0 +1,36 @@
+{
+  "event_id": "9b2f6a40-1d3e-4c55-8a77-0e5b8c2d4f61",
+  "event_type": "dataset.charts.computed",
+  "schema_version": 1,
+  "occurred_at": "2025-06-01T10:15:31.000Z",
+  "run_id": "manual__2025-06-01T10:15:00+00:00",
+  "job": "city_summary",
+  "dataset": {
+    "object_key": "raw-data/retail-1748772900.csv",
+    "filename": "retail-1748772900.csv"
+  },
+  "processing_time_sec": 0.1,
+  "meta": {},
+  "charts": [
+    {
+      "name": "city_wordcloud_data",
+      "title": "City Frequency Distribution",
+      "description": "Frequency of cities.",
+      "type": "frequency",
+      "labels": ["Boston", "Chicago"],
+      "values": [12, 8],
+      "total": 20,
+      "top": { "label": "Boston", "count": 12, "percentage": 60 }
+    },
+    {
+      "name": "city_sales_summary",
+      "title": "Total Sales and Count by City",
+      "description": "Sales per city.",
+      "type": "grouped",
+      "labels": ["Boston", "Chicago"],
+      "values_sum": [500.25, 320],
+      "values_count": [12, 8],
+      "top": { "label": "Boston", "total_sales": 500.25, "count": 12, "sales_percentage": 60.99 }
+    }
+  ]
+}

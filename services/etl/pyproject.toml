@@ -1,0 +1,91 @@
+[project]
+name = "datashelf-etl"
+version = "1.0.0"
+description = "Retail dataset ETL: Airflow tasks, pandas analytics and charts-computed event publishing."
+requires-python = ">=3.12,<3.13"
+# Pinned to the versions in the Airflow 3.3.2 constraints for Python 3.12 so the image stays consistent.
+dependencies = [
+    "boto3==1.43.75",
+    "pandas==3.0.5",
+    "pika==1.4.4",
+    "pyarrow==25.0.1",
+    "pydantic==2.13.5",
+    "pydantic-settings==2.15.0",
+]
+
+[dependency-groups]
+dev = [
+    "boto3-stubs[s3]==1.43.75",
+    "jsonschema==4.26.0",
+    "mypy==2.4.1",
+    "pandas-stubs==3.0.5.260914",
+    "pytest==9.2.0",
+    "pytest-cov==7.1.0",
+    "ruff==0.17.3",
+]
+# Provided by the runtime image; install only to run the DAG import test locally.
+airflow = ["apache-airflow==3.3.2"]
+
+[build-system]
+requires = ["uv_build>=0.12.7,<0.13"]
+build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+src = ["src", "tests", "dags", "scripts"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "UP", "S", "N", "C4", "SIM", "RUF", "PT", "PL", "TID", "PD", "PTH"]
+ignore = [
+    "PLR0913", # pipeline steps take explicit collaborators instead of a context object
+    "PLR0917",
+    "PLR2004", # magic values in assertions/thresholds
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "PLC0415"]
+"dags/**" = ["PLC0415"] # imports inside tasks keep DAG parsing light
+
+[tool.ruff.lint.isort]
+known-first-party = ["datashelf_etl"]
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+warn_unreachable = true
+files = ["src"]
+
+[[tool.mypy.overrides]]
+module = ["pika", "pika.*", "pyarrow", "pyarrow.*"]
+ignore_missing_imports = true
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+
+[tool.pytest.ini_options]
+minversion = "9.0"
+testpaths = ["tests"]
+addopts = [
+    "-ra",
+    "--strict-markers",
+    "--strict-config",
+    "--import-mode=importlib",
+    "--cov=datashelf_etl",
+    "--cov-report=term-missing",
+    "--cov-fail-under=80",
+]
+filterwarnings = ["error", "ignore::DeprecationWarning:botocore.*"]
+
+[tool.coverage.run]
+branch = true
+source = ["datashelf_etl"]
+
+[tool.coverage.report]
+exclude_also = ["if TYPE_CHECKING:"]

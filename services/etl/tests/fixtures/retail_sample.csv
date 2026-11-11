@@ -1,0 +1,31 @@
+Transaction_ID,Date,Customer_Name,Product,Total_Items,Total_Cost,Payment_Method,City,Store_Type,Discount_Applied,Customer_Category,Season,Promotion
+1000,2024-01-01 10:00:00,Customer 00,"['Milk', 'Bread']",1,10.00,Cash,Boston,Supermarket,False,Student,Winter,Free Gift
+1001,2024-02-02 10:01:00,Customer 01,['Milk'],2,11.00,Cash,Boston,Supermarket,True,Professional,Winter,None
+1002,2024-03-03 10:02:00,Customer 02,"['Eggs', 'Milk', 'Soap']",3,12.00,Cash,Houston,Specialty Store,False,Student,Winter,None
+1003,2024-01-04 10:03:00,Customer 03,"['Bread', 'Honey']",4,13.00,Credit Card,Boston,Supermarket,True,Retiree,Winter,Free Gift
+1004,2024-02-05 10:04:00,Customer 04,['Soda'],5,14.00,Mobile Payment,Chicago,Convenience Store,False,Student,Winter,None
+1005,2024-03-06 10:05:00,Customer 05,"['Milk', 'Bread']",1,15.00,Cash,Houston,Supermarket,True,Retiree,Winter,None
+1006,2024-01-07 10:06:00,Customer 06,['Milk'],2,16.00,Cash,Boston,Convenience Store,False,Professional,Winter,Free Gift
+1007,2024-02-08 10:07:00,Customer 07,"['Eggs', 'Milk', 'Soap']",3,17.00,Credit Card,Chicago,Supermarket,True,Young Adult,Winter,None
+1008,2024-03-09 10:08:00,Customer 08,"['Bread', 'Honey']",4,18.00,Mobile Payment,Houston,Supermarket,False,Professional,Winter,None
+1009,2024-01-10 10:09:00,Customer 09,['Soda'],5,19.00,Cash,Boston,Specialty Store,True,Student,Spring,Free Gift
+1010,2024-02-11 10:10:00,Customer 10,"['Milk', 'Bread']",1,20.00,Cash,Chicago,Supermarket,False,Retiree,Spring,None
+1011,2024-03-12 10:11:00,Customer 11,['Milk'],2,21.00,Credit Card,Boston,Convenience Store,True,Student,Spring,None
+1012,2024-01-13 10:12:00,Customer 12,"['Eggs', 'Milk', 'Soap']",3,22.00,Mobile Payment,Chicago,Supermarket,False,Retiree,Spring,Free Gift
+1013,2024-02-14 10:13:00,Customer 13,"['Bread', 'Honey']",4,23.00,Cash,Houston,Convenience Store,True,Professional,Spring,None
+1014,2024-03-15 10:14:00,Customer 14,['Soda'],5,24.00,Cash,Boston,Supermarket,False,Young Adult,Spring,None
+1015,2024-01-16 10:15:00,Customer 15,"['Milk', 'Bread']",1,25.00,Credit Card,Chicago,Supermarket,True,Professional,Spring,Free Gift
+1016,2024-02-17 10:16:00,Customer 16,['Milk'],2,26.00,Credit Card,Houston,Specialty Store,False,Student,Spring,None
+1017,2024-03-18 10:17:00,Customer 17,"['Eggs', 'Milk', 'Soap']",3,27.00,Mobile Payment,Boston,Supermarket,True,Retiree,Summer,None
+1018,2024-01-19 10:18:00,Customer 18,"['Bread', 'Honey']",4,28.00,Cash,Chicago,Convenience Store,False,Student,Summer,Free Gift
+1019,2024-02-20 10:19:00,Customer 19,['Soda'],5,29.00,Cash,Houston,Supermarket,True,Retiree,Summer,None
+1020,2024-03-21 10:20:00,Customer 00,"['Milk', 'Bread']",1,30.00,Credit Card,Boston,Convenience Store,False,Student,Summer,None
+1021,2024-01-22 10:21:00,Customer 01,['Milk'],2,31.00,Mobile Payment,Chicago,Supermarket,True,Young Adult,Summer,Free Gift
+1022,2024-02-23 10:22:00,Customer 02,"['Eggs', 'Milk', 'Soap']",3,32.00,Cash,Boston,Convenience Store,False,Professional,Summer,None
+1023,2024-03-24 10:23:00,Customer 03,"['Bread', 'Honey']",4,33.00,Cash,Chicago,Specialty Store,True,Student,Summer,None
+1024,2024-01-25 10:24:00,Customer 04,['Soda'],5,34.00,Credit Card,Houston,Supermarket,False,Professional,Fall,Free Gift
+1025,2024-02-26 10:25:00,Customer 05,"['Milk', 'Bread']",1,35.00,Mobile Payment,Boston,Specialty Store,True,Student,Fall,None
+1026,2024-03-27 10:26:00,Customer 06,['Milk'],2,36.00,Cash,Chicago,Supermarket,False,Retiree,Fall,None
+1027,2024-01-28 10:27:00,Customer 07,"['Eggs', 'Milk', 'Soap']",3,37.00,Cash,Houston,Convenience Store,True,Student,Fall,Free Gift
+1028,2024-02-01 10:28:00,Customer 08,"['Bread', 'Honey']",4,38.00,Credit Card,Boston,Supermarket,False,Young Adult,Fall,None
+1029,2024-03-02 10:29:00,Customer 09,['Soda'],5,39.00,Credit Card,Chicago,Convenience Store,True,Professional,Fall,None

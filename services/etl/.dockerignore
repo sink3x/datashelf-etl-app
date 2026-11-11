@@ -1,0 +1,36 @@
+# Only pyproject.toml, src/ and dags/ are needed in the image
+*.md
+tests/
+scripts/
+.env
+.env.*
+
+# Python & virtual environment
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Airflow
+webserver_config.py
+airflow.db
+logs/
+*.pid
+
+# OS & editor files
+.DS_Store
+*.swp
+*.swo
+*.bak
+.idea/
+.vscode/
+
+# Git
+.git/
+.gitignore

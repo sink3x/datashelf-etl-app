@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "skipDefaultLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": "./src",
+    "outDir": "./build",
+    "paths": {
+      "@services/*": ["services/*"],
+      "@controllers/*": ["controllers/*"],
+      "@routers/*": ["routers/*"],
+      "@interfaces/*": ["interfaces/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@models/*": ["models/*"],
+      "@shared/*": ["shared/*"],
+      "@utils/*": ["utils/*"],
+      "@helpers/*": ["helpers/*"],
+      "@validations/*": ["validations/*"],
+      "@documentation/*": ["documentation/*"],
+      "@config/*": ["config/*"],
+      "@errors/*": ["errors/*"],
+      "@repositories/*": ["repositories/*"],
+      "@clients/*": ["clients/*"],
+      "@messaging/*": ["messaging/*"]
+    }
+  },
+  "include": ["./src/**/*", "./test/**/*"],
+  "exclude": ["node_modules", "build"]
+}
