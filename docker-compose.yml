@@ -1,94 +1,206 @@
 name: datashelf
 
+# Local development stack. Every external dependency is mocked or containerized:
+# RustFS stands in for Yandex Object Storage (S3 API), the rest are the real engines.
+# Configuration: .env when present (make env), otherwise the committed example.env defaults.
+
+x-airflow: &airflow
+  build:
+    context: ./services/etl
+  image: datashelf-etl:local
+  env_file: ${ENV_FILE:-example.env}
+  environment: &airflow-env
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW_FERNET_KEY}
+    AIRFLOW__CORE__EXECUTION_API_SERVER_URL: http://airflow-apiserver:8080/execution/
+    AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_USERS: ${AIRFLOW_USERNAME}:admin
+    AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_PASSWORDS_FILE: /opt/airflow/auth/passwords.json
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:${POSTGRES_PASSWORD}@postgres:5432/airflow
+    AIRFLOW__API_AUTH__JWT_SECRET: ${AIRFLOW_JWT_SECRET}
+    AIRFLOW__API__SECRET_KEY: ${AIRFLOW_API_SECRET}
+    S3_ENDPOINT: http://s3:9000
+    S3_FORCE_PATH_STYLE: 'true'
+    RABBITMQ_URL: amqp://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@rabbitmq:5672/
+  volumes:
+    - airflow-auth:/opt/airflow/auth
+    - ./services/etl/dags:/opt/airflow/dags:ro
+  depends_on: &airflow-depends
+    postgres:
+      condition: service_healthy
+    rabbitmq:
+      condition: service_healthy
+    s3-init:
+      condition: service_completed_successfully
+    airflow-init:
+      condition: service_completed_successfully
+  restart: unless-stopped
+
 services:
   postgres:
-    container_name: postgres
-    image: postgres:13
+    image: postgres:16-alpine
     environment:
       POSTGRES_USER: airflow
-      POSTGRES_PASSWORD: airflow
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: airflow
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U airflow"]
-      interval: 10s
-      retries: 5
+      test: ['CMD-SHELL', 'pg_isready -U airflow']
+      interval: 5s
       timeout: 5s
-    networks:
-      - datashelf-net
+      retries: 10
+    restart: unless-stopped
 
   mongodb:
-    container_name: mongodb
-    build:
-      context: ./mongodb
-      dockerfile: Dockerfile
-    ports:
-      - "27017:27017"
+    image: mongo:7
     environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: admin
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+    ports:
+      - '127.0.0.1:${MONGODB_HOST_PORT:-27017}:27017'
     volumes:
       - mongo-data:/data/db
-    restart: always
-    networks:
-      - datashelf-net
+    healthcheck:
+      test: ['CMD', 'mongosh', '--quiet', '--eval', "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
 
-  airflow:
-    container_name: airflow
+  rabbitmq:
+    image: rabbitmq:3.13-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
+    ports:
+      - '127.0.0.1:${RABBITMQ_HOST_PORT:-5672}:5672'
+      - '127.0.0.1:${RABBITMQ_UI_HOST_PORT:-15672}:15672'
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    healthcheck:
+      test: ['CMD', 'rabbitmq-diagnostics', '-q', 'ping']
+      interval: 10s
+      timeout: 10s
+      retries: 10
+    restart: unless-stopped
+
+  s3:
+    image: rustfs/rustfs:1.0.5
+    environment:
+      RUSTFS_ACCESS_KEY: ${S3_ACCESS_KEY_ID}
+      RUSTFS_SECRET_KEY: ${S3_SECRET_ACCESS_KEY}
+    ports:
+      - '127.0.0.1:${S3_HOST_PORT:-9000}:9000'
+      - '127.0.0.1:${S3_UI_HOST_PORT:-9001}:9001'
+    volumes:
+      - s3-data:/data
+    healthcheck:
+      test: ['CMD-SHELL', 'curl -fsS http://localhost:9000/health || wget -qO- http://localhost:9000/health']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  s3-init:
+    image: amazon/aws-cli:2.27.50
+    environment:
+      AWS_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY}
+      AWS_DEFAULT_REGION: ${S3_REGION}
+    entrypoint: ['/bin/sh', '-c']
+    command:
+      - aws --endpoint-url http://s3:9000 s3api head-bucket --bucket "${S3_BUCKET}" 2>/dev/null || aws
+        --endpoint-url http://s3:9000 s3 mb "s3://${S3_BUCKET}"
+    depends_on:
+      s3:
+        condition: service_healthy
+
+  airflow-init:
     build:
-      context: ./airflow
-      dockerfile: Dockerfile
+      context: ./services/etl
+    image: datashelf-etl:local
+    env_file: ${ENV_FILE:-example.env}
+    environment: *airflow-env
+    entrypoint: ['/bin/bash', '-c']
+    command:
+      - >-
+        printf '{"%s": "%s"}' "$${AIRFLOW_USERNAME}" "$${AIRFLOW_PASSWORD}" > /opt/airflow/auth/passwords.json
+        && airflow db migrate
+    volumes:
+      - airflow-auth:/opt/airflow/auth
     depends_on:
       postgres:
         condition: service_healthy
+
+  airflow-apiserver:
+    <<: *airflow
+    command: api-server
+    ports:
+      - '127.0.0.1:${AIRFLOW_HOST_PORT:-8080}:8080'
+    healthcheck:
+      test: ['CMD', 'curl', '-fsS', 'http://localhost:8080/api/v2/monitor/health']
+      interval: 10s
+      timeout: 10s
+      retries: 20
+      start_period: 30s
+
+  airflow-scheduler:
+    <<: *airflow
+    command: scheduler
+
+  airflow-dag-processor:
+    <<: *airflow
+    command: dag-processor
+
+  airflow-triggerer:
+    <<: *airflow
+    command: triggerer
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    image: datashelf-api:local
+    env_file: ${ENV_FILE:-example.env}
+    environment:
+      MONGODB_URI: mongodb://${MONGODB_USER}:${MONGODB_PASSWORD}@mongodb:27017/?authSource=admin
+      RABBITMQ_URL: amqp://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@rabbitmq:5672/
+      S3_ENDPOINT: http://s3:9000
+      S3_FORCE_PATH_STYLE: 'true'
+      AIRFLOW_URL: http://airflow-apiserver:8080
+    ports:
+      - '127.0.0.1:${API_HOST_PORT:-5000}:5000'
+    depends_on:
       mongodb:
-        condition: service_started
-    environment:
-      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
-      AIRFLOW__CORE__EXECUTOR: LocalExecutor
-      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
-      AIRFLOW__WEBSERVER__WORKERS: 2
-      AIRFLOW__WEBSERVER__PORT: 8080
-      AIRFLOW__API__AUTH_BACKEND: airflow.api.auth.backend.basic_auth
-    volumes:
-      - ./airflow/configs:/opt/airflow/configs
-      - ./airflow/dags:/opt/airflow/dags
-      - ./airflow/logs:/opt/airflow/logs
-      - ./airflow/plugins:/opt/airflow/plugins
-      - ./airflow/utils:/opt/airflow/utils
-      - ./airflow/jobs:/opt/airflow/jobs
-    ports:
-      - 8080:8080
-    command: >
-      bash -c "
-      airflow db migrate &&
-      airflow scheduler &
-      airflow dag-processor &
-      airflow triggerer & 
-      airflow api-server 
-      "
-    restart: always
-    user: airflow
-    networks:
-      - datashelf-net
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      s3-init:
+        condition: service_completed_successfully
+      airflow-apiserver:
+        condition: service_healthy
+    restart: unless-stopped
 
-  rabbitmq:
-    container_name: rabbitmq
-    image: rabbitmq:3-management
-    ports:
-      - "5672:5672"
-      - "15672:15672"
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    image: datashelf-web:local
     environment:
-      RABBITMQ_DEFAULT_USER: admin
-      RABBITMQ_DEFAULT_PASS: admin
-    restart: always
-    networks:
-      - datashelf-net
+      API_URL: http://localhost:5000
+      DOCS_URL: http://localhost:5000/docs
+      CONTACT_URL: https://github.com/sink3x
+      DEFAULT_DAG_ID: ${AIRFLOW_DAG_ID}
+    ports:
+      - '127.0.0.1:${WEB_HOST_PORT:-3000}:8080'
+    depends_on:
+      - api
+    restart: unless-stopped
+
 volumes:
-  pgdata:
+  postgres-data:
   mongo-data:
-
-networks:
-  datashelf-net:
-    driver: bridge
+  rabbitmq-data:
+  s3-data:
+  airflow-auth:
