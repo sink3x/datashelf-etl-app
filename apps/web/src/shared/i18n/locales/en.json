@@ -37,6 +37,7 @@
 	"configError": {
 		"title": "The console can’t start",
 		"description": "The runtime configuration in <code>app-config.js</code> is missing or invalid. Fix the values below and reload the page. In the container they come from the <code>API_URL</code>, <code>DOCS_URL</code>, <code>CONTACT_URL</code> and <code>DEFAULT_DAG_ID</code> environment variables.",
+		"missingConfig": "Runtime config is missing. Is app-config.js loaded?",
 		"demoTitle": "The demo can’t start",
 		"demoDescription": "The demo answers API requests with a service worker, and this browser didn’t allow it to register. Open the page in a regular browser window; private windows and some embedded browsers block service workers."
 	},
