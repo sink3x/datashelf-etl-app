@@ -1,6 +1,7 @@
 # 0004. Run the dev environment on one Container Optimized VM in Yandex Cloud
 
-Date: 2026-11-10 Status: Accepted
+Date: 2026-11-10 Status: Accepted, amended by [ADR-0007](0007-single-https-origin-in-the-cloud.md) (web
+console moved onto the VM)
 
 ## Context
 
