@@ -10,6 +10,9 @@ import {
 	toWordCloudList,
 } from './chart-adapters'
 
+const EN = 'en-US'
+const RU = 'ru-RU'
+
 const metric = (overrides: Partial<TMetricChart>): TMetricChart => ({
 	name: 'total_sales',
 	title: 'Total Sales',
@@ -45,24 +48,32 @@ describe('series adapters', () => {
 
 describe('formatMetricValue', () => {
 	it('shortens large numbers and prefixes currency signs', () => {
-		expect(formatMetricValue(metric({ value: 1_284_530.42, unit_sign: '$' }))).toBe('$1.3M')
-		expect(formatMetricValue(metric({ value: 52_341.17, unit_sign: '$' }))).toBe('$52.3K')
+		expect(formatMetricValue(metric({ value: 1_284_530.42, unit_sign: '$' }), EN)).toBe('$1.3M')
+		expect(formatMetricValue(metric({ value: 52_341.17, unit_sign: '$' }), EN)).toBe('$52.3K')
 	})
 
 	it('keeps small numbers readable without a unit', () => {
-		expect(formatMetricValue(metric({ value: 5.49, unit_sign: '' }))).toBe('5.5')
-		expect(formatMetricValue(metric({ value: 24 }))).toBe('24')
+		expect(formatMetricValue(metric({ value: 5.49, unit_sign: '' }), EN)).toBe('5.5')
+		expect(formatMetricValue(metric({ value: 24 }), EN)).toBe('24')
 	})
 
 	it('suffixes non-currency units', () => {
-		expect(formatMetricValue(metric({ value: 42, unit_sign: 'items' }))).toBe('42 items')
+		expect(formatMetricValue(metric({ value: 42, unit_sign: 'items' }), EN)).toBe('42 items')
 	})
 
 	it('passes string values through', () => {
-		expect(formatMetricValue(metric({ value: '2023-12' }))).toBe('2023-12')
+		expect(formatMetricValue(metric({ value: '2023-12' }), EN)).toBe('2023-12')
 	})
 
 	it('formats the full value for tooltips', () => {
-		expect(formatMetricValueFull(metric({ value: 1_284_530.424, unit_sign: '$' }))).toBe('$1,284,530.42')
+		expect(formatMetricValueFull(metric({ value: 1_284_530.424, unit_sign: '$' }), EN)).toBe('$1,284,530.42')
+	})
+
+	it('follows the russian number and currency conventions', () => {
+		expect(formatMetricValueFull(metric({ value: 1_284_530.424, unit_sign: '$' }), RU)).toBe(
+			'1\u00a0284\u00a0530,42\u00a0$',
+		)
+		expect(formatMetricValue(metric({ value: 5.49, unit_sign: '' }), RU)).toBe('5,5')
+		expect(formatMetricValue(metric({ value: 42, unit_sign: 'items' }), RU)).toBe('42 items')
 	})
 })

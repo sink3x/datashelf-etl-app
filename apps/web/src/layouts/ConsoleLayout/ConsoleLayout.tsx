@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { Outlet, useLocation, useMatches } from 'react-router-dom'
 
 import { DemoBadge } from '@components/DemoBadge/DemoBadge'
+import { LanguageSwitcher } from '@components/LanguageSwitcher/LanguageSwitcher'
 
 import { Sidebar } from './components/Sidebar/Sidebar'
 import * as Styled from './ConsoleLayout.styles'
@@ -47,7 +48,8 @@ export const ConsoleLayout: FC = () => {
 						onClick={() => setIsMobileSidebarOpen(true)}
 					/>
 					<Styled.MobileBrand>Datashelf</Styled.MobileBrand>
-					<DemoBadge />
+					<DemoBadge isCompact />
+					<LanguageSwitcher />
 				</Styled.MobileBar>
 				<Styled.PageContent>
 					{title && <Styled.LayoutTitle>{title}</Styled.LayoutTitle>}

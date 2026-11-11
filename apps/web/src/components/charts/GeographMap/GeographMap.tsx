@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { ComposableMap, Geographies } from 'react-simple-maps'
 import { Tooltip } from 'react-tooltip'
 
+import { useLanguage } from '@hooks/use-language'
 import { getAppConfig } from '@shared/config/config'
 import { colors } from '@styles/tokens'
 import { formatFullNumber } from '@utils/format-number'
@@ -22,10 +23,15 @@ export const GeographMap: FC<IGeographMapProps> = (props) => {
 
 	const { urls } = getAppConfig()
 	const { t } = useTranslation()
+	const { intlLocale } = useLanguage()
 
 	const getStateTooltip = (state: string, sales: number, cities: string[]) =>
 		sales
-			? t('charts.stateSales', { state, sales: formatFullNumber(sales), cities: cities.join(', ') })
+			? t('charts.stateSales', {
+					state,
+					sales: formatFullNumber(sales, intlLocale),
+					cities: cities.join(', '),
+				})
 			: t('charts.stateNoSales', { state })
 
 	const { salesByState, citiesByState } = useMemo(() => aggregateSalesByState(values), [values])

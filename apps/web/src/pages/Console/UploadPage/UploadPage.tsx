@@ -12,6 +12,7 @@ import { ButtonLink } from '@ui/ButtonLink/ButtonLink'
 
 import { StatusBadge } from '@components/StatusBadge/StatusBadge'
 import { useInterval } from '@hooks/use-interval'
+import { useLanguage } from '@hooks/use-language'
 import type { TDagRunState } from '@interfaces/dag'
 import { uploadRawData } from '@services/airflow-service/airflow-service'
 import { getAppConfig } from '@shared/config/config'
@@ -23,6 +24,8 @@ import * as Styled from './UploadPage.styles'
 
 const PIPELINES_PATH = ROUTE_PATHS.CONSOLE_PIPELINES
 
+type TUploadError = { kind: 'unsupported-file'; fileName: string } | { kind: 'request'; error: unknown }
+
 const RUN_STEP_INDEX: Record<TDagRunState, number> = {
 	queued: 1,
 	running: 2,
@@ -32,13 +35,24 @@ const RUN_STEP_INDEX: Record<TDagRunState, number> = {
 
 export const UploadPage = observer(() => {
 	const { vars } = getAppConfig()
-	const { t, i18n } = useTranslation()
+	const { t } = useTranslation()
+	const { intlLocale } = useLanguage()
 
 	const [file, setFile] = useState<File | null>(null)
 	const [isUploading, setIsUploading] = useState(false)
 	const [uploadProgress, setUploadProgress] = useState(0)
-	const [errorMessage, setErrorMessage] = useState<string | null>(null)
+	const [uploadError, setUploadError] = useState<TUploadError | null>(null)
 	const [runId, setRunId] = useState<string | null>(null)
+
+	const getUploadErrorMessage = (error: TUploadError) =>
+		error.kind === 'unsupported-file'
+			? t('upload.unsupportedFile', {
+					fileName: error.fileName,
+					extensions: new Intl.ListFormat(intlLocale, { type: 'disjunction' }).format(
+						ALLOWED_FILE_EXTENSIONS,
+					),
+				})
+			: getAxiosError(error.error)
 
 	const run = runId ? runsStore.getRun(runId) : undefined
 	const isRunActive = Boolean(run && !isTerminalRunState(run.state))
@@ -55,20 +69,13 @@ export const UploadPage = observer(() => {
 
 	const handleBeforeUpload: UploadProps['beforeUpload'] = (selectedFile) => {
 		if (!isAllowedFile(selectedFile)) {
-			setErrorMessage(
-				t('upload.unsupportedFile', {
-					fileName: selectedFile.name,
-					extensions: new Intl.ListFormat(i18n.resolvedLanguage, { type: 'disjunction' }).format(
-						ALLOWED_FILE_EXTENSIONS,
-					),
-				}),
-			)
+			setUploadError({ kind: 'unsupported-file', fileName: selectedFile.name })
 
 			return Upload.LIST_IGNORE
 		}
 
 		setFile(selectedFile)
-		setErrorMessage(null)
+		setUploadError(null)
 
 		return false
 	}
@@ -80,7 +87,7 @@ export const UploadPage = observer(() => {
 
 		setIsUploading(true)
 		setUploadProgress(0)
-		setErrorMessage(null)
+		setUploadError(null)
 
 		try {
 			const { triggeredDagInfo } = await uploadRawData({
@@ -93,7 +100,7 @@ export const UploadPage = observer(() => {
 				setRunId(runsStore.trackRun(triggeredDagInfo, file.name).dagRunId)
 			}
 		} catch (error) {
-			setErrorMessage(getAxiosError(error))
+			setUploadError({ kind: 'request', error })
 		} finally {
 			setIsUploading(false)
 		}
@@ -102,7 +109,7 @@ export const UploadPage = observer(() => {
 	const handleReset = () => {
 		setFile(null)
 		setRunId(null)
-		setErrorMessage(null)
+		setUploadError(null)
 		setUploadProgress(0)
 	}
 
@@ -181,7 +188,7 @@ export const UploadPage = observer(() => {
 						<FileIcon />
 					</Styled.SelectedFileIcon>
 					<Styled.SelectedFileName title={file.name}>{file.name}</Styled.SelectedFileName>
-					<Styled.SelectedFileSize>{convertFileSize(file.size)}</Styled.SelectedFileSize>
+					<Styled.SelectedFileSize>{convertFileSize(file.size, intlLocale)}</Styled.SelectedFileSize>
 					{isUploading && (
 						<Styled.SelectedFileProgress>
 							<Progress percent={uploadProgress} size="small" aria-label={t('upload.progress')} />
@@ -189,10 +196,10 @@ export const UploadPage = observer(() => {
 					)}
 				</Styled.SelectedFile>
 			)}
-			{errorMessage && (
+			{uploadError && (
 				<Styled.InlineError role="alert">
 					<TriangleExclamation aria-hidden />
-					{errorMessage}
+					{getUploadErrorMessage(uploadError)}
 				</Styled.InlineError>
 			)}
 			<Styled.PanelActions>

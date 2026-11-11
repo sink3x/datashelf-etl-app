@@ -8,6 +8,10 @@ export const Header = styled.header`
 	width: ${LANDING_WIDTH};
 	margin: 0 auto;
 	padding: ${space(5)} 0;
+	display: flex;
+	gap: ${space(4)};
+	align-items: center;
+	justify-content: space-between;
 `
 
 export const HeaderLogo = styled.span`

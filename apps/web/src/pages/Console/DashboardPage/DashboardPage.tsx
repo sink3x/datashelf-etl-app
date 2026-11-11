@@ -10,6 +10,7 @@ import { Button } from '@ui/Button/Button'
 import { ButtonLink } from '@ui/ButtonLink/ButtonLink'
 
 import { PageState } from '@components/PageState/PageState'
+import { getAxiosError } from '@utils/get-axios-error/get-axios-error'
 
 import { ChartCard } from './components/ChartCard/ChartCard'
 import { MetricCard } from './components/MetricCard/MetricCard'
@@ -44,7 +45,9 @@ export const DashboardPage = observer(() => {
 	const [store] = useState(() => new DashboardPageStore())
 	const { t } = useTranslation()
 
-	const { fetchCharts, isLoading, errorMessage, isEmpty, layout } = store
+	const { fetchCharts, isLoading, error, isEmpty, layout } = store
+
+	const errorMessage = error ? getAxiosError(error) : null
 
 	useEffect(() => {
 		if (filename) {

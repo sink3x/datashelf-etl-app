@@ -31,6 +31,7 @@
 	},
 	"demoBadge": {
 		"label": "Demo mode — mock data",
+		"shortLabel": "Demo",
 		"tooltip": "Requests are answered by an in-browser mock API. Uploads simulate a pipeline run."
 	},
 	"configError": {

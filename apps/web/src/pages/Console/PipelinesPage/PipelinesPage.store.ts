@@ -1,22 +1,20 @@
-import { makeAutoObservable, runInAction } from 'mobx'
+import { makeAutoObservable, observable, runInAction } from 'mobx'
 
 import type { IDag } from '@interfaces/dag'
-import type { TMaybe } from '@interfaces/maybe'
 import { getDagList } from '@services/airflow-service/airflow-service'
-import { getAxiosError } from '@utils/get-axios-error/get-axios-error'
 
 export class PipelinesPageStore {
 	dagList: IDag[] = []
 	isLoading = true
-	errorMessage: TMaybe<string> = null
+	error: unknown = null
 
 	constructor() {
-		makeAutoObservable(this)
+		makeAutoObservable(this, { error: observable.ref })
 	}
 
 	fetchDagList = async () => {
 		this.isLoading = true
-		this.errorMessage = null
+		this.error = null
 
 		try {
 			const { dags } = await getDagList()
@@ -26,7 +24,7 @@ export class PipelinesPageStore {
 			})
 		} catch (error) {
 			runInAction(() => {
-				this.errorMessage = getAxiosError(error)
+				this.error = error
 			})
 		} finally {
 			runInAction(() => {

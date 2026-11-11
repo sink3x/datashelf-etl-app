@@ -1,13 +1,16 @@
-export const convertFileSize = (bytes: number, decimals = 2) => {
-	if (bytes === 0) {
-		return '0 B'
-	}
+import { formatNumber } from './format-number'
 
-	const digit = 1024
-	const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB']
-	const sizeIndex = Math.floor(Math.log(bytes) / Math.log(digit))
+const BYTE_BASE = 1024
+const SIZE_UNITS = ['byte', 'kilobyte', 'megabyte', 'gigabyte', 'terabyte', 'petabyte'] as const
 
-	const value = bytes / Math.pow(digit, sizeIndex)
+export const convertFileSize = (bytes: number, locale: string, decimals = 2) => {
+	const sizeIndex =
+		bytes > 0 ? Math.min(Math.floor(Math.log(bytes) / Math.log(BYTE_BASE)), SIZE_UNITS.length - 1) : 0
 
-	return `${parseFloat(value.toFixed(decimals))} ${sizes[sizeIndex]}`
+	return formatNumber(bytes / Math.pow(BYTE_BASE, sizeIndex), locale, {
+		style: 'unit',
+		unit: SIZE_UNITS[sizeIndex],
+		unitDisplay: sizeIndex === 0 ? 'long' : 'short',
+		maximumFractionDigits: decimals,
+	})
 }

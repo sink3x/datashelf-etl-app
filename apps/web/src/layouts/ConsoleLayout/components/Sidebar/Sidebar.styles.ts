@@ -71,10 +71,10 @@ export const SidebarGroupTitle = styled.h2`
 
 export const SidebarFooter = styled.div`
 	padding: ${space(4)} ${space(5)};
-
-	&:empty {
-		display: none;
-	}
+	display: flex;
+	flex-direction: column;
+	gap: ${space(3)};
+	align-items: flex-start;
 `
 
 export const menuItemStyles: MenuItemStyles = {

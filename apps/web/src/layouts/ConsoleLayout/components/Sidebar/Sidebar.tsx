@@ -7,6 +7,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { ROUTE_PATHS } from '@router/paths'
 
 import { DemoBadge } from '@components/DemoBadge/DemoBadge'
+import { LanguageSwitcher } from '@components/LanguageSwitcher/LanguageSwitcher'
 import { getAppConfig } from '@shared/config/config'
 import { breakpoints, colors } from '@styles/tokens'
 
@@ -73,6 +74,7 @@ export const Sidebar: FC<ISidebarProps> = (props) => {
 					))}
 				</Styled.SidebarNav>
 				<Styled.SidebarFooter>
+					<LanguageSwitcher />
 					<DemoBadge />
 				</Styled.SidebarFooter>
 			</Styled.SidebarInner>

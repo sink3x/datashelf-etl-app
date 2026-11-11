@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 
 import { Pipeline, TriangleExclamation } from '@gravity-ui/icons'
 import { Skeleton } from 'antd'
-import { DateTime } from 'luxon'
 import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
 
@@ -14,7 +13,10 @@ import { ButtonLink } from '@ui/ButtonLink/ButtonLink'
 import { PageState } from '@components/PageState/PageState'
 import { StatusBadge } from '@components/StatusBadge/StatusBadge'
 import { useInterval } from '@hooks/use-interval'
+import { useLanguage } from '@hooks/use-language'
 import type { IDag } from '@interfaces/dag'
+import { formatRelativeTime } from '@utils/format-date'
+import { getAxiosError } from '@utils/get-axios-error/get-axios-error'
 
 import { PipelinesPageStore } from './PipelinesPage.store'
 import * as Styled from './PipelinesPage.styles'
@@ -22,8 +24,6 @@ import * as Styled from './PipelinesPage.styles'
 const UPLOAD_PATH = ROUTE_PATHS.CONSOLE_UPLOAD
 
 const RUNS_POLL_INTERVAL_MS = 5000
-
-const formatRelative = (isoDate: string) => DateTime.fromISO(isoDate).toRelative() ?? isoDate
 
 const getDagStatus = (dag: IDag) => {
 	if (dag.has_import_errors) {
@@ -38,7 +38,9 @@ const getDagStatus = (dag: IDag) => {
 }
 
 const DagList = observer(({ store }: { store: PipelinesPageStore }) => {
-	const { dagList, isLoading, errorMessage, fetchDagList } = store
+	const { dagList, isLoading, error, fetchDagList } = store
+
+	const errorMessage = error ? getAxiosError(error) : null
 
 	const { t } = useTranslation()
 
@@ -107,6 +109,7 @@ const RecentRuns = observer(() => {
 	const { runs, activeRuns, refreshActiveRuns, clear } = runsStore
 
 	const { t } = useTranslation()
+	const { intlLocale } = useLanguage()
 
 	useEffect(() => {
 		void refreshActiveRuns()
@@ -142,7 +145,7 @@ const RecentRuns = observer(() => {
 							)}
 							<Styled.DagMeta>
 								<code title={run.dagRunId}>{run.dagRunId}</code>
-								<span>{formatRelative(run.queuedAt)}</span>
+								<span>{formatRelativeTime(run.queuedAt, intlLocale)}</span>
 							</Styled.DagMeta>
 							{run.errorMessage && <Styled.RunError>{run.errorMessage}</Styled.RunError>}
 						</Styled.RunMain>

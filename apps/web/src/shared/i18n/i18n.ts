@@ -4,25 +4,16 @@ import { initReactI18next } from 'react-i18next'
 
 import {
 	DEFAULT_LANGUAGE,
-	INTL_LOCALES,
 	LANGUAGE_QUERY_PARAM,
 	LANGUAGE_STORAGE_KEY,
 	SUPPORTED_LANGUAGES,
-	type TLanguage,
 } from './i18n.constants'
+import { toSupportedLanguage } from './i18n.utils'
 import en from './locales/en.json'
 import ru from './locales/ru.json'
 
-export const isSupportedLanguage = (value: unknown): value is TLanguage =>
-	SUPPORTED_LANGUAGES.includes(value as TLanguage)
-
-export const getCurrentLanguage = (): TLanguage =>
-	isSupportedLanguage(i18n.resolvedLanguage) ? i18n.resolvedLanguage : DEFAULT_LANGUAGE
-
-export const getIntlLocale = (language: TLanguage = getCurrentLanguage()) => INTL_LOCALES[language]
-
 i18n.on('languageChanged', () => {
-	document.documentElement.lang = getCurrentLanguage()
+	document.documentElement.lang = toSupportedLanguage(i18n.resolvedLanguage)
 })
 
 void i18n

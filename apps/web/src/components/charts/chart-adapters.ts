@@ -1,5 +1,5 @@
 import type { TMetricChart } from '@interfaces/chart'
-import { formatCompactNumber, formatFullNumber } from '@utils/format-number'
+import { COMPACT_NUMBER_OPTIONS, formatNumber, FULL_NUMBER_OPTIONS } from '@utils/format-number'
 
 export interface ILabelValue {
 	label: string
@@ -16,7 +16,13 @@ export interface ICitySales {
 	saleSum: number
 }
 
-const PREFIX_UNIT_SIGNS = new Set(['$', '€', '£', '¥', '₽'])
+const CURRENCY_BY_UNIT_SIGN: Record<string, string> = {
+	$: 'USD',
+	'€': 'EUR',
+	'£': 'GBP',
+	'¥': 'JPY',
+	'₽': 'RUB',
+}
 
 const zip = (labels: readonly string[], values: readonly number[]): ILabelValue[] => {
 	const length = Math.min(labels.length, values.length)
@@ -34,24 +40,35 @@ export const toWordCloudList = (labels: readonly string[], values: readonly numb
 export const toCitySalesList = (labels: readonly string[], valuesSum: readonly number[]): ICitySales[] =>
 	zip(labels, valuesSum).map(({ label, value }) => ({ city: label, saleSum: Math.round(value) }))
 
-const withUnit = (value: string, unitSign: string | undefined) => {
+const formatWithUnit = (
+	value: number | string,
+	unitSign: string | undefined,
+	locale: string,
+	options: Intl.NumberFormatOptions,
+) => {
 	const unit = unitSign?.trim()
+	const currency = unit ? CURRENCY_BY_UNIT_SIGN[unit] : undefined
 
-	if (!unit) {
-		return value
+	if (typeof value === 'number' && currency) {
+		return formatNumber(value, locale, {
+			...options,
+			style: 'currency',
+			currency,
+			currencyDisplay: 'narrowSymbol',
+		})
 	}
 
-	return PREFIX_UNIT_SIGNS.has(unit) ? `${unit}${value}` : `${value} ${unit}`
+	const formatted = typeof value === 'number' ? formatNumber(value, locale, options) : value
+
+	if (!unit) {
+		return formatted
+	}
+
+	return currency ? `${unit}${formatted}` : `${formatted} ${unit}`
 }
 
-export const formatMetricValue = (chart: TMetricChart) => {
-	const { value, unit_sign: unitSign } = chart
+export const formatMetricValue = (chart: TMetricChart, locale: string) =>
+	formatWithUnit(chart.value, chart.unit_sign, locale, COMPACT_NUMBER_OPTIONS)
 
-	return withUnit(typeof value === 'number' ? formatCompactNumber(value) : value, unitSign)
-}
-
-export const formatMetricValueFull = (chart: TMetricChart) => {
-	const { value, unit_sign: unitSign } = chart
-
-	return withUnit(typeof value === 'number' ? formatFullNumber(value) : value, unitSign)
-}
+export const formatMetricValueFull = (chart: TMetricChart, locale: string) =>
+	formatWithUnit(chart.value, chart.unit_sign, locale, FULL_NUMBER_OPTIONS)

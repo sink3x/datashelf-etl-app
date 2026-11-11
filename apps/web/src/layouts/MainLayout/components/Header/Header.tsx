@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { ROUTE_PATHS } from '@router/paths'
 
 import DATASHELF_LOGO_URL from '@assets/images/logo/datashelf.webp'
+import { LanguageSwitcher } from '@components/LanguageSwitcher/LanguageSwitcher'
 
 import * as Styled from './Header.styles'
 
@@ -18,6 +19,7 @@ export const Header = () => {
 					<Styled.HeaderLogoTitle>Datashelf</Styled.HeaderLogoTitle>
 				</Styled.HeaderLogo>
 			</Link>
+			<LanguageSwitcher />
 		</Styled.Header>
 	)
 }
