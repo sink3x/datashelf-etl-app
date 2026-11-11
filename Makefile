@@ -13,7 +13,7 @@ export TF_CLI_CONFIG_FILE := $(CURDIR)/infra/terraform/cli.tfrc
 
 IMAGE_TAG ?= $(shell git rev-parse --short HEAD)
 PLATFORM ?=
-PLATFORM_FLAG = $(if $(PLATFORM),--platform $(PLATFORM))
+PLATFORM_FLAG = $(if $(PLATFORM),--platform $(PLATFORM) --provenance=false --sbom=false)
 
 ##@ Setup
 
