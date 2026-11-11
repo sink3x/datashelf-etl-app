@@ -5,7 +5,7 @@ window.appConfig = {
 		apiUrl: 'http://127.0.0.1:5000',
 	},
 	urls: {
-		contactUsUrl: 'https://t.me/jsink',
+		contactUsUrl: 'https://t.me/sink3x',
 		documentationUrl: 'http://127.0.0.1:5000/docs',
 	},
 	vars: {

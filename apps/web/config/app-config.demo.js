@@ -5,7 +5,7 @@ window.appConfig = {
 		apiUrl: '',
 	},
 	urls: {
-		contactUsUrl: 'https://t.me/jsink',
+		contactUsUrl: 'https://t.me/sink3x',
 		documentationUrl: '',
 	},
 	vars: {
