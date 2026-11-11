@@ -2,6 +2,7 @@
 # Yandex Cloud helpers used by the Makefile and CI.
 #   scripts/cloud.sh push <tag>   push datashelf-{api,etl} images to Container Registry
 #   scripts/cloud.sh web          build the web console for the cloud API and upload it to the website bucket
+#   scripts/cloud.sh purge        delete all images from the registry so Terraform can destroy it
 set -euo pipefail
 
 TF_DIR="${TF_DIR:-infra/terraform/envs/dev}"
@@ -44,8 +45,19 @@ EOF
     aws --endpoint-url https://storage.yandexcloud.net s3 sync --delete apps/web/build "s3://${bucket}"
 }
 
+purge() {
+  local registry_id
+  registry_id="$(cd "${TF_DIR}" && "${TF}" show -json \
+    | jq -r '[.. | objects | select(.type? == "yandex_container_registry") | .values.id] | first // empty')"
+  [[ -n "${registry_id}" ]] || return 0
+  yc container image list --registry-id "${registry_id}" --format json \
+    | jq -r '.[].id' \
+    | while read -r image_id; do yc container image delete "${image_id}" >/dev/null; done
+}
+
 case "${1:-}" in
   push) shift; push "$@" ;;
   web) web ;;
-  *) echo "usage: $0 {push <tag>|web}" >&2; exit 2 ;;
+  purge) purge ;;
+  *) echo "usage: $0 {push <tag>|web|purge}" >&2; exit 2 ;;
 esac

@@ -128,7 +128,8 @@ tf-apply: ## Apply the saved plan
 	cd $(TF_DIR) && $(TF) apply tfplan
 
 .PHONY: tf-destroy
-tf-destroy: ## Destroy the environment
+tf-destroy: ## Empty the registry and destroy the environment
+	./scripts/cloud.sh purge
 	cd $(TF_DIR) && $(TF) destroy -var image_tag=$(IMAGE_TAG)
 
 .PHONY: tf-registry
