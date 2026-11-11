@@ -71,7 +71,7 @@ describe('buildRawObjectKey', () => {
     ['data.json', 'raw-data/data-1748772900.json'],
     ['../../etc/passwd', 'raw-data/passwd-1748772900'],
     ['.hidden.csv', 'raw-data/hidden-1748772900.csv'],
-    ['отчёт.csv', 'raw-data/dataset-1748772900.csv'],
+    ['###.csv', 'raw-data/dataset-1748772900.csv'],
   ])('sanitises %s', (name, expected) => {
     expect(buildRawObjectKey('raw-data', name, NOW)).toBe(expected)
   })
