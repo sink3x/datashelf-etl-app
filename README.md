@@ -21,7 +21,7 @@
 ![Yandex Cloud](https://img.shields.io/badge/Yandex_Cloud-5282FF?logo=yandexcloud&logoColor=white)
 
 [**Live demo**](https://sink3x.github.io/datashelf-etl-app/) · [Architecture](docs/architecture.md) ·
-[Stack](docs/stack.md) · [ADRs](docs/adr/README.md) · [Runbook](docs/runbook.md)
+[Stack](docs/stack.md) · [Trade-offs](docs/architecture.md#trade-offs-and-scaling-path) · [ADRs](docs/adr/README.md) · [Runbook](docs/runbook.md)
 
 </div>
 
