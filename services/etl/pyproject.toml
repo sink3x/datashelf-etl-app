@@ -24,7 +24,7 @@ dev = [
     "ruff==0.17.3",
 ]
 # Provided by the runtime image; install only to run the DAG import test locally.
-airflow = ["apache-airflow==3.3.2"]
+airflow = ["apache-airflow==3.4.0"]
 
 [build-system]
 requires = ["uv_build>=0.12.7,<0.13"]
